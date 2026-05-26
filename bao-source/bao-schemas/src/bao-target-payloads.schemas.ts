@@ -18,6 +18,7 @@ import {
   htmxExtensionTargetSchema,
   mcpProviderTargetSchema,
   motionPresetTargetSchema,
+  nativeMobileShellTargetSchema,
   navTargetSchema,
   paletteEntryGroupTargetSchema,
   prismaExtensionTargetSchema,
@@ -65,4 +66,5 @@ export const TARGET_PAYLOAD_SCHEMAS = {
   "api-group": apiGroupTargetSchema,
   "tile-group": tileGroupTargetSchema,
   topbar: topbarTargetSchema,
+  "native-mobile-shell": nativeMobileShellTargetSchema,
 } satisfies Record<BaoInstallTargetKind, object>;

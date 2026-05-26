@@ -279,16 +279,17 @@ export const renderPluginsSection = (
     const toggleBtn = `<form class="inline" hx-post="${settingsPluginToggle(plugin.id)}" hx-target="#gw-plugins-section" hx-swap="outerHTML" hx-indicator="#global-indicator">
       <button type="submit" class="${resolveTemplateButtonClasses({ variant: toggleVariant, size: "compact", className: "gw-plugin-toggle" })}" aria-label="${escapeAttr(toggleLabel)} ${escapeAttr(plugin.id)}">${renderIcon(toggleIcon, { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(toggleLabel)}</span></button>
     </form>`;
-    const removeBtn = `<div class="gw-delete-confirm">
-      <button type="button" class="${resolveTemplateButtonClasses({ variant: "ghost", size: "compact", className: "gw-plugin-remove-trigger" })}" aria-label="${escapeAttr(removeLabel)} ${escapeAttr(plugin.id)}" onclick="this.parentElement.querySelector('.gw-confirm-popover').hidden=false;this.hidden=true">${renderIcon("delete", { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(removeLabel)}</span></button>
-      <div class="gw-confirm-popover flex items-center gap-2 p-2 border border-base-300 bg-base-100 rounded-lg" hidden>
-        <span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(removeConfirm)}</span>
-        <form class="inline" hx-post="${settingsPluginRemove(plugin.id)}" hx-target="#gw-plugins-section" hx-swap="outerHTML" hx-indicator="#global-indicator">
-          <button type="submit" class="${resolveTemplateButtonClasses({ variant: "error", size: "compact", className: "gw-delete-armed" })}" aria-label="${escapeAttr(removeLabel)} ${escapeAttr(plugin.id)}">${renderIcon("delete", { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(removeLabel)}</span></button>
-        </form>
-      </div>
-    </div>`;
+    const removeBtn = `<button type="button" class="${resolveTemplateButtonClasses({ variant: "ghost", size: "compact", className: "gw-plugin-remove-trigger" })}" aria-label="${escapeAttr(removeLabel)} ${escapeAttr(plugin.id)}" data-gw-remove-arm data-gw-remove-id="${escapeAttr(plugin.id)}">${renderIcon("delete", { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(removeLabel)}</span></button>`;
     return `<div class="flex items-center gap-1">${toggleBtn}${removeBtn}</div>`;
+  };
+
+  const renderRemoveConfirmPanel = (): string => {
+    return `<div id="gw-plugin-remove-confirm" class="gw-confirm-popover" hidden aria-live="polite">
+      <span class="${UI_EMPHASIS_XS_CLASS}" data-gw-remove-message>${escapeHtml(removeConfirm)}</span>
+      <form class="inline" data-gw-remove-form hx-target="#gw-plugins-section" hx-swap="outerHTML" hx-indicator="#global-indicator">
+        <button type="submit" class="${resolveTemplateButtonClasses({ variant: "error", size: "compact", className: "gw-delete-armed" })}" data-gw-remove-submit>${renderIcon("delete", { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(removeLabel)}</span></button>
+      </form>
+    </div>`;
   };
 
   const tableBody =
@@ -347,6 +348,7 @@ export const renderPluginsSection = (
       </table>
     </div>
     ${pagination}
+    ${renderRemoveConfirmPanel()}
     <div class="mt-3 flex flex-col gap-1">
       <p class="${UI_META_SECONDARY_CLASS}"><span class="font-semibold">${escapeHtml(dirLabel)}:</span> <code class="font-mono text-xs select-all">${escapeHtml(gooseWordBaoPluginsDir)}</code></p>
       <p class="${UI_META_SECONDARY_CLASS}">${escapeHtml(addHint)}</p>

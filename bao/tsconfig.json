@@ -16,7 +16,12 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "types": ["bun"]
+    "types": ["bun"],
+    "paths": {
+      "@baohaus/bao-contracts/*": ["../bao-source/bao-contracts/dist/*"],
+      "@baohaus/bao-schemas/*": ["../bao-source/bao-schemas/dist/*"],
+      "@baohaus/bao-utils/*": ["../bao-source/bao-utils/dist/*"]
+    }
   },
   "include": ["scripts/**/*.ts", "src/**/*.ts"],
   "exclude": ["node_modules", "dist", ".bao-build"]

@@ -250,7 +250,6 @@ html[data-gw-dock="hidden"] {
 
 .gw-templates {
   position: relative;
-  z-index: 0;
   margin-top: 0.75rem;
 }
 
@@ -937,7 +936,19 @@ html[data-keyboard="bluetooth"] .gw-editor-actions [data-shortcut]::after {
 
 .gw-confirm-popover {
   position: static;
-  margin-top: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--bao-aurora-space-2);
+  margin-top: var(--bao-aurora-space-2);
+  padding: var(--bao-aurora-space-2);
+  border: 1px solid var(--color-base-300);
+  border-radius: var(--bao-aurora-radius-md);
+  background: var(--gw-surface-bg, var(--color-base-100));
+  box-shadow: var(--bao-glass-content-shadow);
+}
+
+.gw-confirm-popover[hidden] {
+  display: none;
 }
 
 html[data-pointer="coarse"] {

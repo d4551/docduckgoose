@@ -115,11 +115,13 @@ describe("renderSettingsPanel admin UX", () => {
     expect(panel).toContain("Disable spellcheck-bao");
   });
 
-  it("renders plugin remove controls with confirm", () => {
+  it("renders plugin remove controls with confirm panel", () => {
     expect(panel).toContain("Remove");
-    expect(panel).toContain("/settings/plugins/spellcheck-bao/remove");
-    expect(panel).toContain("gw-delete-confirm");
+    expect(panel).toContain("data-gw-remove-arm");
+    expect(panel).toContain("data-gw-remove-id");
     expect(panel).toContain("gw-confirm-popover");
+    expect(panel).toContain("gw-plugin-remove-trigger");
+    expect(panel).toContain("gw-delete-armed");
     expect(panel).toContain("Remove spellcheck-bao");
   });
 

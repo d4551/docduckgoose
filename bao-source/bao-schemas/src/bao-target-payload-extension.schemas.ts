@@ -293,3 +293,15 @@ export const bunPluginTargetSchema = t.Object(
   },
   { additionalProperties: false },
 );
+
+export const nativeMobileShellTargetSchema = t.Object(
+  {
+    platform: t.Union([t.Literal("android"), t.Literal("ios")]),
+    serverMode: t.Literal("embedded"),
+    loopbackHost: t.String({ minLength: 1, default: "127.0.0.1" }),
+    loopbackPort: t.Integer({ minimum: 1, maximum: 65535 }),
+    healthPath: posixPathSchema,
+    webviewEntrypoint: posixPathSchema,
+  },
+  { additionalProperties: false },
+);

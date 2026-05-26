@@ -155,5 +155,33 @@
     wireDeviceShell();
   });
 
+  document.body.addEventListener("click", function (event) {
+    var trigger = event.target.closest("[data-gw-remove-arm]");
+    if (!trigger) {
+      return;
+    }
+    var pluginId = trigger.getAttribute("data-gw-remove-id");
+    if (!pluginId) {
+      return;
+    }
+    var panel = document.getElementById("gw-plugin-remove-confirm");
+    if (!panel) {
+      return;
+    }
+    var form = panel.querySelector("[data-gw-remove-form]");
+    if (form) {
+      form.setAttribute("hx-post", "/settings/plugins/" + encodeURIComponent(pluginId) + "/remove");
+      if (typeof htmx !== "undefined") {
+        htmx.process(form);
+      }
+    }
+    var submit = panel.querySelector("[data-gw-remove-submit]");
+    if (submit) {
+      submit.setAttribute("aria-label", trigger.getAttribute("aria-label") || "");
+    }
+    panel.hidden = false;
+    panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
   document.addEventListener("DOMContentLoaded", wireDeviceShell);
 })();
