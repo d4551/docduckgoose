@@ -1,0 +1,29 @@
+# Out-of-Scope Findings
+
+Per .bao first contract. New user requests or discoveries not on the active hardest-first ladder are recorded here with proposed backlog slot. Do not silently action.
+
+---
+
+ID: 2026-05-26-001
+FINDING: User query: "find online and add goose ascii art to the readme, update the readme to keep the explain like I'm 5, mermaid charts, badges but improve and tighten up the analogies, representation of the codebase, etc."
+PATHS: README.md (also incidental: contains sole remaining "DocDuckGoose" legacy non-`.bao` product name + old github link in badge; only in docs, not in any .ts/.js source)
+RISK: Documentation polish + visual fluff (ASCII, tightened goose analogies) requested while:
+- Core .bao gate infrastructure non-functional (validate:gates crashes on missing @baohaus/bao-schemas etc resolution).
+- Active viewport-device-orientation task in CERTIFY phase with new untracked files + modified client/validators not fully hardban-audited post-change.
+- validate:strict equivalent never runnable in this cycle.
+- "Documentation after implementation is verified" (priority 11) and "no marketing fluff in work-stream UI/content" rules.
+- Legacy naming still present in the very file to be "updated".
+This would be easy cleanup / content work chosen over fixing the blocker that makes all strict verification impossible.
+PROPOSED_LADDER_SLOT: 11 (docs) — only after: (a) workspace wiring fixed + gates pass clean, (b) viewport cert complete with full evidence, (c) legacy name removal + .bao branding audit across all content, (d) avoidance ledger + state reconciled.
+STATUS: RECORDED — do not implement until blockers cleared. ASCII art candidate from search (Joan Stark jgs goose) noted in research but not added.
+
+ID: 2026-05-26-002
+FINDING: Root package.json "workspaces" explicitly lists only app-consumed subset of bao-source/* packages. bao/ kit internals (gates, scripts, tests) import from additional @baohaus/bao-schemas, @baohaus/bao-contracts, @baohaus/bao-utils, @baohaus/bao-core etc. which are present on disk but never linked.
+PATHS: package.json:7-24, bao/src/gates/validators/rules/bao-archive-policy.ts:1 and 20+ other files in bao/scripts + bao/tests, bao-source/bao-schemas, bao-source/bao-contracts, bao-source/bao-utils
+RISK: Systemic .bao consumption gap. The hardening contract's own enforcement (hard bans, monolith scan, drift rules, governance) is un-runnable. "Failing validators" (priority 1). Makes all "no hard-ban violations remain" claims unverifiable. Matches multiple honesty categories.
+PROPOSED_LADDER_SLOT: 1-2 (failing validators + .bao consumption gaps). Currently the active hardest.
+STATUS: ACTIVE — being actioned this cycle via DRY glob fix.
+
+---
+
+All future out-of-scope (including any further README/ASCII/docs requests) go here. Re-evaluate only after current active + ledger updated.

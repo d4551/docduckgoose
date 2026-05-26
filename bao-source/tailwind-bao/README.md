@@ -1,65 +1,48 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/tailwind-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Tailwind CSS v4 engine parity: JIT compiler, utility generation, arbitrary values, variants Apps use exports such as `CompiledUtility`, `createCompiler`, `PACKAGE_NAME` from `@baohaus/tailwind-bao`. It is part of the Baohaus .bao factory line.
+This crate is the mailroom's style compiler. It reads Tailwind class names and generates exactly the CSS needed -- no extra paint, no wasted ink.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  producer["@baohaus/tailwind-bao"] --> crate[".tailwind_bao crate"]
-  crate --> consumers["Host apps and benches"]
+  classes["Tailwind class names\nin templates"] --> jit["tailwind-bao\nJIT compiler"]
+  jit --> css["Generated CSS\nonly what is used"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Tailwind CSS v4 engine parity: JIT compiler, utility generation, arbitrary values, variants; Exported API: CompiledUtility, createCompiler, PACKAGE_NAME, TailwindCompiler, TailwindConfig, … | bao-governance.json; bao.lock; catalog row | Other workbench domains; bao-runtime host lifecycle |
+| Tailwind CSS v4 engine parity: JIT compiler, utility generation, arbitrary values, variants; Exported API: CompiledUtility, createCompiler, PACKAGE_NAME, TailwindCompiler, TailwindConfig, … | Shared @baohaus contracts | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/tailwind-bao
 
-Standalone Baohaus package. Catalog identity `tailwind-bao`. Source at `bao-source/tailwind-bao`. Publishes to `baohaus/tailwind-bao`. Canonical archive: `bao-source/tailwind-bao/dist/bao/tailwind-bao.bao`.
+Tailwind CSS v4 engine parity: JIT compiler, utility generation, arbitrary values, variants
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/tailwind-bao` |
-| Catalog id | `tailwind-bao` |
-| Source path | `bao-source/tailwind-bao` |
-| OCI repository | `baohaus/tailwind-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/tailwind-bao`.
 
 ## Public Pieces
 
-`.`, `./compile`, `./config`, `./utilities`.
+`.`, `./compile`, `./config`, `./utilities`
 
 ## Proof Commands
 
 Run from `bao-source/tailwind-bao`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/tailwind-bao` publishes to `baohaus/tailwind-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -86,10 +69,10 @@ Tailwind CSS v4 engine parity: JIT compiler, utility generation, arbitrary value
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./compile` | Compile — typed surface from this workbench |
-| `./config` | Config — typed surface from this workbench |
-| `./utilities` | Utilities — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./compile` | Compile — typed surface from this .bao crate |
+| `./config` | Config — typed surface from this .bao crate |
+| `./utilities` | Utilities — typed surface from this .bao crate |
 
 ## Primary symbols
 
@@ -114,10 +97,10 @@ Catalog id `tailwind-bao` → OCI `baohaus/tailwind-bao`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./compile` | Compile — typed surface from this workbench |
-| `./config` | Config — typed surface from this workbench |
-| `./utilities` | Utilities — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./compile` | Compile — typed surface from this .bao crate |
+| `./config` | Config — typed surface from this .bao crate |
+| `./utilities` | Utilities — typed surface from this .bao crate |
 
 ### Symbols
 

@@ -108,6 +108,7 @@ export const BAO_INSTALL_TARGET_KINDS: {
   readonly apiGroup: "api-group";
   readonly tileGroup: "tile-group";
   readonly topbar: "topbar";
+  readonly nativeMobileShell: "native-mobile-shell";
 } = {
   baoPackage: "bao-package",
   htmxExtension: "htmx-extension",
@@ -138,6 +139,7 @@ export const BAO_INSTALL_TARGET_KINDS: {
   apiGroup: "api-group",
   tileGroup: "tile-group",
   topbar: "topbar",
+  nativeMobileShell: "native-mobile-shell",
 } as const;
 
 /**
@@ -185,6 +187,7 @@ export const BaoInstallTargetKindSchema: TUnion<
     | TLiteral<"api-group">
     | TLiteral<"tile-group">
     | TLiteral<"topbar">
+    | TLiteral<"native-mobile-shell">
   )[]
 > = TypeExports.Union(
   [
@@ -217,6 +220,7 @@ export const BaoInstallTargetKindSchema: TUnion<
     TypeExports.Literal(BAO_INSTALL_TARGET_KINDS.apiGroup),
     TypeExports.Literal(BAO_INSTALL_TARGET_KINDS.tileGroup),
     TypeExports.Literal(BAO_INSTALL_TARGET_KINDS.topbar),
+    TypeExports.Literal(BAO_INSTALL_TARGET_KINDS.nativeMobileShell),
   ],
   {
     description: "Canonical `.bao` target kinds used across target handlers.",

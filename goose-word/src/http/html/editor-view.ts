@@ -1,13 +1,21 @@
 import { resolveTemplateButtonClasses } from "@baohaus/soy-view-kit/templates/buttons";
 import { renderIcon } from "@baohaus/soy-view-kit/templates/icons";
-import { docApiPath, docPreviewPath, docPrintPath, docSavePath } from "../../config/routes.ts";
+import {
+  docApiPath,
+  docPreviewPath,
+  docPrintPath,
+  docSavePath,
+  docTemplateCreatePath,
+} from "../../config/routes.ts";
 import type { LocaleCode } from "../../i18n/runtime.ts";
 import { translate } from "../../i18n/runtime.ts";
 import type { DocRecord } from "../../services/doc-store.ts";
 import { renderMarkdown } from "../../services/markdown-render.ts";
-import { getUserPreferences } from "../../services/user-prefs.ts";
-import { escapeHtml } from "./escape-html.ts";
+import { getUserPreferences, type UserPreferences } from "../../services/user-prefs.ts";
+import { escapeAttr, escapeHtml } from "./escape-html.ts";
 import { renderPageShell } from "./layout.ts";
+import { fontOptions, renderEditorFontFilterFavorite } from "./font-settings-controls.ts";
+import { UI_EMPHASIS_XS_CLASS, UI_META_SECONDARY_CLASS } from "./surface-typography.ts";
 
 export const renderEditorPage = (
   locale: LocaleCode,
@@ -38,17 +46,45 @@ const actionBtn = (variant: "primary" | "ghost" | "outline", extra = ""): string
     className: `tooltip tooltip-top join-item ${extra}`.trim(),
   });
 
-const renderEditorPanel = (
+const renderEditorFontControls = (locale: LocaleCode, prefs: UserPreferences): string => {
+  const editorFontLabel = translate(locale, "typography.editorFont");
+  const editorStyleLabel = translate(locale, "typography.editorStyle");
+  const styleNormal = translate(locale, "typography.style.normal");
+  const styleItalic = translate(locale, "typography.style.italic");
+  return `<form class="gw-editor-font-form grid gap-2 rounded-box border border-base-300 bg-base-100 p-2" data-gw-typography-form aria-label="${escapeHtml(editorFontLabel)}">
+    ${renderEditorFontFilterFavorite(locale, prefs)}
+    <div class="grid gap-2 sm:grid-cols-2">
+    <label class="form-control">
+      <span class="label-text ${UI_EMPHASIS_XS_CLASS}">${escapeHtml(editorFontLabel)}</span>
+      <select class="select select-bordered select-sm w-full" name="editorFont" data-gw-pref="editorFont">
+        ${fontOptions(locale, prefs.editorFont, prefs.favoriteEditorFonts)}
+      </select>
+    </label>
+    <label class="form-control">
+      <span class="label-text ${UI_EMPHASIS_XS_CLASS}">${escapeHtml(editorStyleLabel)}</span>
+      <select class="select select-bordered select-sm w-full" name="editorFontStyle" data-gw-pref="editorFontStyle">
+        <option value="normal"${prefs.editorFontStyle === "normal" ? " selected" : ""}>${escapeHtml(styleNormal)}</option>
+        <option value="italic"${prefs.editorFontStyle === "italic" ? " selected" : ""}>${escapeHtml(styleItalic)}</option>
+      </select>
+    </label>
+    </div>
+    <button type="submit" class="sr-only">${escapeHtml(translate(locale, "typography.save"))}</button>
+  </form>`;
+};
+
+export const renderEditorPanel = (
   locale: LocaleCode,
   doc: DocRecord,
   saved = false,
   draftStyle?: string,
+  statusOverride?: string,
 ): string => {
   const saveLabel = translate(locale, "editor.save");
   const previewLabel = translate(locale, "editor.preview");
   const editLabel = translate(locale, "editor.edit");
   const printLabel = translate(locale, "editor.print");
   const exportPdfLabel = translate(locale, "editor.exportPdf");
+  const saveTemplateLabel = translate(locale, "templates.save.action");
   const bodyLabel = translate(locale, "editor.body.label");
   const titleLabel = translate(locale, "editor.title.label");
   const toolbarLabel = translate(locale, "toolbar.markdown");
@@ -58,25 +94,30 @@ const renderEditorPanel = (
   const linkLabel = translate(locale, "toolbar.link");
   const undoLabel = translate(locale, "toolbar.undo");
   const mermaidLabel = translate(locale, "toolbar.mermaid");
+  const prefs = getUserPreferences();
   const effectiveDraftStyle =
-    draftStyle && draftStyle.length > 0 ? draftStyle : getUserPreferences().defaultDraftStyle;
+    draftStyle && draftStyle.length > 0 ? draftStyle : prefs.defaultDraftStyle;
   const dictateLabel = translate(locale, "toolbar.dictate");
   const speakLabel = translate(locale, "toolbar.speak");
   const savedStatus = saved
-    ? `<div class="alert alert-success alert-soft py-2 text-xs" role="status">${escapeHtml(translate(locale, "editor.saved"))}</div>`
+    ? `<div class="alert alert-success alert-soft py-2 ${UI_META_SECONDARY_CLASS}" role="status">${escapeHtml(statusOverride ?? translate(locale, "editor.saved"))}</div>`
     : "";
+  const pageTitle = `${translate(locale, "editor.title")} · ${translate(locale, "app.title")}`;
 
   return `
-    <section class="gw-editor flex min-h-full flex-col gap-3" id="gw-editor-panel"${effectiveDraftStyle ? ` data-draft-style="${escapeHtml(effectiveDraftStyle)}"` : ""}>
+    <section class="gw-editor flex min-h-full flex-col gap-3" id="gw-editor-panel" data-gw-page-title="${escapeAttr(pageTitle)}"${effectiveDraftStyle ? ` data-draft-style="${escapeHtml(effectiveDraftStyle)}"` : ""}>
       ${savedStatus}
+      ${renderEditorFontControls(locale, prefs)}
       <form class="gw-editor-form flex flex-1 flex-col gap-2"
         method="post"
         action="${docSavePath(doc.id)}"
         hx-post="${docApiPath(doc.id)}"
         hx-target="#gw-editor-panel"
-        hx-swap="outerHTML">
+        hx-swap="outerHTML"
+        hx-indicator="#global-indicator">
+        <input type="hidden" name="draftStyle" value="${escapeHtml(effectiveDraftStyle)}" />
         <label class="form-control w-full">
-          <span class="label-text text-xs font-semibold">${escapeHtml(titleLabel)}</span>
+          <span class="label-text ${UI_EMPHASIS_XS_CLASS}">${escapeHtml(titleLabel)}</span>
           <input class="input input-bordered input-sm gw-handwriting w-full" name="title" value="${escapeHtml(doc.title)}" required />
         </label>
         <div class="gw-touch-toolbar flex flex-wrap gap-1" id="gw-touch-toolbar" role="toolbar" aria-label="${escapeHtml(toolbarLabel)}" data-target="gw-body-textarea">
@@ -95,8 +136,9 @@ const renderEditorPanel = (
         </div>
         <div class="join join-horizontal gw-editor-actions flex-wrap justify-end gap-1">
           <button type="submit" class="${actionBtn("primary")}" data-tip="${escapeHtml(saveLabel)}" aria-label="${escapeHtml(saveLabel)}">${renderIcon("save")}</button>
+          <button type="button" class="${actionBtn("outline")} gw-template-save" hx-post="${docTemplateCreatePath(doc.id)}" hx-vals='{"templateStep":"form"}' hx-include="closest form" hx-target="#gw-editor-panel" hx-swap="outerHTML" hx-indicator="#global-indicator" data-tip="${escapeHtml(saveTemplateLabel)}" aria-label="${escapeHtml(saveTemplateLabel)}">${renderIcon("template-notes")}</button>
           <button type="button" class="${actionBtn("ghost")}"
-            hx-get="${docPreviewPath(doc.id)}"
+            hx-post="${docPreviewPath(doc.id)}"
             hx-target="#gw-preview-pane"
             hx-swap="innerHTML"
             data-preview-toggle
@@ -105,12 +147,57 @@ const renderEditorPanel = (
             data-preview-closed-label="${escapeHtml(previewLabel)}"
             data-tip="${escapeHtml(previewLabel)}"
             aria-label="${escapeHtml(previewLabel)}">${renderIcon("preview")}</button>
-          <a class="${actionBtn("outline")}" href="${docPrintPath(doc.id)}" target="_blank" rel="noopener" data-tip="${escapeHtml(printLabel)}" aria-label="${escapeHtml(printLabel)}">${renderIcon("print")}</a>
-          <a class="${actionBtn("outline")}" href="${docPrintPath(doc.id)}?print=1" target="_blank" rel="noopener" data-tip="${escapeHtml(exportPdfLabel)}" aria-label="${escapeHtml(exportPdfLabel)}">${renderIcon("pdf")}</a>
+          <button type="button" class="${actionBtn("outline")}" data-print-current data-print-url="${docPrintPath(doc.id)}" data-tip="${escapeHtml(printLabel)}" aria-label="${escapeHtml(printLabel)}">${renderIcon("print")}</button>
+          <button type="button" class="${actionBtn("outline")}" data-print-current data-print-url="${docPrintPath(doc.id)}?print=1" data-tip="${escapeHtml(exportPdfLabel)}" aria-label="${escapeHtml(exportPdfLabel)}">${renderIcon("pdf")}</button>
         </div>
       </form>
       <div id="gw-preview-pane" class="gw-preview prose gw-handwriting p-3" aria-live="polite" hidden></div>
     </section>`;
+};
+
+export const renderSaveTemplateFormPanel = (
+  locale: LocaleCode,
+  doc: DocRecord,
+  draftStyle?: string,
+  currentTitle = doc.title,
+  currentBody = doc.body,
+): string => {
+  const prefs = getUserPreferences();
+  const effectiveDraftStyle =
+    draftStyle && draftStyle.length > 0 ? draftStyle : prefs.defaultDraftStyle;
+  const title = translate(locale, "templates.save.action");
+  const hint = translate(locale, "templates.save.hint");
+  const titleLabel = translate(locale, "templates.save.titleLabel");
+  const descriptionLabel = translate(locale, "templates.save.descriptionLabel");
+  const saveLabel = translate(locale, "templates.save.action");
+  const cancelLabel = translate(locale, "templates.save.cancel");
+  const submitClass = resolveTemplateButtonClasses({ variant: "primary", size: "compact" });
+  const cancelClass = resolveTemplateButtonClasses({ variant: "outline", size: "compact" });
+  return `<section class="gw-editor flex min-h-full flex-col gap-3" id="gw-editor-panel"${effectiveDraftStyle ? ` data-draft-style="${escapeHtml(effectiveDraftStyle)}"` : ""}>
+    <h2 class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(title)}</h2>
+    <p class="${UI_META_SECONDARY_CLASS}">${escapeHtml(hint)}</p>
+    <form class="gw-template-save-form grid gap-3"
+      hx-post="${docTemplateCreatePath(doc.id)}"
+      hx-target="#gw-editor-panel"
+      hx-swap="outerHTML"
+      hx-indicator="#global-indicator">
+      <input type="hidden" name="body" value="${escapeAttr(currentBody)}" />
+      <input type="hidden" name="title" value="${escapeAttr(currentTitle)}" />
+      <input type="hidden" name="draftStyle" value="${escapeAttr(effectiveDraftStyle)}" />
+      <label class="form-control w-full">
+        <span class="label-text ${UI_EMPHASIS_XS_CLASS}">${escapeHtml(titleLabel)}</span>
+        <input class="input input-bordered input-sm w-full" name="templateTitle" value="${escapeHtml(currentTitle)}" required />
+      </label>
+      <label class="form-control w-full">
+        <span class="label-text ${UI_EMPHASIS_XS_CLASS}">${escapeHtml(descriptionLabel)}</span>
+        <input class="input input-bordered input-sm w-full" name="templateDescription" value="" />
+      </label>
+      <div class="flex flex-wrap justify-end gap-2">
+        <button type="button" class="${cancelClass}" hx-post="${docTemplateCreatePath(doc.id)}" hx-vals='{"templateStep":"cancel"}' hx-target="#gw-editor-panel" hx-swap="outerHTML" hx-indicator="#global-indicator">${escapeHtml(cancelLabel)}</button>
+        <button type="submit" class="${submitClass}">${escapeHtml(saveLabel)}</button>
+      </div>
+    </form>
+  </section>`;
 };
 
 export const renderPreviewFragment = (markdown: string): string => {
@@ -118,8 +205,12 @@ export const renderPreviewFragment = (markdown: string): string => {
   return `<article class="gw-preview-inner">${html}</article>`;
 };
 
-export const renderEditorPanelAfterSave = (locale: LocaleCode, doc: DocRecord): string => {
-  return renderEditorPanel(locale, doc, true);
+export const renderEditorPanelAfterSave = (
+  locale: LocaleCode,
+  doc: DocRecord,
+  statusOverride?: string,
+): string => {
+  return renderEditorPanel(locale, doc, true, undefined, statusOverride);
 };
 
 export const renderEditorSavedPage = (locale: LocaleCode, doc: DocRecord): string =>

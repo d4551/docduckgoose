@@ -8,19 +8,7 @@
     "packages": [
       "goose-word",
       "goose-word-plugins/*",
-      "bao-source/bao-json-safe",
-      "bao-source/baohaus-density-preset-aurora-bao",
-      "bao-source/baohaus-design-tokens-aurora-bao",
-      "bao-source/baohaus-theme-aurora-light-bao",
-      "bao-source/baobox",
-      "bao-source/font-bao",
-      "bao-source/goose-word-ui-bao",
-      "bao-source/har-gow-config",
-      "bao-source/htmx-vendor-bao",
-      "bao-source/markdown-bao",
-      "bao-source/sanitize-bao",
-      "bao-source/soy-view-kit",
-      "bao-source/tangyuan-i18n"
+      "bao-source/*"
     ]
   },
   "scripts": {
@@ -31,7 +19,8 @@
     "lint": "bunx --bun @biomejs/biome lint --config-path=./biome.json --files-ignore-unknown=true package.json biome.json README.md goose-word/src goose-word/test goose-word/package.json goose-word/tsconfig.json goose-word-plugins",
     "lint:fix": "bunx --bun @biomejs/biome check --config-path=./biome.json --write --files-ignore-unknown=true package.json biome.json README.md goose-word/src goose-word/test goose-word/package.json goose-word/tsconfig.json goose-word-plugins",
     "bao:validate": "bun run --cwd bao-source/goose-word-ui-bao bao:validate && bun run --cwd goose-word bao:validate",
-    "bao:build": "bun run --cwd goose-word bao:build"
+    "bao:build": "bun run --cwd goose-word bao:build",
+    "verify": "bun run --cwd goose-word link:bao && bun run typecheck && bun run test && bun run --cwd goose-word bao:validate && bun run --cwd goose-word bao:validate:gates"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.14"

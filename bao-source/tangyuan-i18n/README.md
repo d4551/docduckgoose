@@ -1,9 +1,14 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/tangyuan-i18n
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Canonical SSR i18n primitive: ICU MessageFormat, Accept-Language negotiation, parity audit, and an Elysia plugin. Built on @baohaus/baobox. Import subpaths like `./accept-language`, `./bcp47`, `./catalog`, `./contracts` when you wire this crate in.
+This crate is the mailroom's translator. It reads which language the visitor speaks, finds the right phrasebook, and stamps every page in that language -- no page reload needed.
 
 ## Architecture
 
@@ -22,49 +27,27 @@ sequenceDiagram
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Canonical SSR i18n primitive: ICU MessageFormat, Accept-Language negotiation, parity audit, and an Elysia plugin. | @baohaus/baobox | Other workbench domains; bao-runtime host lifecycle |
+| Canonical SSR i18n primitive: ICU MessageFormat, Accept-Language negotiation, parity audit, and an Elysia plugin. | @baohaus/baobox | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/tangyuan-i18n
 
-Standalone Baohaus package. Catalog identity `tangyuan-i18n`. Source at `bao-source/tangyuan-i18n`. Publishes to `baohaus/tangyuan-i18n`. Canonical archive: `bao-source/tangyuan-i18n/dist/bao/tangyuan-i18n.bao`.
+Canonical SSR i18n primitive: ICU MessageFormat, Accept-Language negotiation, parity audit, and an Elysia plugin. Built on @baohaus/baobox.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/tangyuan-i18n` |
-| Catalog id | `tangyuan-i18n` |
-| Source path | `bao-source/tangyuan-i18n` |
-| OCI repository | `baohaus/tangyuan-i18n` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/tangyuan-i18n`.
 
 ## Public Pieces
 
-`.`, `./accept-language`, `./bcp47`, `./catalog`, `./contracts`, `./detect`, `./elysia`, `./icu`, `./package-descriptor`, `./parity`, `./translator`.
+`.`, `./accept-language`, `./bcp47`, `./catalog`, `./contracts`, `./detect`, `./elysia`, `./icu`, `./package-descriptor`, `./parity`, `./translator`
 
 ## Proof Commands
 
 Run from `bao-source/tangyuan-i18n`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/tangyuan-i18n` publishes to `baohaus/tangyuan-i18n` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -91,17 +74,17 @@ Canonical SSR i18n primitive: ICU MessageFormat, Accept-Language negotiation, pa
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./accept-language` | Accept language — typed surface from this workbench |
-| `./bcp47` | Bcp47 — typed surface from this workbench |
-| `./catalog` | Catalog — typed surface from this workbench |
-| `./contracts` | Contracts — typed surface from this workbench |
-| `./detect` | Detect — typed surface from this workbench |
-| `./elysia` | Elysia — typed surface from this workbench |
-| `./icu` | Icu — typed surface from this workbench |
-| `./package-descriptor` | Package descriptor — typed surface from this workbench |
-| `./parity` | Parity — typed surface from this workbench |
-| `./translator` | Translator — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./accept-language` | Accept language — typed surface from this .bao crate |
+| `./bcp47` | Bcp47 — typed surface from this .bao crate |
+| `./catalog` | Catalog — typed surface from this .bao crate |
+| `./contracts` | Contracts — typed surface from this .bao crate |
+| `./detect` | Detect — typed surface from this .bao crate |
+| `./elysia` | Elysia — typed surface from this .bao crate |
+| `./icu` | Icu — typed surface from this .bao crate |
+| `./package-descriptor` | Package descriptor — typed surface from this .bao crate |
+| `./parity` | Parity — typed surface from this .bao crate |
+| `./translator` | Translator — typed surface from this .bao crate |
 
 ## Integration
 
@@ -117,15 +100,15 @@ Catalog id `tangyuan-i18n` → OCI `baohaus/tangyuan-i18n`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./accept-language` | Accept language — typed surface from this workbench |
-| `./bcp47` | Bcp47 — typed surface from this workbench |
-| `./catalog` | Catalog — typed surface from this workbench |
-| `./contracts` | Contracts — typed surface from this workbench |
-| `./detect` | Detect — typed surface from this workbench |
-| `./elysia` | Elysia — typed surface from this workbench |
-| `./icu` | Icu — typed surface from this workbench |
-| `./package-descriptor` | Package descriptor — typed surface from this workbench |
-| `./parity` | Parity — typed surface from this workbench |
-| `./translator` | Translator — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./accept-language` | Accept language — typed surface from this .bao crate |
+| `./bcp47` | Bcp47 — typed surface from this .bao crate |
+| `./catalog` | Catalog — typed surface from this .bao crate |
+| `./contracts` | Contracts — typed surface from this .bao crate |
+| `./detect` | Detect — typed surface from this .bao crate |
+| `./elysia` | Elysia — typed surface from this .bao crate |
+| `./icu` | Icu — typed surface from this .bao crate |
+| `./package-descriptor` | Package descriptor — typed surface from this .bao crate |
+| `./parity` | Parity — typed surface from this .bao crate |
+| `./translator` | Translator — typed surface from this .bao crate |
 <!-- END BAOHAUS PACKAGE MANUAL -->

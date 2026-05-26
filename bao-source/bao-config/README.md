@@ -1,65 +1,50 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/bao-config
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-This crate is `@baohaus/bao-config` at `bao-source/bao-config`. Apps use exports such as `buildOriginFromParts`, `createRuntimeState`, `deepMerge` from `@baohaus/bao-config`.
+This crate is the mailroom's settings clipboard. It tells every station what address to deliver to, which door to use, and how fast to go.
 
 ## Architecture
 
 ```mermaid
-flowchart LR
-  producer["@baohaus/bao-config"] --> crate[".bao_config crate"]
-  crate --> consumers["Host apps and benches"]
+flowchart TD
+  config["bao-config\n(settings clipboard)"]
+  config --> app["Host apps"]
+  config --> services["Services & APIs"]
+  config --> plugins[".bao plugins"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Exported API: buildOriginFromParts, createRuntimeState, deepMerge, DEFAULT_API_BASE_PATH, mergeRuntimeState, … | @baohaus/bao-constants; @baohaus/bao-schemas; @baohaus/bao-types; @baohaus/bao-utils | Other workbench domains; bao-runtime host lifecycle |
+| Exported API: buildOriginFromParts, createRuntimeState, deepMerge, DEFAULT_API_BASE_PATH, mergeRuntimeState, … | @baohaus/bao-constants; @baohaus/bao-schemas; @baohaus/bao-types; @baohaus/bao-utils | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/bao-config
 
-Standalone Baohaus package. Catalog identity `bao-config`. Source at `bao-source/bao-config`. Publishes to `baohaus/bao-config`. Canonical archive: `bao-source/bao-config/dist/bao/bao-config.bao`.
+Standalone package in the Baohaus monorepo.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/bao-config` |
-| Catalog id | `bao-config` |
-| Source path | `bao-source/bao-config` |
-| OCI repository | `baohaus/bao-config` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/bao-config`.
 
 ## Public Pieces
 
-`.`, `./baodown-defaults`, `./baofire-defaults`, `./drone-training-defaults`, `./drone.defaults`, `./ecosystem-dev-defaults`, `./ecosystem-observability`, `./ecosystem-urls`, `./env`, `./env-boolean`, `./happydumpling-defaults`, `./help-center-content`, `./htmx-events`, `./htmx-routes`, `./local-service-token`, `./package-descriptor`, `./robotics-training-defaults`, `./robotics.defaults`, plus 1 more.
+`.`, `./bao-install-routes`, `./baodown-defaults`, `./baofire-defaults`, `./config-diff`, `./drone-training-defaults`, `./drone.defaults`, `./ecosystem-dev-defaults`, `./ecosystem-observability`, `./ecosystem-urls`, `./env`, `./env-boolean`, `./env-utils`, `./governance-overrides`, `./happydumpling-defaults`, `./help-center-content`, `./htmx-events`, `./htmx-routes`, `./local-federation-hmac`, `./local-service-token`, `./openapi`, `./package-descriptor`, `./robotics-training-defaults`, `./robotics.defaults`, `./service-ports`, `./setup-wizard-actions`
 
 ## Proof Commands
 
 Run from `bao-source/bao-config`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/bao-config` publishes to `baohaus/bao-config` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -80,24 +65,24 @@ bun run verify
 
 ## Capability
 
-@baohaus/bao-config is a Baohaus workbench package at `bao-source/bao-config`.
+@baohaus/bao-config is a Baohaus .bao crate at `bao-source/bao-config`.
 
 ## Subpaths
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./baodown-defaults` | Baodown defaults — typed surface from this workbench |
-| `./baofire-defaults` | Baofire defaults — typed surface from this workbench |
-| `./drone-training-defaults` | Drone training defaults — typed surface from this workbench |
-| `./drone.defaults` | Drone.defaults — typed surface from this workbench |
-| `./ecosystem-dev-defaults` | Ecosystem dev defaults — typed surface from this workbench |
-| `./ecosystem-observability` | Ecosystem observability — typed surface from this workbench |
-| `./ecosystem-urls` | Ecosystem urls — typed surface from this workbench |
-| `./env` | Env — typed surface from this workbench |
-| `./env-boolean` | Env boolean — typed surface from this workbench |
-| `./happydumpling-defaults` | Happydumpling defaults — typed surface from this workbench |
-| `./help-center-content` | Help center content — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./baodown-defaults` | Baodown defaults — typed surface from this .bao crate |
+| `./baofire-defaults` | Baofire defaults — typed surface from this .bao crate |
+| `./drone-training-defaults` | Drone training defaults — typed surface from this .bao crate |
+| `./drone.defaults` | Drone.defaults — typed surface from this .bao crate |
+| `./ecosystem-dev-defaults` | Ecosystem dev defaults — typed surface from this .bao crate |
+| `./ecosystem-observability` | Ecosystem observability — typed surface from this .bao crate |
+| `./ecosystem-urls` | Ecosystem urls — typed surface from this .bao crate |
+| `./env` | Env — typed surface from this .bao crate |
+| `./env-boolean` | Env boolean — typed surface from this .bao crate |
+| `./happydumpling-defaults` | Happydumpling defaults — typed surface from this .bao crate |
+| `./help-center-content` | Help center content — typed surface from this .bao crate |
 | _…_ | _7 more export(s) in package.json_ |
 
 ## Primary symbols
@@ -129,18 +114,18 @@ Catalog id `bao-config` → OCI `baohaus/bao-config`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./baodown-defaults` | Baodown defaults — typed surface from this workbench |
-| `./baofire-defaults` | Baofire defaults — typed surface from this workbench |
-| `./drone-training-defaults` | Drone training defaults — typed surface from this workbench |
-| `./drone.defaults` | Drone.defaults — typed surface from this workbench |
-| `./ecosystem-dev-defaults` | Ecosystem dev defaults — typed surface from this workbench |
-| `./ecosystem-observability` | Ecosystem observability — typed surface from this workbench |
-| `./ecosystem-urls` | Ecosystem urls — typed surface from this workbench |
-| `./env` | Env — typed surface from this workbench |
-| `./env-boolean` | Env boolean — typed surface from this workbench |
-| `./happydumpling-defaults` | Happydumpling defaults — typed surface from this workbench |
-| `./help-center-content` | Help center content — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./baodown-defaults` | Baodown defaults — typed surface from this .bao crate |
+| `./baofire-defaults` | Baofire defaults — typed surface from this .bao crate |
+| `./drone-training-defaults` | Drone training defaults — typed surface from this .bao crate |
+| `./drone.defaults` | Drone.defaults — typed surface from this .bao crate |
+| `./ecosystem-dev-defaults` | Ecosystem dev defaults — typed surface from this .bao crate |
+| `./ecosystem-observability` | Ecosystem observability — typed surface from this .bao crate |
+| `./ecosystem-urls` | Ecosystem urls — typed surface from this .bao crate |
+| `./env` | Env — typed surface from this .bao crate |
+| `./env-boolean` | Env boolean — typed surface from this .bao crate |
+| `./happydumpling-defaults` | Happydumpling defaults — typed surface from this .bao crate |
+| `./help-center-content` | Help center content — typed surface from this .bao crate |
 | _…_ | _7 more in `package.json#exports`_ |
 
 ### Symbols

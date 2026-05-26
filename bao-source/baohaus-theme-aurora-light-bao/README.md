@@ -1,68 +1,48 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/baohaus-theme-aurora-light-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-extension-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Think of baohaus theme aurora light bao as an add-on tile that plugs into the host sidebar, settings, or command list. Aurora-tinted light daisyUI 5 theme variant — Apple HIG 2026 aligned teal/cyan/sage accent layer over the platform-canonical light surface. Shipped as an installable .bao theme-pack alongside the boot-zero baohaus-light default. Apps use exports such as `BAOHAUS_AURORA_LIGHT_THEME`, `BaohausAuroraLightTheme` from `@baohaus/baohaus-theme-aurora-light-bao`.
+This crate is the mailroom's daytime color palette. It paints every surface with soft teal and cyan accents so the mailroom glows on a sunny day.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  host["Host runtime"]
-  ext["@baohaus/baohaus-theme-aurora-light-bao"]
-  ui["Sidebar / settings / commands"]
-  host --> ext
-  ext --> ui
+  theme["aurora-light theme\nteal / cyan / sage tokens"] --> daisyui["daisyUI 5\nCSS variable injection"]
+  daisyui --> components["Styled components\nbuttons, cards, surfaces"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Aurora-tinted light daisyUI 5 theme variant — Apple HIG 2026 aligned teal/cyan/sage accent layer over the platform-canonical light surface.; Exported API: BAOHAUS_AURORA_LIGHT_THEME, BaohausAuroraLightTheme | bao-governance.json; bao.lock; catalog row | Host boot order; Registry catalog authoring |
+| Aurora-tinted light daisyUI 5 theme variant — Apple HIG 2026 aligned teal/cyan/sage accent layer over the platform-canonical light surface.; Exported API: BAOHAUS_AURORA_LIGHT_THEME, BaohausAuroraLightTheme | Shared @baohaus contracts | Host boot order; Registry catalog authoring |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/baohaus-theme-aurora-light-bao
 
-Standalone Baohaus package. Catalog identity `baohaus-theme-aurora-light-bao`. Source at `bao-source/baohaus-theme-aurora-light-bao`. Publishes to `baohaus/baohaus-theme-aurora-light-bao`. Canonical archive: `bao-source/baohaus-theme-aurora-light-bao/dist/bao/baohaus-theme-aurora-light-bao.bao`.
+Aurora-tinted light daisyUI 5 theme variant — Apple HIG 2026 aligned teal/cyan/sage accent layer over the platform-canonical light surface. Shipped as an installable .bao theme-pack alongside the boot-zero baohaus-light default.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/baohaus-theme-aurora-light-bao` |
-| Catalog id | `baohaus-theme-aurora-light-bao` |
-| Source path | `bao-source/baohaus-theme-aurora-light-bao` |
-| OCI repository | `baohaus/baohaus-theme-aurora-light-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `extension` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/baohaus-theme-aurora-light-bao`.
 
 ## Public Pieces
 
-`.`.
+`.`
 
 ## Proof Commands
 
 Run from `bao-source/baohaus-theme-aurora-light-bao`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/baohaus-theme-aurora-light-bao` publishes to `baohaus/baohaus-theme-aurora-light-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -107,7 +87,7 @@ Produces `dist/bao/baohaus-theme-aurora-light-bao.bao` ready for registry publis
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
 
 ## Primary symbols
 
@@ -120,7 +100,7 @@ Produces `dist/bao/baohaus-theme-aurora-light-bao.bao` ready for registry publis
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
 
 ### Symbols
 

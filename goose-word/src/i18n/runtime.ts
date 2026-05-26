@@ -1,7 +1,14 @@
-import { DEFAULT_LOCALE, type LocaleCode, translate } from "./strings.ts";
+import { getUserPreferences } from "../services/user-prefs.ts";
+import {
+  DEFAULT_LOCALE,
+  gooseWordCatalogs,
+  type LocaleCode,
+  isLocaleCode,
+  translate,
+} from "./strings.ts";
 
 export type { LocaleCode };
-export { DEFAULT_LOCALE, translate };
+export { DEFAULT_LOCALE, gooseWordCatalogs, isLocaleCode, translate };
 
 const LANGUAGE_LOCALE_MAP: Readonly<Record<string, LocaleCode>> = {
   en: "en",
@@ -44,4 +51,8 @@ export function resolveLocale(acceptLanguage: string | null): LocaleCode {
     }
   }
   return DEFAULT_LOCALE;
+}
+
+export function resolveRequestLocale(_request: Request): LocaleCode {
+  return getUserPreferences().locale;
 }

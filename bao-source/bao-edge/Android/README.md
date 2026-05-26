@@ -1,5 +1,13 @@
 # Google AI Edge Gallery (Android)
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Android](https://img.shields.io/badge/platform-Android-3ddc84?logo=android&logoColor=white)](https://developer.android.com/)
+[![Bao Edge](https://img.shields.io/badge/edge-native%20host-0f766e)](../README.md)
+
+## Explain Like I'm Five
+
+Imagine the same careful goose carrying a bao crate onto an Android phone. This crate keeps local sessions, model calls, and device logs lined up with the Bao Edge control plane so the phone reports exactly what happened.
+
 > 🌏 本页为中英双语。中文内容紧随对应英文段落。
 > This page is bilingual. Chinese follows each English section.
 
@@ -39,6 +47,15 @@ Android 客户端是 Bao Edge 的原生执行侧：在本地设备上托管会�
 </details>
 
 ## Data and control flow
+
+```mermaid
+flowchart LR
+  Control["Bao Edge control plane"] --> Spec["Workflow spec + policy"]
+  Spec --> Android["Android native host"]
+  Android --> Adapter["Local adapters and model tools"]
+  Android --> Events["jobs/events evidence"]
+  Events --> Control
+```
 
 - **Trigger**: Workflows are initiated via HTMX/browser-side events or native entry points.
 - **Control**: The control-plane returns executable specs and policies.

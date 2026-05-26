@@ -65,6 +65,25 @@ describe("renderPageShell HTML output", () => {
     expect(html).not.toMatch(/style="[^"]*backdrop-filter/);
   });
 
+  it("does not duplicate settings in top navbar (dock is the only settings nav)", () => {
+    const html = renderTestShell();
+    expect(html).not.toMatch(
+      /<header[^>]*class="[^"]*navbar[^"]*"[^>]*>[\s\S]*?gw-context-link[\s\S]*?\/settings/,
+    );
+    expect(html).toContain('id="gw-enterprise-chip"');
+    expect(html).toContain("navbar gw-topbar");
+    expect(html).toContain("gw-topbar__end");
+    const dockSection = html.slice(html.indexOf('<nav id="gw-dock-nav"'));
+    expect(dockSection).toContain('href="/settings"');
+  });
+
+  it("dock nav has stable id for HTMX locale refresh", () => {
+    const html = renderTestShell();
+    expect(html).toContain('id="gw-dock-nav"');
+    expect(html).toContain('id="gw-dock-labels"');
+    expect(html).toContain('id="gw-document-title"');
+  });
+
   it("dock nav has aria-label", () => {
     const html = renderTestShell();
     const navMatch = html.match(/<nav[^>]*aria-label="[^"]+"/);
@@ -101,6 +120,12 @@ describe("renderPageShell HTML output", () => {
     expect(html).toContain('id="gw-main"');
   });
 
+  it("main uses tokenized gw-main class without raw tailwind padding utilities", () => {
+    const html = renderTestShell();
+    expect(html).toMatch(/<main class="gw-main flex-1" id="gw-main">/);
+    expect(html).not.toContain("pb-28");
+  });
+
   it("body content is injected into main", () => {
     const html = renderTestShell();
     expect(html).toContain("<p>test</p>");
@@ -115,6 +140,21 @@ describe("renderPageShell HTML output", () => {
     const html = renderTestShell();
     expect(html).toContain('role="img"');
     expect(html).toContain("gw-goose-chibi");
+  });
+
+  it("loads settings-shell client for device health and htmx busy wiring", () => {
+    const html = renderTestShell();
+    expect(html).toContain("settings-shell.js");
+    expect(html).toContain("data-gw-loopback-port=");
+  });
+
+  it("loads dock toggle client and exposes keyboard shortcut metadata", () => {
+    const html = renderTestShell();
+    expect(html).toContain("dock-toggle.js");
+    expect(html).toContain('data-gw-dock="shown"');
+    expect(html).toContain("data-gw-dock-toggle");
+    expect(html).toContain('aria-keyshortcuts="Control+Shift+D"');
+    expect(html).toContain('id="gw-dock-toggle-status"');
   });
 
   it("offline toast output has role=status and aria-live", () => {

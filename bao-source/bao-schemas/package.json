@@ -254,9 +254,9 @@
       "default": "./dist/basler-bunbuddy.schemas.js"
     },
     "./bao/bao-archive.contract": {
-      "bun": "./dist/bao/bao-archive.contract.js",
+      "bun": "./src/bao/bao-archive.contract.ts",
       "import": "./dist/bao/bao-archive.contract.js",
-      "types": "./dist/bao/bao-archive.contract.d.ts",
+      "types": "./src/bao/bao-archive.contract.ts",
       "default": "./dist/bao/bao-archive.contract.js"
     },
     "./baodown/baodown-flow.schemas": {

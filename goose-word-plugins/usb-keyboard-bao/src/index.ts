@@ -14,11 +14,11 @@ const renderPanel = (): string => `
 <section>
   <h3>USB Keyboard Support</h3>
   <p>Pair USB HID keyboards for direct low-latency input, macros, and special keys. Uses WebHID when available in the browser.</p>
-  <div style="margin: 0.75rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+  <div class="gw-plugin-actions">
     <button type="button" class="btn btn-sm btn-primary" onclick="if(window.gwRequestUSBKeyboard){window.gwRequestUSBKeyboard().then(ok=>alert(ok?'USB keyboard paired! Check device chip.':'Pairing cancelled or unsupported'));}else{alert('Keyboard support module not loaded');}">Pair USB keyboard</button>
     <button type="button" class="btn btn-sm btn-ghost" onclick="location.reload()">Refresh status</button>
   </div>
-  <p class="gw-empty" style="font-size:0.75rem; padding:0.25rem 0;">Status updates appear in the top device strip (🔌 icon for USB). Works alongside normal OS keyboard input.</p>
+  <p class="gw-plugin-note">Status updates appear in the top device strip (🔌 icon for USB). Works alongside normal OS keyboard input.</p>
   <small>WebHID support: <span data-gw-hid-status>checking…</span></small>
   <script>
     (function(){
@@ -26,7 +26,7 @@ const renderPanel = (): string => `
       if (el) {
         const supported = !!(navigator && navigator.hid);
         el.textContent = supported ? 'available' : 'unavailable in this browser';
-        el.style.color = supported ? 'var(--gw-primary, #2a7)' : 'var(--gw-muted)';
+        el.className = supported ? 'badge badge-success badge-xs' : 'badge badge-warning badge-xs';
       }
     })();
   </script>

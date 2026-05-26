@@ -169,6 +169,36 @@ export const INTERACTIVE_HOVER_ROW_CLASS =
 export const INTERACTIVE_SORT_HEADER_LINK_CLASS =
   "flex w-full items-center gap-1.5 px-4 py-3 motion-safe:transition-colors motion-safe:[transition-duration:var(--v-duration-fast)] hover:bg-base-200";
 
+/** Authenticated page title (settings, docs list). */
+export const PAGE_HEADING_CLASS = "text-lg font-bold";
+
+/** Section title under a page heading. */
+export const SECTION_HEADING_CLASS = "text-sm font-semibold";
+
+/** Compact emphasis label (form labels, table headers, buttons). */
+export const UI_EMPHASIS_XS_CLASS = "text-xs font-semibold";
+
+/** Standard emphasis label (list rows, card titles). */
+export const UI_EMPHASIS_SM_CLASS = "text-sm font-semibold";
+
+/** Secondary metadata line (status, summaries). */
+export const UI_META_SECONDARY_CLASS = "text-xs text-base-content/70";
+
+/** Caption under cards and template tiles. */
+export const UI_CAPTION_CLASS = "text-xs leading-snug text-base-content/70";
+
+/** Sort direction glyph beside table headers. */
+export const SORT_INDICATOR_CLASS = "font-mono text-xs opacity-70";
+
+/** Sortable table header control (label + indicator). */
+export const TABLE_SORT_HEADER_LINK_CLASS = `${INTERACTIVE_SORT_HEADER_LINK_CLASS} ${UI_EMPHASIS_XS_CLASS} focus-visible:bg-base-200 focus-visible:outline-none`;
+
+/** Table timestamp / path metadata cells. */
+export const TABLE_CELL_META_CLASS = "text-xs text-base-content/70";
+
+/** Table monospace path cells. */
+export const TABLE_CELL_MONO_CLASS = "font-mono text-xs text-base-content/60";
+
 /**
  * Pre-declared stagger-delay classes for sequential entry animations.
  *

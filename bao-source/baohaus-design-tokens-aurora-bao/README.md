@@ -1,68 +1,48 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/baohaus-design-tokens-aurora-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-extension-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Think of baohaus design tokens aurora bao as an add-on tile that plugs into the host sidebar, settings, or command list. Aurora design-tokens .bao — Apple HIG 2026 aligned spacing/radius/shadow/typography token bundle. Pairs with the baohaus-aurora-light theme-pack; installs via the canonical design-tokens install-target handler. Apps use exports such as `BAOHAUS_AURORA_DESIGN_TOKENS`, `BaohausAuroraDesignTokens` from `@baohaus/baohaus-design-tokens-aurora-bao`.
+This crate is the mailroom's paint swatch book. Spacing, corner roundness, shadows, and font sizes are all recorded here so every surface looks like it belongs.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  host["Host runtime"]
-  ext["@baohaus/baohaus-design-tokens-aurora-bao"]
-  ui["Sidebar / settings / commands"]
-  host --> ext
-  ext --> ui
+  tokens["design-tokens-aurora\nspacing / radius / shadow / type"] --> theme["Theme engine\napply CSS variables"]
+  theme --> components["UI components\nconsistent look"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Aurora design-tokens .; Exported API: BAOHAUS_AURORA_DESIGN_TOKENS, BaohausAuroraDesignTokens | bao-governance.json; bao.lock; catalog row | Host boot order; Registry catalog authoring |
+| Aurora design-tokens .; Exported API: BAOHAUS_AURORA_DESIGN_TOKENS, BaohausAuroraDesignTokens | Shared @baohaus contracts | Host boot order; Registry catalog authoring |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/baohaus-design-tokens-aurora-bao
 
-Standalone Baohaus package. Catalog identity `baohaus-design-tokens-aurora-bao`. Source at `bao-source/baohaus-design-tokens-aurora-bao`. Publishes to `baohaus/baohaus-design-tokens-aurora-bao`. Canonical archive: `bao-source/baohaus-design-tokens-aurora-bao/dist/bao/baohaus-design-tokens-aurora-bao.bao`.
+Aurora design-tokens .bao — Apple HIG 2026 aligned spacing/radius/shadow/typography token bundle. Pairs with the baohaus-aurora-light theme-pack; installs via the canonical design-tokens install-target handler.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/baohaus-design-tokens-aurora-bao` |
-| Catalog id | `baohaus-design-tokens-aurora-bao` |
-| Source path | `bao-source/baohaus-design-tokens-aurora-bao` |
-| OCI repository | `baohaus/baohaus-design-tokens-aurora-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `extension` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/baohaus-design-tokens-aurora-bao`.
 
 ## Public Pieces
 
-`.`.
+`.`
 
 ## Proof Commands
 
 Run from `bao-source/baohaus-design-tokens-aurora-bao`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/baohaus-design-tokens-aurora-bao` publishes to `baohaus/baohaus-design-tokens-aurora-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -97,7 +77,7 @@ Catalog id `baohaus-design-tokens-aurora-bao` publishes to `baohaus/baohaus-desi
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
 
 ## Primary symbols
 
@@ -110,7 +90,7 @@ Catalog id `baohaus-design-tokens-aurora-bao` publishes to `baohaus/baohaus-desi
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
 
 ### Symbols
 

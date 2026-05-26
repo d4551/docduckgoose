@@ -33,6 +33,7 @@ const EXPECTED_KINDS: readonly string[] = [
   "design-tokens",
   "motion-preset",
   "density-preset",
+  "native-mobile-shell",
   "htmx-extension",
   "ui-component-kit",
 ];

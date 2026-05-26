@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "goose-word-brand",
+  "name": "@baohaus/goose-word-brand-bao",
+  "version": "0.1.0",
+  "identity": {
+    "id": "goose-word-brand",
+    "packageName": "@baohaus/goose-word-brand-bao",
+    "packageVersion": "0.1.0"
+  },
+  "copyFirst": {
+    "required": true,
+    "installRoot": "~/.goose-word/bao",
+    "archivePolicy": "no-prebuilt-archives"
+  },
+  "targets": [
+    {
+      "kind": "design-tokens",
+      "target": "goose-word-brand-mark",
+      "tokenSetId": "goose-word-brand",
+      "categories": ["typography"],
+      "stylesheet": "dist/icons/pwa-512.png"
+    }
+  ]
+}

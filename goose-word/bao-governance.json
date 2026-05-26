@@ -9,6 +9,7 @@
     "packageVersion": "0.1.0"
   },
   "channel": "local",
+  "mediaType": "application/vnd.baohaus.bao.archive.v1+tar",
   "visibility": "private",
   "description": "Local-first markdown word processor with browser-native speech and optional edge deploy targets",
   "copyFirst": {

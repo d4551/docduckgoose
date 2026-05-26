@@ -5,6 +5,8 @@ import { isPlainObject, parseJsonSafe, readStringField } from "@baohaus/bao-json
 import type { EditorFontId } from "../config/editor-fonts.ts";
 import { isEditorFontId } from "../config/editor-fonts.ts";
 import { gooseWordDbPath } from "../config/paths.ts";
+import type { LocaleCode } from "../i18n/strings.ts";
+import { isLocaleCode } from "../i18n/strings.ts";
 
 export type EditorFontStyle = "normal" | "italic";
 export type DraftStyleId = "" | "letter" | "manuscript" | "notes";
@@ -14,32 +16,38 @@ export interface UserPreferences {
   readonly editorFont: EditorFontId;
   readonly editorFontStyle: EditorFontStyle;
   readonly uiFont: EditorFontId;
+  readonly favoriteEditorFonts: readonly EditorFontId[];
+  readonly disabledPluginIds: readonly string[];
   readonly defaultDraftStyle: DraftStyleId;
   readonly theme: GooseThemeId;
+  readonly locale: LocaleCode;
 }
 
 export const DEFAULT_USER_PREFERENCES: UserPreferences = {
   editorFont: "goose-handwriting",
   editorFontStyle: "normal",
   uiFont: "goose-handwriting",
+  favoriteEditorFonts: ["goose-handwriting"],
+  disabledPluginIds: [],
   defaultDraftStyle: "",
   theme: "baohaus-aurora-light",
+  locale: "en",
 };
 
-const PREFS_ROW_ID = "default";
+import { PREFS_ROW_ID } from "../config/constants.ts";
 
 interface PrefsRow {
   readonly id: string;
   readonly json: string;
 }
 
-const isEditorFontStyle = (value: string): value is EditorFontStyle =>
+export const isEditorFontStyle = (value: string): value is EditorFontStyle =>
   value === "normal" || value === "italic";
 
-const isDraftStyleId = (value: string): value is DraftStyleId =>
+export const isDraftStyleId = (value: string): value is DraftStyleId =>
   value === "" || value === "letter" || value === "manuscript" || value === "notes";
 
-const isGooseThemeId = (value: string): value is GooseThemeId =>
+export const isGooseThemeId = (value: string): value is GooseThemeId =>
   value === "baohaus-aurora-light" || value === "bao-aurora-glass";
 
 const parsePreferences = (json: string): UserPreferences => {
@@ -53,6 +61,17 @@ const parsePreferences = (json: string): UserPreferences => {
   const editorFontStyleRaw = readStringField(record, "editorFontStyle");
   const defaultDraftStyleRaw = readStringField(record, "defaultDraftStyle");
   const themeRaw = readStringField(record, "theme");
+  const localeRaw = readStringField(record, "locale");
+  const favoriteFontsRaw = Reflect.get(record, "favoriteEditorFonts");
+  const favoriteEditorFonts = Array.isArray(favoriteFontsRaw)
+    ? favoriteFontsRaw.filter(
+        (value): value is EditorFontId => typeof value === "string" && isEditorFontId(value),
+      )
+    : DEFAULT_USER_PREFERENCES.favoriteEditorFonts;
+  const disabledPluginIdsRaw = Reflect.get(record, "disabledPluginIds");
+  const disabledPluginIds = Array.isArray(disabledPluginIdsRaw)
+    ? disabledPluginIdsRaw.filter((value): value is string => typeof value === "string")
+    : DEFAULT_USER_PREFERENCES.disabledPluginIds;
   return {
     editorFont:
       editorFontRaw !== undefined && isEditorFontId(editorFontRaw)
@@ -66,6 +85,8 @@ const parsePreferences = (json: string): UserPreferences => {
       uiFontRaw !== undefined && isEditorFontId(uiFontRaw)
         ? uiFontRaw
         : DEFAULT_USER_PREFERENCES.uiFont,
+    favoriteEditorFonts,
+    disabledPluginIds,
     defaultDraftStyle:
       defaultDraftStyleRaw !== undefined && isDraftStyleId(defaultDraftStyleRaw)
         ? defaultDraftStyleRaw
@@ -74,6 +95,10 @@ const parsePreferences = (json: string): UserPreferences => {
       themeRaw !== undefined && isGooseThemeId(themeRaw)
         ? themeRaw
         : DEFAULT_USER_PREFERENCES.theme,
+    locale:
+      localeRaw !== undefined && isLocaleCode(localeRaw)
+        ? localeRaw
+        : DEFAULT_USER_PREFERENCES.locale,
   };
 };
 
@@ -123,8 +148,11 @@ export class UserPrefsStore {
       editorFont: patch.editorFont ?? current.editorFont,
       editorFontStyle: patch.editorFontStyle ?? current.editorFontStyle,
       uiFont: patch.uiFont ?? current.uiFont,
+      favoriteEditorFonts: patch.favoriteEditorFonts ?? current.favoriteEditorFonts,
+      disabledPluginIds: patch.disabledPluginIds ?? current.disabledPluginIds,
       defaultDraftStyle: patch.defaultDraftStyle ?? current.defaultDraftStyle,
       theme: patch.theme ?? current.theme,
+      locale: patch.locale ?? current.locale,
     };
     return this.save(merged);
   }
@@ -148,8 +176,31 @@ export const getUserPreferences = (): UserPreferences => getDefaultPrefsStore().
 export const saveUserPreferences = (next: UserPreferences): UserPreferences =>
   getDefaultPrefsStore().save(next);
 
-export const patchUserPreferences = (patch: Partial<UserPreferences>): UserPreferences =>
-  getDefaultPrefsStore().patch(patch);
+export const patchUserPreferences = (patch: Partial<UserPreferences>): UserPreferences => {
+  const current = getUserPreferences();
+  const merged: UserPreferences = {
+    editorFont: patch.editorFont ?? current.editorFont,
+    editorFontStyle: patch.editorFontStyle ?? current.editorFontStyle,
+    uiFont: patch.uiFont ?? current.uiFont,
+    favoriteEditorFonts: patch.favoriteEditorFonts ?? current.favoriteEditorFonts,
+    disabledPluginIds: patch.disabledPluginIds ?? current.disabledPluginIds,
+    defaultDraftStyle: patch.defaultDraftStyle ?? current.defaultDraftStyle,
+    theme: patch.theme ?? current.theme,
+    locale: patch.locale ?? current.locale,
+  };
+  return saveUserPreferences(merged);
+};
+
+export const isPluginEnabled = (pluginId: string): boolean =>
+  !getUserPreferences().disabledPluginIds.includes(pluginId);
+
+export const setPluginEnabled = (pluginId: string, enabled: boolean): UserPreferences => {
+  const current = getUserPreferences();
+  const disabledPluginIds = current.disabledPluginIds.filter((id) => id !== pluginId);
+  return patchUserPreferences({
+    disabledPluginIds: enabled ? disabledPluginIds : [...disabledPluginIds, pluginId],
+  });
+};
 
 export const closeUserPrefsStore = (): void => {
   if (defaultPrefsStore !== null) {

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "layout": "standalone-repositories",
+  "registryNamespace": "baohaus",
+  "generatedAt": "2026-05-26T00:00:00.000Z",
+  "packages": [
+    {
+      "id": "goose-word",
+      "repoRoot": "../goose-word",
+      "packageRoot": ".",
+      "manifestPath": "package.json",
+      "packageName": "@baohaus/goose-word",
+      "packageVersion": "0.1.0",
+      "releaseAuthority": "registry-first",
+      "exportSubpaths": ["."],
+      "ociRepository": "baohaus/goose-word",
+      "buildCommand": "bun run bao:build",
+      "typecheckCommand": "bun run typecheck",
+      "testCommand": "bun test",
+      "baoCommand": "bun run bao:build",
+      "canonicalBaoOutputPath": "../goose-word/dist/goose-word.bao",
+      "publishSmokeTarget": "@baohaus/goose-word",
+      "installSmokeTarget": "@baohaus/goose-word",
+      "channel": "internal",
+      "visibility": "hidden",
+      "packageKind": "runtime-package",
+      "sourceProjectPath": "goose-word",
+      "targetSourceProjectPath": "../goose-word",
+      "runtimeInstallable": true,
+      "publishGateProfile": "strict",
+      "composeDependencies": [],
+      "runtimeAffinity": ["bun"],
+      "publicEntrypoints": ["."],
+      "sourceRepo": "baohaus",
+      "layoutVariant": "monorepo-root"
+    }
+  ]
+}

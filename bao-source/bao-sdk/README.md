@@ -1,15 +1,20 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/bao-sdk
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-bao-sdk: This workbench teaches hosts how to adopt and retire .bao tiles. Detect, load, activate, suspend, unload — like a conveyor belt manager that never leaves a half-attached part on the line.
+This crate is the mailroom's training manual for hosts. It teaches apps how to adopt and retire crates -- detect, load, activate, suspend, unload -- like a goose checking each one on and off the shelf.
 
 ## Architecture
 
 ```mermaid
 stateDiagram-v2
-  [*] --> Detected
+  [*] --> Detected: detect()
   Detected --> Loaded: load()
   Loaded --> Active: activate()
   Active --> Suspended: suspend()
@@ -28,43 +33,21 @@ stateDiagram-v2
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/bao-sdk
 
-Standalone Baohaus package. Catalog identity `bao-sdk`. Source at `bao-source/bao-sdk`. Publishes to `baohaus/bao-sdk`. Canonical archive: `bao-source/bao-sdk/dist/bao/bao-sdk.bao`.
+Host-context contract types and CAS-resolver primitives for building independent .bao packages
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/bao-sdk` |
-| Catalog id | `bao-sdk` |
-| Source path | `bao-source/bao-sdk` |
-| OCI repository | `baohaus/bao-sdk` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/bao-sdk`.
 
 ## Public Pieces
 
-`.`, `./cas-resolver`, `./host-context`, `./install-target-handler`, `./target-handler-registry`.
+`.`, `./archive`, `./cas-resolver`, `./client/bao-ai-gateway`, `./client/bao-runtime`, `./client/forge`, `./client/registry`, `./extension`, `./host-context`, `./install-target-handler`, `./lifecycle`, `./lifecycle-executor`, `./manifest`, `./orchestrator`, `./target-handler`, `./target-handler-registry`, `./target-kinds`
 
 ## Proof Commands
 
 Run from `bao-source/bao-sdk`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/bao-sdk` publishes to `baohaus/bao-sdk` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -91,11 +74,11 @@ Host-context contract types and CAS-resolver primitives for building independent
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./cas-resolver` | Cas resolver — typed surface from this workbench |
-| `./host-context` | Host context — typed surface from this workbench |
-| `./install-target-handler` | Install target handler — typed surface from this workbench |
-| `./target-handler-registry` | Target handler registry — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./cas-resolver` | Cas resolver — typed surface from this .bao crate |
+| `./host-context` | Host context — typed surface from this .bao crate |
+| `./install-target-handler` | Install target handler — typed surface from this .bao crate |
+| `./target-handler-registry` | Target handler registry — typed surface from this .bao crate |
 
 ## Integration
 
@@ -111,7 +94,7 @@ Catalog id `bao-sdk` → OCI `baohaus/bao-sdk`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
 | `./cas-resolver` | Cas resolver — content-addressed archive resolution |
 | `./host-context` | Host context — host lifecycle context types |
 | `./install-target-handler` | Install target handler — .bao install target handlers |

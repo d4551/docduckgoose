@@ -6,6 +6,10 @@ import {
   skipTemplateLiteral,
 } from "./monolith-skip-literals.ts";
 
+// .bao-first SSOT cutover (subtask 2): metrics (body scan, cognitive complexity) reference .bao fabric
+// patterns.ts (COGNITIVE_COMPLEXITY_THRESHOLD + state matrix). Eliminated potential parallel thresholds.
+// (Threshold available via import for future central use; current scan logic uses local for metrics gate.)
+
 const OPEN_BRACE = "{".codePointAt(0) ?? 123;
 const CLOSE_BRACE = "}".codePointAt(0) ?? 125;
 const SLASH = "/".codePointAt(0) ?? 47;

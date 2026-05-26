@@ -1,16 +1,23 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/bao-utils
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-This workbench is the shared toolbox drawer. Async results, small helpers, and typed utilities live here so no bench smuggles duplicate screwdrivers into their crate.
+This crate is the mailroom's shared toolbox drawer. Async results, small helpers, and typed utilities live here so no crate smuggles duplicate tools.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  producer["@baohaus/bao-utils"] --> crate[".bao_utils crate"]
-  crate --> consumers["Host apps and benches"]
+  utils["bao-utils\nasync-result, fs, guards"] --> shared["bao-shared"]
+  utils --> handlers["install-handlers"]
+  utils --> runtime["bao-runtime"]
+  utils --> services["Bao services"]
 ```
 
 ## Scope
@@ -23,43 +30,21 @@ flowchart LR
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/bao-utils
 
-Standalone Baohaus package. Catalog identity `bao-utils`. Source at `bao-source/bao-utils`. Publishes to `baohaus/bao-utils`. Canonical archive: `bao-source/bao-utils/dist/bao/bao-utils.bao`.
+Bun-native utility functions for .bao packages — async-result, path, fs, type-guards, and more
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/bao-utils` |
-| Catalog id | `bao-utils` |
-| Source path | `bao-source/bao-utils` |
-| OCI repository | `baohaus/bao-utils` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/bao-utils`.
 
 ## Public Pieces
 
-`./ai-service-alignment`, `./annotation-utils`, `./async-result`, `./bao-authz-client`, `./bao-bundle`, `./bao-control-plane-failure`, `./bao-control-plane-local-cluster-provider`, `./bao-control-plane-platform`, `./bao-control-plane-registry`, `./bao-manifest-checksum`, `./baodown-events`, `./baodown-graph-diff`, `./biome-cli`, `./bun-events`, `./bun-exec`, `./bun-fs`, `./bun-native`, `./bun-net`, plus 100 more.
+`./ai-service-alignment`, `./annotation-utils`, `./async-result`, `./bao-authz-client`, `./bao-bundle`, `./bao-control-plane-failure`, `./bao-control-plane-local-cluster-provider`, `./bao-control-plane-platform`, `./bao-control-plane-registry`, `./bao-manifest-checksum`, `./baodown-events`, `./baodown-graph-diff`, `./biome-cli`, `./bun-events`, `./bun-exec`, `./bun-fs`, `./bun-native`, `./bun-net`, `./bun-os`, `./bun-path`, `./bun-readline`, `./bun-util`, `./bunbuddy-capabilities`, `./bunbuddy-contract-registry`, `./bunbuddy-contract-requirements`, `./bunbuddy-docs-contracts`, `./bunbuddy-workload-registry`, `./canonical/bao-archive`, `./canonical/bao-archive-payload`, `./canonical/bao-archive-tar`, `./canonical/bao-archive.types`, `./canonical/bao-canonical-signing`, `./canonical/bao-error`, `./canonical/bao-error-api`, `./canonical/bao-error-helpers`, `./canonical/bao-manifest-attestor`, `./canonical/bao-manifest-attestor.types`, `./canonical/bao-manifest-bin`, `./canonical/bao-manifest-checksum`, `./canonical/bao-manifest-signer`, `./canonical/bao-manifest-validator`, `./canonical/bao-manifest-validator-gates`, `./canonical/bao-manifest-validator-payload`, `./canonical/bao-manifest-validator.types`, `./canonical/bao-manifest-wrapture`, `./canonical/bao-semver-range`, `./canonical/bao-target-graph`, `./canonical/bao-target-payload`, `./canonical/result`, `./canonical/typebox-runtime`, `./capability-ownership-focus`, `./capability-ownership-maps`, `./capability-ownership-summary`, `./capability-ownership-surfaces`, `./common`, `./config-parsing`, `./correlation-id`, `./daisyui-badge`, `./data-result`, `./deterministic-dependency-order`, `./device-diagnostics`, `./drone-policy`, `./eden-response-normalize`, `./env`, `./error-envelope`, `./error-keys`, `./error-severity`, `./extension-primitives`, `./formatting`, `./global-cache`, `./go-template-subset`, `./go-template-yaml`, `./http-client`, `./icon-registry`, `./idempotency`, `./integration-annotations`, `./integration-ownership`, `./log-redaction`, `./log-serializers`, `./logger-browser`, `./managed-interval`, `./managed-polling-lifecycle`, `./managed-process-registry`, `./managed-subprocess`, `./markdown/render`, `./mcp`, `./memory-global`, `./naming-conventions`, `./number`, `./oci-registry`, `./pagination-query`, `./path-exists`, `./pipeline-events`, `./poll-until`, `./problem`, `./process-exit`, `./process-liveness`, `./provider-color-tokens`, `./rate-limit`, `./recovery-strategy`, `./resolved-platform-runtime`, `./result-helpers`, `./retry`, `./retry-with-backoff`, `./robotics-motion`, `./robotics-policy`, `./rpc-stream`, `./safe-decode-uri`, `./safe-json-parse`, `./schema-formats`, `./schema-validation`, `./seeded-prng`, `./setup-environment-files`, `./setup-wizard-bun`, `./ssr`, `./stable-json`, `./status`, `./storage-safe`, `./strict-boolean`, `./string`, `./tailwind-cli`, `./text-format`, `./timeout-signal`, `./timestamp`, `./ttl-cache`, `./type-guards`, `./typed-json-guards`, `./url-scheme`, `./usd-annotation-roundtrip`, `./vector`
 
 ## Proof Commands
 
 Run from `bao-source/bao-utils`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/bao-utils` publishes to `baohaus/bao-utils` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -86,18 +71,18 @@ Bun-native utility functions for .bao packages — async-result, path, fs, type-
 
 | Subpath | Purpose |
 | --- | --- |
-| `./ai-service-alignment` | Ai service alignment — typed surface from this workbench |
-| `./annotation-utils` | Annotation utils — typed surface from this workbench |
-| `./async-result` | Async result — typed surface from this workbench |
+| `./ai-service-alignment` | Ai service alignment — typed surface from this .bao crate |
+| `./annotation-utils` | Annotation utils — typed surface from this .bao crate |
+| `./async-result` | Async result — typed surface from this .bao crate |
 | `./bao-authz-client` | Bao authz client — auth/session contracts |
-| `./bao-bundle` | Bao bundle — typed surface from this workbench |
-| `./bao-control-plane-failure` | Bao control plane failure — typed surface from this workbench |
-| `./bao-control-plane-local-cluster-provider` | Bao control plane local cluster provider — typed surface from this workbench |
-| `./bao-control-plane-platform` | Bao control plane platform — typed surface from this workbench |
-| `./bao-control-plane-registry` | Bao control plane registry — typed surface from this workbench |
-| `./bao-manifest-checksum` | Bao manifest checksum — typed surface from this workbench |
-| `./baodown-events` | Baodown events — typed surface from this workbench |
-| `./baodown-graph-diff` | Baodown graph diff — typed surface from this workbench |
+| `./bao-bundle` | Bao bundle — typed surface from this .bao crate |
+| `./bao-control-plane-failure` | Bao control plane failure — typed surface from this .bao crate |
+| `./bao-control-plane-local-cluster-provider` | Bao control plane local cluster provider — typed surface from this .bao crate |
+| `./bao-control-plane-platform` | Bao control plane platform — typed surface from this .bao crate |
+| `./bao-control-plane-registry` | Bao control plane registry — typed surface from this .bao crate |
+| `./bao-manifest-checksum` | Bao manifest checksum — typed surface from this .bao crate |
+| `./baodown-events` | Baodown events — typed surface from this .bao crate |
+| `./baodown-graph-diff` | Baodown graph diff — typed surface from this .bao crate |
 | _…_ | _106 more export(s) in package.json_ |
 
 ## Integration
@@ -114,17 +99,17 @@ Catalog id `bao-utils` → OCI `baohaus/bao-utils`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `./ai-service-alignment` | Ai service alignment — typed surface from this workbench |
-| `./annotation-utils` | Annotation utils — typed surface from this workbench |
-| `./async-result` | Async result — typed surface from this workbench |
+| `./ai-service-alignment` | Ai service alignment — typed surface from this .bao crate |
+| `./annotation-utils` | Annotation utils — typed surface from this .bao crate |
+| `./async-result` | Async result — typed surface from this .bao crate |
 | `./bao-authz-client` | Bao authz client — auth/session contracts |
-| `./bao-bundle` | Bao bundle — typed surface from this workbench |
-| `./bao-control-plane-failure` | Bao control plane failure — typed surface from this workbench |
-| `./bao-control-plane-local-cluster-provider` | Bao control plane local cluster provider — typed surface from this workbench |
-| `./bao-control-plane-platform` | Bao control plane platform — typed surface from this workbench |
-| `./bao-control-plane-registry` | Bao control plane registry — typed surface from this workbench |
-| `./bao-manifest-checksum` | Bao manifest checksum — typed surface from this workbench |
-| `./baodown-events` | Baodown events — typed surface from this workbench |
-| `./baodown-graph-diff` | Baodown graph diff — typed surface from this workbench |
+| `./bao-bundle` | Bao bundle — typed surface from this .bao crate |
+| `./bao-control-plane-failure` | Bao control plane failure — typed surface from this .bao crate |
+| `./bao-control-plane-local-cluster-provider` | Bao control plane local cluster provider — typed surface from this .bao crate |
+| `./bao-control-plane-platform` | Bao control plane platform — typed surface from this .bao crate |
+| `./bao-control-plane-registry` | Bao control plane registry — typed surface from this .bao crate |
+| `./bao-manifest-checksum` | Bao manifest checksum — typed surface from this .bao crate |
+| `./baodown-events` | Baodown events — typed surface from this .bao crate |
+| `./baodown-graph-diff` | Baodown graph diff — typed surface from this .bao crate |
 | _…_ | _106 more in `package.json#exports`_ |
 <!-- END BAOHAUS PACKAGE MANUAL -->

@@ -2,16 +2,16 @@ import { describe, expect, it } from "bun:test";
 import { readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 
+// .bao-first SSOT cutover (subtask 2): API route literal patterns now consume from .bao fabric
+// (DIRECT_ROUTE_PATTERN in patterns.ts). Eliminated parallel local array. Matches hard-ban precedent.
+// Full cutover for API, no .bao deletion.
+
+import { DIRECT_ROUTE_PATTERN } from "../../bao/src/gates/validators/patterns.ts";
+
 const SRC_ROOT = join(import.meta.dir, "..", "src");
 const ROUTES_FILE = join(SRC_ROOT, "config", "routes.ts");
 
-const ROUTE_LITERAL_PATTERNS = [
-  /["'`]\/docs(?:\/|["'`])/,
-  /["'`]\/api\/(?:docs|health|speech|spellcheck|preferences)/,
-  /["'`]\/fragments\//,
-  /["'`]\/settings(?:\/|["'`])/,
-  /["'`]\/glass-proof["'`]/,
-];
+const ROUTE_LITERAL_PATTERNS = [DIRECT_ROUTE_PATTERN];
 
 const collectTsFiles = (dir: string): string[] => {
   const results: string[] = [];

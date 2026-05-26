@@ -1,20 +1,27 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/contribution-host-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Think of contribution-host-bao as each app’s guest desk. It lists sidebar and settings tiles for that app, then trades signed snapshot cards with friend sites so menus stay in sync.
+This crate is the mailroom’s guest desk. Each app lists its sidebar and settings tiles here, then trades signed snapshot cards with friend sites so menus stay in sync.
 
 ## Architecture
 
 ```mermaid
 sequenceDiagram
-  participant Local as Local app
+  participant App as Local app
   participant Host as contribution-host-bao
   participant Peer as Peer app
-  Local->>Host: register surfaces
-  Peer->>Host: fetch snapshot
+  App->>Host: register sidebar / settings / palette
+  Host->>Host: snapshot surfaces
+  Peer->>Host: GET /snapshot
   Host-->>Peer: FederatedContributionSnapshot
+  Peer->>Peer: merge into local hosts
 ```
 
 ## Scope
@@ -27,43 +34,21 @@ sequenceDiagram
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/contribution-host-bao
 
-Standalone Baohaus package. Catalog identity `contribution-host-bao`. Source at `bao-source/contribution-host-bao`. Publishes to `baohaus/contribution-host-bao`. Canonical archive: `bao-source/contribution-host-bao/dist/bao/contribution-host-bao.bao`.
+Per-app contribution host: instantiates one process-local singleton per contribution surface (sidebar / settings-tab / palette-entry-group / api-group / tile-group / ui-asset-pack) on top of the canonical generic factory in @baohaus/contribution-registry-bao. Lifts bao-runtime's per-surface registry-service modules into a shared, typed factory so registry, forge, bao-ai-gateway and any future .bao app can mount the same .bao install host without re-implementing the lifecycle wiring.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/contribution-host-bao` |
-| Catalog id | `contribution-host-bao` |
-| Source path | `bao-source/contribution-host-bao` |
-| OCI repository | `baohaus/contribution-host-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/contribution-host-bao`.
 
 ## Public Pieces
 
-`./api-group`, `./federation-orchestrator`, `./federation-pull`, `./federation-service-token`, `./federation-snapshot`, `./federation-snapshot-cache`, `./federation-validator`, `./federation-wire`, `./palette-entry-group`, `./settings-tab`, `./sidebar`, `./tile-group`, `./ui-asset-pack`.
+`./api-group`, `./federation-orchestrator`, `./federation-pull`, `./federation-pull-service`, `./federation-service-token`, `./federation-snapshot`, `./federation-snapshot-cache`, `./federation-snapshot-parsers`, `./federation-validator`, `./federation-wire`, `./palette-entry-group`, `./settings-tab`, `./sidebar`, `./tile-group`, `./topbar`, `./ui-asset-pack`
 
 ## Proof Commands
 
 Run from `bao-source/contribution-host-bao`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/contribution-host-bao` publishes to `baohaus/contribution-host-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -200,7 +185,7 @@ bun run bao:validate
 
 | Subpath | Purpose |
 | --- | --- |
-| `./api-group` | Api group — typed surface from this workbench |
+| `./api-group` | Api group — typed surface from this .bao crate |
 | `./federation-orchestrator` | Federation orchestrator — federation wire, snapshot, or validation |
 | `./federation-pull` | Federation pull — federation wire, snapshot, or validation |
 | `./federation-service-token` | Federation service token — federation wire, snapshot, or validation |
@@ -211,7 +196,7 @@ bun run bao:validate
 | `./palette-entry-group` | Palette entry group — host UI registration surface |
 | `./settings-tab` | Settings tab — host UI registration surface |
 | `./sidebar` | Sidebar — host UI registration surface |
-| `./tile-group` | Tile group — typed surface from this workbench |
+| `./tile-group` | Tile group — typed surface from this .bao crate |
 | _…_ | _1 more export(s) in package.json_ |
 
 ## Reference
@@ -220,7 +205,7 @@ bun run bao:validate
 
 | Subpath | Purpose |
 | --- | --- |
-| `./api-group` | Api group — typed surface from this workbench |
+| `./api-group` | Api group — typed surface from this .bao crate |
 | `./federation-orchestrator` | Federation orchestrator — federation wire, snapshot, or validation |
 | `./federation-pull` | Federation pull — federation wire, snapshot, or validation |
 | `./federation-service-token` | Federation service token — federation wire, snapshot, or validation |
@@ -231,6 +216,6 @@ bun run bao:validate
 | `./palette-entry-group` | Palette entry group — host UI registration surface |
 | `./settings-tab` | Settings tab — host UI registration surface |
 | `./sidebar` | Sidebar — host UI registration surface |
-| `./tile-group` | Tile group — typed surface from this workbench |
+| `./tile-group` | Tile group — typed surface from this .bao crate |
 | _…_ | _1 more in `package.json#exports`_ |
 <!-- END BAOHAUS PACKAGE MANUAL -->

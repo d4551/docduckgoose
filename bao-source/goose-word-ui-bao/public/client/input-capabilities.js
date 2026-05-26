@@ -7,6 +7,8 @@
   const coarsePointer = window.matchMedia("(pointer: coarse)");
   const hoverCapable = window.matchMedia("(hover: hover)");
   const compactWidth = window.matchMedia("(max-width: 420px)");
+  const compactHeight = window.matchMedia("(max-height: 420px)");
+  const landscapeWidth = window.matchMedia("(orientation: landscape)");
   const chipCopy = {
     keyboard: {
       hardware: { icon: "⌨", label: "Hardware keyboard active" },
@@ -67,11 +69,25 @@
     updateChip(name, value);
   };
 
+  const readViewportFlag = () => {
+    const layout = root.dataset.viewportLayout;
+    if (layout === "compact" || layout === "landscape" || layout === "roomy") {
+      return layout === "landscape" ? "landscape" : layout === "compact" ? "compact" : "roomy";
+    }
+    if (compactWidth.matches || (landscapeWidth.matches && compactHeight.matches)) {
+      return "compact";
+    }
+    if (landscapeWidth.matches) {
+      return "landscape";
+    }
+    return "roomy";
+  };
+
   setFlag("pointer", coarsePointer.matches ? "coarse" : "fine");
   setFlag("hover", hoverCapable.matches ? "available" : "none");
   setFlag("motion", reducedMotion.matches ? "reduced" : "full");
   setFlag("power", lowPower ? "low" : "normal");
-  setFlag("viewport", compactWidth.matches ? "compact" : "roomy");
+  setFlag("viewport", readViewportFlag());
   setFlag("keyboard", "unknown");
 
   if (lowPower) {
@@ -187,10 +203,13 @@
   attachHIDListeners();
 
   const updateViewport = () => {
-    setFlag("viewport", compactWidth.matches ? "compact" : "roomy");
+    setFlag("viewport", readViewportFlag());
   };
 
+  document.addEventListener("gw:viewport", updateViewport);
   compactWidth.addEventListener?.("change", updateViewport);
+  compactHeight.addEventListener?.("change", updateViewport);
+  landscapeWidth.addEventListener?.("change", updateViewport);
   coarsePointer.addEventListener?.("change", () => {
     setFlag("pointer", coarsePointer.matches ? "coarse" : "fine");
     body.classList.toggle("gw-input-touch", coarsePointer.matches);

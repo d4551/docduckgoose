@@ -979,6 +979,66 @@ export const BaoDensityPresetTargetSchema = TypeExports.Options(
 export type BaoDensityPresetTarget = Static<typeof BaoDensityPresetTargetSchema>;
 
 /**
+ * Native mobile shell target — registers an offline Capacitor shell with an
+ * embedded Goose Word loopback server (Android: compiled binary; iOS: platform
+ * in-process host per allowlisted divergence).
+ */
+export const BaoNativeMobileShellTargetSchema = TypeExports.Options(
+  TypeExports.Composite([
+    BaoInstallTargetOrderingSchema,
+    TypeExports.Object({
+      kind: TypeExports.Literal("native-mobile-shell"),
+      target: TypeExports.String({
+        minLength: 1,
+        description: "Stable target identifier (unique in manifest).",
+      }),
+      platform: TypeExports.Union([TypeExports.Literal("android"), TypeExports.Literal("ios")], {
+        description: "Mobile platform this shell targets.",
+      }),
+      serverMode: TypeExports.Literal("embedded", {
+        description: "v1 only: full offline embedded server.",
+      }),
+      loopbackHost: TypeExports.String({
+        minLength: 1,
+        default: "127.0.0.1",
+        description: "Loopback host the WebView loads.",
+      }),
+      loopbackPort: TypeExports.Integer({
+        minimum: 1,
+        maximum: 65535,
+        default: 8080,
+        description: "Loopback port the embedded server binds.",
+      }),
+      healthPath: TypeExports.String({
+        minLength: 1,
+        pattern: "^/",
+        description: "Health probe path (e.g. /api/health).",
+      }),
+      dataDirEnvKey: TypeExports.Literal("GOOSE_WORD_DATA_DIR", {
+        description: "Env key for sandbox data directory.",
+      }),
+      binaryAssetRef: TypeExports.Optional(
+        TypeExports.String({
+          minLength: 1,
+          description: "Android-only POSIX path to compiled goose-word binary in archive.",
+        }),
+      ),
+      iconSetRef: TypeExports.String({
+        minLength: 1,
+        description: "Brand asset pack id for launcher / PWA icons.",
+      }),
+      checksum: TypeExports.Optional(BaoInstallChecksumSchema),
+      signature: TypeExports.Optional(BaoInstallSignatureSchema),
+      dependencies: TypeExports.Optional(TypeExports.Array(BaoInstallDependencySchema)),
+    }),
+  ]),
+  { additionalProperties: false },
+);
+
+/** Native mobile shell target. */
+export type BaoNativeMobileShellTarget = Static<typeof BaoNativeMobileShellTargetSchema>;
+
+/**
  * Sidebar registration target — contributes drawer navigation entries.
  */
 export const BaoSidebarTargetSchema: TOptions<
@@ -1745,6 +1805,7 @@ export const BaoInstallTargetSchema = TypeExports.Union(
     BaoDesignTokensTargetSchema,
     BaoMotionPresetTargetSchema,
     BaoDensityPresetTargetSchema,
+    BaoNativeMobileShellTargetSchema,
     BaoInstallTargetBaseSchema,
   ],
   {

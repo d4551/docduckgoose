@@ -76,31 +76,31 @@ const plugin = {
       {
         id: "writing-insights-bao:personal",
         extensionId: "writing-insights-bao",
-        labelKey: "settings.title" as const,
+        labelKey: "enterprise.context.writingInsights.personal" as const,
         type: "user" as const,
       },
       {
         id: "writing-insights-bao:team",
         extensionId: "writing-insights-bao",
-        labelKey: "settings.capabilities.title" as const,
+        labelKey: "enterprise.context.writingInsights.team" as const,
         type: "workspace" as const,
       },
       {
         id: "writing-insights-bao:workplace",
         extensionId: "writing-insights-bao",
-        labelKey: "settings.capabilities.routes" as const,
+        labelKey: "enterprise.context.writingInsights.workplace" as const,
         type: "workplace" as const,
       },
       {
         id: "writing-insights-bao:admin",
         extensionId: "writing-insights-bao",
-        labelKey: "settings.plugins.title" as const,
+        labelKey: "enterprise.context.writingInsights.admin" as const,
         type: "admin" as const,
       },
       {
         id: "writing-insights-bao:corp",
         extensionId: "writing-insights-bao",
-        labelKey: "enterprise.contexts.title" as const,
+        labelKey: "enterprise.context.writingInsights.corp" as const,
         type: "enterprise" as const,
       },
     ];

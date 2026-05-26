@@ -10,7 +10,29 @@
     "lib": ["ES2022", "DOM"],
     "verbatimModuleSyntax": true,
     "allowImportingTsExtensions": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "paths": {
+      "@baohaus/bao-install-handlers-bao/native-mobile-shell": [
+        "../bao-source/bao-install-handlers-bao/src/native-mobile-shell.ts"
+      ],
+      "@baohaus/bao-sdk/target-handler-registry": [
+        "../bao-source/bao-sdk/src/target-handler-registry.ts"
+      ],
+      "@baohaus/bao-sdk/install-target-handler": [
+        "../bao-source/bao-sdk/src/install-target-handler.ts"
+      ],
+      "@baohaus/bao-types/common": ["../bao-source/bao-types/src/common.ts"],
+      "@baohaus/ecosystem-events-bao/types": ["../bao-source/ecosystem-events-bao/src/types.ts"],
+      "@baohaus/ecosystem-events-bao/service": [
+        "../bao-source/ecosystem-events-bao/src/service.ts"
+      ],
+      "@baohaus/contribution-registry-bao/native-mobile-shell": [
+        "../bao-source/contribution-registry-bao/src/native-mobile-shell.ts"
+      ],
+      "@baohaus/contribution-registry-bao/native-mobile-shell-registry": [
+        "../bao-source/contribution-registry-bao/src/native-mobile-shell-registry.ts"
+      ]
+    }
   },
   "include": ["src/**/*.ts", "test/**/*.ts", "scripts/**/*.ts"]
 }

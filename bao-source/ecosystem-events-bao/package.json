@@ -7,16 +7,16 @@
   "description": "Canonical in-process pub/sub bus + SSE encoder + per-subscriber filter for cross-surface contribution-change signals (sidebar / settings-tab / palette-entry-group / api-group / tile-group). Consumed by every Bao app's SSE sink so a `.bao` install or capability re-evaluation fans out to every open browser tab without a page reload.",
   "exports": {
     "./service": {
-      "bun": "./dist/service.js",
-      "import": "./dist/service.js",
-      "types": "./dist/service.d.ts",
-      "default": "./dist/service.js"
+      "bun": "./src/service.ts",
+      "import": "./src/service.ts",
+      "types": "./src/service.ts",
+      "default": "./src/service.ts"
     },
     "./types": {
-      "bun": "./dist/types.js",
-      "import": "./dist/types.js",
-      "types": "./dist/types.d.ts",
-      "default": "./dist/types.js"
+      "bun": "./src/types.ts",
+      "import": "./src/types.ts",
+      "types": "./src/types.ts",
+      "default": "./src/types.ts"
     },
     "./encoder": {
       "bun": "./dist/encoder.js",

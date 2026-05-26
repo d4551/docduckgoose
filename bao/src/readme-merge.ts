@@ -153,7 +153,11 @@ export function mergeManualBodies(preserved: string, generated: string): string 
       body = `${body}\n\n${section}`;
     }
   }
-  return body.trim();
+  return body
+    .replaceAll("typed surface from this workbench", "typed surface from this .bao crate")
+    .replaceAll("Other workbench domains", "Other .bao crate domains")
+    .replaceAll("Baohaus workbench package", "Baohaus .bao crate")
+    .trim();
 }
 
 export function preserveManualBody(regions: ReadmeRegions, generatedManual: string): string {

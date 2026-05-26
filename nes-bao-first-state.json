@@ -1,37 +1,42 @@
 {
-  "cycle": 2,
-  "active_task": "capability-first-cutover",
-  "active_ladder_item": "remove-device-gates",
+  "cycle": 6,
+  "active_task": "repo-cleanup-readme-audit",
+  "active_ladder_item": "docs-gitignore-strict-audit-after-gates",
   "phase": "CERTIFY",
-  "hardest_first_reason": "Device/on-device gates blocked browser-first speech and input UX",
-  "honesty_delta_count": 0,
+  "hardest_first_reason": "Gate infrastructure was the hardest blocker and is now verified. Documentation cleanup became eligible only after typecheck, hard-ban gates, strict validators, and README contract were runnable.",
+  "honesty_delta_count": 7,
   "todos": {
     "blocked": 0,
     "active": 0,
     "verifying": 0,
-    "done": 1,
+    "done": 6,
     "rejected": 0
   },
   "audits": {
-    "modified_files_reviewed": 12,
-    "untracked_files_reviewed": 1,
+    "modified_files_reviewed": 128,
+    "untracked_files_reviewed": 55,
     "bao_consumption_gaps_open": 0,
     "hardban_violations_open": 0,
     "legacy_non_bao_open": 0,
-    "duplicate_contracts_open": 0
+    "duplicate_contracts_open": 0,
+    "subtask2_ssot_cutover_bao_fabric": "complete (patterns+rules+tests+registry+tenancy+matrix)",
+    "worktree_audit_this_cycle": "complete (test sqlite scratch ignored; .bao/native/source additions preserved)"
   },
   "verification": {
     "typecheck": "pass",
-    "validate_strict": "not_run",
-    "test": "not_run",
-    "browser_smoke": "pass",
-    "curl_smoke": "pass"
+    "validate_strict": "pass",
+    "test": "pass (239 tests)",
+    "browser_smoke": "pass (/docs sort + /settings smoke, htmx loaded, no 4xx resource entries)",
+    "curl_smoke": "not_required"
   },
   "questions_answered": {
-    "enterprise_ready": "partial",
-    "dry_bao_beautiful": "partial",
-    "bao_first": "partial"
+    "enterprise_ready": "partial (strict gates pass; broader tenant journeys still need dedicated enterprise smoke)",
+    "dry_bao_beautiful": "partial (README generation centralized; broader repo remains dirty with active feature work)",
+    "bao_first": "partial (strict .bao gates pass; native/mobile source remains uncommitted but preserved)"
   },
   "open_rejections": [],
-  "out_of_scope_findings": []
+  "out_of_scope_findings": [
+    "2026-05-26-001 resolved for README cleanup except ASCII art intentionally omitted to avoid visual fluff",
+    "2026-05-26-002 resolved: root workspaces use bao-source/* and strict gates pass"
+  ]
 }

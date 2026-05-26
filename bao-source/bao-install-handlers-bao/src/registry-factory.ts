@@ -51,6 +51,7 @@ import { createSidebarTargetHandler } from "./sidebar.ts";
 import { ThemePackTargetHandler } from "./theme-pack.ts";
 import { createTileGroupTargetHandler } from "./tile-group.ts";
 import { createTopbarTargetHandler } from "./topbar.ts";
+import { NativeMobileShellTargetHandler } from "./native-mobile-shell.ts";
 import { UiComponentKitTargetHandler } from "./ui-component-kit.ts";
 
 /**
@@ -183,6 +184,7 @@ export function buildInstallHandlerRegistry(
   registry.register(new DesignTokensTargetHandler(options.logger));
   registry.register(new MotionPresetTargetHandler(options.logger));
   registry.register(new DensityPresetTargetHandler(options.logger));
+  registry.register(new NativeMobileShellTargetHandler(options.logger));
   registry.register(new HtmxExtensionTargetHandler(hostContext));
   registry.register(new UiComponentKitTargetHandler(hostContext));
 

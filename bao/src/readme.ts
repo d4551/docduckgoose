@@ -32,6 +32,16 @@ function listValues(values: readonly string[], limit = 18): string {
   return remaining > 0 ? `${shown}, plus ${remaining} more.` : `${shown}.`;
 }
 
+function renderBadges(context: PackageReadmeContext): string {
+  const kind = encodeURIComponent(context.packageKind);
+  return [
+    "[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)",
+    "[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)",
+    "[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)",
+    `[![Package kind](https://img.shields.io/badge/kind-${kind}-0f766e)](./package.json)`,
+  ].join("\n");
+}
+
 function renderProofCommands(entry: CatalogPackageEntry): string[] {
   return [
     entry.buildCommand,
@@ -54,6 +64,8 @@ export function renderReadmeHeader(
   const lines = [
     README_HEADER_BEGIN,
     `# ${context.packageName}`,
+    "",
+    renderBadges(context),
     "",
     ELI5_HEADING,
     "",

@@ -51,6 +51,18 @@
       "types": "./dist/density-preset.d.ts",
       "default": "./dist/density-preset.js"
     },
+    "./native-mobile-shell": {
+      "bun": "./src/native-mobile-shell.ts",
+      "import": "./dist/native-mobile-shell.js",
+      "types": "./src/native-mobile-shell.ts",
+      "default": "./dist/native-mobile-shell.js"
+    },
+    "./native-mobile-shell-registry": {
+      "bun": "./dist/native-mobile-shell-registry.js",
+      "import": "./dist/native-mobile-shell-registry.js",
+      "types": "./dist/native-mobile-shell-registry.d.ts",
+      "default": "./dist/native-mobile-shell-registry.js"
+    },
     "./sidebar": {
       "bun": "./dist/sidebar.js",
       "import": "./dist/sidebar.js",
@@ -100,9 +112,9 @@
       "default": "./dist/ui-component-kit.js"
     },
     "./registry-factory": {
-      "bun": "./dist/registry-factory.js",
+      "bun": "./src/registry-factory.ts",
       "import": "./dist/registry-factory.js",
-      "types": "./dist/registry-factory.d.ts",
+      "types": "./src/registry-factory.ts",
       "default": "./dist/registry-factory.js"
     }
   },
@@ -116,13 +128,13 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "@baohaus/bao-sdk": "0.1.0",
-    "@baohaus/bao-schemas": "0.1.0",
-    "@baohaus/bao-types": "0.1.0",
-    "@baohaus/bao-utils": "0.1.0",
-    "@baohaus/baobox": "0.1.1",
-    "@baohaus/contribution-registry-bao": "0.1.0",
-    "@baohaus/ecosystem-events-bao": "0.1.0"
+    "@baohaus/bao-sdk": "file:../bao-sdk",
+    "@baohaus/bao-schemas": "file:../bao-schemas",
+    "@baohaus/bao-types": "file:../bao-types",
+    "@baohaus/bao-utils": "file:../bao-utils",
+    "@baohaus/baobox": "file:../baobox",
+    "@baohaus/contribution-registry-bao": "file:../contribution-registry-bao",
+    "@baohaus/ecosystem-events-bao": "file:../ecosystem-events-bao"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.14",

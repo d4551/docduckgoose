@@ -6,6 +6,7 @@ export const GOOSE_WORD_UI_MANIFEST_PATH = "public/manifest.webmanifest";
 export const GOOSE_WORD_CLIENT_ASSETS = {
   api: "api-client.js",
   apiRoutes: "routes.js",
+  viewportDevice: "viewport-device.js",
   inputCapabilities: "input-capabilities.js",
   glassSpecular: "glass-specular.js",
   gooseChibi: "goose-chibi.js",
@@ -14,5 +15,7 @@ export const GOOSE_WORD_CLIENT_ASSETS = {
   printView: "print-view.js",
   touchToolbar: "touch-toolbar.js",
   typography: "typography.js",
+  settingsShell: "settings-shell.js",
+  dockToggle: "dock-toggle.js",
   mermaidRender: "mermaid-render.js",
 } as const;

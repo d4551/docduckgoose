@@ -1,65 +1,48 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/markdown-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Marked parity: GFM, tokenizer, renderer, extensions, lexer. Apps use exports such as `lexer`, `marked`, `PACKAGE_NAME` from `@baohaus/markdown-bao`.
+This crate is the mailroom's formatting pen. Hand it plain text with special marks, and it draws headings, bold words, and lists -- turning notes into neat pages.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  producer["@baohaus/markdown-bao"] --> crate[".markdown_bao crate"]
-  crate --> consumers["Host apps and benches"]
+  md["Markdown text"] --> parser["markdown-bao\nlexer + renderer"]
+  parser --> html["Rendered HTML\nheadings, lists, code"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Marked parity: GFM, tokenizer, renderer, extensions, lexer; Exported API: lexer, marked, PACKAGE_NAME, parse, parser, … | bao-governance.json; bao.lock; catalog row | Other workbench domains; bao-runtime host lifecycle |
+| Marked parity: GFM, tokenizer, renderer, extensions, lexer; Exported API: lexer, marked, PACKAGE_NAME, parse, parser, … | Shared @baohaus contracts | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/markdown-bao
 
-Standalone Baohaus package. Catalog identity `markdown-bao`. Source at `bao-source/markdown-bao`. Publishes to `baohaus/markdown-bao`. Canonical archive: `bao-source/markdown-bao/dist/bao/markdown-bao.bao`.
+Marked parity: GFM, tokenizer, renderer, extensions, lexer
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/markdown-bao` |
-| Catalog id | `markdown-bao` |
-| Source path | `bao-source/markdown-bao` |
-| OCI repository | `baohaus/markdown-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/markdown-bao`.
 
 ## Public Pieces
 
-`.`, `./gfm`, `./lexer`, `./renderer`, `./tokenizer`.
+`.`, `./gfm`, `./lexer`, `./renderer`, `./tokenizer`
 
 ## Proof Commands
 
 Run from `bao-source/markdown-bao`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/markdown-bao` publishes to `baohaus/markdown-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -86,11 +69,11 @@ Marked parity: GFM, tokenizer, renderer, extensions, lexer
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./gfm` | Gfm — typed surface from this workbench |
-| `./lexer` | Lexer — typed surface from this workbench |
-| `./renderer` | Renderer — typed surface from this workbench |
-| `./tokenizer` | Tokenizer — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./gfm` | Gfm — typed surface from this .bao crate |
+| `./lexer` | Lexer — typed surface from this .bao crate |
+| `./renderer` | Renderer — typed surface from this .bao crate |
+| `./tokenizer` | Tokenizer — typed surface from this .bao crate |
 
 ## Primary symbols
 
@@ -116,11 +99,11 @@ Catalog id `markdown-bao` → OCI `baohaus/markdown-bao`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./gfm` | Gfm — typed surface from this workbench |
-| `./lexer` | Lexer — typed surface from this workbench |
-| `./renderer` | Renderer — typed surface from this workbench |
-| `./tokenizer` | Tokenizer — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./gfm` | Gfm — typed surface from this .bao crate |
+| `./lexer` | Lexer — typed surface from this .bao crate |
+| `./renderer` | Renderer — typed surface from this .bao crate |
+| `./tokenizer` | Tokenizer — typed surface from this .bao crate |
 
 ### Symbols
 

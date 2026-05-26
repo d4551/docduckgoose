@@ -1,6 +1,6 @@
 (function initGooseMermaid(global) {
   var vendorUrl =
-    document.documentElement.getAttribute("data-gw-mermaid-vendor") || "/vendor/mermaid.min.js";
+    document.documentElement.getAttribute("data-gw-mermaid-vendor");
   var errorLabel =
     document.documentElement.getAttribute("data-gw-mermaid-error") ||
     "Diagram could not be rendered";

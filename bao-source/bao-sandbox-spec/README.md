@@ -1,65 +1,49 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/bao-sandbox-spec
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Canonical .bao sandbox manifest schema, TypeScript shape, and validator → JailSpec compiler. Import subpaths like `./canonical-json`, `./capabilities`, `./cluster`, `./compile` when you wire this crate in.
+This crate is the mailroom's safety manual. It writes down exactly what each crate is allowed to touch so nothing escapes its play area.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  producer["@baohaus/bao-sandbox-spec"] --> crate[".bao_sandbox_spec crate"]
-  crate --> consumers["Host apps and benches"]
+  manifest[".bao manifest\nsandbox section"] --> spec["bao-sandbox-spec\nparse + validate"]
+  spec --> caps["Capabilities check\n(fs / net / env)"]
+  caps --> jail["JailSpec\nboundary enforcement"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Canonical . | @baohaus/bao-bpf; @baohaus/bao-cgroup; @baohaus/bao-constants; @baohaus/bao-landlock | Other workbench domains; bao-runtime host lifecycle |
+| Canonical . | @baohaus/bao-bpf; @baohaus/bao-cgroup; @baohaus/bao-constants; @baohaus/bao-landlock | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/bao-sandbox-spec
 
-Standalone Baohaus package. Catalog identity `bao-sandbox-spec`. Source at `bao-source/bao-sandbox-spec`. Publishes to `baohaus/bao-sandbox-spec`. Canonical archive: `bao-source/bao-sandbox-spec/dist/bao/bao-sandbox-spec.bao`.
+Canonical .bao sandbox manifest schema, TypeScript shape, and validator → JailSpec compiler.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/bao-sandbox-spec` |
-| Catalog id | `bao-sandbox-spec` |
-| Source path | `bao-source/bao-sandbox-spec` |
-| OCI repository | `baohaus/bao-sandbox-spec` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/bao-sandbox-spec`.
 
 ## Public Pieces
 
-`./canonical-json`, `./capabilities`, `./cluster`, `./compile`, `./computer-use`, `./event-bus`, `./events`, `./grant-signer`, `./grants`, `./matrix`, `./negotiate`, `./package-descriptor`, `./resources`, `./scheduler`, `./schema`, `./usage`, `./validate`, `./wire-resize`.
+`./canonical-json`, `./capabilities`, `./cluster`, `./compile`, `./computer-use`, `./event-bus`, `./events`, `./grant-signer`, `./grants`, `./matrix`, `./negotiate`, `./package-descriptor`, `./resources`, `./scheduler`, `./schema`, `./usage`, `./validate`, `./wire-resize`
 
 ## Proof Commands
 
 Run from `bao-source/bao-sandbox-spec`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/bao-sandbox-spec` publishes to `baohaus/bao-sandbox-spec` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -86,18 +70,18 @@ Canonical .bao sandbox manifest schema, TypeScript shape, and validator → Jail
 
 | Subpath | Purpose |
 | --- | --- |
-| `./canonical-json` | Canonical json — typed surface from this workbench |
-| `./capabilities` | Capabilities — typed surface from this workbench |
-| `./cluster` | Cluster — typed surface from this workbench |
-| `./compile` | Compile — typed surface from this workbench |
-| `./computer-use` | Computer use — typed surface from this workbench |
-| `./event-bus` | Event bus — typed surface from this workbench |
-| `./events` | Events — typed surface from this workbench |
-| `./grant-signer` | Grant signer — typed surface from this workbench |
-| `./grants` | Grants — typed surface from this workbench |
-| `./matrix` | Matrix — typed surface from this workbench |
-| `./negotiate` | Negotiate — typed surface from this workbench |
-| `./package-descriptor` | Package descriptor — typed surface from this workbench |
+| `./canonical-json` | Canonical json — typed surface from this .bao crate |
+| `./capabilities` | Capabilities — typed surface from this .bao crate |
+| `./cluster` | Cluster — typed surface from this .bao crate |
+| `./compile` | Compile — typed surface from this .bao crate |
+| `./computer-use` | Computer use — typed surface from this .bao crate |
+| `./event-bus` | Event bus — typed surface from this .bao crate |
+| `./events` | Events — typed surface from this .bao crate |
+| `./grant-signer` | Grant signer — typed surface from this .bao crate |
+| `./grants` | Grants — typed surface from this .bao crate |
+| `./matrix` | Matrix — typed surface from this .bao crate |
+| `./negotiate` | Negotiate — typed surface from this .bao crate |
+| `./package-descriptor` | Package descriptor — typed surface from this .bao crate |
 | _…_ | _6 more export(s) in package.json_ |
 
 ## Integration
@@ -114,17 +98,17 @@ Catalog id `bao-sandbox-spec` → OCI `baohaus/bao-sandbox-spec`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `./canonical-json` | Canonical json — typed surface from this workbench |
-| `./capabilities` | Capabilities — typed surface from this workbench |
-| `./cluster` | Cluster — typed surface from this workbench |
-| `./compile` | Compile — typed surface from this workbench |
-| `./computer-use` | Computer use — typed surface from this workbench |
-| `./event-bus` | Event bus — typed surface from this workbench |
-| `./events` | Events — typed surface from this workbench |
-| `./grant-signer` | Grant signer — typed surface from this workbench |
-| `./grants` | Grants — typed surface from this workbench |
-| `./matrix` | Matrix — typed surface from this workbench |
-| `./negotiate` | Negotiate — typed surface from this workbench |
-| `./package-descriptor` | Package descriptor — typed surface from this workbench |
+| `./canonical-json` | Canonical json — typed surface from this .bao crate |
+| `./capabilities` | Capabilities — typed surface from this .bao crate |
+| `./cluster` | Cluster — typed surface from this .bao crate |
+| `./compile` | Compile — typed surface from this .bao crate |
+| `./computer-use` | Computer use — typed surface from this .bao crate |
+| `./event-bus` | Event bus — typed surface from this .bao crate |
+| `./events` | Events — typed surface from this .bao crate |
+| `./grant-signer` | Grant signer — typed surface from this .bao crate |
+| `./grants` | Grants — typed surface from this .bao crate |
+| `./matrix` | Matrix — typed surface from this .bao crate |
+| `./negotiate` | Negotiate — typed surface from this .bao crate |
+| `./package-descriptor` | Package descriptor — typed surface from this .bao crate |
 | _…_ | _6 more in `package.json#exports`_ |
 <!-- END BAOHAUS PACKAGE MANUAL -->

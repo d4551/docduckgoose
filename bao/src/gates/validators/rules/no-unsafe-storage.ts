@@ -1,9 +1,12 @@
 import type { ValidatorContext } from "../context.ts";
-import { UNSAFE_STORAGE_PATTERN } from "../patterns.ts";
+import {
+  SENSITIVE_KEY_PATTERN,
+  STORAGE_KEY_PATTERN,
+  UNSAFE_STORAGE_PATTERN,
+} from "../patterns.ts";
 
-const STORAGE_KEY_PATTERN =
-  /\b(?:localStorage|sessionStorage)\s*\.\s*(?:getItem|setItem|removeItem)\s*\(\s*(["'`])(?<key>[^"'`]+)\1/g;
-const SENSITIVE_KEY_PATTERN = /\b(?:auth|bearer|credential|jwt|password|secret|session|token)\b/i;
+// .bao-first SSOT cutover (subtask 2): storage + auth key patterns now from .bao fabric patterns.ts
+// Eliminated parallel local regex. Full consume, no deletion.
 
 const collectStorageKeyViolations = (
   contents: string,

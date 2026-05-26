@@ -55,7 +55,7 @@ function defaultOutOfScope(context: PackageReadmeContext): string[] {
   if (context.packageKind === "extension") {
     return ["Host boot order", "Registry catalog authoring"];
   }
-  return ["Other workbench domains", "bao-runtime host lifecycle"];
+  return ["Other .bao crate domains", "bao-runtime host lifecycle"];
 }
 
 function tableRow(cells: readonly string[]): string {

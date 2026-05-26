@@ -8,14 +8,17 @@ import {
   docPreviewPath,
   docPrintPath,
   docSavePath,
+  docTemplateCreatePath,
   docsApiPath,
-  docsRowsFragmentPath,
   healthApiPath,
   preferencesApiPath,
   ROUTES,
   routePaths,
   settingsPath,
+  settingsPluginToggle,
   settingsPluginsPath,
+  userTemplateDeletePath,
+  userTemplateEditPath,
 } from "../src/config/routes.ts";
 
 describe("routePaths path helpers", () => {
@@ -39,6 +42,15 @@ describe("routePaths path helpers", () => {
     expect(routePaths.docDelete("x")).toBe("/docs/x/delete");
   });
 
+  it("docTemplateCreate produces /docs/<id>/templates", () => {
+    expect(routePaths.docTemplateCreate("x")).toBe("/docs/x/templates");
+  });
+
+  it("user template routes produce edit and delete URLs", () => {
+    expect(routePaths.userTemplateEdit("x")).toBe("/templates/x/edit");
+    expect(routePaths.userTemplateDelete("x")).toBe("/templates/x/delete");
+  });
+
   it("docApi produces /api/docs/<id>", () => {
     expect(routePaths.docApi("x")).toBe("/api/docs/x");
   });
@@ -46,6 +58,10 @@ describe("routePaths path helpers", () => {
   it("settingsEnterpriseActivate URL-encodes the id", () => {
     const path = routePaths.settingsEnterpriseActivate("foo bar");
     expect(path).toBe("/settings/enterprise/activate/foo%20bar");
+  });
+
+  it("settingsPluginToggle URL-encodes the id", () => {
+    expect(routePaths.settingsPluginToggle("a b")).toBe("/settings/plugins/a%20b/toggle");
   });
 
   it("enterpriseSwitch URL-encodes the id", () => {
@@ -93,6 +109,12 @@ describe("named path exports match routePaths", () => {
     expect(docDeletePath("z")).toBe(routePaths.docDelete("z"));
   });
 
+  it("template path exports match routePaths", () => {
+    expect(docTemplateCreatePath("z")).toBe(routePaths.docTemplateCreate("z"));
+    expect(userTemplateEditPath("z")).toBe(routePaths.userTemplateEdit("z"));
+    expect(userTemplateDeletePath("z")).toBe(routePaths.userTemplateDelete("z"));
+  });
+
   it("docApiPath matches routePaths.docApi", () => {
     expect(docApiPath("z")).toBe(routePaths.docApi("z"));
   });
@@ -101,16 +123,16 @@ describe("named path exports match routePaths", () => {
     expect(docsApiPath).toBe(routePaths.docsApi);
   });
 
-  it("docsRowsFragmentPath matches routePaths.docsRowsFragment", () => {
-    expect(docsRowsFragmentPath).toBe(routePaths.docsRowsFragment);
-  });
-
   it("settingsPath matches routePaths.settings", () => {
     expect(settingsPath).toBe(routePaths.settings);
   });
 
   it("settingsPluginsPath matches routePaths.settingsPlugins", () => {
     expect(settingsPluginsPath).toBe(routePaths.settingsPlugins);
+  });
+
+  it("settingsPluginToggle matches routePaths.settingsPluginToggle", () => {
+    expect(settingsPluginToggle("z")).toBe(routePaths.settingsPluginToggle("z"));
   });
 
   it("healthApiPath matches routePaths.healthApi", () => {
@@ -143,12 +165,16 @@ describe("ROUTES object mirrors routePaths", () => {
     expect(ROUTES.docs.deletePattern).toBe(routePaths.docDeletePattern);
   });
 
-  it("ROUTES.docs.rowsFragment equals routePaths.docsRowsFragment", () => {
-    expect(ROUTES.docs.rowsFragment).toBe(routePaths.docsRowsFragment);
+  it("ROUTES.docs user template edit pattern equals routePaths", () => {
+    expect(ROUTES.docs.userTemplateEditPattern).toBe(routePaths.userTemplateEditPattern);
   });
 
   it("ROUTES.settings.home equals routePaths.settings", () => {
     expect(ROUTES.settings.home).toBe(routePaths.settings);
+  });
+
+  it("ROUTES.settings.pluginTogglePattern equals routePaths", () => {
+    expect(ROUTES.settings.pluginTogglePattern).toBe(routePaths.settingsPluginTogglePattern);
   });
 
   it("ROUTES.api.health equals routePaths.healthApi", () => {
@@ -157,6 +183,10 @@ describe("ROUTES object mirrors routePaths", () => {
 
   it("ROUTES.api.preferences equals routePaths.preferencesApi", () => {
     expect(ROUTES.api.preferences).toBe(routePaths.preferencesApi);
+  });
+
+  it("ROUTES.plugins.dispatchPattern equals routePaths.pluginDispatchPattern", () => {
+    expect(ROUTES.plugins.dispatchPattern).toBe(routePaths.pluginDispatchPattern);
   });
 
   it("ROUTES.glassProof equals routePaths.glassProof", () => {

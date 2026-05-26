@@ -1,4 +1,4 @@
-import { getPreviewHtml } from "./api-client.js";
+import { getPreviewHtml, postPreviewHtml, postPrintHtml } from "./api-client.js";
 
 (function initTouchToolbar() {
   var lastSnapshot = null;
@@ -106,11 +106,16 @@ import { getPreviewHtml } from "./api-client.js";
   function loadPreview(button) {
     var targetId = button.getAttribute("data-preview-target");
     var pane = targetId ? document.getElementById(targetId) : null;
-    var previewUrl = button.getAttribute("hx-get");
+    var previewUrl = button.getAttribute("hx-post") || button.getAttribute("hx-get");
     if (pane === null || previewUrl === null || previewUrl === "") {
       return;
     }
-    getPreviewHtml(previewUrl).then((html) => {
+    var form = button.closest("form");
+    var previewRequest =
+      form instanceof HTMLFormElement
+        ? postPreviewHtml(previewUrl, new FormData(form))
+        : getPreviewHtml(previewUrl);
+    previewRequest.then((html) => {
       if (html.length > 0) {
         pane.innerHTML = html;
         setPreviewState(button, true);
@@ -121,9 +126,38 @@ import { getPreviewHtml } from "./api-client.js";
     });
   }
 
+  function openCurrentPrint(button) {
+    var printUrl = button.getAttribute("data-print-url");
+    var form = button.closest("form");
+    if (!(form instanceof HTMLFormElement) || printUrl === null || printUrl === "") {
+      return;
+    }
+    var targetName = "goose-word-print-" + String(Date.now());
+    var printWindow = window.open("", targetName);
+    if (printWindow === null) {
+      return;
+    }
+    printWindow.opener = null;
+    postPrintHtml(printUrl, new FormData(form)).then((html) => {
+      if (html.length === 0) {
+        printWindow.close();
+        return;
+      }
+      printWindow.document.open();
+      printWindow.document.write(html);
+      printWindow.document.close();
+    });
+  }
+
   document.addEventListener("click", async (event) => {
     var target = event.target;
     if (!target || typeof target.closest !== "function") {
+      return;
+    }
+    var printButton = target.closest("[data-print-current]");
+    if (printButton !== null) {
+      event.preventDefault();
+      openCurrentPrint(printButton);
       return;
     }
     var deleteToggle = target.closest("[data-delete-toggle]");

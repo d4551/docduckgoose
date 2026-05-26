@@ -1,5 +1,6 @@
 import { mkdirSync } from "node:fs";
 import { join, resolve } from "node:path";
+import { cliLog } from "./cli-log.ts";
 
 const ROOT = resolve(import.meta.dir, "..");
 const BINARY = join(ROOT, "dist", "goose-word-linux-arm64");
@@ -18,7 +19,7 @@ const run = async (cmd: string[]): Promise<void> => {
 
 mkdirSync(join(ROOT, "dist"), { recursive: true });
 
-console.log("Building goose-word for linux-arm64...");
+cliLog("Building goose-word for linux-arm64...");
 await run([
   "bun",
   "build",
@@ -29,13 +30,13 @@ await run([
   BINARY,
 ]);
 
-console.log(`Binary: ${BINARY}`);
+cliLog(`Binary: ${BINARY}`);
 await run(["file", BINARY]);
 
-console.log("");
-console.log("Install on Pi Zero 2 W (64-bit Raspberry Pi OS):");
-console.log(`  scp ${BINARY} pi@raspberrypi.local:~/goose-word`);
-console.log("  ssh pi@raspberrypi.local 'chmod +x ~/goose-word && ~/goose-word'");
-console.log("");
-console.log("Kiosk (Chromium on the Pi):");
-console.log("  ./scripts/pi-kiosk.sh");
+cliLog("");
+cliLog("Install on Pi Zero 2 W (64-bit Raspberry Pi OS):");
+cliLog(`  scp ${BINARY} pi@raspberrypi.local:~/goose-word`);
+cliLog("  ssh pi@raspberrypi.local 'chmod +x ~/goose-word && ~/goose-word'");
+cliLog("");
+cliLog("Kiosk (Chromium on the Pi):");
+cliLog("  ./scripts/pi-kiosk.sh");

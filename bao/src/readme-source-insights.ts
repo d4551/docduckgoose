@@ -82,7 +82,7 @@ export function describeSubpath(subpath: string): string {
   if (slug.includes("sidebar") || slug.includes("palette") || slug.includes("settings")) {
     return `${label} — host UI registration surface`;
   }
-  return `${label} — typed surface from this workbench`;
+  return `${label} — typed surface from this .bao crate`;
 }
 
 async function readIndexSource(packageRoot: string): Promise<string | null> {

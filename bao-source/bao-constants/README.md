@@ -1,65 +1,51 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/bao-constants
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Shared constants for .bao packages — API paths, timeouts, HTTP status, time units, and more Import subpaths like `./agent-artifact-owner-surfaces`, `./ai-provider-paths`, `./alignment`, `./api-explorer` when you wire this crate in.
+This crate is the mailroom's label maker. Every shared name, path, and number is printed here once so no crate writes its own crooked label.
 
 ## Architecture
 
 ```mermaid
-flowchart LR
-  producer["@baohaus/bao-constants"] --> crate[".bao_constants crate"]
-  crate --> consumers["Host apps and benches"]
+flowchart TD
+  constants["bao-constants\n(label maker)"]
+  constants --> config["bao-config"]
+  constants --> core["bao-core"]
+  constants --> contracts["bao-contracts"]
+  constants --> services["Services & UI"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Shared constants for . | @baohaus/bao-schemas | Other workbench domains; bao-runtime host lifecycle |
+| Shared constants for . | @baohaus/bao-schemas | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/bao-constants
 
-Standalone Baohaus package. Catalog identity `bao-constants`. Source at `bao-source/bao-constants`. Publishes to `baohaus/bao-constants`. Canonical archive: `bao-source/bao-constants/dist/bao/bao-constants.bao`.
+Shared constants for .bao packages — API paths, timeouts, HTTP status, time units, and more
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/bao-constants` |
-| Catalog id | `bao-constants` |
-| Source path | `bao-source/bao-constants` |
-| OCI repository | `baohaus/bao-constants` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/bao-constants`.
 
 ## Public Pieces
 
-`./agent-artifact-owner-surfaces`, `./ai-provider-paths`, `./alignment`, `./api-explorer`, `./api-paths`, `./auth-error-codes`, `./auth-routes`, `./bao-chat-bubble-i18n`, `./bao-control-plane-bootstrap-components`, `./bao-control-plane-defaults`, `./bao-control-plane-gate-env`, `./bao-control-plane-secrets`, `./bao-control-plane-status`, `./bao-manifest-policies`, `./bao-plugin-groups`, `./bao-plugin-groups.generated`, `./bao-runtime`, `./bao-runtime-limits`, plus 45 more.
+`./agent-artifact-owner-surfaces`, `./ai-provider-paths`, `./alignment`, `./api-explorer`, `./api-paths`, `./auth-error-codes`, `./auth-routes`, `./bao-chat-bubble-i18n`, `./bao-control-plane-bootstrap-components`, `./bao-control-plane-defaults`, `./bao-control-plane-gate-env`, `./bao-control-plane-secrets`, `./bao-control-plane-status`, `./bao-manifest-policies`, `./bao-plugin-groups`, `./bao-plugin-groups.generated`, `./bao-runtime`, `./bao-runtime-limits`, `./baodown-connection-validation`, `./browser-smoke`, `./build-paths`, `./cache`, `./capability-domain-map`, `./capability-integration`, `./capability-matrix-paths`, `./capability-ownership`, `./client-telemetry`, `./container-runtime`, `./database-defaults`, `./drone`, `./ecosystem-lexicon`, `./error-codes`, `./error-taxonomy`, `./external-endpoints`, `./htmx-error-boundary`, `./http-status`, `./imager-config`, `./infrastructure-api-paths`, `./layout`, `./loopback-hosts`, `./metrics-annotations`, `./mime-types`, `./network`, `./pagination`, `./pipeline-constraints`, `./pipeline-inputs`, `./pipeline-resources`, `./plugin-contract`, `./realtime-topics`, `./resource-labels`, `./retries`, `./rpa-defaults`, `./scanner-bunbuddy`, `./status-core`, `./status-unified`, `./streaming`, `./system-health`, `./time`, `./timeouts`, `./ui-error-classification`, `./websocket`, `./xr-experience`, `./xr-experience.options`, `./xr-share`
 
 ## Proof Commands
 
 Run from `bao-source/bao-constants`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/bao-constants` publishes to `baohaus/bao-constants` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -86,18 +72,18 @@ Shared constants for .bao packages — API paths, timeouts, HTTP status, time un
 
 | Subpath | Purpose |
 | --- | --- |
-| `./agent-artifact-owner-surfaces` | Agent artifact owner surfaces — typed surface from this workbench |
-| `./ai-provider-paths` | Ai provider paths — typed surface from this workbench |
-| `./alignment` | Alignment — typed surface from this workbench |
-| `./api-explorer` | Api explorer — typed surface from this workbench |
-| `./api-paths` | Api paths — typed surface from this workbench |
+| `./agent-artifact-owner-surfaces` | Agent artifact owner surfaces — typed surface from this .bao crate |
+| `./ai-provider-paths` | Ai provider paths — typed surface from this .bao crate |
+| `./alignment` | Alignment — typed surface from this .bao crate |
+| `./api-explorer` | Api explorer — typed surface from this .bao crate |
+| `./api-paths` | Api paths — typed surface from this .bao crate |
 | `./auth-error-codes` | Auth error codes — auth/session contracts |
 | `./auth-routes` | Auth routes — auth/session contracts |
-| `./bao-chat-bubble-i18n` | Bao chat bubble i18n — typed surface from this workbench |
-| `./bao-control-plane-bootstrap-components` | Bao control plane bootstrap components — typed surface from this workbench |
-| `./bao-control-plane-defaults` | Bao control plane defaults — typed surface from this workbench |
-| `./bao-control-plane-gate-env` | Bao control plane gate env — typed surface from this workbench |
-| `./bao-control-plane-secrets` | Bao control plane secrets — typed surface from this workbench |
+| `./bao-chat-bubble-i18n` | Bao chat bubble i18n — typed surface from this .bao crate |
+| `./bao-control-plane-bootstrap-components` | Bao control plane bootstrap components — typed surface from this .bao crate |
+| `./bao-control-plane-defaults` | Bao control plane defaults — typed surface from this .bao crate |
+| `./bao-control-plane-gate-env` | Bao control plane gate env — typed surface from this .bao crate |
+| `./bao-control-plane-secrets` | Bao control plane secrets — typed surface from this .bao crate |
 | _…_ | _51 more export(s) in package.json_ |
 
 ## Integration
@@ -114,17 +100,17 @@ Catalog id `bao-constants` → OCI `baohaus/bao-constants`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `./agent-artifact-owner-surfaces` | Agent artifact owner surfaces — typed surface from this workbench |
-| `./ai-provider-paths` | Ai provider paths — typed surface from this workbench |
-| `./alignment` | Alignment — typed surface from this workbench |
-| `./api-explorer` | Api explorer — typed surface from this workbench |
-| `./api-paths` | Api paths — typed surface from this workbench |
+| `./agent-artifact-owner-surfaces` | Agent artifact owner surfaces — typed surface from this .bao crate |
+| `./ai-provider-paths` | Ai provider paths — typed surface from this .bao crate |
+| `./alignment` | Alignment — typed surface from this .bao crate |
+| `./api-explorer` | Api explorer — typed surface from this .bao crate |
+| `./api-paths` | Api paths — typed surface from this .bao crate |
 | `./auth-error-codes` | Auth error codes — auth/session contracts |
 | `./auth-routes` | Auth routes — auth/session contracts |
-| `./bao-chat-bubble-i18n` | Bao chat bubble i18n — typed surface from this workbench |
-| `./bao-control-plane-bootstrap-components` | Bao control plane bootstrap components — typed surface from this workbench |
-| `./bao-control-plane-defaults` | Bao control plane defaults — typed surface from this workbench |
-| `./bao-control-plane-gate-env` | Bao control plane gate env — typed surface from this workbench |
-| `./bao-control-plane-secrets` | Bao control plane secrets — typed surface from this workbench |
+| `./bao-chat-bubble-i18n` | Bao chat bubble i18n — typed surface from this .bao crate |
+| `./bao-control-plane-bootstrap-components` | Bao control plane bootstrap components — typed surface from this .bao crate |
+| `./bao-control-plane-defaults` | Bao control plane defaults — typed surface from this .bao crate |
+| `./bao-control-plane-gate-env` | Bao control plane gate env — typed surface from this .bao crate |
+| `./bao-control-plane-secrets` | Bao control plane secrets — typed surface from this .bao crate |
 | _…_ | _51 more in `package.json#exports`_ |
 <!-- END BAOHAUS PACKAGE MANUAL -->

@@ -14,11 +14,11 @@ const renderPanel = (): string => `
 <section>
   <h3>Bluetooth Keyboard Support</h3>
   <p>Pair Bluetooth Low Energy (BLE) HID keyboards via Web Bluetooth for direct status and future advanced input handling.</p>
-  <div style="margin: 0.75rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+  <div class="gw-plugin-actions">
     <button type="button" class="btn btn-sm btn-primary" onclick="if(window.gwRequestBluetoothKeyboard){window.gwRequestBluetoothKeyboard().then(ok=>alert(ok?'Bluetooth keyboard paired! Check device chip.':'Pairing cancelled or unsupported'));}else{alert('Keyboard support module not loaded');}">Pair Bluetooth keyboard</button>
     <button type="button" class="btn btn-sm btn-ghost" onclick="location.reload()">Refresh status</button>
   </div>
-  <p class="gw-empty" style="font-size:0.75rem; padding:0.25rem 0;">Status shows 🅱 in the top device strip when active. Classic Bluetooth keyboards are usually surfaced by the OS as hardware input.</p>
+  <p class="gw-plugin-note">Status shows 🅱 in the top device strip when active. Classic Bluetooth keyboards are usually surfaced by the OS as hardware input.</p>
   <small>Web Bluetooth support: <span data-gw-bt-status>checking…</span></small>
   <script>
     (function(){
@@ -26,7 +26,7 @@ const renderPanel = (): string => `
       if (el) {
         const supported = !!(navigator && navigator.bluetooth);
         el.textContent = supported ? 'available' : 'unavailable in this browser';
-        el.style.color = supported ? 'var(--gw-primary, #2a7)' : 'var(--gw-muted)';
+        el.className = supported ? 'badge badge-success badge-xs' : 'badge badge-warning badge-xs';
       }
     })();
   </script>

@@ -8,44 +8,46 @@ import {
 import type { Elysia } from "elysia";
 import { isEditorFontId } from "../../config/editor-fonts.ts";
 import { preferencesApiPath } from "../../config/routes.ts";
+import { isLocaleCode } from "../../i18n/strings.ts";
 import {
-  type DraftStyleId,
-  type EditorFontStyle,
-  type GooseThemeId,
   getUserPreferences,
+  isDraftStyleId,
+  isEditorFontStyle,
+  isGooseThemeId,
   patchUserPreferences,
   type UserPreferences,
 } from "../../services/user-prefs.ts";
 
 type RouteHost = Elysia;
 
-const isEditorFontStyle = (value: string): value is EditorFontStyle =>
-  value === "normal" || value === "italic";
-
-const isDraftStyleId = (value: string): value is DraftStyleId =>
-  value === "" || value === "letter" || value === "manuscript" || value === "notes";
-
-const isGooseThemeId = (value: string): value is GooseThemeId =>
-  value === "baohaus-aurora-light" || value === "bao-aurora-glass";
-
 const readPatch = (body: JsonObject): Partial<UserPreferences> => {
   const patch: {
     editorFont?: UserPreferences["editorFont"];
     editorFontStyle?: UserPreferences["editorFontStyle"];
     uiFont?: UserPreferences["uiFont"];
+    favoriteEditorFonts?: UserPreferences["favoriteEditorFonts"];
     defaultDraftStyle?: UserPreferences["defaultDraftStyle"];
     theme?: UserPreferences["theme"];
+    locale?: UserPreferences["locale"];
   } = {};
   const editorFont = readStringField(body, "editorFont");
   const uiFont = readStringField(body, "uiFont");
   const editorFontStyle = readStringField(body, "editorFontStyle");
   const defaultDraftStyle = readStringField(body, "defaultDraftStyle");
   const theme = readStringField(body, "theme");
+  const locale = readStringField(body, "locale");
+  const favoriteFonts = Reflect.get(body, "favoriteEditorFonts");
   if (editorFont !== undefined && isEditorFontId(editorFont)) {
     patch.editorFont = editorFont;
   }
   if (uiFont !== undefined && isEditorFontId(uiFont)) {
     patch.uiFont = uiFont;
+  }
+  if (Array.isArray(favoriteFonts)) {
+    patch.favoriteEditorFonts = favoriteFonts.filter(
+      (value): value is UserPreferences["editorFont"] =>
+        typeof value === "string" && isEditorFontId(value),
+    );
   }
   if (editorFontStyle !== undefined && isEditorFontStyle(editorFontStyle)) {
     patch.editorFontStyle = editorFontStyle;
@@ -55,6 +57,9 @@ const readPatch = (body: JsonObject): Partial<UserPreferences> => {
   }
   if (theme !== undefined && isGooseThemeId(theme)) {
     patch.theme = theme;
+  }
+  if (locale !== undefined && isLocaleCode(locale)) {
+    patch.locale = locale;
   }
   return patch;
 };

@@ -1,14 +1,51 @@
+# Dependencies
 node_modules/
-.DS_Store
+
+# Build output
 dist/
+*.tsbuildinfo
+
+# App-specific build
 goose-word/dist/
 goose-word-plugins/*/dist/
 .bao-local/
 .bao-build/
-.sisyphus/
 .build/
+
+# Sisyphus runner
+.sisyphus/
+
+# Logs
 logs/
 *.log
+
+# SQLite
+*.sqlite
 *.sqlite-shm
 *.sqlite-wal
+goose-word/test/.prefs-*.sqlite
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Binary artifacts
 bao-source/otel-api-bao/otel-api-bao

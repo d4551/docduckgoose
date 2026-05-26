@@ -1,70 +1,50 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/contribution-registry-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Think of contribution registry bao as the guest desk where each app registers menus and trades signed snapshot cards with friend sites. Canonical per-surface contribution registry factory consumed by every Bao app's `.bao` install handler chain. Generalises the legacy sidebar-only registry into a typed, order-stable store that any contribution surface (sidebar / settings-tab / palette-entry-group / api-group / tile-group / ui-asset-pack) can instantiate without redeclaring l…
+This crate is the mailroom's guest ledger. Every app signs in its menus, settings panels, and action buttons here so the goose always knows who brought what.
 
 ## Architecture
 
 ```mermaid
-sequenceDiagram
-  participant Local as Local site
-  participant Pkg as @baohaus/contribution-registry-bao
-  participant Peer as Peer site
-  Local->>Pkg: publish contribution
-  Pkg->>Peer: signed pull
-  Peer-->>Pkg: bundle
-  Pkg-->>Local: merged catalog
+flowchart LR
+  apps["Bao apps\nregister contributions"] --> registry["contribution-registry\ntyped, order-stable store"]
+  registry --> sidebar["Sidebar"]
+  registry --> settings["Settings tabs"]
+  registry --> palette["Command palette"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Canonical per-surface contribution registry factory consumed by every Bao app's `. | @baohaus/ecosystem-events-bao | Other workbench domains; bao-runtime host lifecycle |
+| Canonical per-surface contribution registry factory consumed by every Bao app's `. | @baohaus/ecosystem-events-bao | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/contribution-registry-bao
 
-Standalone Baohaus package. Catalog identity `contribution-registry-bao`. Source at `bao-source/contribution-registry-bao`. Publishes to `baohaus/contribution-registry-bao`. Canonical archive: `bao-source/contribution-registry-bao/dist/bao/contribution-registry-bao.bao`.
+Canonical per-surface contribution registry factory consumed by every Bao app's `.bao` install handler chain. Generalises the legacy sidebar-only registry into a typed, order-stable store that any contribution surface (sidebar / settings-tab / palette-entry-group / api-group / tile-group / ui-asset-pack) can instantiate without redeclaring lifecycle semantics.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/contribution-registry-bao` |
-| Catalog id | `contribution-registry-bao` |
-| Source path | `bao-source/contribution-registry-bao` |
-| OCI repository | `baohaus/contribution-registry-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/contribution-registry-bao`.
 
 ## Public Pieces
 
-`./api-group`, `./api-group-validate`, `./palette-entry-group`, `./palette-entry-group-validate`, `./registry`, `./settings-tab`, `./settings-tab-validate`, `./sidebar`, `./sidebar-validate`, `./tile-group`, `./tile-group-validate`, `./types`, `./ui-asset-pack`.
+`./api-group`, `./api-group-validate`, `./enterprise-tenancy`, `./native-mobile-shell`, `./native-mobile-shell-registry`, `./native-mobile-shell-validate`, `./palette-entry-group`, `./palette-entry-group-validate`, `./registry`, `./settings-tab`, `./settings-tab-validate`, `./sidebar`, `./sidebar-validate`, `./tile-group`, `./tile-group-validate`, `./topbar`, `./topbar-validate`, `./types`, `./ui-asset-pack`, `./ui-asset-pack-validate`
 
 ## Proof Commands
 
 Run from `bao-source/contribution-registry-bao`:
 
-- `bun run build`
 - `bun run typecheck`
-- `bun test`
+- `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/contribution-registry-bao` publishes to `baohaus/contribution-registry-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -144,18 +124,18 @@ graduates into its own contract module.
 
 | Subpath | Purpose |
 | --- | --- |
-| `./api-group` | Api group — typed surface from this workbench |
-| `./api-group-validate` | Api group validate — typed surface from this workbench |
+| `./api-group` | Api group — typed surface from this .bao crate |
+| `./api-group-validate` | Api group validate — typed surface from this .bao crate |
 | `./palette-entry-group` | Palette entry group — host UI registration surface |
 | `./palette-entry-group-validate` | Palette entry group validate — host UI registration surface |
-| `./registry` | Registry — typed surface from this workbench |
+| `./registry` | Registry — typed surface from this .bao crate |
 | `./settings-tab` | Settings tab — host UI registration surface |
 | `./settings-tab-validate` | Settings tab validate — host UI registration surface |
 | `./sidebar` | Sidebar — host UI registration surface |
 | `./sidebar-validate` | Sidebar validate — host UI registration surface |
-| `./tile-group` | Tile group — typed surface from this workbench |
-| `./tile-group-validate` | Tile group validate — typed surface from this workbench |
-| `./types` | Types — typed surface from this workbench |
+| `./tile-group` | Tile group — typed surface from this .bao crate |
+| `./tile-group-validate` | Tile group validate — typed surface from this .bao crate |
+| `./types` | Types — typed surface from this .bao crate |
 | _…_ | _1 more export(s) in package.json_ |
 
 ## Reference
@@ -164,17 +144,17 @@ graduates into its own contract module.
 
 | Subpath | Purpose |
 | --- | --- |
-| `./api-group` | Api group — typed surface from this workbench |
-| `./api-group-validate` | Api group validate — typed surface from this workbench |
+| `./api-group` | Api group — typed surface from this .bao crate |
+| `./api-group-validate` | Api group validate — typed surface from this .bao crate |
 | `./palette-entry-group` | Palette entry group — host UI registration surface |
 | `./palette-entry-group-validate` | Palette entry group validate — host UI registration surface |
-| `./registry` | Registry — typed surface from this workbench |
+| `./registry` | Registry — typed surface from this .bao crate |
 | `./settings-tab` | Settings tab — host UI registration surface |
 | `./settings-tab-validate` | Settings tab validate — host UI registration surface |
 | `./sidebar` | Sidebar — host UI registration surface |
 | `./sidebar-validate` | Sidebar validate — host UI registration surface |
-| `./tile-group` | Tile group — typed surface from this workbench |
-| `./tile-group-validate` | Tile group validate — typed surface from this workbench |
-| `./types` | Types — typed surface from this workbench |
+| `./tile-group` | Tile group — typed surface from this .bao crate |
+| `./tile-group-validate` | Tile group validate — typed surface from this .bao crate |
+| `./types` | Types — typed surface from this .bao crate |
 | _…_ | _1 more in `package.json#exports`_ |
 <!-- END BAOHAUS PACKAGE MANUAL -->

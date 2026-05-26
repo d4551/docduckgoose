@@ -1,65 +1,48 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/json-gyoza
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Tiny JSON value helpers for Baohaus transport internals. Apps use exports such as `asJsonArray`, `asJsonBoolean`, `asJsonNumber` from `@baohaus/json-gyoza`.
+This crate is the mailroom's tiny data tongs. It picks booleans, grabs numbers, and checks arrays out of JSON -- small but precise.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  producer["@baohaus/json-gyoza"] --> crate[".json_gyoza crate"]
-  crate --> consumers["Host apps and benches"]
+  raw["Raw JSON value"] --> gyoza["json-gyoza helpers\nasJsonBoolean, asJsonNumber, ..."]
+  gyoza --> typed["Typed values\nsafe to use"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Tiny JSON value helpers for Baohaus transport internals.; Exported API: asJsonArray, asJsonBoolean, asJsonNumber, asJsonObject, asJsonString, … | @baohaus/bao-json-safe; @baohaus/bao-utils | Other workbench domains; bao-runtime host lifecycle |
+| Tiny JSON value helpers for Baohaus transport internals.; Exported API: asJsonArray, asJsonBoolean, asJsonNumber, asJsonObject, asJsonString, … | @baohaus/bao-json-safe; @baohaus/bao-utils | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/json-gyoza
 
-Standalone Baohaus package. Catalog identity `json-gyoza`. Source at `bao-source/json-gyoza`. Publishes to `baohaus/json-gyoza`. Canonical archive: `bao-source/json-gyoza/dist/bao/json-gyoza.bao`.
+Tiny JSON value helpers for Baohaus transport internals.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/json-gyoza` |
-| Catalog id | `json-gyoza` |
-| Source path | `bao-source/json-gyoza` |
-| OCI repository | `baohaus/json-gyoza` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/json-gyoza`.
 
 ## Public Pieces
 
-`.`, `./package-descriptor`.
+`.`, `./jsonc`, `./package-descriptor`
 
 ## Proof Commands
 
 Run from `bao-source/json-gyoza`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/json-gyoza` publishes to `baohaus/json-gyoza` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -86,8 +69,8 @@ Tiny JSON value helpers for Baohaus transport internals.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./package-descriptor` | Package descriptor — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./package-descriptor` | Package descriptor — typed surface from this .bao crate |
 
 ## Primary symbols
 
@@ -116,8 +99,8 @@ Catalog id `json-gyoza` → OCI `baohaus/json-gyoza`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./package-descriptor` | Package descriptor — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./package-descriptor` | Package descriptor — typed surface from this .bao crate |
 
 ### Symbols
 

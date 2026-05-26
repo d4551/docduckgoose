@@ -1,65 +1,50 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/http-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Bao HTTP framework parity: declarative routes, middleware, validation, WebSocket, type inference Apps use exports such as `PACKAGE_NAME`, `UPSTREAM_PACKAGE` from `@baohaus/http-bao`. It is part of the Baohaus .bao factory line.
+This crate is the mailroom's delivery route map. It declares which paths lead where, what checks happen on the way, and how WebSocket connections stay open.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  producer["@baohaus/http-bao"] --> crate[".http_bao crate"]
-  crate --> consumers["Host apps and benches"]
+  req["HTTP request"] --> routes["http-bao\nroute matching"]
+  routes --> mw["Middleware\nvalidation + auth"]
+  mw --> handler["Handler\nbusiness logic"]
+  handler --> res["Response"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Bao HTTP framework parity: declarative routes, middleware, validation, WebSocket, type inference; Exported API: PACKAGE_NAME, UPSTREAM_PACKAGE | bao-governance.json; bao.lock; catalog row | Other workbench domains; bao-runtime host lifecycle |
+| Bao HTTP framework parity: declarative routes, middleware, validation, WebSocket, type inference; Exported API: PACKAGE_NAME, UPSTREAM_PACKAGE | Shared @baohaus contracts | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/http-bao
 
-Standalone Baohaus package. Catalog identity `http-bao`. Source at `bao-source/http-bao`. Publishes to `baohaus/http-bao`. Canonical archive: `bao-source/http-bao/dist/bao/http-bao.bao`.
+Bao HTTP framework parity: declarative routes, middleware, validation, WebSocket, type inference
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/http-bao` |
-| Catalog id | `http-bao` |
-| Source path | `bao-source/http-bao` |
-| OCI repository | `baohaus/http-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/http-bao`.
 
 ## Public Pieces
 
-`.`, `./app`, `./context`, `./handler`, `./validator`, `./websocket`.
+`.`, `./app`, `./context`, `./handler`, `./validator`, `./websocket`
 
 ## Proof Commands
 
 Run from `bao-source/http-bao`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/http-bao` publishes to `baohaus/http-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -86,12 +71,12 @@ Bao HTTP framework parity: declarative routes, middleware, validation, WebSocket
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./app` | App — typed surface from this workbench |
-| `./context` | Context — typed surface from this workbench |
-| `./handler` | Handler — typed surface from this workbench |
-| `./validator` | Validator — typed surface from this workbench |
-| `./websocket` | Websocket — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./app` | App — typed surface from this .bao crate |
+| `./context` | Context — typed surface from this .bao crate |
+| `./handler` | Handler — typed surface from this .bao crate |
+| `./validator` | Validator — typed surface from this .bao crate |
+| `./websocket` | Websocket — typed surface from this .bao crate |
 
 ## Primary symbols
 
@@ -112,12 +97,12 @@ Catalog id `http-bao` → OCI `baohaus/http-bao`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./app` | App — typed surface from this workbench |
-| `./context` | Context — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./app` | App — typed surface from this .bao crate |
+| `./context` | Context — typed surface from this .bao crate |
 | `./handler` | Handler — .bao install target handlers |
-| `./validator` | Validator — typed surface from this workbench |
-| `./websocket` | Websocket — typed surface from this workbench |
+| `./validator` | Validator — typed surface from this .bao crate |
+| `./websocket` | Websocket — typed surface from this .bao crate |
 
 ### Symbols
 

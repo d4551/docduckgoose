@@ -55,6 +55,7 @@ export const BAO_EXTENSION_TARGET_KINDS: {
   readonly paletteEntryGroup: "palette-entry-group";
   readonly apiGroup: "api-group";
   readonly tileGroup: "tile-group";
+  readonly nativeMobileShell: "native-mobile-shell";
 } = {
   htmx: "htmx-extension",
   prisma: "prisma-extension",
@@ -102,6 +103,7 @@ export const BAO_INSTALL_TARGET_KINDS: {
   readonly paletteEntryGroup: "palette-entry-group";
   readonly apiGroup: "api-group";
   readonly tileGroup: "tile-group";
+  readonly nativeMobileShell: "native-mobile-shell";
 } = {
   baoPackage: "bao-package",
   htmxExtension: "htmx-extension",
@@ -131,6 +133,7 @@ export const BAO_INSTALL_TARGET_KINDS: {
   paletteEntryGroup: "palette-entry-group",
   apiGroup: "api-group",
   tileGroup: "tile-group",
+  nativeMobileShell: "native-mobile-shell",
 } as const;
 
 /**
@@ -172,6 +175,7 @@ export const BaoInstallTargetKindSchema: Type.TUnion<
     | Type.TLiteral<"palette-entry-group">
     | Type.TLiteral<"api-group">
     | Type.TLiteral<"tile-group">
+    | Type.TLiteral<"native-mobile-shell">
   )[]
 > = Type.Union(
   [
@@ -203,6 +207,7 @@ export const BaoInstallTargetKindSchema: Type.TUnion<
     Type.Literal(BAO_INSTALL_TARGET_KINDS.paletteEntryGroup),
     Type.Literal(BAO_INSTALL_TARGET_KINDS.apiGroup),
     Type.Literal(BAO_INSTALL_TARGET_KINDS.tileGroup),
+    Type.Literal(BAO_INSTALL_TARGET_KINDS.nativeMobileShell),
   ],
   {
     description: "Canonical `.bao` target kinds used across target handlers.",
@@ -259,6 +264,7 @@ export const BAO_RUNTIME_EXTENSION_SCOPES: {
   readonly paletteEntryGroup: "palette-entry-group";
   readonly apiGroup: "api-group";
   readonly tileGroup: "tile-group";
+  readonly nativeMobileShell: "native-mobile-shell";
 } = {
   serverPlugin: "server-plugin",
   htmlRoute: "html-route",

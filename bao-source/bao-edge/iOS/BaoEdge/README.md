@@ -1,5 +1,13 @@
 # Bao Edge iOS Host
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![iOS](https://img.shields.io/badge/platform-iOS-111827?logo=apple&logoColor=white)](https://developer.apple.com/ios/)
+[![Swift](https://img.shields.io/badge/language-Swift-f05138?logo=swift&logoColor=white)](https://www.swift.org/)
+
+## Explain Like I'm Five
+
+Imagine the same careful goose carrying a bao crate onto an iPhone or iPad. This iOS host opens the crate with SwiftUI, runs device checks, and keeps XCTest proof away from production app cargo.
+
 > 🌏 本页为中英双语。中文内容紧随对应英文段落。
 > This page is bilingual. Chinese follows each English section.
 

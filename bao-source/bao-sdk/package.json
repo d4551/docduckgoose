@@ -38,9 +38,9 @@
       "default": "./dist/target-handler.js"
     },
     "./target-handler-registry": {
-      "bun": "./dist/target-handler-registry.js",
+      "bun": "./src/target-handler-registry.ts",
       "import": "./dist/target-handler-registry.js",
-      "types": "./dist/target-handler-registry.d.ts",
+      "types": "./src/target-handler-registry.ts",
       "default": "./dist/target-handler-registry.js"
     },
     "./install-target-handler": {

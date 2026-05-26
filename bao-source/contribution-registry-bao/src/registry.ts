@@ -15,7 +15,7 @@
  * @packageDocumentation
  */
 
-import type { BaseContributionRegistration } from "./types.ts";
+import type { BaseContributionRegistration } from "./base-contribution.ts";
 
 /**
  * Discriminated failure variants emitted by {@link ContributionRegistry.register}.

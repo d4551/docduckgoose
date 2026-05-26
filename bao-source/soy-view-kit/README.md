@@ -1,65 +1,49 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/soy-view-kit
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Server-rendered view helpers and HTMX response primitives for Baohaus. Import subpaths like `./audio`, `./html`, `./i18n`, `./i18n-types` when you wire this crate in.
+This crate is the mailroom's display tools. Server-side view helpers and HTMX response builders that help the goose arrange pages before they leave the mailroom.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  producer["@baohaus/soy-view-kit"] --> crate[".soy_view_kit crate"]
-  crate --> consumers["Host apps and benches"]
+  data["Route data"] --> helpers["soy-view-kit\ntemplates + helpers"]
+  helpers --> views["HTML views\nalerts, tables, cards"]
+  views --> browser["Browser"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Server-rendered view helpers and HTMX response primitives for Baohaus. | @baohaus/har-gow-config | Other workbench domains; bao-runtime host lifecycle |
+| Server-rendered view helpers and HTMX response primitives for Baohaus. | @baohaus/har-gow-config | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/soy-view-kit
 
-Standalone Baohaus package. Catalog identity `soy-view-kit`. Source at `bao-source/soy-view-kit`. Publishes to `baohaus/soy-view-kit`. Canonical archive: `bao-source/soy-view-kit/dist/bao/soy-view-kit.bao`.
+Server-rendered view helpers and HTMX response primitives for Baohaus.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/soy-view-kit` |
-| Catalog id | `soy-view-kit` |
-| Source path | `bao-source/soy-view-kit` |
-| OCI repository | `baohaus/soy-view-kit` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/soy-view-kit`.
 
 ## Public Pieces
 
-`.`, `./audio`, `./html`, `./i18n`, `./i18n-types`, `./locales/en`, `./locales/ko`, `./templates/alert`, `./templates/breadcrumbs`, `./templates/buttons`, `./templates/confirm-dialog`, `./templates/data-table`, `./templates/definition-grid`, `./templates/design-tokens`, `./templates/empty-state`, `./templates/entity-header`, `./templates/error-boundary`, `./templates/filter-bar`, plus 16 more.
+`.`, `./audio`, `./html`, `./i18n`, `./i18n-types`, `./locales/en`, `./locales/ko`, `./templates/alert`, `./templates/breadcrumbs`, `./templates/buttons`, `./templates/confirm-dialog`, `./templates/data-table`, `./templates/definition-grid`, `./templates/design-tokens`, `./templates/empty-state`, `./templates/entity-header`, `./templates/error-boundary`, `./templates/filter-bar`, `./templates/form-group`, `./templates/htmx`, `./templates/icons`, `./templates/loading-indicator`, `./templates/metric-row`, `./templates/page-header`, `./templates/page-states`, `./templates/pagination`, `./templates/section-card`, `./templates/sidebar`, `./templates/skeleton`, `./templates/stat-card`, `./templates/status-badge`, `./templates/styles/templates.css`, `./templates/tab-strip`, `./templates/toast-container`, `./templates/types`
 
 ## Proof Commands
 
 Run from `bao-source/soy-view-kit`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/soy-view-kit` publishes to `baohaus/soy-view-kit` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -86,18 +70,18 @@ Server-rendered view helpers and HTMX response primitives for Baohaus.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./audio` | Audio — typed surface from this workbench |
-| `./html` | Html — typed surface from this workbench |
-| `./i18n` | I18n — typed surface from this workbench |
-| `./i18n-types` | I18n types — typed surface from this workbench |
-| `./locales/en` | Locales/en — typed surface from this workbench |
-| `./locales/ko` | Locales/ko — typed surface from this workbench |
-| `./templates/alert` | Templates/alert — typed surface from this workbench |
-| `./templates/breadcrumbs` | Templates/breadcrumbs — typed surface from this workbench |
-| `./templates/buttons` | Templates/buttons — typed surface from this workbench |
-| `./templates/confirm-dialog` | Templates/confirm dialog — typed surface from this workbench |
-| `./templates/data-table` | Templates/data table — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./audio` | Audio — typed surface from this .bao crate |
+| `./html` | Html — typed surface from this .bao crate |
+| `./i18n` | I18n — typed surface from this .bao crate |
+| `./i18n-types` | I18n types — typed surface from this .bao crate |
+| `./locales/en` | Locales/en — typed surface from this .bao crate |
+| `./locales/ko` | Locales/ko — typed surface from this .bao crate |
+| `./templates/alert` | Templates/alert — typed surface from this .bao crate |
+| `./templates/breadcrumbs` | Templates/breadcrumbs — typed surface from this .bao crate |
+| `./templates/buttons` | Templates/buttons — typed surface from this .bao crate |
+| `./templates/confirm-dialog` | Templates/confirm dialog — typed surface from this .bao crate |
+| `./templates/data-table` | Templates/data table — typed surface from this .bao crate |
 | _…_ | _22 more export(s) in package.json_ |
 
 ## Integration
@@ -114,17 +98,17 @@ Catalog id `soy-view-kit` → OCI `baohaus/soy-view-kit`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./audio` | Audio — typed surface from this workbench |
-| `./html` | Html — typed surface from this workbench |
-| `./i18n` | I18n — typed surface from this workbench |
-| `./i18n-types` | I18n types — typed surface from this workbench |
-| `./locales/en` | Locales/en — typed surface from this workbench |
-| `./locales/ko` | Locales/ko — typed surface from this workbench |
-| `./templates/alert` | Templates/alert — typed surface from this workbench |
-| `./templates/breadcrumbs` | Templates/breadcrumbs — typed surface from this workbench |
-| `./templates/buttons` | Templates/buttons — typed surface from this workbench |
-| `./templates/confirm-dialog` | Templates/confirm dialog — typed surface from this workbench |
-| `./templates/data-table` | Templates/data table — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./audio` | Audio — typed surface from this .bao crate |
+| `./html` | Html — typed surface from this .bao crate |
+| `./i18n` | I18n — typed surface from this .bao crate |
+| `./i18n-types` | I18n types — typed surface from this .bao crate |
+| `./locales/en` | Locales/en — typed surface from this .bao crate |
+| `./locales/ko` | Locales/ko — typed surface from this .bao crate |
+| `./templates/alert` | Templates/alert — typed surface from this .bao crate |
+| `./templates/breadcrumbs` | Templates/breadcrumbs — typed surface from this .bao crate |
+| `./templates/buttons` | Templates/buttons — typed surface from this .bao crate |
+| `./templates/confirm-dialog` | Templates/confirm dialog — typed surface from this .bao crate |
+| `./templates/data-table` | Templates/data table — typed surface from this .bao crate |
 | _…_ | _22 more in `package.json#exports`_ |
 <!-- END BAOHAUS PACKAGE MANUAL -->

@@ -3,6 +3,60 @@
   --bao-aurora-font-handwriting: "Goose Hand", "Segoe Script", "Bradley Hand", cursive;
 }
 
+html {
+  --gw-surface-bg: var(--color-base-100);
+  --gw-surface-bg-hover: var(--color-base-200);
+  --gw-surface-border: var(--color-base-300);
+  --gw-surface-backdrop: none;
+}
+
+html[data-theme="bao-aurora-glass"] {
+  --gw-surface-bg: var(--bao-glass-bg);
+  --gw-surface-bg-hover: color-mix(in oklch, var(--bao-glass-bg) 76%, var(--color-base-200));
+  --gw-surface-border: var(--bao-glass-border);
+  --gw-surface-backdrop: blur(var(--bao-glass-blur)) saturate(var(--bao-glass-saturate))
+    brightness(var(--bao-glass-brightness));
+  --root-bg: transparent;
+  background:
+    radial-gradient(ellipse 120% 70% at 12% 0%, oklch(74% 0.15 165 / 0.34), transparent 58%),
+    radial-gradient(ellipse 100% 65% at 88% 100%, oklch(62% 0.18 200 / 0.28), transparent 55%),
+    oklch(94% 0.012 200);
+}
+
+/* Aurora themes are light-scheme; block daisy built-in prefers-color-scheme :root overrides */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="baohaus-aurora-light"],
+  html[data-theme="bao-aurora-glass"] {
+    color-scheme: light;
+    --color-base-100: oklch(99% 0.004 286);
+    --color-base-200: oklch(96% 0.01 200);
+    --color-base-300: oklch(92% 0.018 200);
+    --color-base-content: oklch(22% 0.02 286);
+    --color-primary: oklch(62% 0.18 200);
+    --color-primary-content: oklch(99% 0.005 200);
+    --color-secondary: oklch(68% 0.15 240);
+    --color-secondary-content: oklch(99% 0.005 240);
+    --color-accent: oklch(74% 0.15 165);
+    --color-accent-content: oklch(15% 0.03 165);
+    --color-neutral: oklch(28% 0.02 286);
+    --color-neutral-content: oklch(96% 0.006 286);
+    --color-info: oklch(72% 0.14 220);
+    --color-info-content: oklch(15% 0.03 220);
+    --color-success: oklch(72% 0.17 145);
+    --color-success-content: oklch(15% 0.04 145);
+    --color-warning: oklch(82% 0.17 85);
+    --color-warning-content: oklch(20% 0.04 85);
+    --color-error: oklch(64% 0.22 27);
+    --color-error-content: oklch(98% 0.01 27);
+  }
+
+  html[data-theme="bao-aurora-glass"] {
+    --color-base-100: color-mix(in oklch, oklch(99% 0.004 286) 52%, transparent);
+    --color-base-200: color-mix(in oklch, oklch(96% 0.01 200) 58%, transparent);
+    --color-base-300: color-mix(in oklch, oklch(92% 0.018 200) 64%, transparent);
+  }
+}
+
 html,
 body {
   overscroll-behavior: contain;
@@ -51,6 +105,7 @@ html[data-gw-ui-font="syne"] .gw-handwriting {
 html[data-gw-editor-font] .gw-textarea,
 html[data-gw-editor-font] .gw-preview,
 html[data-gw-editor-font] .gw-preview-inner {
+  font-family: var(--gw-editor-font-family, var(--bao-aurora-font-handwriting));
   font-style: var(--gw-editor-font-style, normal);
 }
 html[data-gw-editor-font-style="italic"] .gw-textarea,
@@ -59,37 +114,29 @@ html[data-gw-editor-font-style="italic"] .gw-preview-inner {
   font-style: italic;
 }
 
-html[data-gw-editor-font="goose-handwriting"] .gw-textarea,
-html[data-gw-editor-font="goose-handwriting"] .gw-preview-inner {
-  font-family: "Goose Hand", cursive;
+html[data-gw-editor-font="goose-handwriting"] {
+  --gw-editor-font-family: "Goose Hand", cursive;
 }
-html[data-gw-editor-font="inter"] .gw-textarea,
-html[data-gw-editor-font="inter"] .gw-preview-inner {
-  font-family: "Inter", system-ui, sans-serif;
+html[data-gw-editor-font="inter"] {
+  --gw-editor-font-family: "Inter", system-ui, sans-serif;
 }
-html[data-gw-editor-font="jetbrains-mono"] .gw-textarea,
-html[data-gw-editor-font="jetbrains-mono"] .gw-preview-inner {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+html[data-gw-editor-font="jetbrains-mono"] {
+  --gw-editor-font-family: "JetBrains Mono", ui-monospace, monospace;
 }
-html[data-gw-editor-font="ibm-plex-mono"] .gw-textarea,
-html[data-gw-editor-font="ibm-plex-mono"] .gw-preview-inner {
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
+html[data-gw-editor-font="ibm-plex-mono"] {
+  --gw-editor-font-family: "IBM Plex Mono", ui-monospace, monospace;
 }
-html[data-gw-editor-font="dm-sans"] .gw-textarea,
-html[data-gw-editor-font="dm-sans"] .gw-preview-inner {
-  font-family: "DM Sans", system-ui, sans-serif;
+html[data-gw-editor-font="dm-sans"] {
+  --gw-editor-font-family: "DM Sans", system-ui, sans-serif;
 }
-html[data-gw-editor-font="playfair-display"] .gw-textarea,
-html[data-gw-editor-font="playfair-display"] .gw-preview-inner {
-  font-family: "Playfair Display", Georgia, serif;
+html[data-gw-editor-font="playfair-display"] {
+  --gw-editor-font-family: "Playfair Display", Georgia, serif;
 }
-html[data-gw-editor-font="instrument-serif"] .gw-textarea,
-html[data-gw-editor-font="instrument-serif"] .gw-preview-inner {
-  font-family: "Instrument Serif", Georgia, serif;
+html[data-gw-editor-font="instrument-serif"] {
+  --gw-editor-font-family: "Instrument Serif", Georgia, serif;
 }
-html[data-gw-editor-font="syne"] .gw-textarea,
-html[data-gw-editor-font="syne"] .gw-preview-inner {
-  font-family: "Syne", system-ui, sans-serif;
+html[data-gw-editor-font="syne"] {
+  --gw-editor-font-family: "Syne", system-ui, sans-serif;
 }
 
 /* ═══ Liquid Glass material system (.bao central) ═══ */
@@ -98,13 +145,180 @@ html[data-gw-editor-font="syne"] .gw-preview-inner {
   max-width: var(--gw-shell-max-width);
 }
 
+.navbar.gw-topbar {
+  display: flex;
+  align-items: center;
+  min-height: var(--gw-navbar-clearance);
+  padding-inline: var(--bao-aurora-space-2);
+  gap: var(--bao-aurora-space-2);
+}
+
+.navbar.gw-topbar .navbar-start,
+.navbar.gw-topbar .navbar-end {
+  align-items: center;
+  min-height: 0;
+  flex: 0 1 auto;
+}
+
+.navbar.gw-topbar .navbar-start {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.navbar.gw-topbar .navbar-end {
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  margin-inline-start: auto;
+}
+
+.gw-topbar__start .gw-brand {
+  line-height: 1.2;
+}
+
+.gw-topbar-context {
+  display: inline-flex;
+  align-items: center;
+  max-width: min(12rem, 42vw);
+}
+
+.gw-topbar-context__trigger,
+.gw-topbar-context__trigger--static {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bao-aurora-space-1);
+  min-height: var(--gw-touch, 2.25rem);
+  max-width: 100%;
+  padding-inline: var(--bao-aurora-space-2);
+}
+
+.gw-topbar-context__trigger--static {
+  cursor: default;
+}
+
+.gw-topbar-context__label {
+  max-width: 6rem;
+  font-size: var(--bao-aurora-text-xs, 0.75rem);
+  font-weight: 600;
+}
+
+.gw-topbar-context__menu {
+  background: var(--gw-surface-bg, var(--color-base-100));
+  border: 1px solid var(--gw-surface-border, var(--color-base-300));
+  backdrop-filter: var(--gw-surface-backdrop, none);
+}
+
+.gw-topbar-context__item[aria-checked="true"] {
+  font-weight: 600;
+}
+
+.gw-topbar-context__manage {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bao-aurora-space-2);
+  width: 100%;
+  justify-content: flex-start;
+}
+
+html[data-device="embedded"] {
+  --gw-shell-max-width: min(100%, 48rem);
+}
+
+html[data-form-factor="tablet"] {
+  --gw-shell-max-width: min(100%, 42rem);
+}
+
+html[data-orientation^="landscape"] {
+  --gw-shell-max-width: min(100%, 56rem);
+}
+
+html[data-device="embedded"][data-orientation^="landscape"] {
+  --gw-shell-max-width: 100%;
+}
+
+body[data-gw-scrollport] {
+  scroll-padding-bottom: var(--gw-dock-clearance);
+}
+
+html[data-gw-dock="hidden"] {
+  --gw-dock-clearance: var(--gw-main-padding);
+}
+
 .gw-main {
-  scroll-margin-top: 4rem;
+  padding: var(--gw-main-padding);
+  padding-bottom: var(--gw-dock-clearance);
+  scroll-margin-top: var(--gw-navbar-clearance);
+  scroll-padding-bottom: var(--gw-dock-clearance);
+}
+
+.gw-settings-section .btn,
+.gw-settings-section button[type="submit"] {
+  scroll-margin-bottom: var(--gw-dock-clearance);
 }
 
 .gw-panel {
   max-width: 72rem;
   margin-inline: auto;
+}
+
+.gw-docs-search {
+  position: relative;
+  z-index: 20;
+  isolation: isolate;
+}
+
+.gw-templates {
+  position: relative;
+  z-index: 0;
+  margin-top: 0.75rem;
+}
+
+/* Admin/settings surfaces: readable system sans + mono IDs (never theme cursive). */
+.gw-admin-surface,
+.gw-admin-surface .gw-settings-section,
+.gw-admin-surface .gw-typography,
+.gw-admin-surface .gw-settings-list,
+.gw-admin-surface .gw-table-surface {
+  font-family: var(--bao-aurora-font-sans);
+}
+
+.gw-admin-surface {
+  padding-bottom: var(--gw-dock-clearance);
+}
+
+.gw-admin-surface .gw-plugin-id {
+  font-family: var(--bao-aurora-font-mono);
+  font-size: var(--bao-aurora-text-sm, 0.875rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.gw-enterprise-activate {
+  display: inline-flex;
+  min-height: var(--gw-touch);
+  align-items: center;
+  justify-content: center;
+  gap: var(--bao-aurora-space-2);
+  padding-inline: var(--bao-aurora-space-3);
+  white-space: nowrap;
+}
+
+.gw-plugins-reload {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bao-aurora-space-2);
+}
+
+.gw-plugin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bao-aurora-space-2);
+  margin-block: var(--bao-aurora-space-3);
+}
+
+.gw-plugin-note {
+  padding-block: var(--bao-aurora-space-1);
+  color: var(--color-base-content);
+  font-size: var(--bao-aurora-text-xs, 0.75rem);
 }
 
 .gw-editor {
@@ -123,6 +337,12 @@ html[data-gw-editor-font="syne"] .gw-preview-inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
+}
+
+.gw-editor-font-form,
+.gw-template-save {
+  font-family: var(--bao-aurora-font-sans);
+  box-shadow: var(--bao-glass-content-shadow);
 }
 
 .gw-editor-body {
@@ -146,13 +366,15 @@ html[data-gw-editor-font="syne"] .gw-preview-inner {
 
 .gw-editor-actions {
   position: sticky;
-  bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  bottom: var(--gw-dock-clearance);
   z-index: 25;
   align-self: flex-end;
   padding: 0.35rem;
-  border: 1px solid var(--color-base-300);
+  border: 1px solid var(--gw-surface-border, var(--color-base-300));
   border-radius: var(--bao-aurora-radius-md);
-  background: var(--color-base-100);
+  background: var(--gw-surface-bg, var(--color-base-100));
+  backdrop-filter: var(--gw-surface-backdrop, none);
+  -webkit-backdrop-filter: var(--gw-surface-backdrop, none);
   box-shadow: var(--bao-glass-content-shadow);
 }
 
@@ -176,7 +398,7 @@ html[data-gw-editor-font="syne"] .gw-preview-inner {
 
 .gw-context-link:hover,
 .gw-context-link:focus-visible {
-  background: var(--color-base-200);
+  background: var(--gw-surface-bg-hover, var(--color-base-200));
   outline: none;
 }
 
@@ -195,9 +417,45 @@ html[data-gw-editor-font="syne"] .gw-preview-inner {
   padding-block: 0.35rem;
 }
 
+.gw-table-surface {
+  border: 1px solid var(--gw-surface-border, var(--color-base-300));
+  background: var(--gw-surface-bg, var(--color-base-100));
+  backdrop-filter: var(--gw-surface-backdrop, none);
+  -webkit-backdrop-filter: var(--gw-surface-backdrop, none);
+  box-shadow: var(--bao-glass-content-shadow);
+}
+
+.gw-table-surface thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: color-mix(in srgb, var(--color-base-100) 92%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.gw-settings-pagination .join,
+.gw-docs-pagination .join {
+  margin-inline-start: auto;
+}
+
+.gw-settings-pagination,
+.gw-docs-pagination {
+  position: relative;
+  z-index: 45;
+  scroll-margin-bottom: calc(var(--gw-dock-clearance) + 0.5rem);
+  padding-bottom: var(--bao-aurora-space-2);
+}
+
+.gw-settings-section .table th,
+.gw-settings-section .table td {
+  vertical-align: middle;
+}
+
 .gw-preview {
-  border: 1px solid var(--color-base-300);
-  background: var(--color-base-100);
+  border: 1px solid var(--gw-surface-border, var(--color-base-300));
+  background: var(--gw-surface-bg, var(--color-base-100));
+  backdrop-filter: var(--gw-surface-backdrop, none);
+  -webkit-backdrop-filter: var(--gw-surface-backdrop, none);
   box-shadow: var(--bao-glass-content-shadow);
 }
 
@@ -209,6 +467,60 @@ html[data-gw-editor-font="syne"] .gw-preview-inner {
   width: 100%;
   max-width: var(--gw-shell-max-width);
   margin-inline: auto;
+  transition:
+    opacity var(--v-duration-fast) var(--v-ease-standard),
+    transform var(--v-duration-fast) var(--v-ease-standard);
+}
+
+html[data-gw-dock="hidden"] .dock.bao-glass {
+  transform: translateY(calc(100% + var(--bao-aurora-space-3)));
+  opacity: 0;
+  pointer-events: none;
+}
+
+html[data-form-factor="phone"][data-orientation^="landscape"] .gw-main {
+  padding-bottom: var(--bao-aurora-space-3);
+  padding-left: calc(var(--gw-dock-height) + env(safe-area-inset-left, 0px));
+  padding-right: max(env(safe-area-inset-right, 0px), var(--bao-aurora-space-3));
+}
+
+html[data-form-factor="phone"][data-orientation^="landscape"] .gw-editor-actions {
+  bottom: max(env(safe-area-inset-bottom, 0px), var(--bao-aurora-space-3));
+  left: calc(var(--gw-dock-height) + env(safe-area-inset-left, 0px));
+}
+
+html[data-form-factor="phone"][data-orientation^="landscape"] .dock.bao-glass {
+  top: env(safe-area-inset-top, 0px);
+  right: auto;
+  bottom: env(safe-area-inset-bottom, 0px);
+  left: env(safe-area-inset-left, 0px);
+  width: auto;
+  height: auto;
+  max-width: none;
+  margin: 0;
+  flex-direction: column;
+  border-radius: 0 var(--bao-glass-radius) var(--bao-glass-radius) 0;
+}
+
+html[data-form-factor="phone"][data-orientation^="landscape"] .dock.bao-glass .dock-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+html[data-form-factor="embedded"][data-orientation^="landscape"] .gw-main,
+html[data-device="embedded"][data-orientation^="landscape"] .gw-main {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), var(--bao-aurora-space-3));
+}
+
+html[data-viewport="landscape"] .gw-textarea {
+  min-height: clamp(18rem, 58dvh, 42rem);
 }
 
 .bao-glass {
@@ -291,6 +603,18 @@ html[data-gw-editor-font="syne"] .gw-preview-inner {
     var(--bao-glass-shadow),
     0 0 18px 2px var(--bao-glass-focus-glow) inset,
     0 0 24px var(--bao-glass-focus-glow);
+}
+
+html[data-theme="bao-aurora-glass"] .bao-glass__content {
+  background: var(--bao-glass-bg-solid);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html[data-theme="bao-aurora-glass"] .gw-topbar-context__menu {
+  background: var(--bao-glass-bg-solid);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 html[data-theme="dark"] .bao-glass,
@@ -399,9 +723,11 @@ html[data-power="low"] .bao-glass::after {
   position: relative;
   z-index: 1;
   max-width: 22rem;
-  border: 1px solid var(--color-base-300);
+  border: 1px solid var(--gw-surface-border, var(--color-base-300));
   border-radius: var(--bao-aurora-radius-md);
-  background: var(--color-base-100);
+  background: var(--gw-surface-bg, var(--color-base-100));
+  backdrop-filter: var(--gw-surface-backdrop, none);
+  -webkit-backdrop-filter: var(--gw-surface-backdrop, none);
   padding: 0.75rem;
   box-shadow: var(--bao-glass-shadow);
   color: var(--color-base-content);
@@ -475,9 +801,11 @@ html[data-power="low"] .bao-glass::after {
   display: grid;
   min-height: 4rem;
   place-items: center;
-  border: 1px solid var(--color-base-300);
+  border: 1px solid var(--gw-surface-border, var(--color-base-300));
   border-radius: var(--bao-aurora-radius-md);
-  background: var(--color-base-100);
+  background: var(--gw-surface-bg, var(--color-base-100));
+  backdrop-filter: var(--gw-surface-backdrop, none);
+  -webkit-backdrop-filter: var(--gw-surface-backdrop, none);
   box-shadow: var(--bao-glass-content-shadow);
   transition:
     transform 180ms ease,
@@ -1045,8 +1373,21 @@ html[data-pointer="coarse"] {
   }
 }
 
+#gw-main[aria-busy="true"] .gw-settings-section {
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.gw-typography [aria-busy="true"] {
+  cursor: wait;
+}
+
+#gw-typography-status:empty {
+  display: none;
+}
+
 /* MOBILE UI/UX + FLUIDITY FIX (visual-first, reactive, accessible, .bao source) */
-@media (pointer: coarse), (max-width: 420px), (hover: none) {
+@media (pointer: coarse), (max-width: var(--gw-viewport-compact-max-width, 26.25rem)), (hover: none) {
   :root {
     --gw-touch: var(--bao-aurora-density-touch-target, var(--gw-touch));
   }
@@ -1075,7 +1416,7 @@ html[data-pointer="coarse"] {
     grid-gap: 0.2rem;
   }
   .gw-main {
-    padding-bottom: max(env(safe-area-inset-bottom, 0.6rem), 6rem);
+    padding-bottom: var(--gw-dock-clearance);
   }
   .gw-textarea,
   textarea {

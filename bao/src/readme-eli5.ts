@@ -36,40 +36,40 @@ function humanPackageName(context: PackageReadmeContext): string {
 function domainHook(context: PackageReadmeContext): string | null {
   const id = context.id;
   if (id === "bao-runtime") {
-    return "Think of bao-runtime as the main floor that starts first: it loads .bao packages, shared login and menus, and slots for add-ons.";
+    return "Think of bao-runtime as the goose-run loading dock that opens first: it checks .bao crates, shared login, menus, and add-on slots.";
   }
   if (id === "bao-registry") {
-    return "Think of the registry as the catalog shelf: it lists every .bao box, its version, and how installs pull from OCI.";
+    return "Think of the registry as the shelf map: it tells the goose which .bao crate exists, which version it is, and how OCI delivers it.";
   }
   if (id === "bao-sdk") {
-    return "Think of bao-sdk as the instruction card for attaching and removing .bao tiles (load, activate, suspend, unload).";
+    return "Think of bao-sdk as the crate instruction card: detect, load, activate, suspend, resume, and unload without leaving loose parts.";
   }
   if (id.startsWith("auth-") || id === "auth-bao") {
-    return `Think of ${humanPackageName(context)} as the badge desk: it decides who is allowed in and hands apps a session card—not secrets in the browser.`;
+    return `Think of ${humanPackageName(context)} as the badge crate: it lets the right people into the goose mailroom without putting secrets in the browser.`;
   }
   if (id.startsWith("crypto-")) {
-    return `Think of ${humanPackageName(context)} as a sealed envelope maker: messages go in locked, and only the right bench opens them.`;
+    return `Think of ${humanPackageName(context)} as the sealed-envelope crate: messages go in locked, and only the right recipient opens them.`;
   }
   if (id.includes("contribution") || id.includes("federation")) {
-    return `Think of ${humanPackageName(context)} as the guest desk where each app registers menus and trades signed snapshot cards with friend sites.`;
+    return `Think of ${humanPackageName(context)} as the guest crate where apps register menus and trade signed snapshot cards with friend sites.`;
   }
   if (id.startsWith("pathology-")) {
-    return `Think of ${humanPackageName(context)} as the slide labeler: it keeps pathology images and reviews consistent for clinical apps.`;
+    return `Think of ${humanPackageName(context)} as the slide-label crate: it keeps pathology images and reviews sorted for clinical apps.`;
   }
   if (id.startsWith("htmx-")) {
-    return `Think of ${humanPackageName(context)} as swap-in HTML panels: buttons fetch fresh pieces from the server without a heavy client app.`;
+    return `Think of ${humanPackageName(context)} as the fresh-panel crate: buttons ask the server for new HTML without a heavy client app.`;
   }
   if (id.includes("mcp")) {
-    return `Think of ${humanPackageName(context)} as the robot-arm catalog: hosts pick which MCP tool connects to which job.`;
+    return `Think of ${humanPackageName(context)} as the robot-arm crate: hosts pick which MCP tool connects to which job.`;
   }
   if (id.includes("bunbuddy")) {
-    return `Think of ${humanPackageName(context)} as a pocket helper for one device skill (camera, USB, sensors) the runtime loads when needed.`;
+    return `Think of ${humanPackageName(context)} as a pocket-helper crate for one device skill the runtime loads when needed.`;
   }
   if (context.packageKind === "runtime-package") {
-    return `Think of ${humanPackageName(context)} as the host floor that must boot before any .bao add-on can run.`;
+    return `Think of ${humanPackageName(context)} as the host crate that opens before any .bao add-on can run.`;
   }
   if (context.packageKind === "extension") {
-    return `Think of ${humanPackageName(context)} as an add-on tile that plugs into the host sidebar, settings, or command list.`;
+    return `Think of ${humanPackageName(context)} as an add-on crate that snaps into the host sidebar, settings, or command list.`;
   }
   return null;
 }
@@ -89,7 +89,7 @@ function concreteUsageSentence(context: PackageReadmeContext): string {
       .slice(0, 4)
       .map((entry) => `\`${entry}\``)
       .join(", ");
-    return `Import subpaths like ${shown} when you wire this crate in.`;
+    return `Import subpaths like ${shown} when this crate joins the goose mailroom.`;
   }
   if (context.catalogEntry !== null && context.catalogEntry.composeDependencies.length > 0) {
     const consumers = context.catalogEntry.composeDependencies.slice(0, 3).join(", ");
@@ -133,7 +133,7 @@ function ensureMinimumEli5(text: string): string {
   let result = text.trim();
   if (countSentences(result) < MIN_ELI5_SENTENCES) {
     const lead = result.endsWith(".") || result.length === 0 ? result : `${result}.`;
-    result = `${lead} It is part of the Baohaus .bao factory line.`;
+    result = `${lead} It is part of the Baohaus goose mailroom for .bao crates.`;
   }
   if (result.length < MIN_ELI5_CHARACTERS) {
     result = `${result} See the Scope table and package card for proof commands.`;

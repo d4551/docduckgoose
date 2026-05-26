@@ -1,6 +1,12 @@
 import { Database } from "bun:sqlite";
 import { existsSync, mkdirSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import {
+  DEFAULT_DOCS_SORT,
+  DEFAULT_DOCS_SORT_DIR,
+  type DocsSortDirection,
+  type DocsSortKey,
+} from "../config/docs-table.ts";
 import { gooseWordDataDir, gooseWordDbPath, gooseWordDocumentsDir } from "../config/paths.ts";
 
 export interface DocRecord {
@@ -65,19 +71,66 @@ export class DocStore {
     `);
   }
 
-  list(limit?: number, offset?: number): readonly DocRecord[] {
+  #likePattern(search: string): string {
+    const escaped = search.replace(/[%_\\]/g, "\\$&");
+    return `%${escaped}%`;
+  }
+
+  #orderClause(sort: DocsSortKey, dir: DocsSortDirection): string {
+    const column = sort === "title" ? "title" : "updated_at";
+    const direction = dir === "asc" ? "ASC" : "DESC";
+    return `${column} ${direction}`;
+  }
+
+  count(search = ""): number {
+    if (search.length === 0) {
+      const row = this.#db.query<{ total: number }, []>("SELECT COUNT(*) AS total FROM docs").get();
+      return row?.total ?? 0;
+    }
+    const pattern = this.#likePattern(search);
+    const row = this.#db
+      .query<{ total: number }, [string, string]>(
+        "SELECT COUNT(*) AS total FROM docs WHERE title LIKE ? ESCAPE '\\' OR body LIKE ? ESCAPE '\\'",
+      )
+      .get(pattern, pattern);
+    return row?.total ?? 0;
+  }
+
+  list(
+    limit?: number,
+    offset?: number,
+    search = "",
+    sort: DocsSortKey = DEFAULT_DOCS_SORT,
+    dir: DocsSortDirection = DEFAULT_DOCS_SORT_DIR,
+  ): readonly DocRecord[] {
     const hasPage = typeof limit === "number" && typeof offset === "number";
+    const order = this.#orderClause(sort, dir);
+    if (search.length === 0) {
+      const rows = hasPage
+        ? this.#db
+            .query<DocRow, [number, number]>(
+              `SELECT id, title, body, slug, updated_at, file_path FROM docs ORDER BY ${order} LIMIT ? OFFSET ?`,
+            )
+            .all(limit, offset)
+        : this.#db
+            .query<DocRow, []>(
+              `SELECT id, title, body, slug, updated_at, file_path FROM docs ORDER BY ${order}`,
+            )
+            .all();
+      return rows.map(rowToRecord);
+    }
+    const pattern = this.#likePattern(search);
     const rows = hasPage
       ? this.#db
-          .query<DocRow, [number, number]>(
-            "SELECT id, title, body, slug, updated_at, file_path FROM docs ORDER BY updated_at DESC LIMIT ? OFFSET ?",
+          .query<DocRow, [string, string, number, number]>(
+            `SELECT id, title, body, slug, updated_at, file_path FROM docs WHERE title LIKE ? ESCAPE '\\' OR body LIKE ? ESCAPE '\\' ORDER BY ${order} LIMIT ? OFFSET ?`,
           )
-          .all(limit, offset)
+          .all(pattern, pattern, limit, offset)
       : this.#db
-          .query<DocRow, []>(
-            "SELECT id, title, body, slug, updated_at, file_path FROM docs ORDER BY updated_at DESC",
+          .query<DocRow, [string, string]>(
+            `SELECT id, title, body, slug, updated_at, file_path FROM docs WHERE title LIKE ? ESCAPE '\\' OR body LIKE ? ESCAPE '\\' ORDER BY ${order}`,
           )
-          .all();
+          .all(pattern, pattern);
     return rows.map(rowToRecord);
   }
 
@@ -174,8 +227,15 @@ const getDefaultStore = (): DocStore => {
   return defaultStore;
 };
 
-export const listDocs = (limit?: number, offset?: number): readonly DocRecord[] =>
-  getDefaultStore().list(limit, offset);
+export const listDocs = (
+  limit?: number,
+  offset?: number,
+  search = "",
+  sort: DocsSortKey = DEFAULT_DOCS_SORT,
+  dir: DocsSortDirection = DEFAULT_DOCS_SORT_DIR,
+): readonly DocRecord[] => getDefaultStore().list(limit, offset, search, sort, dir);
+
+export const countDocs = (search = ""): number => getDefaultStore().count(search);
 
 export const getDoc = (id: string): DocRecord | null => getDefaultStore().get(id);
 
@@ -194,9 +254,4 @@ export const closeDocStore = (): void => {
     defaultStore.close();
     defaultStore = null;
   }
-};
-
-export const resetDocStoreForTests = (dbPath: string, documentsDir?: string): void => {
-  closeDocStore();
-  defaultStore = new DocStore(dbPath, documentsDir ?? join(dirname(dbPath), "documents"));
 };

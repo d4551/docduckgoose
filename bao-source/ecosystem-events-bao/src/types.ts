@@ -48,6 +48,7 @@ export const ECOSYSTEM_CONTRIBUTION_SURFACE = {
   tileGroup: "tile-group",
   uiAssetPack: "ui-asset-pack",
   topbar: "topbar",
+  nativeMobileShell: "native-mobile-shell",
 } as const;
 
 export type EcosystemContributionSurfaceKey = keyof typeof ECOSYSTEM_CONTRIBUTION_SURFACE;

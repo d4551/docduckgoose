@@ -2,6 +2,9 @@
  * Shared helpers for validation rules.
  */
 
+// .bao-first SSOT cutover (subtask 2): state pattern + matrix from .bao fabric patterns.ts.
+import { SUCCESS_STATE_PATTERN } from "./patterns.ts";
+
 const isExportUsedInFile = (content: string, name: string): boolean => {
   const pattern = new RegExp(`\\b${name}\\b`, "g");
   return (content.match(pattern) ?? []).length > 1;
@@ -29,9 +32,6 @@ const isExportUsedElsewhere = (
 
 const isEntryOrConfigPath = (path: string): boolean =>
   path.includes("src/index.ts") || path.includes("src/config/") || path.includes("prisma.config");
-
-const SUCCESS_STATE_PATTERN =
-  /\b(?:state:\s*["'](?:ready|success)["']|successState\(|renderSuccessState\()/;
 
 export const hasSkeleton = (contents: string): boolean =>
   contents.includes("loadingSkeleton(") ||

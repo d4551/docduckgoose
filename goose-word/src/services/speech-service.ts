@@ -89,26 +89,10 @@ export const transcribeAudioFile = async (
   language?: string,
   command = gooseWordSpeechConfig.speechToTextCommand,
 ): Promise<SpeechCommandResult> => {
-  if (command === null) {
-    return {
-      ok: false,
-      status: null,
-      stdout: new Uint8Array(),
-      stderr: "Speech-to-text is not configured",
-    };
-  }
-  const tempDir = mkdtempSync(join(tmpdir(), "goose-word-stt-"));
   const sourceName = audio.name.length > 0 ? audio.name : "audio.wav";
-  const audioPath = join(tempDir, `input${extname(sourceName) || ".wav"}`);
-  writeFileSync(audioPath, Buffer.from(await audio.arrayBuffer()));
-  const extra: string[] = [audioPath];
-  const normalizedLanguage = language?.trim();
-  if (normalizedLanguage) {
-    extra.push("--language", normalizedLanguage);
-  }
-  const result = await runCommand(command, extra);
-  rmSync(tempDir, { recursive: true, force: true });
-  return result;
+  const extension = extname(sourceName) || ".wav";
+  const bytes = new Uint8Array(await audio.arrayBuffer());
+  return transcribeAudioBytes(bytes, extension, language, command);
 };
 
 export const transcribeAudioBytes = async (

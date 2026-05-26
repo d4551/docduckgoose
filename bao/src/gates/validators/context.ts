@@ -31,6 +31,7 @@ const DEFAULT_IGNORE_SEGMENTS = [
 const REPOSITORY_SCAN_DIRECTORIES = [
   "src",
   "scripts",
+  "test",
   "tests",
   "public",
   "hooks",
@@ -45,8 +46,9 @@ function toPlatformPath(url: URL): string {
   return WINDOWS_DRIVE_PATTERN.test(pathname) ? pathname.slice(1) : pathname;
 }
 
+// .bao-first subtask 3 type safety: eradicate ingress casts (strict, no lazy escapes).
 const flattenKeys = (value: object, prefix = ""): string[] =>
-  Object.entries(value).flatMap(([key, entry]: [string, unknown]) => {
+  Object.entries(value).flatMap(([key, entry]) => {
     const nextKey = prefix.length > 0 ? `${prefix}.${key}` : key;
 
     if (typeof entry === "string") {

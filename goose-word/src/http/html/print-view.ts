@@ -5,9 +5,14 @@ import type { DocRecord } from "../../services/doc-store.ts";
 import { renderMarkdown } from "../../services/markdown-render.ts";
 import { escapeHtml } from "./escape-html.ts";
 
-export const renderPrintPage = (locale: LocaleCode, doc: DocRecord, autoPrint: boolean): string => {
-  const title = doc.title.trim() === "" ? translate(locale, "editor.title") : doc.title;
-  const renderedBody = renderMarkdown(doc.body);
+export const renderPrintHtml = (
+  locale: LocaleCode,
+  titleValue: string,
+  body: string,
+  autoPrint: boolean,
+): string => {
+  const title = titleValue.trim() === "" ? translate(locale, "editor.title") : titleValue;
+  const renderedBody = renderMarkdown(body);
   const autoPrintScript = autoPrint
     ? `<script type="module" src="${ROUTES.static.clientFile("print-view.js")}"></script>`
     : "";
@@ -36,3 +41,6 @@ export const renderPrintPage = (locale: LocaleCode, doc: DocRecord, autoPrint: b
 </body>
 </html>`;
 };
+
+export const renderPrintPage = (locale: LocaleCode, doc: DocRecord, autoPrint: boolean): string =>
+  renderPrintHtml(locale, doc.title, doc.body, autoPrint);

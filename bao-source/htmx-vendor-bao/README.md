@@ -1,65 +1,50 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/htmx-vendor-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Think of htmx vendor bao as swap-in HTML panels: buttons fetch fresh pieces from the server without a heavy client app. Pinned HTMX core + official extension browser assets for Bun generate/static-bao pipelines. Single boundary owner for htmx.org npm packages. Import subpaths like `./manifest`, `./runtime`, `./side-effect` when you wire this crate in.
+This crate is the mailroom's magic buttons. With HTMX inside, page buttons can ask the server for fresh HTML without reloading the whole page -- like passing a note instead of getting a new book.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  producer["@baohaus/htmx-vendor-bao"] --> crate[".htmx_vendor_bao crate"]
-  crate --> consumers["Host apps and benches"]
+  button["Browser button\nhx-get / hx-post"] --> htmx["HTMX request\nto server"]
+  htmx --> server["Server handler"]
+  server --> fragment["HTML fragment"]
+  fragment --> page["Page update\nswap in place"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Pinned HTMX core + official extension browser assets for Bun generate/static-bao pipelines.; Subpaths: ./manifest, ./runtime, ./side-effect | bao-governance.json; bao.lock; catalog row | Other workbench domains; bao-runtime host lifecycle |
+| Pinned HTMX core + official extension browser assets for Bun generate/static-bao pipelines.; Subpaths: ./manifest, ./runtime, ./side-effect | Shared @baohaus contracts | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/htmx-vendor-bao
 
-Standalone Baohaus package. Catalog identity `htmx-vendor-bao`. Source at `bao-source/htmx-vendor-bao`. Publishes to `baohaus/htmx-vendor-bao`. Canonical archive: ``.
+Pinned HTMX core + official extension browser assets for Bun generate/static-bao pipelines. Single boundary owner for htmx.org npm packages.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/htmx-vendor-bao` |
-| Catalog id | `htmx-vendor-bao` |
-| Source path | `bao-source/htmx-vendor-bao` |
-| OCI repository | `baohaus/htmx-vendor-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `no` |
-| Publish gate | `standard` |
+Source at `bao-source/htmx-vendor-bao`.
 
 ## Public Pieces
 
-`./manifest`, `./runtime`, `./side-effect`.
+`./manifest`, `./runtime`, `./side-effect`
 
 ## Proof Commands
 
 Run from `bao-source/htmx-vendor-bao`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `echo 'htmx-vendor-bao: vendor assets only — no .bao archive'`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/htmx-vendor-bao` publishes to `baohaus/htmx-vendor-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -94,9 +79,9 @@ Catalog id `htmx-vendor-bao` publishes to `baohaus/htmx-vendor-bao`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `./manifest` | Manifest — typed surface from this workbench |
-| `./runtime` | Runtime — typed surface from this workbench |
-| `./side-effect` | Side effect — typed surface from this workbench |
+| `./manifest` | Manifest — typed surface from this .bao crate |
+| `./runtime` | Runtime — typed surface from this .bao crate |
+| `./side-effect` | Side effect — typed surface from this .bao crate |
 
 ## Reference
 
@@ -104,7 +89,7 @@ Catalog id `htmx-vendor-bao` publishes to `baohaus/htmx-vendor-bao`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `./manifest` | Manifest — typed surface from this workbench |
-| `./runtime` | Runtime — typed surface from this workbench |
-| `./side-effect` | Side effect — typed surface from this workbench |
+| `./manifest` | Manifest — typed surface from this .bao crate |
+| `./runtime` | Runtime — typed surface from this .bao crate |
+| `./side-effect` | Side effect — typed surface from this .bao crate |
 <!-- END BAOHAUS PACKAGE MANUAL -->

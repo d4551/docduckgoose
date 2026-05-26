@@ -1,8 +1,9 @@
 import { parseJsonObjectFromText, readStringField } from "@baohaus/bao-json-safe";
 import type { Elysia } from "elysia";
 import { docsApiPath, healthApiPath, ROUTES } from "../../config/routes.ts";
-import { resolveLocale } from "../../i18n/runtime.ts";
-import { createDoc, deleteDoc, listDocs, updateDoc } from "../../services/doc-store.ts";
+import { docsListOffset, parseDocsListQuery } from "../docs-query.ts";
+import { resolveRequestLocale } from "../../i18n/runtime.ts";
+import { countDocs, createDoc, deleteDoc, listDocs, updateDoc } from "../../services/doc-store.ts";
 import { renderDocsListPanel } from "../html/docs-list-view.ts";
 import { renderEditorPanelAfterSave } from "../html/editor-view.ts";
 
@@ -19,7 +20,7 @@ export const registerDocApiRoutes = (app: RouteHost): void => {
       return { id: doc.id };
     })
     .post(ROUTES.docs.apiPattern, async ({ request, params }) => {
-      const locale = resolveLocale(request.headers.get("accept-language"));
+      const locale = resolveRequestLocale(request);
       const form = await request.formData();
       const titleValue = form.get("title");
       const bodyValue = form.get("body");
@@ -40,12 +41,21 @@ export const registerDocApiRoutes = (app: RouteHost): void => {
       });
     })
     .delete(ROUTES.docs.apiPattern, ({ request, params }) => {
-      const locale = resolveLocale(request.headers.get("accept-language"));
+      const locale = resolveRequestLocale(request);
       const deleted = deleteDoc(params.id);
       if (deleted === null) {
         return new Response("Not Found", { status: 404 });
       }
-      const html = renderDocsListPanel(locale, listDocs());
+      const query = parseDocsListQuery({});
+      const totalCount = countDocs(query.search);
+      const docs = listDocs(
+        query.pageSize,
+        docsListOffset(query),
+        query.search,
+        query.sort,
+        query.dir,
+      );
+      const html = renderDocsListPanel(locale, docs, [], [], query, totalCount);
       return new Response(html, {
         headers: { "content-type": "text/html; charset=utf-8" },
       });

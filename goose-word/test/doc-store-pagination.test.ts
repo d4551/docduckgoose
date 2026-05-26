@@ -86,6 +86,27 @@ describe("DocStore.list pagination", () => {
     expect(all[2]?.id).toBe(first.id);
   });
 
+  it("count returns total rows", () => {
+    const tmp = makeTempStore();
+    store = tmp.store;
+    dir = tmp.dir;
+    expect(store.count()).toBe(0);
+    store.create("One", "a");
+    store.create("Two", "b");
+    expect(store.count()).toBe(2);
+  });
+
+  it("orders by title ascending when requested", () => {
+    const tmp = makeTempStore();
+    store = tmp.store;
+    dir = tmp.dir;
+    store.create("Zebra", "z");
+    store.create("Alpha", "a");
+    store.create("Mango", "m");
+    const sorted = store.list(undefined, undefined, "", "title", "asc");
+    expect(sorted.map((doc) => doc.title)).toEqual(["Alpha", "Mango", "Zebra"]);
+  });
+
   it("returns remaining docs when limit exceeds available after offset", () => {
     const tmp = makeTempStore();
     store = tmp.store;

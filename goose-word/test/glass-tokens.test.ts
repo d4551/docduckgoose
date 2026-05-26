@@ -117,4 +117,10 @@ describe("glass token integrity", () => {
   it("at least 10 --bao-glass-* tokens are defined", () => {
     expect(tokenDefs.size).toBeGreaterThanOrEqual(10);
   });
+
+  it("tokens CSS defines shell dock clearance tokens", () => {
+    expect(tokensCss).toContain("--gw-dock-height:");
+    expect(tokensCss).toContain("--gw-dock-clearance:");
+    expect(appCss).toContain("var(--gw-dock-clearance)");
+  });
 });

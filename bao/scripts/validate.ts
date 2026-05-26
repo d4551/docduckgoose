@@ -1,16 +1,29 @@
 import { runNoCheckedInBaoGate } from "../src/gates/no-checkedin-bao.ts";
 import { createValidatorContext } from "../src/gates/validators/context.ts";
 import { ALL_RULE_NAMES, createRules } from "../src/gates/validators/rules.ts";
-import { validatorConfig } from "../validator.config.ts";
 
-const targetRule = Bun.argv.at(2);
+const rawArgs = Bun.argv.slice(2);
+const targetRule = rawArgs.find((a) => !a.startsWith("--")) || rawArgs[0];
+const configArgIndex = rawArgs.findIndex((a) => a === "--config");
+const customConfigPath = configArgIndex !== -1 ? rawArgs[configArgIndex + 1] : null;
 const noCheckedInBaoRule = "no-checkedin-bao";
 
 if (!targetRule) {
-  throw new Error("Usage: bun run ./scripts/validate.ts <rule|all>");
+  throw new Error("Usage: bun run ./scripts/validate.ts <rule|all> [--config <path-to-validator.config.ts>]");
 }
 
 const root = process.cwd();
+
+let validatorConfig: any;
+if (customConfigPath) {
+  const configUrl = new URL(customConfigPath, `file://${root}/`);
+  const mod = await import(configUrl.href);
+  validatorConfig = mod.validatorConfig;
+} else {
+  const mod = await import("../validator.config.ts");
+  validatorConfig = mod.validatorConfig;
+}
+
 const runAll = targetRule === "all";
 
 if (

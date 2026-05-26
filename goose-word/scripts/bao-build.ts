@@ -1,5 +1,6 @@
 import { cpSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { basename, join, resolve } from "node:path";
+import { cliLog } from "./cli-log.ts";
 
 const ROOT = resolve(import.meta.dir, "..");
 const WORKSPACE_ROOT = resolve(ROOT, "..");
@@ -8,6 +9,8 @@ const OUT_ROOT = join(ROOT, "dist", "bao-copy");
 const APP_OUT = join(OUT_ROOT, "goose-word");
 const ASSET_PACKAGES = [
   "goose-word-ui-bao",
+  "goose-word-native-shell-bao",
+  "goose-word-brand-bao",
   "htmx-vendor-bao",
   "baohaus-design-tokens-aurora-bao",
   "baohaus-density-preset-aurora-bao",
@@ -105,9 +108,9 @@ for (const pluginRoot of pluginRoots) {
   copyIfExists(join(pluginRoot, "dist"), join(pluginOut, "dist"));
 }
 
-console.log("bao:build ok");
-console.log(`Copy-first app package: ${APP_OUT}`);
+cliLog("bao:build ok");
+cliLog(`Copy-first app package: ${APP_OUT}`);
 for (const pluginRoot of pluginRoots) {
-  console.log(`Copy-first plugin package: ${join(OUT_ROOT, basename(pluginRoot))}`);
+  cliLog(`Copy-first plugin package: ${join(OUT_ROOT, basename(pluginRoot))}`);
 }
-console.log("No .bao archive was created; copy the package directories to ~/.goose-word/bao/.");
+cliLog("No .bao archive was created; copy the package directories to ~/.goose-word/bao/.");

@@ -1,65 +1,49 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/ecosystem-events-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Canonical in-process pub/sub bus + SSE encoder + per-subscriber filter for cross-surface contribution-change signals (sidebar / settings-tab / palette-entry-group / api-group / tile-group). Consumed by every Bao app's SSE sink so a `.bao` install or capability re-evaluation fans out to every open browser tab without a page reload. Import subpaths like `./encoder`, `./filter`, `./install-boot`, `./install-boot-with-baoboss` when you wire this crate in.
+This crate is the mailroom's intercom. When a crate is installed or a setting changes, it announces the news to every open browser tab without anyone refreshing the page.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  producer["@baohaus/ecosystem-events-bao"] --> crate[".ecosystem_events_bao crate"]
-  crate --> consumers["Host apps and benches"]
+  source[".bao install\nor capability change"] --> bus["ecosystem-events bus\npub/sub + filter"]
+  bus --> encoder["SSE encoder"]
+  encoder --> tabs["Browser tabs\nlive update"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Canonical in-process pub/sub bus + SSE encoder + per-subscriber filter for cross-surface contribution-change signals (sidebar / settings-tab / palette-entry-group / api-group / tile-group).; Subpaths: ./encoder, ./filter, ./install-boot, ./install-boot-with-baoboss, ./peer-invalidation, ./service, ./sse-sink, ./types | @baohaus/bao-boss; @baohaus/bao-utils | Other workbench domains; bao-runtime host lifecycle |
+| Canonical in-process pub/sub bus + SSE encoder + per-subscriber filter for cross-surface contribution-change signals (sidebar / settings-tab / palette-entry-group / api-group / tile-group). | @baohaus/bao-boss; @baohaus/bao-utils | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/ecosystem-events-bao
 
-Standalone Baohaus package. Catalog identity `ecosystem-events-bao`. Source at `bao-source/ecosystem-events-bao`. Publishes to `baohaus/ecosystem-events-bao`. Canonical archive: `bao-source/ecosystem-events-bao/dist/bao/ecosystem-events-bao.bao`.
+Canonical in-process pub/sub bus + SSE encoder + per-subscriber filter for cross-surface contribution-change signals (sidebar / settings-tab / palette-entry-group / api-group / tile-group). Consumed by every Bao app's SSE sink so a `.bao` install or capability re-evaluation fans out to every open browser tab without a page reload.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/ecosystem-events-bao` |
-| Catalog id | `ecosystem-events-bao` |
-| Source path | `bao-source/ecosystem-events-bao` |
-| OCI repository | `baohaus/ecosystem-events-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/ecosystem-events-bao`.
 
 ## Public Pieces
 
-`./encoder`, `./filter`, `./install-boot`, `./install-boot-with-baoboss`, `./peer-invalidation`, `./service`, `./sse-sink`, `./types`.
+`./baoboss-transport`, `./bridge`, `./encoder`, `./filter`, `./install-boot`, `./install-boot-with-baoboss`, `./peer-invalidation`, `./service`, `./sse-sink`, `./types`
 
 ## Proof Commands
 
 Run from `bao-source/ecosystem-events-bao`:
 
-- `bun run build`
 - `bun run typecheck`
-- `bun test`
+- `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/ecosystem-events-bao` publishes to `baohaus/ecosystem-events-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -138,14 +122,14 @@ so single-node deployments incur zero broker overhead.
 
 | Subpath | Purpose |
 | --- | --- |
-| `./encoder` | Encoder — typed surface from this workbench |
-| `./filter` | Filter — typed surface from this workbench |
-| `./install-boot` | Install boot — typed surface from this workbench |
-| `./install-boot-with-baoboss` | Install boot with baoboss — typed surface from this workbench |
-| `./peer-invalidation` | Peer invalidation — typed surface from this workbench |
-| `./service` | Service — typed surface from this workbench |
-| `./sse-sink` | Sse sink — typed surface from this workbench |
-| `./types` | Types — typed surface from this workbench |
+| `./encoder` | Encoder — typed surface from this .bao crate |
+| `./filter` | Filter — typed surface from this .bao crate |
+| `./install-boot` | Install boot — typed surface from this .bao crate |
+| `./install-boot-with-baoboss` | Install boot with baoboss — typed surface from this .bao crate |
+| `./peer-invalidation` | Peer invalidation — typed surface from this .bao crate |
+| `./service` | Service — typed surface from this .bao crate |
+| `./sse-sink` | Sse sink — typed surface from this .bao crate |
+| `./types` | Types — typed surface from this .bao crate |
 
 ## Reference
 
@@ -153,12 +137,12 @@ so single-node deployments incur zero broker overhead.
 
 | Subpath | Purpose |
 | --- | --- |
-| `./encoder` | Encoder — typed surface from this workbench |
-| `./filter` | Filter — typed surface from this workbench |
-| `./install-boot` | Install boot — typed surface from this workbench |
-| `./install-boot-with-baoboss` | Install boot with baoboss — typed surface from this workbench |
-| `./peer-invalidation` | Peer invalidation — typed surface from this workbench |
-| `./service` | Service — typed surface from this workbench |
-| `./sse-sink` | Sse sink — typed surface from this workbench |
-| `./types` | Types — typed surface from this workbench |
+| `./encoder` | Encoder — typed surface from this .bao crate |
+| `./filter` | Filter — typed surface from this .bao crate |
+| `./install-boot` | Install boot — typed surface from this .bao crate |
+| `./install-boot-with-baoboss` | Install boot with baoboss — typed surface from this .bao crate |
+| `./peer-invalidation` | Peer invalidation — typed surface from this .bao crate |
+| `./service` | Service — typed surface from this .bao crate |
+| `./sse-sink` | Sse sink — typed surface from this .bao crate |
+| `./types` | Types — typed surface from this .bao crate |
 <!-- END BAOHAUS PACKAGE MANUAL -->

@@ -97,4 +97,33 @@
   --bao-glass-focus-glow: oklch(62% 0.18 200 / 0.4);
   --gw-shell-max-width: 30rem;
   --gw-main-padding: var(--bao-aurora-space-3);
+  --gw-dock-height: var(--bao-aurora-space-16);
+  --gw-navbar-clearance: var(--bao-aurora-space-16);
+  --gw-dock-clearance: calc(
+    var(--gw-dock-height) +
+    env(safe-area-inset-bottom, 0px) +
+    var(--bao-aurora-space-4)
+  );
+
+  /* Viewport / device detection — SSOT for JS matchMedia and CSS */
+  --gw-viewport-compact-max-width: 26.25rem;
+  --gw-viewport-compact-max-height: 26.25rem;
+  --gw-viewport-tablet-min-dim: 37.5rem;
+  --gw-viewport-tablet-max-dim: 56.25rem;
+  --gw-viewport-desktop-min-width: 64rem;
+  --gw-viewport-embedded-max-screen: 45rem;
+}
+
+/* Glasmorphic aurora variant — stronger liquid-glass material when glass theme is active */
+:where(:root[data-bao-ui-tokens="baohaus-aurora"][data-theme="bao-aurora-glass"]) {
+  --bao-glass-blur: 14px;
+  --bao-glass-saturate: 1.85;
+  --bao-glass-brightness: 1.14;
+  --bao-glass-bg: color-mix(in oklch, var(--bao-glass-tint) 40%, transparent);
+  --bao-glass-bg-solid: color-mix(in oklch, var(--bao-glass-tint) 68%, transparent);
+  --bao-glass-border: oklch(100% 0 0 / 0.38);
+  --bao-glass-spec-opacity: 0.22;
+  --bao-glass-shadow:
+    0 22px 44px oklch(0% 0 0 / 0.16), 0 2px 10px oklch(0% 0 0 / 0.08),
+    0 1px 0 oklch(100% 0 0 / 0.64) inset, 0 -1px 0 oklch(0% 0 0 / 0.1) inset;
 }

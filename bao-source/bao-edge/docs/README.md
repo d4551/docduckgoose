@@ -1,5 +1,13 @@
 # Bao Edge Documentation Hub
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../README.md)
+[![Docs](https://img.shields.io/badge/docs-control%20plane-2563eb)](./README.md)
+[![Mermaid](https://img.shields.io/badge/docs-Mermaid%20charts-ff3670?logo=mermaid&logoColor=white)](https://mermaid.js.org/)
+
+## Explain Like I'm Five
+
+Imagine the goose mailroom has one wall map for every bao crate. This docs hub is that map: it points to contracts, runtime code, platform clients, and proof so changes never drift.
+
 > 🌏 本页为中英双语。中文内容紧随对应英文段落。
 > This page is bilingual. Chinese follows each English section.
 

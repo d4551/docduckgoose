@@ -1,20 +1,47 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { pathToFileURL } from "node:url";
 import { isPlainObject, parseJsonSafe, readStringField } from "@baohaus/bao-json-safe";
 import type { Elysia } from "elysia";
-import { gooseWordBaoPluginsDir } from "../config/paths.ts";
-import { gooseWordContributionSurfaces } from "./contribution-surfaces.ts";
+import { gooseWordBaoPluginsDir, gooseWordNativeShellBaoDir } from "../config/paths.ts";
+import { PLUGIN_SETTINGS_TAB_ENTRYPOINT } from "../config/constants.ts";
+import {
+  clearGooseWordContributionSurfaces,
+  gooseWordContributionSurfaces,
+} from "./contribution-surfaces.ts";
+import {
+  isEnterpriseTenancyHotLoadAllowed,
+  isHotLoadState,
+  isTenancyTier,
+} from "@baohaus/contribution-registry-bao/enterprise-tenancy";
+import { installNativeMobileShellFromPackage } from "./native-mobile-shell-mount.ts";
+import { getGooseWordInstallHandlerRegistry } from "./install-handler-registry.ts";
+import {
+  clearPluginRoutes,
+  createPluginRouteApp,
+  registerPluginRouteApp,
+} from "./plugin-route-registry.ts";
+import { isPluginEnabled } from "../services/user-prefs.ts";
 
 export interface InstalledPluginRow {
   readonly id: string;
   readonly version: string;
   readonly targets: readonly string[];
   readonly source: "installed" | "dev";
+  readonly enabled: boolean;
 }
 
 type RouteHost = Elysia;
 
-const readGovernance = (dir: string): Omit<InstalledPluginRow, "source"> | null => {
+const hotImportPath = (modulePath: string): string => {
+  const href = pathToFileURL(modulePath).href;
+  const version = String(Math.trunc(statSync(modulePath).mtimeMs));
+  return `${href}?hot=${version}`;
+};
+
+type PluginManifestRow = Omit<InstalledPluginRow, "source" | "enabled">;
+
+const readGovernance = (dir: string): PluginManifestRow | null => {
   const path = join(dir, "bao-governance.json");
   if (!existsSync(path)) {
     return null;
@@ -64,7 +91,7 @@ const listPluginsInDirectory = (
     const dir = join(rootDir, entry.name);
     const manifest = readGovernance(dir);
     if (manifest !== null) {
-      rows.push({ ...manifest, source });
+      rows.push({ ...manifest, source, enabled: isPluginEnabled(manifest.id) });
     }
   }
   return rows;
@@ -88,11 +115,11 @@ const registerSettingsTabModule = async (
   packageDir: string,
   packageName: string,
 ): Promise<void> => {
-  const modulePath = join(packageDir, "dist/bao-extensions/settings-tab.js");
+  const modulePath = join(packageDir, PLUGIN_SETTINGS_TAB_ENTRYPOINT);
   if (!existsSync(modulePath)) {
     return;
   }
-  const mod = await import(modulePath);
+  const mod = await import(hotImportPath(modulePath));
   if (typeof mod.createSettingsTabRegistrations !== "function") {
     return;
   }
@@ -113,7 +140,7 @@ const registerDocumentTemplateModule = async (
   if (!existsSync(modulePath)) {
     return;
   }
-  const mod = await import(modulePath);
+  const mod = await import(hotImportPath(modulePath));
   if (typeof mod.createDocumentTemplateRegistrations !== "function") {
     return;
   }
@@ -131,7 +158,7 @@ const registerThemeModule = async (packageDir: string, packageName: string): Pro
   if (!existsSync(modulePath)) {
     return;
   }
-  const mod = await import(modulePath);
+  const mod = await import(hotImportPath(modulePath));
   if (typeof mod.createThemeRegistrations !== "function") {
     return;
   }
@@ -152,12 +179,20 @@ const registerEnterpriseContextModule = async (
   if (!existsSync(modulePath)) {
     return;
   }
-  const mod = await import(modulePath);
+  const mod = await import(hotImportPath(modulePath));
   if (typeof mod.createEnterpriseContextRegistrations !== "function") {
     return;
   }
   const registrations = mod.createEnterpriseContextRegistrations();
   for (const registration of registrations) {
+    const tier = registration.type;
+    const hotLoadState = registration.hotLoadState ?? "idle";
+    if (!isTenancyTier(tier) || !isHotLoadState(hotLoadState)) {
+      continue;
+    }
+    if (!isEnterpriseTenancyHotLoadAllowed(tier, hotLoadState)) {
+      continue;
+    }
     gooseWordContributionSurfaces.enterpriseContext.register({
       ...registration,
       extensionId: registration.extensionId ?? packageName,
@@ -165,18 +200,23 @@ const registerEnterpriseContextModule = async (
   }
 };
 
-const mountElysiaPluginModule = async (app: RouteHost, packageDir: string): Promise<void> => {
+const mountElysiaPluginModule = async (packageName: string, packageDir: string): Promise<void> => {
   const modulePath = join(packageDir, "dist/bao-extensions/elysia-plugin.js");
   if (!existsSync(modulePath)) {
     return;
   }
-  const mod = await import(modulePath);
+  const mod = await import(hotImportPath(modulePath));
   if (typeof mod.default === "function") {
-    app.use(mod.default);
+    const pluginApp = createPluginRouteApp();
+    mod.default(pluginApp);
+    registerPluginRouteApp(packageName, pluginApp);
   }
 };
 
-export const mountPluginsFromDirectory = async (app: RouteHost, rootDir: string): Promise<void> => {
+export const mountPluginsFromDirectory = async (
+  _app: RouteHost,
+  rootDir: string,
+): Promise<void> => {
   if (!existsSync(rootDir)) {
     return;
   }
@@ -197,18 +237,26 @@ export const mountPluginsFromDirectory = async (app: RouteHost, rootDir: string)
     if (manifest === null) {
       continue;
     }
+    if (!isPluginEnabled(manifest.id)) {
+      continue;
+    }
     await registerSettingsTabModule(packageDir, manifest.id);
     await registerDocumentTemplateModule(packageDir, manifest.id);
     await registerThemeModule(packageDir, manifest.id);
     await registerEnterpriseContextModule(packageDir, manifest.id);
     if (manifest.targets.includes("elysia-plugin")) {
-      await mountElysiaPluginModule(app, packageDir);
+      await mountElysiaPluginModule(manifest.id, packageDir);
     }
+    await installNativeMobileShellFromPackage(packageDir);
   }
 };
 
 export const rescanAndMount = async (app: RouteHost): Promise<readonly InstalledPluginRow[]> => {
+  clearGooseWordContributionSurfaces();
+  clearPluginRoutes();
   ensurePluginDirectory();
+  getGooseWordInstallHandlerRegistry();
+  await installNativeMobileShellFromPackage(gooseWordNativeShellBaoDir);
   await mountPluginsFromDirectory(app, gooseWordBaoPluginsDir);
   await mountPluginsFromDirectory(app, devPluginsDir());
   return listInstalledPlugins();

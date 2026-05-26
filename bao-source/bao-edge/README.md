@@ -1,9 +1,14 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/bao-edge
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-This workbench is the front door turnstile. It terminates TLS, applies edge policy, and forwards clean requests to inner factory floors.
+This crate is the mailroom's front door turnstile. It checks IDs, stamps requests, and sends them to the right desk inside -- no one gets in without passing through here.
 
 ## Architecture
 
@@ -28,43 +33,21 @@ sequenceDiagram
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/bao-edge
 
-Standalone Baohaus package. Catalog identity `bao-edge`. Source at `bao-source/bao-edge`. Publishes to `baohaus/bao-edge`. Canonical archive: `bao-source/bao-edge/dist/bao/bao-edge.bao`.
+Standalone package in the Baohaus monorepo.
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/bao-edge` |
-| Catalog id | `bao-edge` |
-| Source path | `bao-source/bao-edge` |
-| OCI repository | `baohaus/bao-edge` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/bao-edge`.
 
 ## Public Pieces
 
-`.`, `./package-descriptor`, `./services/bao-install/bao-install-config.service`, `./services/bao-install/bao-install-validator.service`, `./services/bao-install/bao-install.plugin`, `./services/bao-install/bao-manifest-paths.service`, `./services/bao-install/bao-manifest-trust.service`, `./services/bao-install/bao-target-handler-registry`, `./services/bao-install/target-handlers/ai-model.handler`, `./services/bao-install/target-handlers/bao-package.handler`, `./services/bao-install/target-handlers/bao-runtime-workload.handler`, `./services/bao-install/target-handlers/baodown-flow.handler`, `./services/bao-install/target-handlers/baodown-node.handler`, `./services/bao-install/target-handlers/better-auth-extension.handler`, `./services/bao-install/target-handlers/bun-plugin.handler`, `./services/bao-install/target-handlers/bunbuddy-contract.handler`, `./services/bao-install/target-handlers/config-overlay.handler`, `./services/bao-install/target-handlers/elysia-plugin.handler`, plus 9 more.
+`.`, `./package-descriptor`, `./services/bao-install/bao-install-config.service`, `./services/bao-install/bao-install-validator.service`, `./services/bao-install/bao-install.plugin`, `./services/bao-install/bao-manifest-paths.service`, `./services/bao-install/bao-manifest-trust.service`, `./services/bao-install/bao-target-handler-registry`, `./services/bao-install/target-handlers/ai-model.handler`, `./services/bao-install/target-handlers/bao-package.handler`, `./services/bao-install/target-handlers/bao-runtime-workload.handler`, `./services/bao-install/target-handlers/baodown-flow.handler`, `./services/bao-install/target-handlers/baodown-node.handler`, `./services/bao-install/target-handlers/better-auth-extension.handler`, `./services/bao-install/target-handlers/bun-plugin.handler`, `./services/bao-install/target-handlers/bunbuddy-contract.handler`, `./services/bao-install/target-handlers/config-overlay.handler`, `./services/bao-install/target-handlers/elysia-plugin.handler`, `./services/bao-install/target-handlers/flatbuffer-schema.handler`, `./services/bao-install/target-handlers/hardware-driver.handler`, `./services/bao-install/target-handlers/htmx-extension.handler`, `./services/bao-install/target-handlers/mcp-provider.handler`, `./services/bao-install/target-handlers/oci-image.handler`, `./services/bao-install/target-handlers/prisma-extension.handler`, `./services/bao-install/target-handlers/register-all`, `./services/bao-install/target-handlers/ui-component-kit.handler`, `./services/bao-install/target-handlers/usd-scene.handler`
 
 ## Proof Commands
 
 Run from `bao-source/bao-edge`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/bao-edge` publishes to `baohaus/bao-edge` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -85,24 +68,24 @@ bun run verify
 
 ## Capability
 
-@baohaus/bao-edge is a Baohaus workbench package at `bao-source/bao-edge`.
+@baohaus/bao-edge is a Baohaus .bao crate at `bao-source/bao-edge`.
 
 ## Subpaths
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./package-descriptor` | Package descriptor — typed surface from this workbench |
-| `./services/bao-install/bao-install-config.service` | Services/bao install/bao install config.service — typed surface from this workbench |
-| `./services/bao-install/bao-install-validator.service` | Services/bao install/bao install validator.service — typed surface from this workbench |
-| `./services/bao-install/bao-install.plugin` | Services/bao install/bao install.plugin — typed surface from this workbench |
-| `./services/bao-install/bao-manifest-paths.service` | Services/bao install/bao manifest paths.service — typed surface from this workbench |
-| `./services/bao-install/bao-manifest-trust.service` | Services/bao install/bao manifest trust.service — typed surface from this workbench |
-| `./services/bao-install/bao-target-handler-registry` | Services/bao install/bao target handler registry — typed surface from this workbench |
-| `./services/bao-install/target-handlers/ai-model.handler` | Services/bao install/target handlers/ai model.handler — typed surface from this workbench |
-| `./services/bao-install/target-handlers/bao-package.handler` | Services/bao install/target handlers/bao package.handler — typed surface from this workbench |
-| `./services/bao-install/target-handlers/bao-runtime-workload.handler` | Services/bao install/target handlers/bao runtime workload.handler — typed surface from this workbench |
-| `./services/bao-install/target-handlers/baodown-flow.handler` | Services/bao install/target handlers/baodown flow.handler — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./package-descriptor` | Package descriptor — typed surface from this .bao crate |
+| `./services/bao-install/bao-install-config.service` | Services/bao install/bao install config.service — typed surface from this .bao crate |
+| `./services/bao-install/bao-install-validator.service` | Services/bao install/bao install validator.service — typed surface from this .bao crate |
+| `./services/bao-install/bao-install.plugin` | Services/bao install/bao install.plugin — typed surface from this .bao crate |
+| `./services/bao-install/bao-manifest-paths.service` | Services/bao install/bao manifest paths.service — typed surface from this .bao crate |
+| `./services/bao-install/bao-manifest-trust.service` | Services/bao install/bao manifest trust.service — typed surface from this .bao crate |
+| `./services/bao-install/bao-target-handler-registry` | Services/bao install/bao target handler registry — typed surface from this .bao crate |
+| `./services/bao-install/target-handlers/ai-model.handler` | Services/bao install/target handlers/ai model.handler — typed surface from this .bao crate |
+| `./services/bao-install/target-handlers/bao-package.handler` | Services/bao install/target handlers/bao package.handler — typed surface from this .bao crate |
+| `./services/bao-install/target-handlers/bao-runtime-workload.handler` | Services/bao install/target handlers/bao runtime workload.handler — typed surface from this .bao crate |
+| `./services/bao-install/target-handlers/baodown-flow.handler` | Services/bao install/target handlers/baodown flow.handler — typed surface from this .bao crate |
 | _…_ | _15 more export(s) in package.json_ |
 
 ## Primary symbols
@@ -124,13 +107,13 @@ Catalog id `bao-edge` → OCI `baohaus/bao-edge`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./package-descriptor` | Package descriptor — typed surface from this workbench |
-| `./services/bao-install/bao-install-config.service` | Services/bao install/bao install config.service — typed surface from this workbench |
-| `./services/bao-install/bao-install-validator.service` | Services/bao install/bao install validator.service — typed surface from this workbench |
-| `./services/bao-install/bao-install.plugin` | Services/bao install/bao install.plugin — typed surface from this workbench |
-| `./services/bao-install/bao-manifest-paths.service` | Services/bao install/bao manifest paths.service — typed surface from this workbench |
-| `./services/bao-install/bao-manifest-trust.service` | Services/bao install/bao manifest trust.service — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./package-descriptor` | Package descriptor — typed surface from this .bao crate |
+| `./services/bao-install/bao-install-config.service` | Services/bao install/bao install config.service — typed surface from this .bao crate |
+| `./services/bao-install/bao-install-validator.service` | Services/bao install/bao install validator.service — typed surface from this .bao crate |
+| `./services/bao-install/bao-install.plugin` | Services/bao install/bao install.plugin — typed surface from this .bao crate |
+| `./services/bao-install/bao-manifest-paths.service` | Services/bao install/bao manifest paths.service — typed surface from this .bao crate |
+| `./services/bao-install/bao-manifest-trust.service` | Services/bao install/bao manifest trust.service — typed surface from this .bao crate |
 | `./services/bao-install/bao-target-handler-registry` | Services/bao install/bao target handler registry — .bao install target handlers |
 | `./services/bao-install/target-handlers/ai-model.handler` | Services/bao install/target handlers/ai model.handler — .bao install target handlers |
 | `./services/bao-install/target-handlers/bao-package.handler` | Services/bao install/target handlers/bao package.handler — .bao install target handlers |

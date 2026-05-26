@@ -1,65 +1,49 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/font-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Self-hosted font packages with CSS @font-face generation and vendored woff assets Apps use exports such as `FontFace`, `FontPackage`, `generateFontFaceCSS` from `@baohaus/font-bao`. It is part of the Baohaus .bao factory line.
+This crate is the mailroom's type cabinet. Self-hosted font files and the CSS rules to load them live here so text always shows up in the right typeface.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  producer["@baohaus/font-bao"] --> crate[".font_bao crate"]
-  crate --> consumers["Host apps and benches"]
+  woff["Vendored .woff2 assets"] --> fontbao["font-bao\ngenerateFontFaceCSS"]
+  fontbao --> css["CSS @font-face rules"]
+  css --> browser["Browser rendering\ncrisp text"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Self-hosted font packages with CSS @font-face generation and vendored woff assets; Exported API: FontFace, FontPackage, generateFontFaceCSS, INTER, JETBRAINS_MONO, … | bao-governance.json; bao.lock; catalog row | Other workbench domains; bao-runtime host lifecycle |
+| Self-hosted font packages with CSS @font-face generation and vendored woff assets; Exported API: FontFace, FontPackage, generateFontFaceCSS, INTER, JETBRAINS_MONO, … | Shared @baohaus contracts | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/font-bao
 
-Standalone Baohaus package. Catalog identity `font-bao`. Source at `bao-source/font-bao`. Publishes to `baohaus/font-bao`. Canonical archive: `bao-source/font-bao/dist/bao/font-bao.bao`.
+Self-hosted font packages with CSS @font-face generation and vendored woff assets
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/font-bao` |
-| Catalog id | `font-bao` |
-| Source path | `bao-source/font-bao` |
-| OCI repository | `baohaus/font-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/font-bao`.
 
 ## Public Pieces
 
-`.`, `./manifest`, `./inter`, `./jetbrains-mono`, `./dm-sans`, `./ibm-plex-mono`, `./instrument-serif`, `./playfair-display`, `./syne`.
+`.`, `./dm-sans`, `./ibm-plex-mono`, `./instrument-serif`, `./inter`, `./jetbrains-mono`, `./manifest`, `./playfair-display`, `./syne`
 
 ## Proof Commands
 
 Run from `bao-source/font-bao`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/font-bao` publishes to `baohaus/font-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -86,15 +70,15 @@ Self-hosted font packages with CSS @font-face generation and vendored woff asset
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./manifest` | Manifest — typed surface from this workbench |
-| `./inter` | Inter — typed surface from this workbench |
-| `./jetbrains-mono` | Jetbrains mono — typed surface from this workbench |
-| `./dm-sans` | Dm sans — typed surface from this workbench |
-| `./ibm-plex-mono` | Ibm plex mono — typed surface from this workbench |
-| `./instrument-serif` | Instrument serif — typed surface from this workbench |
-| `./playfair-display` | Playfair display — typed surface from this workbench |
-| `./syne` | Syne — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./manifest` | Manifest — typed surface from this .bao crate |
+| `./inter` | Inter — typed surface from this .bao crate |
+| `./jetbrains-mono` | Jetbrains mono — typed surface from this .bao crate |
+| `./dm-sans` | Dm sans — typed surface from this .bao crate |
+| `./ibm-plex-mono` | Ibm plex mono — typed surface from this .bao crate |
+| `./instrument-serif` | Instrument serif — typed surface from this .bao crate |
+| `./playfair-display` | Playfair display — typed surface from this .bao crate |
+| `./syne` | Syne — typed surface from this .bao crate |
 
 ## Primary symbols
 
@@ -120,15 +104,15 @@ Catalog id `font-bao` → OCI `baohaus/font-bao`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./manifest` | Manifest — typed surface from this workbench |
-| `./inter` | Inter — typed surface from this workbench |
-| `./jetbrains-mono` | Jetbrains mono — typed surface from this workbench |
-| `./dm-sans` | Dm sans — typed surface from this workbench |
-| `./ibm-plex-mono` | Ibm plex mono — typed surface from this workbench |
-| `./instrument-serif` | Instrument serif — typed surface from this workbench |
-| `./playfair-display` | Playfair display — typed surface from this workbench |
-| `./syne` | Syne — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./manifest` | Manifest — typed surface from this .bao crate |
+| `./inter` | Inter — typed surface from this .bao crate |
+| `./jetbrains-mono` | Jetbrains mono — typed surface from this .bao crate |
+| `./dm-sans` | Dm sans — typed surface from this .bao crate |
+| `./ibm-plex-mono` | Ibm plex mono — typed surface from this .bao crate |
+| `./instrument-serif` | Instrument serif — typed surface from this .bao crate |
+| `./playfair-display` | Playfair display — typed surface from this .bao crate |
+| `./syne` | Syne — typed surface from this .bao crate |
 
 ### Symbols
 

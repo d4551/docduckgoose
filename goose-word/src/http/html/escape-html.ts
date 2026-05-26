@@ -13,3 +13,5 @@ export const escapeHtml = (value: string): string => {
   }
   return result;
 };
+
+export const escapeAttr = (value: string): string => escapeHtml(value);

@@ -34,14 +34,14 @@
       "neverOwns": ["Backend persistence", "Package publishing pipeline"]
     },
     "bao-sdk": {
-      "overview": "This workbench teaches hosts how to adopt and retire .bao tiles. Detect, load, activate, suspend, unload — like a conveyor belt manager that never leaves a half-attached part on the line.",
+      "overview": "This .bao crate teaches hosts how to adopt and retire .bao tiles. Detect, load, activate, suspend, unload — like a goose checking each crate on and off the shelf.",
       "mermaid": "stateDiagram-v2\n  [*] --> Detected\n  Detected --> Loaded: load()\n  Loaded --> Active: activate()\n  Active --> Suspended: suspend()\n  Suspended --> Active: resume()\n  Active --> Unloaded: unload()\n  Unloaded --> [*]",
       "owns": [".bao lifecycle state machine", "Host capability contracts"],
       "consumes": ["Registry metadata", "Typed manifest envelopes"],
       "neverOwns": ["Individual extension business logic", "OCI build pipelines"]
     },
     "bao-utils": {
-      "overview": "This workbench is the shared toolbox drawer. Async results, small helpers, and typed utilities live here so no bench smuggles duplicate screwdrivers into their crate.",
+      "overview": "This .bao crate is the shared toolbox drawer. Async results, small helpers, and typed utilities live here so no package smuggles duplicate tools into its crate.",
       "owns": ["Cross-package utilities", "Async-result helpers"],
       "consumes": ["bao-contracts"],
       "neverOwns": ["App routes", "UI components"]
@@ -80,13 +80,13 @@
       "neverOwns": ["Individual MCP server implementations in other repos"]
     },
     "bao-contracts": {
-      "overview": "This workbench is the shared vocabulary book. Routes, envelopes, and capability names are written once here so every app speaks the same factory language.",
+      "overview": "This .bao crate is the shared vocabulary book. Routes, envelopes, and capability names are written once here so every app speaks the same goose-mailroom language.",
       "owns": ["Cross-service contracts", "Shared route and schema identifiers"],
       "consumes": ["bao-schemas where typed"],
       "neverOwns": ["Runtime servers", "UI templates"]
     },
     "bao-schemas": {
-      "overview": "This workbench is the stencil vault for JSON shapes. Validators trace these outlines so bad data never rides the conveyor belt.",
+      "overview": "This .bao crate is the stencil vault for JSON shapes. Validators trace these outlines so bad data never rides in the wrong crate.",
       "owns": ["TypeBox/JSON schemas", "Compile helpers for boundaries"],
       "consumes": ["Spec revisions from bao kit"],
       "neverOwns": ["HTTP handlers", "Database migrations"]
@@ -111,7 +111,7 @@
       "neverOwns": ["Runtime auth decisions", "Registry publishing"]
     },
     "bao-edge": {
-      "overview": "This workbench is the front door turnstile. It terminates TLS, applies edge policy, and forwards clean requests to inner factory floors.",
+      "overview": "This .bao crate is the front door turnstile. It terminates TLS, applies edge policy, and forwards clean requests to inner Goose Word services.",
       "mermaid": "sequenceDiagram\n  participant Browser\n  participant Edge as bao-edge\n  participant Runtime\n  Browser->>Edge: HTTPS\n  Edge->>Runtime: proxied request\n  Runtime-->>Edge: response\n  Edge-->>Browser: HTTPS",
       "owns": ["Edge routing", "TLS termination policy"],
       "consumes": ["auth-bao", "Shared route constants"],

@@ -1,4 +1,5 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { cliError, cliLog } from "./cli-log.ts";
 import { basename, join, resolve } from "node:path";
 import { isPlainObject, type JsonObject, parseJsonSafe } from "@baohaus/bao-json-safe";
 import {
@@ -183,13 +184,13 @@ if (!args.has("--skip-built-entrypoints")) {
 }
 
 if (failures.length > 0) {
-  console.error(`bao:validate failed (${failures.length})`);
+  cliError(`bao:validate failed (${failures.length})`);
   for (const failure of failures) {
-    console.error(`- ${failure}`);
+    cliError(`- ${failure}`);
   }
   process.exit(1);
 }
 
-console.log(
+cliLog(
   `bao:validate ok (${basename(ROOT)} + ${pluginRoots.map((root) => basename(root)).join(", ")}, copy-first, no archives)`,
 );

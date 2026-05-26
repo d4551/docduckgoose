@@ -1,0 +1,525 @@
+{
+  "generatedAt": "2026-05-26T15:34:40.430Z",
+  "packageCount": 51,
+  "write": true,
+  "updated": 51,
+  "skipped": 0,
+  "summary": {
+    "missingReadme": 0,
+    "missingEli5": 0,
+    "missingMermaid": 0,
+    "missingCard": 0
+  },
+  "gaps": [
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao",
+      "sourcePath": "bao",
+      "id": "bao-package-kit",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-config",
+      "sourcePath": "bao-source/bao-config",
+      "id": "bao-config",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-constants",
+      "sourcePath": "bao-source/bao-constants",
+      "id": "bao-constants",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-contracts",
+      "sourcePath": "bao-source/bao-contracts",
+      "id": "bao-contracts",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-core",
+      "sourcePath": "bao-source/bao-core",
+      "id": "bao-core",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-edge",
+      "sourcePath": "bao-source/bao-edge",
+      "id": "bao-edge",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-install-handlers-bao",
+      "sourcePath": "bao-source/bao-install-handlers-bao",
+      "id": "bao-install-handlers-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-json-safe",
+      "sourcePath": "bao-source/bao-json-safe",
+      "id": "bao-json-safe",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-sandbox-spec",
+      "sourcePath": "bao-source/bao-sandbox-spec",
+      "id": "bao-sandbox-spec",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-schemas",
+      "sourcePath": "bao-source/bao-schemas",
+      "id": "bao-schemas",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-sdk",
+      "sourcePath": "bao-source/bao-sdk",
+      "id": "bao-sdk",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-shared",
+      "sourcePath": "bao-source/bao-shared",
+      "id": "bao-shared",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-types",
+      "sourcePath": "bao-source/bao-types",
+      "id": "bao-types",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-utils",
+      "sourcePath": "bao-source/bao-utils",
+      "id": "bao-utils",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/bao-wrapture",
+      "sourcePath": "bao-source/bao-wrapture",
+      "id": "bao-wrapture",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/baobox",
+      "sourcePath": "bao-source/baobox",
+      "id": "baobox",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/baohaus-density-preset-aurora-bao",
+      "sourcePath": "bao-source/baohaus-density-preset-aurora-bao",
+      "id": "baohaus-density-preset-aurora-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/baohaus-design-tokens-aurora-bao",
+      "sourcePath": "bao-source/baohaus-design-tokens-aurora-bao",
+      "id": "baohaus-design-tokens-aurora-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/baohaus-theme-aurora-light-bao",
+      "sourcePath": "bao-source/baohaus-theme-aurora-light-bao",
+      "id": "baohaus-theme-aurora-light-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/contribution-host-bao",
+      "sourcePath": "bao-source/contribution-host-bao",
+      "id": "contribution-host-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/contribution-registry-bao",
+      "sourcePath": "bao-source/contribution-registry-bao",
+      "id": "contribution-registry-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/dayjs-bao",
+      "sourcePath": "bao-source/dayjs-bao",
+      "id": "dayjs-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/ecosystem-events-bao",
+      "sourcePath": "bao-source/ecosystem-events-bao",
+      "id": "ecosystem-events-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/font-bao",
+      "sourcePath": "bao-source/font-bao",
+      "id": "font-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/goose-word-brand-bao",
+      "sourcePath": "bao-source/goose-word-brand-bao",
+      "id": "goose-word-brand-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/goose-word-native-shell-bao",
+      "sourcePath": "bao-source/goose-word-native-shell-bao",
+      "id": "goose-word-native-shell-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/goose-word-ui-bao",
+      "sourcePath": "bao-source/goose-word-ui-bao",
+      "id": "goose-word-ui-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/har-gow-config",
+      "sourcePath": "bao-source/har-gow-config",
+      "id": "har-gow-config",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/html-mantou",
+      "sourcePath": "bao-source/html-mantou",
+      "id": "html-mantou",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/htmx-vendor-bao",
+      "sourcePath": "bao-source/htmx-vendor-bao",
+      "id": "htmx-vendor-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/http-bao",
+      "sourcePath": "bao-source/http-bao",
+      "id": "http-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/json-gyoza",
+      "sourcePath": "bao-source/json-gyoza",
+      "id": "json-gyoza",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/libsql-bao",
+      "sourcePath": "bao-source/libsql-bao",
+      "id": "libsql-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/markdown-bao",
+      "sourcePath": "bao-source/markdown-bao",
+      "id": "markdown-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/otel-api-bao",
+      "sourcePath": "bao-source/otel-api-bao",
+      "id": "otel-api-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/prisma-libsql",
+      "sourcePath": "bao-source/prisma-libsql",
+      "id": "prisma-libsql",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/sanitize-bao",
+      "sourcePath": "bao-source/sanitize-bao",
+      "id": "sanitize-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/soy-view-kit",
+      "sourcePath": "bao-source/soy-view-kit",
+      "id": "soy-view-kit",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/static-bao",
+      "sourcePath": "bao-source/static-bao",
+      "id": "static-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/tailwind-bao",
+      "sourcePath": "bao-source/tailwind-bao",
+      "id": "tailwind-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/tangyuan-i18n",
+      "sourcePath": "bao-source/tangyuan-i18n",
+      "id": "tangyuan-i18n",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/bao-source/yaml-bao",
+      "sourcePath": "bao-source/yaml-bao",
+      "id": "yaml-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/goose-word",
+      "sourcePath": "goose-word",
+      "id": "goose-word",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/goose-word-plugins/bluetooth-keyboard-bao",
+      "sourcePath": "goose-word-plugins/bluetooth-keyboard-bao",
+      "id": "bluetooth-keyboard-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/goose-word-plugins/export-pack-bao",
+      "sourcePath": "goose-word-plugins/export-pack-bao",
+      "id": "export-pack-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/goose-word-plugins/quick-actions-bao",
+      "sourcePath": "goose-word-plugins/quick-actions-bao",
+      "id": "quick-actions-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/goose-word-plugins/spellcheck-bao",
+      "sourcePath": "goose-word-plugins/spellcheck-bao",
+      "id": "spellcheck-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/goose-word-plugins/template-layouts-bao",
+      "sourcePath": "goose-word-plugins/template-layouts-bao",
+      "id": "template-layouts-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/goose-word-plugins/theme-aurora-glass-bao",
+      "sourcePath": "goose-word-plugins/theme-aurora-glass-bao",
+      "id": "theme-aurora-glass-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/goose-word-plugins/usb-keyboard-bao",
+      "sourcePath": "goose-word-plugins/usb-keyboard-bao",
+      "id": "usb-keyboard-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    },
+    {
+      "packageRoot": "/Users/brandon/Downloads/sillygoosebao/goose-word-plugins/writing-insights-bao",
+      "sourcePath": "goose-word-plugins/writing-insights-bao",
+      "id": "writing-insights-bao",
+      "missingReadme": false,
+      "missingEli5": false,
+      "missingMermaid": false,
+      "missingCard": false,
+      "weakEli5": false
+    }
+  ]
+}

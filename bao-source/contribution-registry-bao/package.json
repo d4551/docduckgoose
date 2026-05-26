@@ -96,11 +96,35 @@
       "types": "./dist/ui-asset-pack-validate.d.ts",
       "default": "./dist/ui-asset-pack-validate.js"
     },
+    "./native-mobile-shell": {
+      "bun": "./src/native-mobile-shell.ts",
+      "import": "./dist/native-mobile-shell.js",
+      "types": "./src/native-mobile-shell.ts",
+      "default": "./dist/native-mobile-shell.js"
+    },
+    "./native-mobile-shell-validate": {
+      "bun": "./src/native-mobile-shell-validate.ts",
+      "import": "./dist/native-mobile-shell-validate.js",
+      "types": "./src/native-mobile-shell-validate.ts",
+      "default": "./dist/native-mobile-shell-validate.js"
+    },
+    "./native-mobile-shell-registry": {
+      "bun": "./src/native-mobile-shell-registry.ts",
+      "import": "./dist/native-mobile-shell-registry.js",
+      "types": "./src/native-mobile-shell-registry.ts",
+      "default": "./dist/native-mobile-shell-registry.js"
+    },
     "./types": {
       "bun": "./dist/types.js",
       "import": "./dist/types.js",
       "types": "./dist/types.d.ts",
       "default": "./dist/types.js"
+    },
+    "./enterprise-tenancy": {
+      "bun": "./src/enterprise-tenancy.ts",
+      "import": "./dist/enterprise-tenancy.js",
+      "types": "./src/enterprise-tenancy.ts",
+      "default": "./dist/enterprise-tenancy.js"
     }
   },
   "files": [

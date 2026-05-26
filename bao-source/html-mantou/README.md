@@ -1,70 +1,48 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/html-mantou
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Elysia HTML plugin parity: template responses, JSX-like rendering. Apps use exports such as `element`, `html`, `isHtml` from `@baohaus/html-mantou`.
+This crate is the mailroom's envelope printer. It takes templates and stamps out crisp HTML responses -- like a goose with a very fast printer.
 
 ## Architecture
 
 ```mermaid
-sequenceDiagram
-  participant Client
-  participant html_mantou as @baohaus/html-mantou
-  participant Store
-  Client->>html_mantou: HTTP request
-  html_mantou->>Store: read/write
-  Store-->>html_mantou: result
-  html_mantou-->>Client: response
+flowchart LR
+  template["Template input\nJSX-like elements"] --> mantou["html-mantou\nrender + serialize"]
+  mantou --> response["HTML response\nready to send"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Elysia HTML plugin parity: template responses, JSX-like rendering; Exported API: element, html, isHtml, PACKAGE_NAME, render | bao-governance.json; bao.lock; catalog row | Other workbench domains; bao-runtime host lifecycle |
+| Elysia HTML plugin parity: template responses, JSX-like rendering; Exported API: element, html, isHtml, PACKAGE_NAME, render | Shared @baohaus contracts | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/html-mantou
 
-Standalone Baohaus package. Catalog identity `html-mantou`. Source at `bao-source/html-mantou`. Publishes to `baohaus/html-mantou`. Canonical archive: `bao-source/html-mantou/dist/bao/html-mantou.bao`.
+Elysia HTML plugin parity: template responses, JSX-like rendering
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/html-mantou` |
-| Catalog id | `html-mantou` |
-| Source path | `bao-source/html-mantou` |
-| OCI repository | `baohaus/html-mantou` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/html-mantou`.
 
 ## Public Pieces
 
-`.`.
+`.`
 
 ## Proof Commands
 
 Run from `bao-source/html-mantou`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/html-mantou` publishes to `baohaus/html-mantou` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -91,7 +69,7 @@ Elysia HTML plugin parity: template responses, JSX-like rendering
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
 
 ## Primary symbols
 
@@ -115,7 +93,7 @@ Catalog id `html-mantou` → OCI `baohaus/html-mantou`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
 
 ### Symbols
 

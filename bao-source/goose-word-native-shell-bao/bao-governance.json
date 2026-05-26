@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "goose-word-native-shell-bao",
+  "name": "@baohaus/goose-word-native-shell-bao",
+  "version": "0.1.0",
+  "identity": {
+    "id": "goose-word-native-shell-bao",
+    "packageName": "@baohaus/goose-word-native-shell-bao",
+    "packageVersion": "0.1.0"
+  },
+  "copyFirst": {
+    "required": true,
+    "installRoot": "~/.goose-word/bao",
+    "archivePolicy": "no-prebuilt-archives"
+  },
+  "targets": [
+    {
+      "kind": "native-mobile-shell",
+      "target": "goose-word-android-shell",
+      "platform": "android",
+      "serverMode": "embedded",
+      "loopbackHost": "127.0.0.1",
+      "loopbackPort": 8080,
+      "healthPath": "/api/health",
+      "dataDirEnvKey": "GOOSE_WORD_DATA_DIR",
+      "binaryAssetRef": "android/app/src/main/assets/goose-word-android-arm64",
+      "iconSetRef": "goose-word-brand"
+    },
+    {
+      "kind": "native-mobile-shell",
+      "target": "goose-word-ios-shell",
+      "platform": "ios",
+      "serverMode": "embedded",
+      "loopbackHost": "127.0.0.1",
+      "loopbackPort": 8080,
+      "healthPath": "/api/health",
+      "dataDirEnvKey": "GOOSE_WORD_DATA_DIR",
+      "iconSetRef": "goose-word-brand"
+    }
+  ]
+}

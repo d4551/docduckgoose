@@ -1,33 +1,35 @@
-# DocDuckGoose
+# Goose Word Bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](./bao)
 [![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
 [![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Elysia](https://img.shields.io/badge/server-Elysia-f7c8e0)](https://elysiajs.com/)
 [![Mermaid](https://img.shields.io/badge/docs-Mermaid%20charts-ff3670?logo=mermaid&logoColor=white)](https://mermaid.js.org/)
-[![Goose Mode](https://img.shields.io/badge/goose%20mode-honk%20driven-85c742)](https://github.com/d4551/docduckgoose)
+[![Validation](https://img.shields.io/badge/gates-bao%20validated-0f766e)](./bao)
 
 ## Explain Like I'm Five
 
-Imagine a very silly goose in a tiny librarian hat.
+Imagine a careful goose running a mailroom full of labeled bao crates.
 
-Every time you give the goose a document, the goose waddles it to the right nest:
+Every document, plugin, mobile shell, theme, and shared helper travels in the right crate:
 
-- The **Goose Word** nest lets people write, read, print, speak, and tidy documents.
-- The **Bao** basket wraps up useful tools so the goose can carry them without dropping crumbs.
-- The **plugin pond** lets extra helpers swim over, like spellcheck, export packs, keyboards, quick actions, themes, and writing insights.
+- **Goose Word** is the desk where people write, read, print, speak, and tidy documents.
+- **`.bao` registry and fabric** are the shelf map that tells the goose which crates can load, unload, and hot-swap.
+- **Baohaus packages and plugins** are reusable crates for UI, schemas, install handlers, native shells, keyboards, themes, and writing tools.
 
-So DocDuckGoose is a cozy document workshop where a goose says, "Honk, I know where that goes," and then organizes the whole flock.
+Goose Word Bao is the whole mailroom: the goose never guesses, never keeps duplicate crates, and always asks the `.bao` shelf first.
 
 ## What This Is
 
-DocDuckGoose is a Bun and TypeScript workspace for a local-first document app plus its Baohaus package ecosystem. The repo combines:
+Goose Word Bao is a Bun and TypeScript workspace for a local-first document app plus its Baohaus `.bao` package ecosystem. The repo combines:
 
-| Coop | What lives there | Goose job |
+| Crate | What lives there | Goose job |
 | --- | --- | --- |
-| `goose-word/` | Main Elysia app, routes, document store, editor views, settings, speech, print flows | The goose that serves the documents |
-| `goose-word-plugins/` | Optional capabilities such as spellcheck, exports, keyboard input, themes, and insights | The helpful geese wearing tool belts |
-| `bao/` | Bao package kit for build, validation, governance, manifests, and README generation | The goose with the clipboard |
-| `bao-source/` | Local workspace packages used by the app and package system | The pantry full of shared snacks |
+| `goose-word/` | Main Elysia app, routes, document store, editor views, settings, speech, print flows | Serves documents through shared `.bao` contracts |
+| `goose-word-plugins/` | Optional capabilities such as spellcheck, exports, keyboard input, themes, and insights | Adds focused capabilities through registry-aware packages |
+| `bao/` | Package kit for build, validation, governance, manifests, gates, and README generation | Guards the shelf map and proof commands |
+| `bao-source/` | Shared packages consumed by the app, plugins, native shell, and package kit | Holds reusable crates so logic stays DRY |
+| `bao-packages/` | Catalog source for package cards and publication metadata | Keeps package identity coherent |
 
 ## Quick Start
 
@@ -44,94 +46,66 @@ bun run lint
 bun run lint:fix
 bun run typecheck
 bun run test
-bun run bao:validate
+bun run verify
 bun run bao:build
 ```
 
-## The Big Goose Map
+## `.bao` First Map
 
 ```mermaid
 flowchart TB
-  human["Human with a document idea"] --> browser["Browser"]
-  browser --> app["goose-word Elysia app"]
+  human["Human with document"] --> browser["Browser"]
+  browser --> shell["goose-word shell"]
 
-  subgraph appLayer["Goose Word app"]
-    app --> routes["HTTP routes"]
-    routes --> views["HTML views"]
-    routes --> api["API routes"]
-    api --> docs["Document store"]
-    api --> prefs["User preferences"]
-    api --> speech["Speech service"]
-    views --> editor["Editor"]
-    views --> print["Print view"]
-    views --> settings["Settings"]
+  subgraph baoFirst[".bao first shelf"]
+    catalog["bao-packages catalog"]
+    governance["bao-governance.json"]
+    locks["bao.lock"]
+    registry[".bao registry/fabric"]
   end
 
-  subgraph pluginPond["Plugin pond"]
+  subgraph appLayer["Goose Word app"]
+    shell --> routes["Route constants + HTTP routes"]
+    routes --> views["HTML views"]
+    routes --> api["Shared API layer"]
+    api --> docs["Document store"]
+    api --> prefs[".bao-backed preferences"]
+    api --> speech["Speech service"]
+  end
+
+  subgraph capabilityCrates["Capability crates"]
     spell["spellcheck-bao"]
     exportPack["export-pack-bao"]
     keyboard["usb/bluetooth keyboard bao"]
     insights["writing-insights-bao"]
     theme["theme-aurora-glass-bao"]
+    native["goose-word-native-shell-bao"]
     actions["quick-actions-bao"]
   end
 
-  subgraph baoPantry["Bao workspace pantry"]
-    kit["bao package kit"]
-    source["bao-source packages"]
-    governance["bao-governance.json"]
-    locks["bao.lock files"]
-  end
-
-  app --> pluginPond
-  app --> source
-  pluginPond --> source
-  kit --> governance
-  kit --> locks
-  kit --> pluginPond
-  kit --> source
-
-  docs --> output["Happy saved docs"]
-  print --> paper["Print-ready pages"]
-  speech --> voice["Spoken words"]
+  catalog --> registry
+  governance --> registry
+  locks --> registry
+  registry --> shell
+  registry --> capabilityCrates
+  capabilityCrates --> shell
+  shell --> docs
+  shell --> prefs
 ```
 
-## Document Waddle
+## Hot-Load Lifecycle
 
 ```mermaid
-sequenceDiagram
-  autonumber
-  participant Person as Person
-  participant Browser as Browser
-  participant Goose as goose-word
-  participant Store as doc-store
-  participant Markdown as markdown-render
-  participant Speech as speech-service
-  participant Print as print-view
-
-  Person->>Browser: Opens a document
-  Browser->>Goose: Requests editor or document route
-  Goose->>Store: Fetches document data
-  Store-->>Goose: Returns title, body, and metadata
-  Goose->>Markdown: Renders safe preview content
-  Markdown-->>Goose: HTML ready for the page
-  Goose-->>Browser: Sends editor view
-  Person->>Browser: Edits, saves, prints, or speaks
-
-  alt Save
-    Browser->>Goose: POST document changes
-    Goose->>Store: Persist updated document
-    Store-->>Goose: Saved
-    Goose-->>Browser: Honk, stored
-  else Speak
-    Browser->>Goose: Request speech
-    Goose->>Speech: Prepare speech output
-    Speech-->>Browser: Audio-friendly response
-  else Print
-    Browser->>Goose: Request print route
-    Goose->>Print: Build print layout
-    Print-->>Browser: Clean printable page
-  end
+stateDiagram-v2
+  [*] --> Detect
+  Detect --> Load: registry finds .bao
+  Load --> Register: manifest + capabilities valid
+  Register --> Consume: shell lights up routes, tabs, commands
+  Consume --> HotSwap: new local or remote version
+  HotSwap --> Register: replace active surfaces
+  Consume --> Unload: disconnect package
+  Unload --> Cleanup: remove UI, listeners, state
+  Cleanup --> [*]
 ```
 
 ## Package Flight Pattern
@@ -139,27 +113,18 @@ sequenceDiagram
 ```mermaid
 flowchart LR
   root["root package.json"] --> workspaces["Bun workspaces"]
-
-  workspaces --> gooseWord["@baohaus/goose-word"]
+  workspaces --> app["@baohaus/goose-word"]
   workspaces --> plugins["goose-word-plugins/*"]
-  workspaces --> sourcePackages["bao-source packages"]
+  workspaces --> source["bao-source/*"]
+  workspaces --> kit["@baohaus/bao-package-kit"]
 
-  sourcePackages --> ui["@baohaus/goose-word-ui-bao"]
-  sourcePackages --> md["@baohaus/markdown-bao"]
-  sourcePackages --> sanitize["@baohaus/sanitize-bao"]
-  sourcePackages --> i18n["@baohaus/tangyuan-i18n"]
-  sourcePackages --> theme["@baohaus/baohaus-theme-aurora-light-bao"]
-  sourcePackages --> tokens["@baohaus/baohaus-design-tokens-aurora-bao"]
-
-  ui --> gooseWord
-  md --> gooseWord
-  sanitize --> gooseWord
-  i18n --> gooseWord
-  theme --> gooseWord
-  tokens --> gooseWord
-
-  plugins --> gooseWord
-  plugins --> sourcePackages
+  catalog["bao-packages/bao-packages.json"] --> kit
+  kit --> governance
+  kit --> locks["bao.lock files"]
+  kit --> readmes["generated package README.md"]
+  source --> app
+  plugins --> app
+  source --> plugins
 ```
 
 ## Validation Runway
@@ -171,15 +136,17 @@ stateDiagram-v2
   DependenciesReady --> DevLoop: bun run dev
   DependenciesReady --> Typecheck: bun run typecheck
   DependenciesReady --> Test: bun run test
-  DependenciesReady --> BaoValidate: bun run bao:validate
-  DependenciesReady --> BaoBuild: bun run bao:build
+  DependenciesReady --> BaoGates: bun run --cwd goose-word bao:validate:gates all
+  DependenciesReady --> ReadmeContract: bun run --cwd bao validate:readme-contract
+  DependenciesReady --> Verify: bun run verify
 
   Typecheck --> GreenLight: no TypeScript squawks
   Test --> GreenLight: tests pass
-  BaoValidate --> GreenLight: governance is valid
-  BaoBuild --> GreenLight: packages bundle
+  BaoGates --> GreenLight: hard bans clear
+  ReadmeContract --> GreenLight: ELI5 + Mermaid + badges present
+  Verify --> GreenLight: package proof complete
 
-  GreenLight --> ShipIt: commit the flock
+  GreenLight --> ShipIt: ship verified crates
   ShipIt --> [*]
 ```
 
@@ -189,6 +156,7 @@ stateDiagram-v2
 | --- | --- |
 | `package.json` | Root Bun workspace scripts and package wiring |
 | `bun.lock` | Locked dependency graph for reproducible installs |
+| `bao-packages/bao-packages.json` | Package catalog used by README cards and registry checks |
 | `goose-word/src/http/` | Page and API routes |
 | `goose-word/src/http/html/` | HTML views for editor, settings, print, docs list, and shell |
 | `goose-word/src/services/` | Document storage, rendering, speech, and preferences |
@@ -197,25 +165,27 @@ stateDiagram-v2
 | `goose-word-plugins/` | Installable app extensions |
 | `bao/src/` | Bao package kit source |
 | `bao-source/` | Shared Baohaus packages consumed by app and plugins |
+| `bao-source/goose-word-native-shell-bao/` | iOS/Android native shell package |
 
-## Goose Rules Of The Pond
+## Goose Rules Of The Mailroom
 
-- Keep the main app calm, readable, and document-first.
-- Put reusable flock logic in `bao-source/` packages.
-- Keep plugins small and purposeful so each goose knows its honk.
-- Run tests and Bao validation before releasing anything from the nest.
-- Prefer boring reliability over dramatic wing flapping.
+- `.bao` loads first; registry/fabric owns package lifecycle.
+- Reusable logic goes into `bao-source/` crates, not one-off app code.
+- Plugins stay focused, capability-driven, and removable without stale UI.
+- Tests, README contracts, and Bao gates run before release.
+- No duplicate contracts, route drift, client fetch drift, or unsafe browser storage.
 
 ## Tiny Glossary
 
 | Word | Meaning |
 | --- | --- |
 | Goose Word | The document app |
-| Bao | The package/governance wrapper system |
+| `.bao` | Canonical package/archive source of truth |
+| Registry/fabric | Loader that detects, registers, consumes, unloads, and hot-swaps `.bao` packages |
 | Bao source | Shared local packages |
-| Plugin | An optional helper that adds a focused capability |
-| Honk | Technical term for "the system did the thing" |
+| Plugin | Focused capability crate loaded through the registry-aware path |
+| Native shell | iOS/Android host for Goose Word |
 
 ## License
 
-No license file is included yet. Add one before publishing this pond for public reuse.
+No license file is included yet. Add one before publishing this repository for public reuse.

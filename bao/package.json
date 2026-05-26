@@ -49,9 +49,9 @@
     "validate:readme-contract": "bun run ./scripts/validate-readme-contract.ts"
   },
   "dependencies": {
-    "@baohaus/bao-contracts": "0.1.0",
-    "@baohaus/bao-schemas": "0.1.0",
-    "@baohaus/bao-utils": "0.1.0"
+    "@baohaus/bao-contracts": "file:../bao-source/bao-contracts",
+    "@baohaus/bao-schemas": "file:../bao-source/bao-schemas",
+    "@baohaus/bao-utils": "file:../bao-source/bao-utils"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.14",

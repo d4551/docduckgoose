@@ -1,65 +1,48 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/otel-api-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Bao-namespaced re-export seam for OpenTelemetry primitives (api, sdk-trace-base, instrumentation, core, exporter-trace-otlp-http). Apps use exports such as `PACKAGE_NAME`, `UPSTREAM_PACKAGE` from `@baohaus/otel-api-bao`.
+This crate is the mailroom's tracking stickers. It adds OpenTelemetry labels so every delivery can be traced from start to finish.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  producer["@baohaus/otel-api-bao"] --> crate[".otel_api_bao crate"]
-  crate --> consumers["Host apps and benches"]
+  app["App spans + metrics"] --> otel["otel-api-bao\ntrace + instrument"]
+  otel --> collector["Trace collector\nOTLP / HTTP export"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Bao-namespaced re-export seam for OpenTelemetry primitives (api, sdk-trace-base, instrumentation, core, exporter-trace-otlp-http).; Exported API: PACKAGE_NAME, UPSTREAM_PACKAGE | bao-governance.json; bao.lock; catalog row | Other workbench domains; bao-runtime host lifecycle |
+| Bao-namespaced re-export seam for OpenTelemetry primitives (api, sdk-trace-base, instrumentation, core, exporter-trace-otlp-http).; Exported API: PACKAGE_NAME, UPSTREAM_PACKAGE | Shared @baohaus contracts | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/otel-api-bao
 
-Standalone Baohaus package. Catalog identity `otel-api-bao`. Source at `bao-source/otel-api-bao`. Publishes to `baohaus/otel-api-bao`. Canonical archive: `bao-source/otel-api-bao/dist/bao/otel-api-bao.bao`.
+Bao-namespaced re-export seam for OpenTelemetry primitives (api, sdk-trace-base, instrumentation, core, exporter-trace-otlp-http).
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/otel-api-bao` |
-| Catalog id | `otel-api-bao` |
-| Source path | `bao-source/otel-api-bao` |
-| OCI repository | `baohaus/otel-api-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/otel-api-bao`.
 
 ## Public Pieces
 
-`./baggage`, `./context`, `./core`, `./exporter-trace-otlp-http`, `./instrumentation`, `./sdk-trace`, `./trace`.
+`.`, `./baggage`, `./context`, `./core`, `./exporter-trace-otlp-http`, `./instrumentation`, `./metrics`, `./sdk-trace`, `./trace`
 
 ## Proof Commands
 
 Run from `bao-source/otel-api-bao`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/otel-api-bao` publishes to `baohaus/otel-api-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -86,14 +69,14 @@ Bao-namespaced re-export seam for OpenTelemetry primitives (api, sdk-trace-base,
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./baggage` | Baggage — typed surface from this workbench |
-| `./context` | Context — typed surface from this workbench |
-| `./core` | Core — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./baggage` | Baggage — typed surface from this .bao crate |
+| `./context` | Context — typed surface from this .bao crate |
+| `./core` | Core — typed surface from this .bao crate |
 | `./exporter-trace-otlp-http` | Exporter trace otlp http — HTTP handlers |
-| `./instrumentation` | Instrumentation — typed surface from this workbench |
-| `./sdk-trace` | Sdk trace — typed surface from this workbench |
-| `./trace` | Trace — typed surface from this workbench |
+| `./instrumentation` | Instrumentation — typed surface from this .bao crate |
+| `./sdk-trace` | Sdk trace — typed surface from this .bao crate |
+| `./trace` | Trace — typed surface from this .bao crate |
 
 ## Primary symbols
 
@@ -114,14 +97,14 @@ Catalog id `otel-api-bao` → OCI `baohaus/otel-api-bao`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
-| `./baggage` | Baggage — typed surface from this workbench |
-| `./context` | Context — typed surface from this workbench |
-| `./core` | Core — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
+| `./baggage` | Baggage — typed surface from this .bao crate |
+| `./context` | Context — typed surface from this .bao crate |
+| `./core` | Core — typed surface from this .bao crate |
 | `./exporter-trace-otlp-http` | Exporter trace otlp http — HTTP handlers |
-| `./instrumentation` | Instrumentation — typed surface from this workbench |
-| `./sdk-trace` | Sdk trace — typed surface from this workbench |
-| `./trace` | Trace — typed surface from this workbench |
+| `./instrumentation` | Instrumentation — typed surface from this .bao crate |
+| `./sdk-trace` | Sdk trace — typed surface from this .bao crate |
+| `./trace` | Trace — typed surface from this .bao crate |
 
 ### Symbols
 

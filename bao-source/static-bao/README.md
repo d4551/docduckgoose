@@ -1,70 +1,49 @@
 <!-- BEGIN BAOHAUS README HEADER -->
 # @baohaus/static-bao
 
+[![.bao first](https://img.shields.io/badge/.bao-first-5f3dc4)](../../README.md)
+[![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Package kind](https://img.shields.io/badge/kind-library-0f766e)](./package.json)
+
 ## Explain Like I'm Five
 
-Static file serving with etag, range, mime detection. Apps use exports such as `getMimeType`, `PACKAGE_NAME`, `resolveAssetPath` from `@baohaus/static-bao`.
+This crate is the mailroom's package shelf. It hands out static files -- images, scripts, stylesheets -- with proper labels, caching tags, and fast delivery.
 
 ## Architecture
 
 ```mermaid
-sequenceDiagram
-  participant Client
-  participant static_bao as @baohaus/static-bao
-  participant Store
-  Client->>static_bao: HTTP request
-  static_bao->>Store: read/write
-  Store-->>static_bao: result
-  static_bao-->>Client: response
+flowchart LR
+  req["Browser request\n/assets/logo.png"] --> static["static-bao\nfile lookup + mime"]
+  static --> etag["ETag + caching headers"]
+  etag --> res["File response\nfast delivery"]
 ```
 
 ## Scope
 
 | In scope | Dependencies | Out of scope |
 | --- | --- | --- |
-| Static file serving with etag, range, mime detection; Exported API: getMimeType, PACKAGE_NAME, resolveAssetPath, serveStatic, staticPlugin | bao-governance.json; bao.lock; catalog row | Other workbench domains; bao-runtime host lifecycle |
+| Static file serving with etag, range, mime detection; Exported API: getMimeType, PACKAGE_NAME, resolveAssetPath, serveStatic, staticPlugin | Shared @baohaus contracts | Other .bao crate domains; bao-runtime host lifecycle |
 <!-- END BAOHAUS README HEADER -->
 
 <!-- BEGIN BAOHAUS PACKAGE CARD -->
 # @baohaus/static-bao
 
-Standalone Baohaus package. Catalog identity `static-bao`. Source at `bao-source/static-bao`. Publishes to `baohaus/static-bao`. Canonical archive: `bao-source/static-bao/dist/bao/static-bao.bao`.
+Static file serving with etag, range, mime detection
 
-Cross-app contract and the full principles list live at the repo-root [README](../../README.md#principles).
-
-## Package Facts
-
-| Field | Value |
-| --- | --- |
-| Package | `@baohaus/static-bao` |
-| Catalog id | `static-bao` |
-| Source path | `bao-source/static-bao` |
-| OCI repository | `baohaus/static-bao` |
-| Channel | `public` |
-| Visibility | `public` |
-| Kind | `library` |
-| Runtime installable | `yes` |
-| Publish gate | `standard` |
+Source at `bao-source/static-bao`.
 
 ## Public Pieces
 
-`.`.
+`.`
 
 ## Proof Commands
 
 Run from `bao-source/static-bao`:
 
-- `bun run build`
 - `bun run typecheck`
 - `bun run test`
 - `bun run lint`
-- `bun run bao:build`
-- `bun run bao:validate`
-- `bun run verify`
-
-## Publishing Path
-
-`@baohaus/static-bao` publishes to `baohaus/static-bao` through the canonical `.bao` registry distribution path. Local overrides are development-only; installable content resolves through the registry and the checked catalog/governance/lock path.
 <!-- END BAOHAUS PACKAGE CARD -->
 
 <!-- BEGIN BAOHAUS PACKAGE MANUAL -->
@@ -91,7 +70,7 @@ Static file serving with etag, range, mime detection
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
 
 ## Primary symbols
 
@@ -115,7 +94,7 @@ Catalog id `static-bao` → OCI `baohaus/static-bao`.
 
 | Subpath | Purpose |
 | --- | --- |
-| `.` | Main entry — typed surface from this workbench |
+| `.` | Main entry — typed surface from this .bao crate |
 
 ### Symbols
 
