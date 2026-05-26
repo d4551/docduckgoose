@@ -25,6 +25,8 @@ export const routePaths = {
   settingsPlugins: "/settings/plugins",
   settingsPluginTogglePattern: "/settings/plugins/:id/toggle",
   settingsPluginToggle: (id: string) => `/settings/plugins/${encodeURIComponent(id)}/toggle`,
+  settingsPluginRemovePattern: "/settings/plugins/:id/remove",
+  settingsPluginRemove: (id: string) => `/settings/plugins/${encodeURIComponent(id)}/remove`,
   settingsPluginPanelPattern: "/settings/plugins/:id",
   settingsPluginPanel: (id: string) => `/settings/plugins/${id}`,
   settingsTabPattern: "/settings/tabs/:id",
@@ -78,6 +80,8 @@ export const settingsPath = routePaths.settings;
 export const settingsPluginsPath = routePaths.settingsPlugins;
 export const settingsPluginTogglePath = routePaths.settingsPluginTogglePattern;
 export const settingsPluginToggle = routePaths.settingsPluginToggle;
+export const settingsPluginRemovePath = routePaths.settingsPluginRemovePattern;
+export const settingsPluginRemove = routePaths.settingsPluginRemove;
 export const settingsEnterpriseActivatePath = routePaths.settingsEnterpriseActivatePattern;
 export const settingsEnterpriseActivate = routePaths.settingsEnterpriseActivate;
 export const dockNavFragmentPath = routePaths.dockNavFragment;
@@ -134,6 +138,8 @@ export const ROUTES = {
     plugins: routePaths.settingsPlugins,
     pluginTogglePattern: routePaths.settingsPluginTogglePattern,
     pluginToggle: routePaths.settingsPluginToggle,
+    pluginRemovePattern: routePaths.settingsPluginRemovePattern,
+    pluginRemove: routePaths.settingsPluginRemove,
     pluginPanelPattern: routePaths.settingsPluginPanelPattern,
     pluginPanel: routePaths.settingsPluginPanel,
     tabPattern: routePaths.settingsTabPattern,

@@ -153,24 +153,6 @@ html[data-gw-editor-font="syne"] {
   gap: var(--bao-aurora-space-2);
 }
 
-.navbar.gw-topbar .navbar-start,
-.navbar.gw-topbar .navbar-end {
-  align-items: center;
-  min-height: 0;
-  flex: 0 1 auto;
-}
-
-.navbar.gw-topbar .navbar-start {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.navbar.gw-topbar .navbar-end {
-  flex: 0 0 auto;
-  justify-content: flex-end;
-  margin-inline-start: auto;
-}
-
 .gw-topbar__start .gw-brand {
   line-height: 1.2;
 }

@@ -167,7 +167,7 @@ export const renderPageShell = (options: PageShellOptions): string => {
   <div class="gw-shell-frame mx-auto relative flex min-h-dvh w-full flex-col border-x border-base-300 bg-base-100">
     <span id="global-indicator" class="htmx-indicator loading loading-spinner loading-xs pointer-events-none absolute end-2 top-2 z-50" aria-hidden="true"></span>
     <header class="navbar gw-topbar sticky top-0 shrink-0 border-b border-base-300 bg-base-100/95 z-30">
-      <div class="navbar-start gw-topbar__start gap-2 min-w-0">
+      <div class="flex-1 gw-topbar__start gap-2 min-w-0 flex items-center">
         <span class="gw-goose-chibi tooltip tooltip-bottom" tabindex="0" data-goose-mood="idle" data-tip="${escapeAttr(appTitle)}" aria-label="${escapeAttr(translate(options.locale, "layout.mascot.aria"))}" role="img">
           <span class="gw-goose-shadow" aria-hidden="true"></span>
           <span class="gw-goose-tail" aria-hidden="true"></span>
@@ -183,7 +183,7 @@ export const renderPageShell = (options: PageShellOptions): string => {
         </span>
         <span class="gw-brand gw-handwriting truncate text-sm font-bold">${escapeAttr(appTitle)}</span>
       </div>
-      <div class="navbar-end gw-topbar__end">
+      <div class="flex-none gw-topbar__end flex items-center gap-1">
         <button type="button" class="${resolveTemplateButtonClasses({ variant: "ghost", size: "icon-compact", className: "tooltip tooltip-bottom" })}" data-gw-dock-toggle aria-label="${escapeAttr(dockToggleLabel)}" data-tip="${escapeAttr("Ctrl+Shift+D")}" aria-keyshortcuts="Control+Shift+D" aria-pressed="false">${renderIcon("sidebar-default", { size: "compact", ariaHidden: true })}</button>
         ${renderEnterpriseContextChip(options.locale)}
       </div>

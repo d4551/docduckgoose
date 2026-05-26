@@ -1,9 +1,10 @@
 import { resolveTemplateButtonClasses } from "@baohaus/soy-view-kit/templates/buttons";
 import { renderIcon, renderTierIconForType } from "@baohaus/soy-view-kit/templates/icons";
-import { GOOSE_WORD_PORT } from "../../config/paths.ts";
+import { gooseWordBaoPluginsDir, GOOSE_WORD_PORT } from "../../config/paths.ts";
 import {
   healthApiPath,
   settingsEnterpriseActivate,
+  settingsPluginRemove,
   settingsPluginToggle,
   settingsPluginsPath,
 } from "../../config/routes.ts";
@@ -241,7 +242,7 @@ const renderEnterpriseSection = (locale: LocaleCode, query: SettingsTableQuery):
   </section>`;
 };
 
-const renderPluginsSection = (
+export const renderPluginsSection = (
   locale: LocaleCode,
   plugins: readonly InstalledPluginRow[],
   query: SettingsTableQuery,
@@ -260,8 +261,35 @@ const renderPluginsSection = (
   const disabledLabel = translate(locale, "settings.plugins.disabled");
   const enableLabel = translate(locale, "settings.plugins.enable");
   const disableLabel = translate(locale, "settings.plugins.disable");
+  const removeLabel = translate(locale, "settings.plugins.remove");
+  const removeConfirm = translate(locale, "settings.plugins.remove.confirm");
+  const addHint = translate(locale, "settings.plugins.addHint");
+  const dirLabel = translate(locale, "settings.plugins.directory");
+  const summaryLabel = translate(locale, "settings.plugins.summary", {
+    enabled: String(plugins.filter((p) => p.enabled).length),
+    disabled: String(plugins.filter((p) => !p.enabled).length),
+  });
   const sorted = sortPlugins(plugins, query.pluginsSort, query.pluginsDir);
   const page = paginateSlice(sorted, query.pluginsPage);
+
+  const renderPluginActions = (plugin: InstalledPluginRow): string => {
+    const toggleLabel = plugin.enabled ? disableLabel : enableLabel;
+    const toggleIcon = plugin.enabled ? "alert-success" : "open";
+    const toggleVariant = plugin.enabled ? "error" : "outline";
+    const toggleBtn = `<form class="inline" hx-post="${settingsPluginToggle(plugin.id)}" hx-target="#gw-plugins-section" hx-swap="outerHTML" hx-indicator="#global-indicator">
+      <button type="submit" class="${resolveTemplateButtonClasses({ variant: toggleVariant, size: "compact", className: "gw-plugin-toggle" })}" aria-label="${escapeAttr(toggleLabel)} ${escapeAttr(plugin.id)}">${renderIcon(toggleIcon, { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(toggleLabel)}</span></button>
+    </form>`;
+    const removeBtn = `<div class="gw-delete-confirm">
+      <button type="button" class="${resolveTemplateButtonClasses({ variant: "ghost", size: "compact", className: "gw-plugin-remove-trigger" })}" aria-label="${escapeAttr(removeLabel)} ${escapeAttr(plugin.id)}" onclick="this.parentElement.querySelector('.gw-confirm-popover').hidden=false;this.hidden=true">${renderIcon("delete", { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(removeLabel)}</span></button>
+      <div class="gw-confirm-popover flex items-center gap-2 p-2 border border-base-300 bg-base-100 rounded-lg" hidden>
+        <span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(removeConfirm)}</span>
+        <form class="inline" hx-post="${settingsPluginRemove(plugin.id)}" hx-target="#gw-plugins-section" hx-swap="outerHTML" hx-indicator="#global-indicator">
+          <button type="submit" class="${resolveTemplateButtonClasses({ variant: "error", size: "compact", className: "gw-delete-armed" })}" aria-label="${escapeAttr(removeLabel)} ${escapeAttr(plugin.id)}">${renderIcon("delete", { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(removeLabel)}</span></button>
+        </form>
+      </div>
+    </div>`;
+    return `<div class="flex items-center gap-1">${toggleBtn}${removeBtn}</div>`;
+  };
 
   const tableBody =
     page.total === 0
@@ -269,8 +297,6 @@ const renderPluginsSection = (
       : `<tbody>${page.items
           .map((plugin) => {
             const statusLabel = plugin.enabled ? enabledLabel : disabledLabel;
-            const actionLabel = plugin.enabled ? disableLabel : enableLabel;
-            const actionIcon = plugin.enabled ? "delete" : "open";
             return `<tr class="hover gw-row-enter">
           <th scope="row">
             <div class="flex items-center gap-2">
@@ -282,11 +308,7 @@ const renderPluginsSection = (
           <td><span class="badge badge-outline badge-xs">${escapeHtml(plugin.source)}</span></td>
           <td class="max-w-xs"><span class="truncate ${TABLE_CELL_MONO_CLASS}">${escapeHtml(plugin.targets.join(", "))}</span></td>
           <td><span class="badge ${plugin.enabled ? "badge-success" : "badge-warning"} badge-xs">${escapeHtml(statusLabel)}</span></td>
-          <td>
-            <form hx-post="${settingsPluginToggle(plugin.id)}" hx-target="#gw-main" hx-swap="innerHTML" hx-indicator="#global-indicator">
-              <button type="submit" class="${resolveTemplateButtonClasses({ variant: plugin.enabled ? "error" : "outline", size: "compact", className: "gw-plugin-toggle" })}" aria-label="${escapeAttr(actionLabel)} ${escapeAttr(plugin.id)}">${renderIcon(actionIcon, { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(actionLabel)}</span></button>
-            </form>
-          </td>
+          <td>${renderPluginActions(plugin)}</td>
         </tr>`;
           })
           .join("")}</tbody>`;
@@ -300,7 +322,15 @@ const renderPluginsSection = (
   });
 
   return `<section id="gw-plugins-section" class="gw-settings-section" aria-label="${escapeHtml(pluginsLabel)}">
-    <h2 class="mb-2 ${SECTION_HEADING_CLASS}">${escapeHtml(pluginsLabel)}</h2>
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+      <div>
+        <h2 class="${SECTION_HEADING_CLASS}">${escapeHtml(pluginsLabel)}</h2>
+        <p class="${UI_META_SECONDARY_CLASS}">${escapeHtml(summaryLabel)}</p>
+      </div>
+      <form hx-post="${settingsPluginsPath}" hx-target="#gw-plugins-section" hx-swap="outerHTML" hx-indicator="#global-indicator">
+        <button type="submit" class="${resolveTemplateButtonClasses({ variant: "outline", size: "compact", className: "gw-plugins-reload" })}" aria-label="${escapeAttr(reloadLabel)}">${renderIcon("reload", { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(reloadLabel)}</span></button>
+      </form>
+    </div>
     <div class="gw-table-surface overflow-x-auto" role="region" aria-label="${escapeHtml(tableAria)}" tabindex="0">
       <table class="table table-zebra table-sm table-pin-rows" role="table">
         <thead>
@@ -317,49 +347,9 @@ const renderPluginsSection = (
       </table>
     </div>
     ${pagination}
-    <form class="mt-3" hx-post="${settingsPluginsPath}" hx-target="#gw-main" hx-swap="innerHTML" hx-indicator="#global-indicator">
-      <button type="submit" class="${resolveTemplateButtonClasses({ variant: "outline", size: "compact", className: "gw-plugins-reload" })}" aria-label="${escapeHtml(reloadLabel)}">${renderIcon("reload", { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(reloadLabel)}</span></button>
-    </form>
-  </section>`;
-};
-
-const renderPluginManagementSummary = (
-  locale: LocaleCode,
-  plugins: readonly InstalledPluginRow[],
-): string => {
-  const pluginsLabel = translate(locale, "settings.plugins.title");
-  const reloadLabel = translate(locale, "settings.plugins.reload");
-  const enabledLabel = translate(locale, "settings.plugins.enabled");
-  const disabledLabel = translate(locale, "settings.plugins.disabled");
-  const enableLabel = translate(locale, "settings.plugins.enable");
-  const disableLabel = translate(locale, "settings.plugins.disable");
-  const enabled = plugins.filter((plugin) => plugin.enabled).length;
-  const disabled = plugins.length - enabled;
-  const controls = plugins
-    .map((plugin) => {
-      const actionLabel = plugin.enabled ? disableLabel : enableLabel;
-      const statusLabel = plugin.enabled ? enabledLabel : disabledLabel;
-      const actionIcon = plugin.enabled ? "delete" : "open";
-      return `<form hx-post="${settingsPluginToggle(plugin.id)}" hx-target="#gw-main" hx-swap="innerHTML" hx-indicator="#global-indicator">
-        <button type="submit" class="${resolveTemplateButtonClasses({ variant: plugin.enabled ? "error" : "outline", size: "compact", className: "gw-plugin-toggle" })}" aria-label="${escapeAttr(actionLabel)} ${escapeAttr(plugin.id)}">${renderIcon(actionIcon, { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(actionLabel)} ${escapeHtml(plugin.id)}</span><span class="badge ${plugin.enabled ? "badge-success" : "badge-warning"} badge-xs">${escapeHtml(statusLabel)}</span></button>
-      </form>`;
-    })
-    .join("");
-  return `<section class="gw-settings-section" aria-label="${escapeAttr(pluginsLabel)}">
-    <div class="flex flex-wrap items-center justify-between gap-2">
-      <div>
-        <h2 class="mb-1 ${SECTION_HEADING_CLASS}">${escapeHtml(pluginsLabel)}</h2>
-        <p class="${UI_META_SECONDARY_CLASS}">${escapeHtml(translate(locale, "settings.plugins.summary", { enabled: String(enabled), disabled: String(disabled) }))}</p>
-      </div>
-      <div class="flex flex-wrap gap-2">
-        <a class="${resolveTemplateButtonClasses({ variant: "outline", size: "compact" })}" href="#gw-plugins-section">${renderIcon("plugins", { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(pluginsLabel)}</span></a>
-        <form hx-post="${settingsPluginsPath}" hx-target="#gw-main" hx-swap="innerHTML" hx-indicator="#global-indicator">
-          <button type="submit" class="${resolveTemplateButtonClasses({ variant: "outline", size: "compact" })}" aria-label="${escapeAttr(reloadLabel)}">${renderIcon("reload", { className: "size-4 shrink-0", ariaHidden: true })}<span class="${UI_EMPHASIS_XS_CLASS}">${escapeHtml(reloadLabel)}</span></button>
-        </form>
-      </div>
-    </div>
-    <div class="mt-3 grid gap-2 sm:grid-cols-2" role="group" aria-label="${escapeAttr(pluginsLabel)}">
-      ${controls}
+    <div class="mt-3 flex flex-col gap-1">
+      <p class="${UI_META_SECONDARY_CLASS}"><span class="font-semibold">${escapeHtml(dirLabel)}:</span> <code class="font-mono text-xs select-all">${escapeHtml(gooseWordBaoPluginsDir)}</code></p>
+      <p class="${UI_META_SECONDARY_CLASS}">${escapeHtml(addHint)}</p>
     </div>
   </section>`;
 };
@@ -374,11 +364,10 @@ export const renderSettingsPanel = (
     <section class="gw-panel gw-admin-surface">
       <h1 class="mb-3 ${PAGE_HEADING_CLASS}" data-gw-page-title="${escapeAttr(pageTitle)}">${escapeHtml(translate(locale, "settings.title"))}</h1>
       <div class="space-y-4">
-        ${renderPluginManagementSummary(locale, plugins)}
+        ${renderPluginsSection(locale, plugins, query)}
         ${renderTypographySettingsPanel(locale, getUserPreferences())}
         ${renderDeviceShellSection(locale)}
         ${renderEnterpriseSection(locale, query)}
-        ${renderPluginsSection(locale, plugins, query)}
       </div>
       <div id="gw-settings-panel" class="mt-4"></div>
     </section>`;

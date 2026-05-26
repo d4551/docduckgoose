@@ -112,8 +112,21 @@ describe("renderSettingsPanel admin UX", () => {
     expect(panel).toContain("Disable");
     expect(panel).toContain("/settings/plugins/spellcheck-bao/toggle");
     expect(panel).toContain("0 disabled");
-    expect(panel).toContain('href="#gw-plugins-section"');
     expect(panel).toContain("Disable spellcheck-bao");
+  });
+
+  it("renders plugin remove controls with confirm", () => {
+    expect(panel).toContain("Remove");
+    expect(panel).toContain("/settings/plugins/spellcheck-bao/remove");
+    expect(panel).toContain("gw-delete-confirm");
+    expect(panel).toContain("gw-confirm-popover");
+    expect(panel).toContain("Remove spellcheck-bao");
+  });
+
+  it("shows plugin directory path and add hint", () => {
+    expect(panel).toContain("Plugin directory");
+    expect(panel).toContain("select-all");
+    expect(panel).toContain("Drop a .bao plugin folder here to install.");
   });
 
   it("enterprise activate template uses labeled control in table", () => {

@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync } from "node:fs";
+import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { isPlainObject, parseJsonSafe, readStringField } from "@baohaus/bao-json-safe";
 import type { Elysia } from "elysia";
@@ -249,6 +249,33 @@ export const mountPluginsFromDirectory = async (
     }
     await installNativeMobileShellFromPackage(packageDir);
   }
+};
+
+export const removePluginPackage = (pluginId: string): boolean => {
+  const roots = [gooseWordBaoPluginsDir, devPluginsDir()];
+  for (const rootDir of roots) {
+    if (!existsSync(rootDir)) {
+      continue;
+    }
+    const entries = readdirSync(rootDir, { withFileTypes: true });
+    for (const entry of entries) {
+      if (!entry.isDirectory()) {
+        continue;
+      }
+      const dir = join(rootDir, entry.name);
+      const manifest = readGovernance(dir);
+      if (manifest !== null && manifest.id === pluginId) {
+        const canonical = resolve(dir);
+        const root = resolve(rootDir);
+        if (!canonical.startsWith(root)) {
+          return false;
+        }
+        rmSync(canonical, { recursive: true, force: true });
+        return true;
+      }
+    }
+  }
+  return false;
 };
 
 export const rescanAndMount = async (app: RouteHost): Promise<readonly InstalledPluginRow[]> => {

@@ -4,12 +4,17 @@ import {
   enterpriseContextChipPath,
   enterpriseSwitchPath,
   settingsEnterpriseActivatePath,
+  settingsPluginRemovePath,
   settingsPluginTogglePath,
   settingsPath,
   settingsPluginsPath,
 } from "../../config/routes.ts";
 import { resolveRequestLocale } from "../../i18n/runtime.ts";
-import { listInstalledPlugins, rescanAndMount } from "../../install/bao-mount.service.ts";
+import {
+  listInstalledPlugins,
+  removePluginPackage,
+  rescanAndMount,
+} from "../../install/bao-mount.service.ts";
 import { setActiveEnterpriseContext } from "../../install/contribution-surfaces.ts";
 import { isPluginEnabled, setPluginEnabled } from "../../services/user-prefs.ts";
 import { selectShellOrPanel } from "../htmx-request.ts";
@@ -19,7 +24,11 @@ import {
   DEFAULT_SETTINGS_TABLE_QUERY,
   parseSettingsTableQuery,
 } from "../html/settings-pagination.ts";
-import { renderSettingsPage, renderSettingsPanel } from "../html/settings-view.ts";
+import {
+  renderPluginsSection,
+  renderSettingsPage,
+  renderSettingsPanel,
+} from "../html/settings-view.ts";
 
 type RouteHost = Elysia;
 
@@ -43,7 +52,7 @@ export const registerSettingsRoutes = (app: RouteHost): void => {
     .post(settingsPluginsPath, async ({ request }) => {
       const locale = resolveRequestLocale(request);
       const plugins = await rescanAndMount(app);
-      const html = renderSettingsPanel(locale, plugins, DEFAULT_SETTINGS_TABLE_QUERY);
+      const html = renderPluginsSection(locale, plugins, DEFAULT_SETTINGS_TABLE_QUERY);
       return new Response(html, {
         headers: { "content-type": "text/html; charset=utf-8" },
       });
@@ -56,7 +65,20 @@ export const registerSettingsRoutes = (app: RouteHost): void => {
       }
       setPluginEnabled(rawId, !isPluginEnabled(rawId));
       const plugins = await rescanAndMount(app);
-      const html = renderSettingsPanel(locale, plugins, DEFAULT_SETTINGS_TABLE_QUERY);
+      const html = renderPluginsSection(locale, plugins, DEFAULT_SETTINGS_TABLE_QUERY);
+      return new Response(html, {
+        headers: { "content-type": "text/html; charset=utf-8" },
+      });
+    })
+    .post(settingsPluginRemovePath, async ({ params, request }) => {
+      const locale = resolveRequestLocale(request);
+      const rawId = params.id;
+      if (typeof rawId !== "string" || rawId.length === 0) {
+        return new Response("Bad Request", { status: 400 });
+      }
+      removePluginPackage(rawId);
+      const plugins = await rescanAndMount(app);
+      const html = renderPluginsSection(locale, plugins, DEFAULT_SETTINGS_TABLE_QUERY);
       return new Response(html, {
         headers: { "content-type": "text/html; charset=utf-8" },
       });
