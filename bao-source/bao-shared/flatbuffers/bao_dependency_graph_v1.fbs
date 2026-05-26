@@ -1,0 +1,83 @@
+// .bao dependency graph binary protocol for FlatBuffer transport.
+// Provides DAG resolution payloads for .bao manifest installation planning.
+namespace baohaus.baoinstall.v1;
+
+/// Dependency resolution status.
+enum DependencyStatusV1:ubyte {
+  UNRESOLVED = 0,
+  RESOLVED = 1,
+  CONFLICT = 2,
+  MISSING = 3,
+  CIRCULAR = 4
+}
+
+/// Dependency type (what kind of dependency edge).
+enum DependencyTypeV1:ubyte {
+  REQUIRED = 0,
+  OPTIONAL = 1,
+  PEER = 2,
+  DEV = 3
+}
+
+/// A single node in the dependency graph (one .bao target).
+table DependencyNodeV1 {
+  /// Unique node identifier (target name).
+  id:string (id: 0);
+  /// Human-readable display name.
+  name:string (id: 1);
+  /// Semantic version string.
+  version:string (id: 2);
+  /// Resolution status for this node.
+  status:DependencyStatusV1 = UNRESOLVED (id: 3);
+  /// Number of direct dependencies.
+  dependency_count:uint16 (id: 4);
+  /// Install order (topological sort index).
+  install_order:uint16 (id: 5);
+  /// Estimated install duration in milliseconds.
+  estimated_duration_ms:uint32 (id: 6);
+  /// Error message when status is CONFLICT, MISSING, or CIRCULAR.
+  error:string (id: 7);
+}
+
+/// A directed edge between two nodes (dependency relationship).
+table DependencyEdgeV1 {
+  /// Source node ID (dependent).
+  from_id:string (id: 0);
+  /// Target node ID (dependency).
+  to_id:string (id: 1);
+  /// Dependency type.
+  dep_type:DependencyTypeV1 = REQUIRED (id: 2);
+  /// Version constraint string (e.g., ">=1.2.0 <2.0.0").
+  version_constraint:string (id: 3);
+  /// Whether this edge was satisfied.
+  satisfied:bool = false (id: 4);
+}
+
+/// Complete dependency graph for a .bao manifest install plan.
+table BaoDependencyGraphV1 {
+  /// Manifest name being resolved.
+  manifest_name:string (id: 0);
+  /// Manifest version.
+  manifest_version:string (id: 1);
+  /// All dependency nodes.
+  nodes:[DependencyNodeV1] (id: 2);
+  /// All dependency edges (DAG relationships).
+  edges:[DependencyEdgeV1] (id: 3);
+  /// Total node count.
+  total_nodes:uint16 (id: 4);
+  /// Number of resolved nodes.
+  resolved_nodes:uint16 (id: 5);
+  /// Number of conflict/missing/circular nodes.
+  error_nodes:uint16 (id: 6);
+  /// Whether the entire graph is fully resolved.
+  fully_resolved:bool = false (id: 7);
+  /// Total estimated install duration in milliseconds.
+  total_estimated_duration_ms:uint32 (id: 8);
+  /// Graph resolution correlation ID.
+  correlation_id:string (id: 9);
+  /// Error summary when not fully resolved.
+  error_summary:string (id: 10);
+}
+
+file_identifier "BDG1";
+root_type BaoDependencyGraphV1;

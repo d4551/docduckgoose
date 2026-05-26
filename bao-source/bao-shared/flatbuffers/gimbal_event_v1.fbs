@@ -1,0 +1,14 @@
+// Typed gimbal event for drone realtime transport.
+// Replaces JSON payload for gimbal orientation events.
+namespace baohaus.realtime.v1;
+
+table GimbalEventV1 {
+  pitch:float (id:0);
+  yaw:float (id:1);
+  roll:float (id:2);
+  mode:ubyte (id:3);
+  timestamp:string (id:4);
+}
+
+file_identifier "GIM1";
+root_type GimbalEventV1;

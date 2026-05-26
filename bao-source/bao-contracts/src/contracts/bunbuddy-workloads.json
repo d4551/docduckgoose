@@ -1,0 +1,2553 @@
+{
+  "version": "1.0.0",
+  "bunbuddies": {
+    "basler": {
+      "kind": "basler",
+      "moduleId": "basler-bunbuddy",
+      "serviceName": "basler-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/basler-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/basler-bunbuddy/basler-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/basler-bunbuddy/Containerfile",
+      "ociImage": "baohaus/basler-bunbuddy",
+      "ociTarget": "image.basler-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.basler",
+        "bunbuddyKind": "basler",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "basler-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin", "win32"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": [
+          "Basler bunbuddy runs on Bun/Elysia and uses Python RPC transport only for vendor SDK access.",
+          "Vendor camera access still requires the Basler Pylon SDK on the host OS."
+        ],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "512Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "basler-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "basler-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "basler-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "basler-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "basler-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "basler-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "basler-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "basler-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "basler-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "basler-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "basler-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": [
+        "Basler bunbuddy runs on Bun/Elysia and uses Python RPC transport only for vendor SDK access.",
+        "Vendor camera access still requires the Basler Pylon SDK on the host OS."
+      ],
+      "sandboxTier": "B1"
+    },
+    "ble": {
+      "kind": "ble",
+      "moduleId": "bluetooth-bunbuddy",
+      "serviceName": "ble-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/bluetooth-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/bluetooth-bunbuddy/ble-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/bluetooth-bunbuddy/Containerfile",
+      "ociImage": "baohaus/bluetooth-bunbuddy",
+      "ociTarget": "image.bluetooth-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.ble",
+        "bunbuddyKind": "ble",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "ble-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": [
+          "BLE scanning often requires OS-level permissions (macOS: Bluetooth permission; Linux: BlueZ)."
+        ],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "200m",
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "ble-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "ble-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "ble-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "ble-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "ble-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "ble-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "ble-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "ble-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "ble-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "ble-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "ble-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": [
+        "BLE scanning often requires OS-level permissions (macOS: Bluetooth permission; Linux: BlueZ)."
+      ],
+      "sandboxTier": "B1"
+    },
+    "dimsum": {
+      "kind": "dimsum",
+      "moduleId": "dimsum-bunbuddy",
+      "serviceName": "dimsum-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/dimsum-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/dimsum-bunbuddy/dimsum-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/dimsum-bunbuddy/Containerfile",
+      "ociImage": "baohaus/dimsum-bunbuddy",
+      "ociTarget": "image.dimsum-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.dimsum",
+        "bunbuddyKind": "dimsum",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "dimsum-bunbuddy",
+        "executionMode": "in-cluster",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin", "win32"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": ["Dimsum bunbuddy provides first-party DICOM archive APIs for Baohaus runtimes."],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "200m",
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "dimsum-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "dimsum-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "dimsum-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "dimsum-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "dimsum-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "dimsum-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "dimsum-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "dimsum-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "dimsum-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "dimsum-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "dimsum-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": ["Dimsum bunbuddy provides first-party DICOM archive APIs for Baohaus runtimes."],
+      "sandboxTier": "B1"
+    },
+    "drone": {
+      "kind": "drone",
+      "moduleId": "drone-bunbuddy",
+      "serviceName": "drone-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/drone-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/drone-bunbuddy/drone-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/drone-bunbuddy/Containerfile",
+      "ociImage": "baohaus/drone-bunbuddy",
+      "ociTarget": "image.drone-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.drone",
+        "bunbuddyKind": "drone",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "drone-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin", "win32"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": [
+          "MAVLink/vehicle adapters may require UDP/TCP port access and network permissions."
+        ],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "200m",
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "drone-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "drone-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "drone-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "drone-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "drone-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "drone-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "drone-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "drone-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "drone-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "drone-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "drone-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": [
+        "MAVLink/vehicle adapters may require UDP/TCP port access and network permissions."
+      ],
+      "sandboxTier": "B1"
+    },
+    "gaussian": {
+      "kind": "gaussian",
+      "moduleId": "gaussian-bunbuddy",
+      "serviceName": "gaussian-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/gaussian-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/gaussian-bunbuddy/gaussian-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": "bao-source/bunbuddy-shared",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/gaussian-bunbuddy/Containerfile",
+      "ociImage": "baohaus/gaussian-bunbuddy",
+      "ociTarget": "image.gaussian-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.gaussian",
+        "bunbuddyKind": "gaussian",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "gaussian-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": [
+          "Gaussian bunbuddy requires GPU tooling; ensure gsplat dependencies are installed."
+        ],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "gpu": {
+            "count": 1,
+            "resourceKey": "nvidia.com/gpu"
+          },
+          "limits": {
+            "cpu": "2000m",
+            "memory": "8Gi"
+          },
+          "requests": {
+            "cpu": "250m",
+            "memory": "512Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["app.py"],
+            "runtime": "python"
+          },
+          "start": {
+            "args": ["app.py"],
+            "runtime": "python"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "gaussian-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "gaussian-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "gaussian-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "gaussian-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "gaussian-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "gaussian-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "gaussian-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "gaussian-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "gaussian-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "gaussian-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "gaussian-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": [
+        "Gaussian bunbuddy requires GPU tooling; ensure gsplat dependencies are installed."
+      ],
+      "sandboxTier": "B1"
+    },
+    "industrial": {
+      "kind": "industrial",
+      "moduleId": "industrial-bunbuddy",
+      "serviceName": "industrial-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/industrial-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/industrial-bunbuddy/industrial-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/industrial-bunbuddy/Containerfile",
+      "ociImage": "baohaus/industrial-bunbuddy",
+      "ociTarget": "image.industrial-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.industrial",
+        "bunbuddyKind": "industrial",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "industrial-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin", "win32"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": [
+          "Modbus RTU requires serial permissions; Modbus TCP requires network reachability."
+        ],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "200m",
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "industrial-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "industrial-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "industrial-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "industrial-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "industrial-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "industrial-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "industrial-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "industrial-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "industrial-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "industrial-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "industrial-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": [
+        "Modbus RTU requires serial permissions; Modbus TCP requires network reachability."
+      ],
+      "sandboxTier": "B1"
+    },
+    "iot": {
+      "kind": "iot",
+      "moduleId": "iot-bunbuddy",
+      "serviceName": "iot-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/iot-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/iot-bunbuddy/iot-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/iot-bunbuddy/Containerfile",
+      "ociImage": "baohaus/iot-bunbuddy",
+      "ociTarget": "image.iot-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.iot",
+        "bunbuddyKind": "iot",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "iot-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin", "win32"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": [
+          "IoT boards over USB serial may require permissions; MQTT needs broker connectivity."
+        ],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "200m",
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "iot-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "iot-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "iot-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "iot-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "iot-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "iot-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "iot-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "iot-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "iot-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "iot-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "iot-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": [
+        "IoT boards over USB serial may require permissions; MQTT needs broker connectivity."
+      ],
+      "sandboxTier": "B1"
+    },
+    "lighting": {
+      "kind": "lighting",
+      "moduleId": "lighting-bunbuddy",
+      "serviceName": "lighting-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/lighting-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/lighting-bunbuddy/lighting-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/lighting-bunbuddy/Containerfile",
+      "ociImage": "baohaus/lighting-bunbuddy",
+      "ociTarget": "image.lighting-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.lighting",
+        "bunbuddyKind": "lighting",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "lighting-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin", "win32"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": ["DMX/Art-Net devices are usually configured explicitly (no reliable discovery)."],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "200m",
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "lighting-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "lighting-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "lighting-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "lighting-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "lighting-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "lighting-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "lighting-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "lighting-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "lighting-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "lighting-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "lighting-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": ["DMX/Art-Net devices are usually configured explicitly (no reliable discovery)."],
+      "sandboxTier": "B1"
+    },
+    "perception": {
+      "kind": "perception",
+      "moduleId": "perception-bunbuddy",
+      "serviceName": "perception-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/perception-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/perception-bunbuddy/perception-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/perception-bunbuddy/Containerfile",
+      "ociImage": "baohaus/perception-bunbuddy",
+      "ociTarget": "image.perception-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.perception",
+        "bunbuddyKind": "perception",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "perception-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": ["ROS2 perception pipeline (PCL, vision_msgs, sensor fusion)."],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "1000m",
+            "memory": "2Gi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "perception-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "perception-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "perception-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "perception-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "perception-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "perception-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "perception-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "perception-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "perception-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "perception-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "perception-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": ["ROS2 perception pipeline (PCL, vision_msgs, sensor fusion)."],
+      "sandboxTier": "B1"
+    },
+    "printer": {
+      "kind": "printer",
+      "moduleId": "printer-bunbuddy",
+      "serviceName": "printer-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/printer-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/printer-bunbuddy/printer-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/printer-bunbuddy/Containerfile",
+      "ociImage": "baohaus/printer-bunbuddy",
+      "ociTarget": "image.printer-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.printer",
+        "bunbuddyKind": "printer",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "printer-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin", "win32"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": ["Printer access may require OS driver installation and USB permissions."],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "200m",
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "printer-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "printer-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "printer-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "printer-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "printer-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "printer-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "printer-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "printer-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "printer-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "printer-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "printer-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": ["Printer access may require OS driver installation and USB permissions."],
+      "sandboxTier": "B1"
+    },
+    "robotics": {
+      "kind": "robotics",
+      "moduleId": "robotics-bunbuddy",
+      "serviceName": "robotics-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/robotics-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/robotics-bunbuddy/robotics-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/robotics-bunbuddy/Containerfile",
+      "ociImage": "baohaus/robotics-bunbuddy",
+      "ociTarget": "image.robotics-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.robotics",
+        "bunbuddyKind": "robotics",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "robotics-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": ["Robotics bunbuddy supports simulation and ROS2 native transport control."],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "512Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "robotics-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "robotics-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "robotics-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "robotics-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "robotics-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "robotics-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "robotics-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "robotics-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "robotics-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "robotics-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "robotics-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": ["Robotics bunbuddy supports simulation and ROS2 native transport control."],
+      "sandboxTier": "B1"
+    },
+    "rpa": {
+      "kind": "rpa",
+      "moduleId": "rpa-bunbuddy",
+      "serviceName": "rpa-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/rpa-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/rpa-bunbuddy/rpa-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": "bao-source/bunbuddy-shared",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/rpa-bunbuddy/Containerfile",
+      "ociImage": "baohaus/rpa-bunbuddy",
+      "ociTarget": "image.rpa-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.rpa",
+        "bunbuddyKind": "rpa",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "rpa-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin", "win32"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": [
+          "RPA bunbuddy is Python-based; ensure Robot Framework dependencies are installed."
+        ],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "512Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["main.py"],
+            "runtime": "python"
+          },
+          "start": {
+            "args": ["main.py"],
+            "runtime": "python"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "rpa-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "rpa-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "rpa-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "rpa-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "rpa-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "rpa-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "rpa-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "rpa-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "rpa-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "rpa-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "rpa-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": ["RPA bunbuddy is Python-based; ensure Robot Framework dependencies are installed."],
+      "sandboxTier": "B1"
+    },
+    "scanner": {
+      "kind": "scanner",
+      "moduleId": "scanner-bunbuddy",
+      "serviceName": "scanner-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/scanner-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/scanner-bunbuddy/scanner-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": "bao-source/bunbuddy-shared",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/scanner-bunbuddy/Containerfile",
+      "ociImage": "baohaus/scanner-bunbuddy",
+      "ociTarget": "image.scanner-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.scanner",
+        "bunbuddyKind": "scanner",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "scanner-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin", "win32"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": [
+          "Scanner bunbuddy is Python-based; ensure Python is installed and requirements are available."
+        ],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "512Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["app.py"],
+            "runtime": "python"
+          },
+          "start": {
+            "args": ["app.py"],
+            "runtime": "python"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "scanner-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "scanner-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "scanner-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "scanner-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "scanner-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "scanner-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "scanner-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "scanner-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "scanner-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "scanner-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "scanner-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": [
+        "Scanner bunbuddy is Python-based; ensure Python is installed and requirements are available."
+      ],
+      "sandboxTier": "B1"
+    },
+    "scoutdumpling": {
+      "kind": "scoutdumpling",
+      "moduleId": "scoutdumpling-bunbuddy",
+      "serviceName": "scoutdumpling-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/scoutdumpling-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/scoutdumpling-bunbuddy/scoutdumpling-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/scoutdumpling-bunbuddy/Containerfile",
+      "ociImage": "baohaus/scoutdumpling-bunbuddy",
+      "ociTarget": "image.scoutdumpling-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.scoutdumpling",
+        "bunbuddyKind": "scoutdumpling",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "scoutdumpling-bunbuddy",
+        "executionMode": "in-cluster",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin", "win32"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": [
+          "Scoutdumpling research bunbuddy: web collection, context memory, and research orchestration.",
+          "Playwright is optional; browser automation degrades gracefully if unavailable."
+        ],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "200m",
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "scoutdumpling-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "scoutdumpling-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "scoutdumpling-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "scoutdumpling-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "scoutdumpling-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "scoutdumpling-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "scoutdumpling-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "scoutdumpling-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "scoutdumpling-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "scoutdumpling-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "scoutdumpling-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": [
+        "Scoutdumpling research bunbuddy: web collection, context memory, and research orchestration.",
+        "Playwright is optional; browser automation degrades gracefully if unavailable."
+      ],
+      "sandboxTier": "B0"
+    },
+    "usb": {
+      "kind": "usb",
+      "moduleId": "usb-bunbuddy",
+      "serviceName": "usb-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/usb-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/usb-bunbuddy/usb-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": ".",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/usb-bunbuddy/Containerfile",
+      "ociImage": "baohaus/usb-bunbuddy",
+      "ociTarget": "image.usb-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.usb",
+        "bunbuddyKind": "usb",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "usb-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux", "darwin", "win32"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": [
+          "USB/HID access may require elevated permissions on Linux (udev rules, plugdev group).",
+          "On Windows/macOS, host mode is required for real USB HID access (VM-backed local cluster limitation)."
+        ],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "200m",
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["run", "dev"],
+            "runtime": "bun"
+          },
+          "start": {
+            "args": ["run", "start"],
+            "runtime": "bun"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "usb-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "usb-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "usb-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "usb-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "usb-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "usb-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "usb-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "usb-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "usb-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "usb-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "usb-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": [
+        "USB/HID access may require elevated permissions on Linux (udev rules, plugdev group).",
+        "On Windows/macOS, host mode is required for real USB HID access (VM-backed local cluster limitation)."
+      ],
+      "sandboxTier": "B1"
+    },
+    "vision": {
+      "kind": "vision",
+      "moduleId": "vision-bunbuddy",
+      "serviceName": "vision-bunbuddy",
+      "directory": "bao-source/bunbuddy-shared/src/bunbuddies/vision-bunbuddy",
+      "manifestPath": "bao-source/bunbuddy-shared/artifacts/bunbuddies/vision-bunbuddy/vision-bunbuddy.bao",
+      "contractPath": "bao-source/bao-contracts/src/contracts/bunbuddy-contracts.json",
+      "buildContext": "bao-source/bunbuddy-shared",
+      "containerfile": "bao-source/bunbuddy-shared/src/bunbuddies/vision-bunbuddy/Containerfile",
+      "ociImage": "baohaus/vision-bunbuddy",
+      "ociTarget": "image.vision-bunbuddy",
+      "workload": {
+        "kind": "bao-runtime-workload",
+        "target": "workload.vision",
+        "bunbuddyKind": "vision",
+        "cleanup": {
+          "scope": "tenant-release"
+        },
+        "component": "vision-bunbuddy",
+        "executionMode": "hybrid",
+        "hostArchitectures": ["x64", "arm64"],
+        "hostPlatforms": ["linux"],
+        "imagePlatforms": ["linux/amd64", "linux/arm64"],
+        "network": {
+          "exposure": "cluster-internal"
+        },
+        "notes": [
+          "Vision bunbuddy is Python-based; ensure PyTorch/uvicorn dependencies are installed."
+        ],
+        "providers": ["k0", "k3", "k8"],
+        "resources": {
+          "limits": {
+            "cpu": "2000m",
+            "memory": "4Gi"
+          },
+          "requests": {
+            "cpu": "250m",
+            "memory": "512Mi"
+          }
+        },
+        "runtime": {
+          "dev": {
+            "args": ["app.py"],
+            "runtime": "python"
+          },
+          "start": {
+            "args": ["app.py"],
+            "runtime": "python"
+          }
+        },
+        "scheduling": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "privileged": false
+        },
+        "tenancy": {
+          "isolationMode": "tenant-release",
+          "labelKeys": {
+            "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+            "component": "app.kubernetes.io/component",
+            "environment": "baohaus.ai/environment",
+            "release": "app.kubernetes.io/instance",
+            "tenant": "baohaus.ai/tenant"
+          },
+          "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+          "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+          "sharedControlPlane": false
+        }
+      },
+      "platformTargets": {
+        "baoRuntime": true,
+        "kubernetesDistributions": ["k0", "k3", "k8"]
+      },
+      "tenantRelease": {
+        "isolationMode": "tenant-release",
+        "labelKeys": {
+          "bunbuddyKind": "baohaus.ai/bunbuddy-kind",
+          "component": "app.kubernetes.io/component",
+          "environment": "baohaus.ai/environment",
+          "release": "app.kubernetes.io/instance",
+          "tenant": "baohaus.ai/tenant"
+        },
+        "namespaceTemplate": "baohaus-{{tenant}}-{{environment}}",
+        "releaseNameTemplate": "{{tenant}}-{{environment}}-{{component}}",
+        "sharedControlPlane": false
+      },
+      "ownedResources": [
+        {
+          "kind": "Package",
+          "namespaceScoped": true,
+          "component": "vision-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ServiceAccount",
+          "namespaceScoped": true,
+          "component": "vision-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Role",
+          "namespaceScoped": true,
+          "component": "vision-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "RoleBinding",
+          "namespaceScoped": true,
+          "component": "vision-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "ConfigMap",
+          "namespaceScoped": true,
+          "component": "vision-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Secret",
+          "namespaceScoped": true,
+          "component": "vision-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Service",
+          "namespaceScoped": true,
+          "component": "vision-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "Deployment",
+          "namespaceScoped": true,
+          "component": "vision-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "NetworkPolicy",
+          "namespaceScoped": true,
+          "component": "vision-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "HorizontalPodAutoscaler",
+          "namespaceScoped": true,
+          "component": "vision-bunbuddy",
+          "cleanupScope": "tenant-release"
+        },
+        {
+          "kind": "PodDisruptionBudget",
+          "namespaceScoped": true,
+          "component": "vision-bunbuddy",
+          "cleanupScope": "tenant-release"
+        }
+      ],
+      "notes": [
+        "Vision bunbuddy is Python-based; ensure PyTorch/uvicorn dependencies are installed."
+      ],
+      "sandboxTier": "B1"
+    }
+  }
+}

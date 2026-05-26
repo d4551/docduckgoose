@@ -1,0 +1,21 @@
+<!--
+ Bao Edge logo: gold cube wireframe matching web favicon and brand palette.
+ Copyright 2025 Google LLC
+ Licensed under the Apache License, Version 2.0.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="@color/bao_edge_gold"
+        android:strokeWidth="1.5"
+        android:pathData="M12 4l6 3v6l-6 3-6-3V7z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="@color/bao_edge_gold"
+        android:strokeWidth="1.2"
+        android:pathData="M12 4v12M6 7l6 3 6-3" />
+</vector>

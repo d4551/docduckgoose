@@ -1,0 +1,54 @@
+/*
+ * Aurora density-preset — Apple HIG 2026 aligned.
+ *
+ * Three density profiles selectable via
+ * `[data-bao-ui-density-profile="compact|comfortable|spacious"]`:
+ *
+ *   compact      — info-dense lists, IDE / data-grid surfaces
+ *   comfortable  — default; HIG-aligned 44pt minimum touch target
+ *   spacious     — relaxed reading / dashboard hero surfaces
+ *
+ * Row heights derive from the 4pt grid:
+ *   compact      → 28pt
+ *   comfortable  → 36pt (touch-safe with 8pt internal padding → 44pt hit area)
+ *   spacious     → 48pt
+ *
+ * Control sizes scale proportionally. Internal padding stays on the
+ * 4pt grid so density swaps remain visually consistent with the
+ * paired `baohaus-design-tokens-aurora` spacing scale.
+ */
+
+:where(:root[data-bao-ui-density="baohaus-aurora"]) {
+  /* Default profile = comfortable */
+  --bao-aurora-density-row: 36px;
+  --bao-aurora-density-control-h: 36px;
+  --bao-aurora-density-control-h-sm: 28px;
+  --bao-aurora-density-control-h-lg: 48px;
+  --bao-aurora-density-control-pad-x: 12px;
+  --bao-aurora-density-control-pad-y: 8px;
+  --bao-aurora-density-stack-gap: 12px;
+  --bao-aurora-density-section-gap: 24px;
+  --bao-aurora-density-touch-target: 44px;
+}
+
+:where(:root[data-bao-ui-density="baohaus-aurora"][data-bao-ui-density-profile="compact"]) {
+  --bao-aurora-density-row: 28px;
+  --bao-aurora-density-control-h: 28px;
+  --bao-aurora-density-control-h-sm: 24px;
+  --bao-aurora-density-control-h-lg: 36px;
+  --bao-aurora-density-control-pad-x: 8px;
+  --bao-aurora-density-control-pad-y: 4px;
+  --bao-aurora-density-stack-gap: 8px;
+  --bao-aurora-density-section-gap: 16px;
+}
+
+:where(:root[data-bao-ui-density="baohaus-aurora"][data-bao-ui-density-profile="spacious"]) {
+  --bao-aurora-density-row: 48px;
+  --bao-aurora-density-control-h: 48px;
+  --bao-aurora-density-control-h-sm: 36px;
+  --bao-aurora-density-control-h-lg: 60px;
+  --bao-aurora-density-control-pad-x: 16px;
+  --bao-aurora-density-control-pad-y: 12px;
+  --bao-aurora-density-stack-gap: 16px;
+  --bao-aurora-density-section-gap: 32px;
+}

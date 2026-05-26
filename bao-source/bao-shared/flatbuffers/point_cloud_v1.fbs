@@ -1,0 +1,11 @@
+// Binary point cloud for perception pipelines.
+// Nx3 layout: points[0..2]=x,y,z for vertex 0, points[3..5]=x,y,z for vertex 1, etc.
+namespace baohaus.perception.v1;
+
+table PointCloudV1 {
+  vertexCount:uint32 (id: 0);
+  points:[float] (id: 1);
+}
+
+file_identifier "PCV1";
+root_type PointCloudV1;

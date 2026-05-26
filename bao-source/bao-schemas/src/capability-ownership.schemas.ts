@@ -1,0 +1,130 @@
+/**
+ * Capability ownership schemas for unified ownership mapping.
+ *
+ * Defines TypeBox schemas for grouping capabilities and libraries under
+ * ownership domains with contract metadata.
+ *
+ * @shared/schemas/capability-ownership.ts
+ */
+
+export type {
+  CapabilityOwnershipCoverageRequest,
+  CapabilityOwnershipEntry,
+  CapabilityOwnershipEntryPolicy,
+  CapabilityOwnershipFocusRequest,
+  CapabilityOwnershipKind,
+  CapabilityOwnershipMapRequest,
+  CapabilityOwnershipRefreshRequest,
+  CapabilityOwnershipSource,
+  CapabilityOwnershipStatus,
+  CapabilityOwnershipSummary,
+} from "./capability-ownership-foundation.schemas.ts";
+export {
+  CAPABILITY_OWNERSHIP_KINDS,
+  CAPABILITY_OWNERSHIP_STATUSES,
+  CapabilityOwnershipCoverageRequestSchema,
+  CapabilityOwnershipEntryPolicySchema,
+  CapabilityOwnershipEntrySchema,
+  CapabilityOwnershipFocusRequestSchema,
+  CapabilityOwnershipKindSchema,
+  CapabilityOwnershipMapRequestSchema,
+  CapabilityOwnershipRefreshRequestSchema,
+  CapabilityOwnershipSourceSchema,
+  CapabilityOwnershipStatusSchema,
+  CapabilityOwnershipSummarySchema,
+} from "./capability-ownership-foundation.schemas.ts";
+export type {
+  CapabilityOwnershipCategory,
+  CapabilityOwnershipCategoryMap,
+  CapabilityOwnershipCoverageMap,
+  CapabilityOwnershipCoverageSegment,
+  CapabilityOwnershipFocus,
+  CapabilityOwnershipFocusMap,
+  CapabilityOwnershipHighlights,
+  CapabilityOwnershipMatrix,
+  CapabilityOwnershipMatrixCell,
+  CapabilityOwnershipMatrixRow,
+  CapabilityOwnershipStackEntry,
+  CapabilityOwnershipStackMap,
+  CapabilityOwnershipStackSummary,
+} from "./capability-ownership-layers.schemas.ts";
+export {
+  CapabilityOwnershipCategoryMapSchema,
+  CapabilityOwnershipCategorySchema,
+  CapabilityOwnershipCoverageMapSchema,
+  CapabilityOwnershipCoverageSegmentSchema,
+  CapabilityOwnershipFocusMapSchema,
+  CapabilityOwnershipFocusSchema,
+  CapabilityOwnershipHighlightsSchema,
+  CapabilityOwnershipMatrixCellSchema,
+  CapabilityOwnershipMatrixRowSchema,
+  CapabilityOwnershipMatrixSchema,
+  CapabilityOwnershipStackEntrySchema,
+  CapabilityOwnershipStackMapSchema,
+  CapabilityOwnershipStackSummarySchema,
+} from "./capability-ownership-layers.schemas.ts";
+export type {
+  CapabilityOwnershipCoverageResponse,
+  CapabilityOwnershipDeviceInventoryMetadata,
+  CapabilityOwnershipDeviceInventorySource,
+  CapabilityOwnershipError,
+  CapabilityOwnershipFocusResponse,
+  CapabilityOwnershipMapEntryLimit,
+  CapabilityOwnershipMapLimits,
+  CapabilityOwnershipMapMetadata,
+  CapabilityOwnershipMapResponse,
+  CapabilityOwnershipMapSegmentLimit,
+  CapabilityOwnershipMcpResource,
+  CapabilityOwnershipMcpResourceMetadata,
+  CapabilityOwnershipPolicyGroupSummary,
+  CapabilityOwnershipPolicyStats,
+  CapabilityOwnershipPolicySummary,
+  CapabilityOwnershipRefreshResponse,
+} from "./capability-ownership-messages.schemas.ts";
+export {
+  CAPABILITY_OWNERSHIP_DEVICE_INVENTORY_SOURCES,
+  CapabilityOwnershipCoverageResponseSchema,
+  CapabilityOwnershipDeviceInventoryMetadataSchema,
+  CapabilityOwnershipDeviceInventorySourceSchema,
+  CapabilityOwnershipErrorSchema,
+  CapabilityOwnershipFocusResponseSchema,
+  CapabilityOwnershipMapEntryLimitSchema,
+  CapabilityOwnershipMapLimitsSchema,
+  CapabilityOwnershipMapMetadataSchema,
+  CapabilityOwnershipMapResponseSchema,
+  CapabilityOwnershipMapSegmentLimitSchema,
+  CapabilityOwnershipMcpResourceMetadataSchema,
+  CapabilityOwnershipMcpResourceSchema,
+  CapabilityOwnershipPolicyGroupSummarySchema,
+  CapabilityOwnershipPolicyStatsSchema,
+  CapabilityOwnershipPolicySummarySchema,
+  CapabilityOwnershipRefreshResponseSchema,
+} from "./capability-ownership-messages.schemas.ts";
+export type {
+  CapabilityOwnershipDomain,
+  CapabilityOwnershipGroup,
+  CapabilityOwnershipMcpSurface,
+  CapabilityOwnershipMcpSurfaceSummary,
+  CapabilityOwnershipOwnerMap,
+  CapabilityOwnershipOwnerMapMatrix,
+  CapabilityOwnershipOwnerMapMatrixRow,
+  CapabilityOwnershipOwnerMapSection,
+  CapabilityOwnershipSegment,
+  CapabilityOwnershipSegmentSummary,
+  CapabilityOwnershipSurface,
+  CapabilityOwnershipSurfaceSummary,
+} from "./capability-ownership-views.schemas.ts";
+export {
+  CapabilityOwnershipDomainSchema,
+  CapabilityOwnershipGroupSchema,
+  CapabilityOwnershipMcpSurfaceSchema,
+  CapabilityOwnershipMcpSurfaceSummarySchema,
+  CapabilityOwnershipOwnerMapMatrixRowSchema,
+  CapabilityOwnershipOwnerMapMatrixSchema,
+  CapabilityOwnershipOwnerMapSchema,
+  CapabilityOwnershipOwnerMapSectionSchema,
+  CapabilityOwnershipSegmentSchema,
+  CapabilityOwnershipSegmentSummarySchema,
+  CapabilityOwnershipSurfaceSchema,
+  CapabilityOwnershipSurfaceSummarySchema,
+} from "./capability-ownership-views.schemas.ts";

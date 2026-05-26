@@ -1,0 +1,8 @@
+{
+  "$schema": "../../bao/schemas/bao-lock.schema.json",
+  "schemaVersion": 1,
+  "id": "static-bao",
+  "packageName": "@baohaus/static-bao",
+  "packageVersion": "0.1.0",
+  "resolved": []
+}

@@ -1,0 +1,100 @@
+/*
+ * Aurora design-tokens — Apple HIG 2026 aligned bundle.
+ * Spacing scale: 4pt grid (4/8/12/16/24/32/48/64) per HIG.
+ * Radius scale: continuous-curvature corner radii.
+ * Shadow scale: layered elevations with depth fall-off per HIG depth principle.
+ * Typography: SF-pro-equivalent system font stack with type-scale aligned to HIG.
+ */
+
+:where(:root[data-bao-ui-tokens="baohaus-aurora"]) {
+  /* Spacing — 4pt grid */
+  --bao-aurora-space-1: 0.25rem;
+  --bao-aurora-space-2: 0.5rem;
+  --bao-aurora-space-3: 0.75rem;
+  --bao-aurora-space-4: 1rem;
+  --bao-aurora-space-6: 1.5rem;
+  --bao-aurora-space-8: 2rem;
+  --bao-aurora-space-12: 3rem;
+  --bao-aurora-space-16: 4rem;
+
+  /* Radius — continuous-curvature corners */
+  --bao-aurora-radius-xs: 0.25rem;
+  --bao-aurora-radius-sm: 0.375rem;
+  --bao-aurora-radius-md: 0.625rem;
+  --bao-aurora-radius-lg: 1rem;
+  --bao-aurora-radius-xl: 1.5rem;
+  --bao-aurora-radius-full: 9999px;
+
+  /* Shadow — depth elevations */
+  --bao-aurora-shadow-1: 0 1px 2px oklch(0% 0 0 / 0.06), 0 0 0 1px oklch(0% 0 0 / 0.04);
+  --bao-aurora-shadow-2: 0 2px 6px oklch(0% 0 0 / 0.08), 0 1px 2px oklch(0% 0 0 / 0.04);
+  --bao-aurora-shadow-3: 0 6px 16px oklch(0% 0 0 / 0.1), 0 2px 4px oklch(0% 0 0 / 0.05);
+  --bao-aurora-shadow-4: 0 12px 32px oklch(0% 0 0 / 0.12), 0 4px 8px oklch(0% 0 0 / 0.06);
+  --bao-aurora-shadow-focus: 0 0 0 3px oklch(62% 0.18 200 / 0.4);
+
+  /* Typography — HIG system font stack */
+  --bao-aurora-font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable", "Segoe UI", Roboto,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --bao-aurora-font-mono:
+    ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+
+  --bao-aurora-font-handwriting: "Goose Hand", "Segoe Script", "Bradley Hand", cursive;
+
+  /* Type scale — HIG semantic sizes */
+  --bao-aurora-type-caption: 0.6875rem;
+  --bao-aurora-type-footnote: 0.75rem;
+  --bao-aurora-type-body: 0.875rem;
+  --bao-aurora-type-callout: 1rem;
+  --bao-aurora-type-headline: 1.125rem;
+  --bao-aurora-type-title-3: 1.25rem;
+  --bao-aurora-type-title-2: 1.5rem;
+  --bao-aurora-type-title-1: 2rem;
+  --bao-aurora-type-large-title: 2.5rem;
+
+  /* Type weights — semantic, not numeric */
+  --bao-aurora-weight-regular: 400;
+  --bao-aurora-weight-medium: 500;
+  --bao-aurora-weight-semibold: 600;
+  --bao-aurora-weight-bold: 700;
+
+  /* Line heights */
+  --bao-aurora-leading-tight: 1.2;
+  --bao-aurora-leading-snug: 1.35;
+  --bao-aurora-leading-normal: 1.5;
+  --bao-aurora-leading-relaxed: 1.7;
+
+  /* Letter spacing — HIG-aligned tracking */
+  --bao-aurora-tracking-tight: 0;
+  --bao-aurora-tracking-normal: 0;
+  --bao-aurora-tracking-wide: 0.02em;
+
+  /* Liquid Glass — material tokens */
+  --bao-glass-blur: 7px;
+  --bao-glass-saturate: 1.72;
+  --bao-glass-brightness: 1.1;
+  --bao-glass-tint: oklch(99% 0.004 286);
+  --bao-glass-tint-default: oklch(99% 0.004 286);
+  --bao-glass-tint-default-fallback: #fafafa;
+  --bao-glass-bg: color-mix(in oklch, var(--bao-glass-tint) 62%, transparent);
+  --bao-glass-bg-solid: oklch(99% 0.004 286);
+  --bao-glass-bg-solid-fallback: #fafafa;
+  --bao-glass-border: oklch(100% 0 0 / 0.52);
+  --bao-glass-shadow:
+    0 18px 38px oklch(0% 0 0 / 0.18), 0 2px 8px oklch(0% 0 0 / 0.09),
+    0 1px 0 oklch(100% 0 0 / 0.72) inset, 0 -1px 0 oklch(0% 0 0 / 0.12) inset;
+  --bao-glass-radius: var(--bao-aurora-radius-xl);
+  --bao-glass-content-inset: var(--bao-aurora-space-1);
+  --bao-glass-content-shadow: 0 1px 0 oklch(100% 0 0 / 0.7) inset, 0 8px 18px oklch(0% 0 0 / 0.08);
+  --bao-glass-sheen-opacity: 0.72;
+  --bao-glass-spec-x: 0px;
+  --bao-glass-spec-y: 0px;
+  --bao-glass-spec-opacity: 0.16;
+  --bao-glass-spec-opacity-dark: 0.08;
+  --bao-glass-displacement-scale: 12;
+  --bao-glass-edge-light: oklch(100% 0 0 / 0.62);
+  --bao-glass-edge-shade: oklch(0% 0 0 / 0.16);
+  --bao-glass-focus-glow: oklch(62% 0.18 200 / 0.4);
+  --gw-shell-max-width: 30rem;
+  --gw-main-padding: var(--bao-aurora-space-3);
+}

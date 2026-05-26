@@ -1,0 +1,53 @@
+{
+  "name": "@baohaus/bao-json-safe",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/index.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./json-helpers": {
+      "bun": "./dist/json-helpers.js",
+      "import": "./dist/json-helpers.js",
+      "types": "./dist/json-helpers.d.ts",
+      "default": "./dist/json-helpers.js"
+    },
+    "./parse": {
+      "bun": "./dist/parse.js",
+      "import": "./dist/parse.js",
+      "types": "./dist/parse.d.ts",
+      "default": "./dist/parse.js"
+    },
+    "./package-descriptor": {
+      "bun": "./dist/package-descriptor.js",
+      "import": "./dist/package-descriptor.js",
+      "types": "./dist/package-descriptor.d.ts",
+      "default": "./dist/package-descriptor.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "UNLICENSED",
+  "description": "Non-throwing JSON parser. Pure-TS recursive descent. Returns Result envelopes — no exceptions.",
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

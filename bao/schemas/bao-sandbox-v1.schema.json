@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://baohaus.dev/schemas/bao-sandbox-v1.schema.json",
+  "title": "Baohaus .bao sandbox declaration",
+  "description": "Sandbox capability + execution requirements declared by a .bao archive. Compiled by BaoSandbox into seccomp-BPF, Landlock, cgroup v2, and namespace setup.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tier", "intent", "rootfs", "mounts", "net", "syscalls", "resources"],
+  "properties": {
+    "tier": {
+      "enum": ["B0", "B1", "B2", "B3", "Bw"],
+      "description": "Required minimum BaoSandbox tier. B0 in-process, B1 jail+cgroup, B2 jail+pty+overlay, B3 microVM, Bw wasm."
+    },
+    "intent": {
+      "enum": ["build", "test", "run", "shell"],
+      "description": "Execution intent — drives default policy gates (e.g. shell requires PTY)."
+    },
+    "rootfs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["base"],
+      "properties": {
+        "base": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*:[a-z0-9][a-z0-9.-]*$",
+          "description": "Toolchain base image identifier (name:tag)."
+        },
+        "digest": {
+          "type": ["string", "null"],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "mounts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/mount" }
+    },
+    "net": {
+      "oneOf": [
+        { "$ref": "#/$defs/netNone" },
+        { "$ref": "#/$defs/netLoopback" },
+        { "$ref": "#/$defs/netEgressAllowlist" },
+        { "$ref": "#/$defs/netFull" }
+      ]
+    },
+    "syscalls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["default"],
+      "properties": {
+        "default": { "enum": ["allow", "errno", "kill-process", "log", "trap"] },
+        "errno": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "allow": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "deny": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cpuMilli", "memMiB", "pidLimit"],
+      "properties": {
+        "cpuMilli": { "type": "integer", "minimum": 1 },
+        "memMiB": { "type": "integer", "minimum": 1 },
+        "pidLimit": { "type": "integer", "minimum": 1 },
+        "wallMs": { "type": ["integer", "null"], "minimum": 1 },
+        "ioMaxRbps": { "type": ["integer", "null"], "minimum": 0 },
+        "ioMaxWbps": { "type": ["integer", "null"], "minimum": 0 },
+        "ioMaxRiops": { "type": ["integer", "null"], "minimum": 0 },
+        "ioMaxWiops": { "type": ["integer", "null"], "minimum": 0 },
+        "cpuWeight": { "type": ["integer", "null"], "minimum": 1, "maximum": 10000 },
+        "ioWeight": { "type": ["integer", "null"], "minimum": 1, "maximum": 10000 },
+        "cpusetCpus": { "type": ["string", "null"], "minLength": 1 }
+      }
+    },
+    "landlock": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["abi", "fs"],
+      "properties": {
+        "abi": { "type": "integer", "minimum": 1, "maximum": 32 },
+        "fs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "access"],
+            "properties": {
+              "path": { "type": "string", "pattern": "^/" },
+              "access": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "execute",
+                    "write-file",
+                    "read-file",
+                    "read-dir",
+                    "remove-dir",
+                    "remove-file",
+                    "make-char",
+                    "make-dir",
+                    "make-reg",
+                    "make-sock",
+                    "make-fifo",
+                    "make-block",
+                    "make-sym",
+                    "refer",
+                    "truncate",
+                    "ioctl-dev"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "net": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["port", "access"],
+            "properties": {
+              "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+              "access": {
+                "type": "array",
+                "items": { "enum": ["bind-tcp", "connect-tcp"] }
+              }
+            }
+          }
+        }
+      }
+    },
+    "hostname": {
+      "type": ["string", "null"],
+      "pattern": "^[a-z0-9][a-z0-9-]{0,62}$"
+    },
+    "env": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Z_][A-Z0-9_]*$"
+          },
+          "value": { "type": ["string", "null"] },
+          "fromHost": { "type": ["boolean", "null"] }
+        }
+      }
+    },
+    "entrypoint": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "description": "Module/binary path relative to the extracted rootfs. Bw=.wasm/.cwasm; B2/B3=executable. Optional; spawner falls back to argv[0] when absent."
+    }
+  },
+  "$defs": {
+    "mount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "dst", "mode"],
+      "properties": {
+        "src": { "type": "string", "minLength": 1 },
+        "dst": { "type": "string", "pattern": "^/" },
+        "mode": { "enum": ["ro", "rw"] },
+        "maxMiB": { "type": ["integer", "null"], "minimum": 1 }
+      }
+    },
+    "netNone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": { "mode": { "const": "none" } }
+    },
+    "netLoopback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": { "mode": { "const": "loopback" } }
+    },
+    "netFull": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": { "mode": { "const": "full" } }
+    },
+    "netEgressAllowlist": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "egress"],
+      "properties": {
+        "mode": { "const": "egress-allowlist" },
+        "egress": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["host", "port", "protocol"],
+            "properties": {
+              "host": { "type": "string", "minLength": 1 },
+              "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+              "protocol": { "enum": ["tcp", "udp"] }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+# Copy this file to Android/src/bao-edge.local.properties and load as Gradle properties.
+
+# Optional: force the JVM Gradle itself runs on when your host default is newer
+# than the Android/Gradle toolchain supports.
+# BAO_EDGE_GRADLE_JAVA_HOME=/absolute/path/to/a-supported-jdk
+
+BAO_EDGE_APP_NAME=Bao Edge
+BAO_EDGE_BRAND_TAGLINE=Concierge-grade mobile automation
+BAO_EDGE_APPLICATION_ID=com.baohaus.baoedge
+
+# Deep link scheme for app navigation (e.g., com.baohaus.baoedge://model/task/modelName)
+BAO_EDGE_DEEP_LINK_SCHEME=com.baohaus.baoedge
+
+# Hugging Face OAuth
+BAO_EDGE_HF_CLIENT_ID=
+
+# OAuth redirect scheme for HuggingFace AppAuth (must NOT contain dots)
+# IMPORTANT: This must match the scheme registered with HuggingFace OAuth.
+# If you change BAO_EDGE_DEEP_LINK_SCHEME, update this too (remove dots).
+# Example: com.baohaus.baoedge -> combaohausbaoedge
+BAO_EDGE_HF_REDIRECT_SCHEME=combaohausbaoedge
+BAO_EDGE_HF_REDIRECT_URI=combaohausbaoedge://callback
+
+# Control-plane runtime overrides
+# Loopback values are expanded by the Android runtime for local emulator access.
+# For physical devices, use a reachable LAN/HTTPS host instead of localhost.
+BAO_EDGE_CONTROL_PLANE_BASE_URL=http://127.0.0.1:3310
+BAO_EDGE_CONTROL_PLANE_CONNECT_TIMEOUT_MS=15000
+BAO_EDGE_CONTROL_PLANE_READ_TIMEOUT_MS=30000
+BAO_EDGE_CONTROL_PLANE_POLL_INTERVAL_MS=900
+BAO_EDGE_CONTROL_PLANE_POLL_ATTEMPTS=180
+BAO_EDGE_CONTROL_PLANE_DEFAULT_PULL_TIMEOUT_MS=120000
+# Optional: control-plane model source override when no source registry default is available.
+BAO_EDGE_CONTROL_PLANE_DEFAULT_MODEL_SOURCE=
+BAO_EDGE_CONTROL_PLANE_MODEL_STATE_ID_PREFIX=model-state

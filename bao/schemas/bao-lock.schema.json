@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://baohaus.dev/schemas/bao-lock.schema.json",
+  "title": "Baohaus bao.lock",
+  "description": "Resolved dependency graph for a bao package, locked to OCI digests.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "packageName", "packageVersion", "resolved"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "packageName": {
+      "type": "string",
+      "pattern": "^@baohaus/[a-z0-9][a-z0-9-]*$"
+    },
+    "packageVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
+    },
+    "resolved": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/resolvedDependency"
+      }
+    }
+  },
+  "$defs": {
+    "resolvedDependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version",
+        "ociRepository",
+        "ociDigest",
+        "integrity",
+        "signature",
+        "resolvedFrom"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^@baohaus/[a-z0-9][a-z0-9-]*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
+        },
+        "ociRepository": {
+          "type": "string",
+          "pattern": "^baohaus/[a-z0-9][a-z0-9-]*$"
+        },
+        "ociDigest": {
+          "type": ["string", "null"],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "integrity": {
+          "type": ["string", "null"],
+          "pattern": "^sha(?:256|384|512)-[A-Za-z0-9+/]+=*$"
+        },
+        "signature": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["provider", "bundle"],
+          "properties": {
+            "provider": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bundle": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "resolvedFrom": {
+          "enum": ["oci-registry", "pending-publish"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,916 @@
+{
+  "name": "@baohaus/baobox",
+  "version": "0.1.1",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bunx --bun tsc --project tsconfig.json",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test",
+    "bench": "bun run ./scripts/bench.ts"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "bun": "./dist/index.js",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./cli": {
+      "types": "./dist/cli/index.d.ts",
+      "bun": "./dist/cli/index.js",
+      "import": "./dist/cli/index.js",
+      "default": "./dist/cli/index.js"
+    },
+    "./cli/index": {
+      "types": "./dist/cli/index.d.ts",
+      "bun": "./dist/cli/index.js",
+      "import": "./dist/cli/index.js",
+      "default": "./dist/cli/index.js"
+    },
+    "./cli/migrate": {
+      "types": "./dist/cli/migrate.d.ts",
+      "bun": "./dist/cli/migrate.js",
+      "import": "./dist/cli/migrate.js",
+      "default": "./dist/cli/migrate.js"
+    },
+    "./cli/path": {
+      "types": "./dist/cli/path.d.ts",
+      "bun": "./dist/cli/path.js",
+      "import": "./dist/cli/path.js",
+      "default": "./dist/cli/path.js"
+    },
+    "./cli/report": {
+      "types": "./dist/cli/report.d.ts",
+      "bun": "./dist/cli/report.js",
+      "import": "./dist/cli/report.js",
+      "default": "./dist/cli/report.js"
+    },
+    "./cli/transforms/api-calls": {
+      "types": "./dist/cli/transforms/api-calls.d.ts",
+      "bun": "./dist/cli/transforms/api-calls.js",
+      "import": "./dist/cli/transforms/api-calls.js",
+      "default": "./dist/cli/transforms/api-calls.js"
+    },
+    "./cli/transforms/imports": {
+      "types": "./dist/cli/transforms/imports.d.ts",
+      "bun": "./dist/cli/transforms/imports.js",
+      "import": "./dist/cli/transforms/imports.js",
+      "default": "./dist/cli/transforms/imports.js"
+    },
+    "./interop/typebox": {
+      "types": "./dist/interop/typebox.d.ts",
+      "bun": "./dist/interop/typebox.js",
+      "import": "./dist/interop/typebox.js",
+      "default": "./dist/interop/typebox.js"
+    },
+    "./compile": {
+      "types": "./dist/compile/index.d.ts",
+      "bun": "./dist/compile/index.js",
+      "import": "./dist/compile/index.js",
+      "default": "./dist/compile/index.js"
+    },
+    "./compile/bun-fast-path": {
+      "types": "./dist/compile/bun-fast-path.d.ts",
+      "bun": "./dist/compile/bun-fast-path.js",
+      "import": "./dist/compile/bun-fast-path.js",
+      "default": "./dist/compile/bun-fast-path.js"
+    },
+    "./compile/emit": {
+      "types": "./dist/compile/emit.d.ts",
+      "bun": "./dist/compile/emit.js",
+      "import": "./dist/compile/emit.js",
+      "default": "./dist/compile/emit.js"
+    },
+    "./compile/index": {
+      "types": "./dist/compile/index.d.ts",
+      "bun": "./dist/compile/index.js",
+      "import": "./dist/compile/index.js",
+      "default": "./dist/compile/index.js"
+    },
+    "./elysia": {
+      "types": "./dist/elysia/index.d.ts",
+      "bun": "./dist/elysia/index.js",
+      "import": "./dist/elysia/index.js",
+      "default": "./dist/elysia/index.js"
+    },
+    "./elysia/index": {
+      "types": "./dist/elysia/index.d.ts",
+      "bun": "./dist/elysia/index.js",
+      "import": "./dist/elysia/index.js",
+      "default": "./dist/elysia/index.js"
+    },
+    "./error": {
+      "types": "./dist/error/errors.d.ts",
+      "bun": "./dist/error/errors.js",
+      "import": "./dist/error/errors.js",
+      "default": "./dist/error/errors.js"
+    },
+    "./error/catalog-types": {
+      "types": "./dist/error/catalog-types.d.ts",
+      "bun": "./dist/error/catalog-types.js",
+      "import": "./dist/error/catalog-types.js",
+      "default": "./dist/error/catalog-types.js"
+    },
+    "./error/collector": {
+      "types": "./dist/error/collector.d.ts",
+      "bun": "./dist/error/collector.js",
+      "import": "./dist/error/collector.js",
+      "default": "./dist/error/collector.js"
+    },
+    "./error/collector/advanced": {
+      "types": "./dist/error/collector/advanced.d.ts",
+      "bun": "./dist/error/collector/advanced.js",
+      "import": "./dist/error/collector/advanced.js",
+      "default": "./dist/error/collector/advanced.js"
+    },
+    "./error/collector/collections": {
+      "types": "./dist/error/collector/collections.d.ts",
+      "bun": "./dist/error/collector/collections.js",
+      "import": "./dist/error/collector/collections.js",
+      "default": "./dist/error/collector/collections.js"
+    },
+    "./error/collector/collections-basic": {
+      "types": "./dist/error/collector/collections-basic.d.ts",
+      "bun": "./dist/error/collector/collections-basic.js",
+      "import": "./dist/error/collector/collections-basic.js",
+      "default": "./dist/error/collector/collections-basic.js"
+    },
+    "./error/collector/collections-derived": {
+      "types": "./dist/error/collector/collections-derived.d.ts",
+      "bun": "./dist/error/collector/collections-derived.js",
+      "import": "./dist/error/collector/collections-derived.js",
+      "default": "./dist/error/collector/collections-derived.js"
+    },
+    "./error/collector/collections-parameters": {
+      "types": "./dist/error/collector/collections-parameters.d.ts",
+      "bun": "./dist/error/collector/collections-parameters.js",
+      "import": "./dist/error/collector/collections-parameters.js",
+      "default": "./dist/error/collector/collections-parameters.js"
+    },
+    "./error/collector/primitives": {
+      "types": "./dist/error/collector/primitives.d.ts",
+      "bun": "./dist/error/collector/primitives.js",
+      "import": "./dist/error/collector/primitives.js",
+      "default": "./dist/error/collector/primitives.js"
+    },
+    "./error/collector/shared": {
+      "types": "./dist/error/collector/shared.d.ts",
+      "bun": "./dist/error/collector/shared.js",
+      "import": "./dist/error/collector/shared.js",
+      "default": "./dist/error/collector/shared.js"
+    },
+    "./error/errors": {
+      "types": "./dist/error/errors.d.ts",
+      "bun": "./dist/error/errors.js",
+      "import": "./dist/error/errors.js",
+      "default": "./dist/error/errors.js"
+    },
+    "./error/locales/de": {
+      "types": "./dist/error/locales/de.d.ts",
+      "bun": "./dist/error/locales/de.js",
+      "import": "./dist/error/locales/de.js",
+      "default": "./dist/error/locales/de.js"
+    },
+    "./error/locales/en": {
+      "types": "./dist/error/locales/en.d.ts",
+      "bun": "./dist/error/locales/en.js",
+      "import": "./dist/error/locales/en.js",
+      "default": "./dist/error/locales/en.js"
+    },
+    "./error/locales/es": {
+      "types": "./dist/error/locales/es.d.ts",
+      "bun": "./dist/error/locales/es.js",
+      "import": "./dist/error/locales/es.js",
+      "default": "./dist/error/locales/es.js"
+    },
+    "./error/locales/fr": {
+      "types": "./dist/error/locales/fr.d.ts",
+      "bun": "./dist/error/locales/fr.js",
+      "import": "./dist/error/locales/fr.js",
+      "default": "./dist/error/locales/fr.js"
+    },
+    "./error/locales/ja": {
+      "types": "./dist/error/locales/ja.d.ts",
+      "bun": "./dist/error/locales/ja.js",
+      "import": "./dist/error/locales/ja.js",
+      "default": "./dist/error/locales/ja.js"
+    },
+    "./error/locales/ko": {
+      "types": "./dist/error/locales/ko.d.ts",
+      "bun": "./dist/error/locales/ko.js",
+      "import": "./dist/error/locales/ko.js",
+      "default": "./dist/error/locales/ko.js"
+    },
+    "./error/locales/pt": {
+      "types": "./dist/error/locales/pt.d.ts",
+      "bun": "./dist/error/locales/pt.js",
+      "import": "./dist/error/locales/pt.js",
+      "default": "./dist/error/locales/pt.js"
+    },
+    "./error/locales/shared": {
+      "types": "./dist/error/locales/shared.d.ts",
+      "bun": "./dist/error/locales/shared.js",
+      "import": "./dist/error/locales/shared.js",
+      "default": "./dist/error/locales/shared.js"
+    },
+    "./error/locales/zh": {
+      "types": "./dist/error/locales/zh.d.ts",
+      "bun": "./dist/error/locales/zh.js",
+      "import": "./dist/error/locales/zh.js",
+      "default": "./dist/error/locales/zh.js"
+    },
+    "./error/messages": {
+      "types": "./dist/error/messages.d.ts",
+      "bun": "./dist/error/messages.js",
+      "import": "./dist/error/messages.js",
+      "default": "./dist/error/messages.js"
+    },
+    "./format/format": {
+      "types": "./dist/format/format.d.ts",
+      "bun": "./dist/format/format.js",
+      "import": "./dist/format/format.js",
+      "default": "./dist/format/format.js"
+    },
+    "./guard/guard": {
+      "types": "./dist/guard/guard.d.ts",
+      "bun": "./dist/guard/guard.js",
+      "import": "./dist/guard/guard.js",
+      "default": "./dist/guard/guard.js"
+    },
+    "./locale": {
+      "types": "./dist/locale/index.d.ts",
+      "bun": "./dist/locale/index.js",
+      "import": "./dist/locale/index.js",
+      "default": "./dist/locale/index.js"
+    },
+    "./locale/index": {
+      "types": "./dist/locale/index.d.ts",
+      "bun": "./dist/locale/index.js",
+      "import": "./dist/locale/index.js",
+      "default": "./dist/locale/index.js"
+    },
+    "./package-descriptor": {
+      "types": "./dist/package-descriptor.d.ts",
+      "bun": "./dist/package-descriptor.js",
+      "import": "./dist/package-descriptor.js",
+      "default": "./dist/package-descriptor.js"
+    },
+    "./schema/build": {
+      "types": "./dist/schema/build.d.ts",
+      "bun": "./dist/schema/build.js",
+      "import": "./dist/schema/build.js",
+      "default": "./dist/schema/build.js"
+    },
+    "./schema/check": {
+      "types": "./dist/schema/check.d.ts",
+      "bun": "./dist/schema/check.js",
+      "import": "./dist/schema/check.js",
+      "default": "./dist/schema/check.js"
+    },
+    "./schema/compile": {
+      "types": "./dist/schema/compile.d.ts",
+      "bun": "./dist/schema/compile.js",
+      "import": "./dist/schema/compile.js",
+      "default": "./dist/schema/compile.js"
+    },
+    "./schema/core": {
+      "types": "./dist/schema/core.d.ts",
+      "bun": "./dist/schema/core.js",
+      "import": "./dist/schema/core.js",
+      "default": "./dist/schema/core.js"
+    },
+    "./schema/core-keywords": {
+      "types": "./dist/schema/core-keywords.d.ts",
+      "bun": "./dist/schema/core-keywords.js",
+      "import": "./dist/schema/core-keywords.js",
+      "default": "./dist/schema/core-keywords.js"
+    },
+    "./schema/emitter": {
+      "types": "./dist/schema/emitter.d.ts",
+      "bun": "./dist/schema/emitter.js",
+      "import": "./dist/schema/emitter.js",
+      "default": "./dist/schema/emitter.js"
+    },
+    "./schema/emitter-base": {
+      "types": "./dist/schema/emitter-base.d.ts",
+      "bun": "./dist/schema/emitter-base.js",
+      "import": "./dist/schema/emitter-base.js",
+      "default": "./dist/schema/emitter-base.js"
+    },
+    "./schema/emitter-derived": {
+      "types": "./dist/schema/emitter-derived.d.ts",
+      "bun": "./dist/schema/emitter-derived.js",
+      "import": "./dist/schema/emitter-derived.js",
+      "default": "./dist/schema/emitter-derived.js"
+    },
+    "./schema/emitter-reference": {
+      "types": "./dist/schema/emitter-reference.d.ts",
+      "bun": "./dist/schema/emitter-reference.js",
+      "import": "./dist/schema/emitter-reference.js",
+      "default": "./dist/schema/emitter-reference.js"
+    },
+    "./schema/emitter-special-kinds": {
+      "types": "./dist/schema/emitter-special-kinds.d.ts",
+      "bun": "./dist/schema/emitter-special-kinds.js",
+      "import": "./dist/schema/emitter-special-kinds.js",
+      "default": "./dist/schema/emitter-special-kinds.js"
+    },
+    "./schema/emitter-types": {
+      "types": "./dist/schema/emitter-types.d.ts",
+      "bun": "./dist/schema/emitter-types.js",
+      "import": "./dist/schema/emitter-types.js",
+      "default": "./dist/schema/emitter-types.js"
+    },
+    "./schema/engine": {
+      "types": "./dist/schema/engine.d.ts",
+      "bun": "./dist/schema/engine.js",
+      "import": "./dist/schema/engine.js",
+      "default": "./dist/schema/engine.js"
+    },
+    "./schema/error-collector": {
+      "types": "./dist/schema/error-collector.d.ts",
+      "bun": "./dist/schema/error-collector.js",
+      "import": "./dist/schema/error-collector.js",
+      "default": "./dist/schema/error-collector.js"
+    },
+    "./schema/errors": {
+      "types": "./dist/schema/errors.d.ts",
+      "bun": "./dist/schema/errors.js",
+      "import": "./dist/schema/errors.js",
+      "default": "./dist/schema/errors.js"
+    },
+    "./schema/parse": {
+      "types": "./dist/schema/parse.d.ts",
+      "bun": "./dist/schema/parse.js",
+      "import": "./dist/schema/parse.js",
+      "default": "./dist/schema/parse.js"
+    },
+    "./schema/pointer": {
+      "types": "./dist/schema/pointer.d.ts",
+      "bun": "./dist/schema/pointer.js",
+      "import": "./dist/schema/pointer.js",
+      "default": "./dist/schema/pointer.js"
+    },
+    "./schema/predicates": {
+      "types": "./dist/schema/predicates.d.ts",
+      "bun": "./dist/schema/predicates.js",
+      "import": "./dist/schema/predicates.js",
+      "default": "./dist/schema/predicates.js"
+    },
+    "./schema/resolve": {
+      "types": "./dist/schema/resolve.d.ts",
+      "bun": "./dist/schema/resolve.js",
+      "import": "./dist/schema/resolve.js",
+      "default": "./dist/schema/resolve.js"
+    },
+    "./schema/runtime-keywords": {
+      "types": "./dist/schema/runtime-keywords.d.ts",
+      "bun": "./dist/schema/runtime-keywords.js",
+      "import": "./dist/schema/runtime-keywords.js",
+      "default": "./dist/schema/runtime-keywords.js"
+    },
+    "./schema/shared": {
+      "types": "./dist/schema/shared.d.ts",
+      "bun": "./dist/schema/shared.js",
+      "import": "./dist/schema/shared.js",
+      "default": "./dist/schema/shared.js"
+    },
+    "./script": {
+      "types": "./dist/script/index.d.ts",
+      "bun": "./dist/script/index.js",
+      "import": "./dist/script/index.js",
+      "default": "./dist/script/index.js"
+    },
+    "./script/generic": {
+      "types": "./dist/script/generic.d.ts",
+      "bun": "./dist/script/generic.js",
+      "import": "./dist/script/generic.js",
+      "default": "./dist/script/generic.js"
+    },
+    "./script/index": {
+      "types": "./dist/script/index.d.ts",
+      "bun": "./dist/script/index.js",
+      "import": "./dist/script/index.js",
+      "default": "./dist/script/index.js"
+    },
+    "./script/literals": {
+      "types": "./dist/script/literals.d.ts",
+      "bun": "./dist/script/literals.js",
+      "import": "./dist/script/literals.js",
+      "default": "./dist/script/literals.js"
+    },
+    "./script/shared": {
+      "types": "./dist/script/shared.d.ts",
+      "bun": "./dist/script/shared.js",
+      "import": "./dist/script/shared.js",
+      "default": "./dist/script/shared.js"
+    },
+    "./registries/format": {
+      "types": "./dist/registries/format.d.ts",
+      "bun": "./dist/registries/format.js",
+      "import": "./dist/registries/format.js",
+      "default": "./dist/registries/format.js"
+    },
+    "./registries/policy": {
+      "types": "./dist/registries/policy.d.ts",
+      "bun": "./dist/registries/policy.js",
+      "import": "./dist/registries/policy.js",
+      "default": "./dist/registries/policy.js"
+    },
+    "./registries/settings": {
+      "types": "./dist/registries/settings.d.ts",
+      "bun": "./dist/registries/settings.js",
+      "import": "./dist/registries/settings.js",
+      "default": "./dist/registries/settings.js"
+    },
+    "./registries/type": {
+      "types": "./dist/registries/type.d.ts",
+      "bun": "./dist/registries/type.js",
+      "import": "./dist/registries/type.js",
+      "default": "./dist/registries/type.js"
+    },
+    "./shared/bytes": {
+      "types": "./dist/shared/bytes.d.ts",
+      "bun": "./dist/shared/bytes.js",
+      "import": "./dist/shared/bytes.js",
+      "default": "./dist/shared/bytes.js"
+    },
+    "./shared/format-constants": {
+      "types": "./dist/shared/format-constants.d.ts",
+      "bun": "./dist/shared/format-constants.js",
+      "import": "./dist/shared/format-constants.js",
+      "default": "./dist/shared/format-constants.js"
+    },
+    "./shared/format-validators": {
+      "types": "./dist/shared/format-validators.d.ts",
+      "bun": "./dist/shared/format-validators.js",
+      "import": "./dist/shared/format-validators.js",
+      "default": "./dist/shared/format-validators.js"
+    },
+    "./shared/locale": {
+      "types": "./dist/shared/locale.d.ts",
+      "bun": "./dist/shared/locale.js",
+      "import": "./dist/shared/locale.js",
+      "default": "./dist/shared/locale.js"
+    },
+    "./shared/object-utils": {
+      "types": "./dist/shared/object-utils.d.ts",
+      "bun": "./dist/shared/object-utils.js",
+      "import": "./dist/shared/object-utils.js",
+      "default": "./dist/shared/object-utils.js"
+    },
+    "./shared/regex-json": {
+      "types": "./dist/shared/regex-json.d.ts",
+      "bun": "./dist/shared/regex-json.js",
+      "import": "./dist/shared/regex-json.js",
+      "default": "./dist/shared/regex-json.js"
+    },
+    "./shared/registries": {
+      "types": "./dist/shared/registries.d.ts",
+      "bun": "./dist/shared/registries.js",
+      "import": "./dist/shared/registries.js",
+      "default": "./dist/shared/registries.js"
+    },
+    "./shared/runtime-context": {
+      "types": "./dist/shared/runtime-context.d.ts",
+      "bun": "./dist/shared/runtime-context.js",
+      "import": "./dist/shared/runtime-context.js",
+      "default": "./dist/shared/runtime-context.js"
+    },
+    "./shared/runtime-guards": {
+      "types": "./dist/shared/runtime-guards.d.ts",
+      "bun": "./dist/shared/runtime-guards.js",
+      "import": "./dist/shared/runtime-guards.js",
+      "default": "./dist/shared/runtime-guards.js"
+    },
+    "./shared/schema-access": {
+      "types": "./dist/shared/schema-access.d.ts",
+      "bun": "./dist/shared/schema-access.js",
+      "import": "./dist/shared/schema-access.js",
+      "default": "./dist/shared/schema-access.js"
+    },
+    "./shared/symbols": {
+      "types": "./dist/shared/symbols.d.ts",
+      "bun": "./dist/shared/symbols.js",
+      "import": "./dist/shared/symbols.js",
+      "default": "./dist/shared/symbols.js"
+    },
+    "./shared/url-like": {
+      "types": "./dist/shared/url-like.d.ts",
+      "bun": "./dist/shared/url-like.js",
+      "import": "./dist/shared/url-like.js",
+      "default": "./dist/shared/url-like.js"
+    },
+    "./standard": {
+      "types": "./dist/standard/index.d.ts",
+      "bun": "./dist/standard/index.js",
+      "import": "./dist/standard/index.js",
+      "default": "./dist/standard/index.js"
+    },
+    "./standard/index": {
+      "types": "./dist/standard/index.d.ts",
+      "bun": "./dist/standard/index.js",
+      "import": "./dist/standard/index.js",
+      "default": "./dist/standard/index.js"
+    },
+    "./system/system": {
+      "types": "./dist/system/system.d.ts",
+      "bun": "./dist/system/system.js",
+      "import": "./dist/system/system.js",
+      "default": "./dist/system/system.js"
+    },
+    "./type/actions": {
+      "types": "./dist/type/actions.d.ts",
+      "bun": "./dist/type/actions.js",
+      "import": "./dist/type/actions.js",
+      "default": "./dist/type/actions.js"
+    },
+    "./type/base-types": {
+      "types": "./dist/type/base-types.d.ts",
+      "bun": "./dist/type/base-types.js",
+      "import": "./dist/type/base-types.js",
+      "default": "./dist/type/base-types.js"
+    },
+    "./type/codec-builtins": {
+      "types": "./dist/type/codec-builtins.d.ts",
+      "bun": "./dist/type/codec-builtins.js",
+      "import": "./dist/type/codec-builtins.js",
+      "default": "./dist/type/codec-builtins.js"
+    },
+    "./type/combinator-core": {
+      "types": "./dist/type/combinator-core.d.ts",
+      "bun": "./dist/type/combinator-core.js",
+      "import": "./dist/type/combinator-core.js",
+      "default": "./dist/type/combinator-core.js"
+    },
+    "./type/combinator-functions": {
+      "types": "./dist/type/combinator-functions.d.ts",
+      "bun": "./dist/type/combinator-functions.js",
+      "import": "./dist/type/combinator-functions.js",
+      "default": "./dist/type/combinator-functions.js"
+    },
+    "./type/combinator-objects": {
+      "types": "./dist/type/combinator-objects.d.ts",
+      "bun": "./dist/type/combinator-objects.js",
+      "import": "./dist/type/combinator-objects.js",
+      "default": "./dist/type/combinator-objects.js"
+    },
+    "./type/composite-types": {
+      "types": "./dist/type/composite-types.d.ts",
+      "bun": "./dist/type/composite-types.js",
+      "import": "./dist/type/composite-types.js",
+      "default": "./dist/type/composite-types.js"
+    },
+    "./type/containers": {
+      "types": "./dist/type/containers.d.ts",
+      "bun": "./dist/type/containers.js",
+      "import": "./dist/type/containers.js",
+      "default": "./dist/type/containers.js"
+    },
+    "./type/containers-types": {
+      "types": "./dist/type/containers-types.d.ts",
+      "bun": "./dist/type/containers-types.js",
+      "import": "./dist/type/containers-types.js",
+      "default": "./dist/type/containers-types.js"
+    },
+    "./type/extends": {
+      "types": "./dist/type/extends.d.ts",
+      "bun": "./dist/type/extends.js",
+      "import": "./dist/type/extends.js",
+      "default": "./dist/type/extends.js"
+    },
+    "./type/extensions": {
+      "types": "./dist/type/extensions.d.ts",
+      "bun": "./dist/type/extensions.js",
+      "import": "./dist/type/extensions.js",
+      "default": "./dist/type/extensions.js"
+    },
+    "./type/guards": {
+      "types": "./dist/type/guards.d.ts",
+      "bun": "./dist/type/guards.js",
+      "import": "./dist/type/guards.js",
+      "default": "./dist/type/guards.js"
+    },
+    "./type/higher-order-types": {
+      "types": "./dist/type/higher-order-types.d.ts",
+      "bun": "./dist/type/higher-order-types.js",
+      "import": "./dist/type/higher-order-types.js",
+      "default": "./dist/type/higher-order-types.js"
+    },
+    "./type/instantiation": {
+      "types": "./dist/type/instantiation.d.ts",
+      "bun": "./dist/type/instantiation.js",
+      "import": "./dist/type/instantiation.js",
+      "default": "./dist/type/instantiation.js"
+    },
+    "./type/kind": {
+      "types": "./dist/type/kind.d.ts",
+      "bun": "./dist/type/kind.js",
+      "import": "./dist/type/kind.js",
+      "default": "./dist/type/kind.js"
+    },
+    "./type/narrow-types": {
+      "types": "./dist/type/narrow-types.d.ts",
+      "bun": "./dist/type/narrow-types.js",
+      "import": "./dist/type/narrow-types.js",
+      "default": "./dist/type/narrow-types.js"
+    },
+    "./type/primitives": {
+      "types": "./dist/type/primitives.d.ts",
+      "bun": "./dist/type/primitives.js",
+      "import": "./dist/type/primitives.js",
+      "default": "./dist/type/primitives.js"
+    },
+    "./type/primitives-types": {
+      "types": "./dist/type/primitives-types.d.ts",
+      "bun": "./dist/type/primitives-types.js",
+      "import": "./dist/type/primitives-types.js",
+      "default": "./dist/type/primitives-types.js"
+    },
+    "./type/root-constants": {
+      "types": "./dist/type/root-constants.d.ts",
+      "bun": "./dist/type/root-constants.js",
+      "import": "./dist/type/root-constants.js",
+      "default": "./dist/type/root-constants.js"
+    },
+    "./type/root-cyclic": {
+      "types": "./dist/type/root-cyclic.d.ts",
+      "bun": "./dist/type/root-cyclic.js",
+      "import": "./dist/type/root-cyclic.js",
+      "default": "./dist/type/root-cyclic.js"
+    },
+    "./type/root-deferred": {
+      "types": "./dist/type/root-deferred.d.ts",
+      "bun": "./dist/type/root-deferred.js",
+      "import": "./dist/type/root-deferred.js",
+      "default": "./dist/type/root-deferred.js"
+    },
+    "./type/root-guards": {
+      "types": "./dist/type/root-guards.d.ts",
+      "bun": "./dist/type/root-guards.js",
+      "import": "./dist/type/root-guards.js",
+      "default": "./dist/type/root-guards.js"
+    },
+    "./type/root-helpers": {
+      "types": "./dist/type/root-helpers.d.ts",
+      "bun": "./dist/type/root-helpers.js",
+      "import": "./dist/type/root-helpers.js",
+      "default": "./dist/type/root-helpers.js"
+    },
+    "./type/root-instantiate": {
+      "types": "./dist/type/root-instantiate.d.ts",
+      "bun": "./dist/type/root-instantiate.js",
+      "import": "./dist/type/root-instantiate.js",
+      "default": "./dist/type/root-instantiate.js"
+    },
+    "./type/root-shared": {
+      "types": "./dist/type/root-shared.d.ts",
+      "bun": "./dist/type/root-shared.js",
+      "import": "./dist/type/root-shared.js",
+      "default": "./dist/type/root-shared.js"
+    },
+    "./type/root-template": {
+      "types": "./dist/type/root-template.d.ts",
+      "bun": "./dist/type/root-template.js",
+      "import": "./dist/type/root-template.js",
+      "default": "./dist/type/root-template.js"
+    },
+    "./type/schema": {
+      "types": "./dist/type/schema.d.ts",
+      "bun": "./dist/type/schema.js",
+      "import": "./dist/type/schema.js",
+      "default": "./dist/type/schema.js"
+    },
+    "./type/schema-options": {
+      "types": "./dist/type/schema-options.d.ts",
+      "bun": "./dist/type/schema-options.js",
+      "import": "./dist/type/schema-options.js",
+      "default": "./dist/type/schema-options.js"
+    },
+    "./type/static-const-types": {
+      "types": "./dist/type/static-const-types.d.ts",
+      "bun": "./dist/type/static-const-types.js",
+      "import": "./dist/type/static-const-types.js",
+      "default": "./dist/type/static-const-types.js"
+    },
+    "./type/static-shared-types": {
+      "types": "./dist/type/static-shared-types.d.ts",
+      "bun": "./dist/type/static-shared-types.js",
+      "import": "./dist/type/static-shared-types.js",
+      "default": "./dist/type/static-shared-types.js"
+    },
+    "./type/static-types": {
+      "types": "./dist/type/static-types.d.ts",
+      "bun": "./dist/type/static-types.js",
+      "import": "./dist/type/static-types.js",
+      "default": "./dist/type/static-types.js"
+    },
+    "./type/string-action-types": {
+      "types": "./dist/type/string-action-types.d.ts",
+      "bun": "./dist/type/string-action-types.js",
+      "import": "./dist/type/string-action-types.js",
+      "default": "./dist/type/string-action-types.js"
+    },
+    "./type/transform-types": {
+      "types": "./dist/type/transform-types.d.ts",
+      "bun": "./dist/type/transform-types.js",
+      "import": "./dist/type/transform-types.js",
+      "default": "./dist/type/transform-types.js"
+    },
+    "./type/uint8array-codec": {
+      "types": "./dist/type/uint8array-codec.d.ts",
+      "bun": "./dist/type/uint8array-codec.js",
+      "import": "./dist/type/uint8array-codec.js",
+      "default": "./dist/type/uint8array-codec.js"
+    },
+    "./value": {
+      "types": "./dist/value/index.d.ts",
+      "bun": "./dist/value/index.js",
+      "import": "./dist/value/index.js",
+      "default": "./dist/value/index.js"
+    },
+    "./value/assert": {
+      "types": "./dist/value/assert.d.ts",
+      "bun": "./dist/value/assert.js",
+      "import": "./dist/value/assert.js",
+      "default": "./dist/value/assert.js"
+    },
+    "./value/check": {
+      "types": "./dist/value/check.d.ts",
+      "bun": "./dist/value/check.js",
+      "import": "./dist/value/check.js",
+      "default": "./dist/value/check.js"
+    },
+    "./value/check-collections": {
+      "types": "./dist/value/check-collections.d.ts",
+      "bun": "./dist/value/check-collections.js",
+      "import": "./dist/value/check-collections.js",
+      "default": "./dist/value/check-collections.js"
+    },
+    "./value/check-collections-derived": {
+      "types": "./dist/value/check-collections-derived.d.ts",
+      "bun": "./dist/value/check-collections-derived.js",
+      "import": "./dist/value/check-collections-derived.js",
+      "default": "./dist/value/check-collections-derived.js"
+    },
+    "./value/check-extensions": {
+      "types": "./dist/value/check-extensions.d.ts",
+      "bun": "./dist/value/check-extensions.js",
+      "import": "./dist/value/check-extensions.js",
+      "default": "./dist/value/check-extensions.js"
+    },
+    "./value/check-primitives": {
+      "types": "./dist/value/check-primitives.d.ts",
+      "bun": "./dist/value/check-primitives.js",
+      "import": "./dist/value/check-primitives.js",
+      "default": "./dist/value/check-primitives.js"
+    },
+    "./value/clean": {
+      "types": "./dist/value/clean.d.ts",
+      "bun": "./dist/value/clean.js",
+      "import": "./dist/value/clean.js",
+      "default": "./dist/value/clean.js"
+    },
+    "./value/clone": {
+      "types": "./dist/value/clone.d.ts",
+      "bun": "./dist/value/clone.js",
+      "import": "./dist/value/clone.js",
+      "default": "./dist/value/clone.js"
+    },
+    "./value/convert": {
+      "types": "./dist/value/convert.d.ts",
+      "bun": "./dist/value/convert.js",
+      "import": "./dist/value/convert.js",
+      "default": "./dist/value/convert.js"
+    },
+    "./value/create": {
+      "types": "./dist/value/create.d.ts",
+      "bun": "./dist/value/create.js",
+      "import": "./dist/value/create.js",
+      "default": "./dist/value/create.js"
+    },
+    "./value/decode": {
+      "types": "./dist/value/decode.d.ts",
+      "bun": "./dist/value/decode.js",
+      "import": "./dist/value/decode.js",
+      "default": "./dist/value/decode.js"
+    },
+    "./value/default": {
+      "types": "./dist/value/default.d.ts",
+      "bun": "./dist/value/default.js",
+      "import": "./dist/value/default.js",
+      "default": "./dist/value/default.js"
+    },
+    "./value/diff": {
+      "types": "./dist/value/diff.d.ts",
+      "bun": "./dist/value/diff.js",
+      "import": "./dist/value/diff.js",
+      "default": "./dist/value/diff.js"
+    },
+    "./value/encode": {
+      "types": "./dist/value/encode.d.ts",
+      "bun": "./dist/value/encode.js",
+      "import": "./dist/value/encode.js",
+      "default": "./dist/value/encode.js"
+    },
+    "./value/equal": {
+      "types": "./dist/value/equal.d.ts",
+      "bun": "./dist/value/equal.js",
+      "import": "./dist/value/equal.js",
+      "default": "./dist/value/equal.js"
+    },
+    "./value/has-codec": {
+      "types": "./dist/value/has-codec.d.ts",
+      "bun": "./dist/value/has-codec.js",
+      "import": "./dist/value/has-codec.js",
+      "default": "./dist/value/has-codec.js"
+    },
+    "./value/hash": {
+      "types": "./dist/value/hash.d.ts",
+      "bun": "./dist/value/hash.js",
+      "import": "./dist/value/hash.js",
+      "default": "./dist/value/hash.js"
+    },
+    "./value/index": {
+      "types": "./dist/value/index.d.ts",
+      "bun": "./dist/value/index.js",
+      "import": "./dist/value/index.js",
+      "default": "./dist/value/index.js"
+    },
+    "./value/mutate": {
+      "types": "./dist/value/mutate.d.ts",
+      "bun": "./dist/value/mutate.js",
+      "import": "./dist/value/mutate.js",
+      "default": "./dist/value/mutate.js"
+    },
+    "./value/parse": {
+      "types": "./dist/value/parse.d.ts",
+      "bun": "./dist/value/parse.js",
+      "import": "./dist/value/parse.js",
+      "default": "./dist/value/parse.js"
+    },
+    "./value/patch": {
+      "types": "./dist/value/patch.d.ts",
+      "bun": "./dist/value/patch.js",
+      "import": "./dist/value/patch.js",
+      "default": "./dist/value/patch.js"
+    },
+    "./value/pipeline": {
+      "types": "./dist/value/pipeline.d.ts",
+      "bun": "./dist/value/pipeline.js",
+      "import": "./dist/value/pipeline.js",
+      "default": "./dist/value/pipeline.js"
+    },
+    "./value/pointer": {
+      "types": "./dist/value/pointer.d.ts",
+      "bun": "./dist/value/pointer.js",
+      "import": "./dist/value/pointer.js",
+      "default": "./dist/value/pointer.js"
+    },
+    "./value/repair": {
+      "types": "./dist/value/repair.d.ts",
+      "bun": "./dist/value/repair.js",
+      "import": "./dist/value/repair.js",
+      "default": "./dist/value/repair.js"
+    },
+    "./value/result": {
+      "types": "./dist/value/result.d.ts",
+      "bun": "./dist/value/result.js",
+      "import": "./dist/value/result.js",
+      "default": "./dist/value/result.js"
+    },
+    "./value/value-errors": {
+      "types": "./dist/value/value-errors.d.ts",
+      "bun": "./dist/value/value-errors.js",
+      "import": "./dist/value/value-errors.js",
+      "default": "./dist/value/value-errors.js"
+    }
+  },
+  "files": [
+    "dist",
+    "docs",
+    "LICENSE",
+    "README.md"
+  ],
+  "license": "MIT",
+  "description": "TypeScript-native schema library optimised for Bun — a lean, Bun-first reimagining of TypeBox",
+  "dependencies": {
+    "@sinclair/typebox": "0.34.49"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "elysia": "1.4.28",
+    "typebox": "1.1.23",
+    "typescript": "6.0.3"
+  },
+  "peerDependencies": {
+    "elysia": "1.4.28"
+  },
+  "packageManager": "bun@1.3.13"
+}

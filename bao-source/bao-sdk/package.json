@@ -1,0 +1,139 @@
+{
+  "name": "@baohaus/bao-sdk",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bunx --bun tsc --project tsconfig.build.json",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun run build && bun run test && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/host-context.js",
+      "import": "./dist/host-context.js",
+      "types": "./dist/host-context.d.ts",
+      "default": "./dist/host-context.js"
+    },
+    "./host-context": {
+      "bun": "./dist/host-context.js",
+      "import": "./dist/host-context.js",
+      "types": "./dist/host-context.d.ts",
+      "default": "./dist/host-context.js"
+    },
+    "./cas-resolver": {
+      "bun": "./dist/cas-resolver.js",
+      "import": "./dist/cas-resolver.js",
+      "types": "./dist/cas-resolver.d.ts",
+      "default": "./dist/cas-resolver.js"
+    },
+    "./target-handler": {
+      "bun": "./dist/target-handler.js",
+      "import": "./dist/target-handler.js",
+      "types": "./dist/target-handler.d.ts",
+      "default": "./dist/target-handler.js"
+    },
+    "./target-handler-registry": {
+      "bun": "./dist/target-handler-registry.js",
+      "import": "./dist/target-handler-registry.js",
+      "types": "./dist/target-handler-registry.d.ts",
+      "default": "./dist/target-handler-registry.js"
+    },
+    "./install-target-handler": {
+      "bun": "./dist/install-target-handler.js",
+      "import": "./dist/install-target-handler.js",
+      "types": "./dist/install-target-handler.d.ts",
+      "default": "./dist/install-target-handler.js"
+    },
+    "./target-kinds": {
+      "bun": "./dist/target-kinds.js",
+      "import": "./dist/target-kinds.js",
+      "types": "./dist/target-kinds.d.ts",
+      "default": "./dist/target-kinds.js"
+    },
+    "./lifecycle": {
+      "bun": "./dist/lifecycle.js",
+      "import": "./dist/lifecycle.js",
+      "types": "./dist/lifecycle.d.ts",
+      "default": "./dist/lifecycle.js"
+    },
+    "./lifecycle-executor": {
+      "bun": "./dist/lifecycle-executor.js",
+      "import": "./dist/lifecycle-executor.js",
+      "types": "./dist/lifecycle-executor.d.ts",
+      "default": "./dist/lifecycle-executor.js"
+    },
+    "./manifest": {
+      "bun": "./dist/manifest.js",
+      "import": "./dist/manifest.js",
+      "types": "./dist/manifest.d.ts",
+      "default": "./dist/manifest.js"
+    },
+    "./archive": {
+      "bun": "./dist/archive.js",
+      "import": "./dist/archive.js",
+      "types": "./dist/archive.d.ts",
+      "default": "./dist/archive.js"
+    },
+    "./extension": {
+      "bun": "./dist/extension.js",
+      "import": "./dist/extension.js",
+      "types": "./dist/extension.d.ts",
+      "default": "./dist/extension.js"
+    },
+    "./orchestrator": {
+      "bun": "./dist/orchestrator.js",
+      "import": "./dist/orchestrator.js",
+      "types": "./dist/orchestrator.d.ts",
+      "default": "./dist/orchestrator.js"
+    },
+    "./client/registry": {
+      "bun": "./client/registry/ts/index.js",
+      "import": "./client/registry/ts/index.js",
+      "types": "./client/registry/ts/index.d.ts",
+      "default": "./client/registry/ts/index.js"
+    },
+    "./client/bao-runtime": {
+      "bun": "./client/bao-runtime/ts/index.js",
+      "import": "./client/bao-runtime/ts/index.js",
+      "types": "./client/bao-runtime/ts/index.d.ts",
+      "default": "./client/bao-runtime/ts/index.js"
+    },
+    "./client/forge": {
+      "bun": "./client/forge/ts/index.js",
+      "import": "./client/forge/ts/index.js",
+      "types": "./client/forge/ts/index.d.ts",
+      "default": "./client/forge/ts/index.js"
+    },
+    "./client/bao-ai-gateway": {
+      "bun": "./client/bao-ai-gateway/ts/index.js",
+      "import": "./client/bao-ai-gateway/ts/index.js",
+      "types": "./client/bao-ai-gateway/ts/index.d.ts",
+      "default": "./client/bao-ai-gateway/ts/index.js"
+    }
+  },
+  "main": "./dist/host-context.js",
+  "types": "./dist/host-context.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "license": "MIT",
+  "description": "Host-context contract types and CAS-resolver primitives for building independent .bao packages",
+  "dependencies": {
+    "@baohaus/bao-sandbox-spec": "0.1.0",
+    "@baohaus/bao-types": "0.1.0",
+    "@baohaus/otel-api-bao": "0.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

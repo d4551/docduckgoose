@@ -1,0 +1,417 @@
+{
+  "name": "@baohaus/bao-constants",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bunx --bun tsc --project tsconfig.build.json",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun run build && bun run test && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    "./bao-chat-bubble-i18n": {
+      "bun": "./dist/bao-chat-bubble-i18n.js",
+      "import": "./dist/bao-chat-bubble-i18n.js",
+      "types": "./dist/bao-chat-bubble-i18n.d.ts",
+      "default": "./dist/bao-chat-bubble-i18n.js"
+    },
+    "./ai-provider-paths": {
+      "bun": "./dist/ai-provider-paths.js",
+      "import": "./dist/ai-provider-paths.js",
+      "types": "./dist/ai-provider-paths.d.ts",
+      "default": "./dist/ai-provider-paths.js"
+    },
+    "./alignment": {
+      "bun": "./dist/alignment.js",
+      "import": "./dist/alignment.js",
+      "types": "./dist/alignment.d.ts",
+      "default": "./dist/alignment.js"
+    },
+    "./api-explorer": {
+      "bun": "./dist/api-explorer.js",
+      "import": "./dist/api-explorer.js",
+      "types": "./dist/api-explorer.d.ts",
+      "default": "./dist/api-explorer.js"
+    },
+    "./api-paths": {
+      "bun": "./dist/api-paths.js",
+      "import": "./dist/api-paths.js",
+      "types": "./dist/api-paths.d.ts",
+      "default": "./dist/api-paths.js"
+    },
+    "./auth-error-codes": {
+      "bun": "./dist/auth-error-codes.js",
+      "import": "./dist/auth-error-codes.js",
+      "types": "./dist/auth-error-codes.d.ts",
+      "default": "./dist/auth-error-codes.js"
+    },
+    "./auth-routes": {
+      "bun": "./dist/auth-routes.js",
+      "import": "./dist/auth-routes.js",
+      "types": "./dist/auth-routes.d.ts",
+      "default": "./dist/auth-routes.js"
+    },
+    "./agent-artifact-owner-surfaces": {
+      "bun": "./dist/agent-artifact-owner-surfaces.js",
+      "import": "./dist/agent-artifact-owner-surfaces.js",
+      "types": "./dist/agent-artifact-owner-surfaces.d.ts",
+      "default": "./dist/agent-artifact-owner-surfaces.js"
+    },
+    "./bao-manifest-policies": {
+      "bun": "./dist/bao-manifest-policies.js",
+      "import": "./dist/bao-manifest-policies.js",
+      "types": "./dist/bao-manifest-policies.d.ts",
+      "default": "./dist/bao-manifest-policies.js"
+    },
+    "./bao-plugin-groups": {
+      "bun": "./dist/bao-plugin-groups.js",
+      "import": "./dist/bao-plugin-groups.js",
+      "types": "./dist/bao-plugin-groups.d.ts",
+      "default": "./dist/bao-plugin-groups.js"
+    },
+    "./bao-plugin-groups.generated": {
+      "bun": "./dist/bao-plugin-groups.generated.js",
+      "import": "./dist/bao-plugin-groups.generated.js",
+      "types": "./dist/bao-plugin-groups.generated.d.ts",
+      "default": "./dist/bao-plugin-groups.generated.js"
+    },
+    "./baodown-connection-validation": {
+      "bun": "./dist/baodown-connection-validation.js",
+      "import": "./dist/baodown-connection-validation.js",
+      "types": "./dist/baodown-connection-validation.d.ts",
+      "default": "./dist/baodown-connection-validation.js"
+    },
+    "./browser-smoke": {
+      "bun": "./dist/browser-smoke.js",
+      "import": "./dist/browser-smoke.js",
+      "types": "./dist/browser-smoke.d.ts",
+      "default": "./dist/browser-smoke.js"
+    },
+    "./build-paths": {
+      "bun": "./dist/build-paths.js",
+      "import": "./dist/build-paths.js",
+      "types": "./dist/build-paths.d.ts",
+      "default": "./dist/build-paths.js"
+    },
+    "./cache": {
+      "bun": "./dist/cache.js",
+      "import": "./dist/cache.js",
+      "types": "./dist/cache.d.ts",
+      "default": "./dist/cache.js"
+    },
+    "./capability-domain-map": {
+      "bun": "./dist/capability-domain-map.js",
+      "import": "./dist/capability-domain-map.js",
+      "types": "./dist/capability-domain-map.d.ts",
+      "default": "./dist/capability-domain-map.js"
+    },
+    "./capability-integration": {
+      "bun": "./dist/capability-integration.js",
+      "import": "./dist/capability-integration.js",
+      "types": "./dist/capability-integration.d.ts",
+      "default": "./dist/capability-integration.js"
+    },
+    "./capability-matrix-paths": {
+      "bun": "./dist/capability-matrix-paths.js",
+      "import": "./dist/capability-matrix-paths.js",
+      "types": "./dist/capability-matrix-paths.d.ts",
+      "default": "./dist/capability-matrix-paths.js"
+    },
+    "./capability-ownership": {
+      "bun": "./dist/capability-ownership.js",
+      "import": "./dist/capability-ownership.js",
+      "types": "./dist/capability-ownership.d.ts",
+      "default": "./dist/capability-ownership.js"
+    },
+    "./client-telemetry": {
+      "bun": "./dist/client-telemetry.js",
+      "import": "./dist/client-telemetry.js",
+      "types": "./dist/client-telemetry.d.ts",
+      "default": "./dist/client-telemetry.js"
+    },
+    "./container-runtime": {
+      "bun": "./dist/container-runtime.js",
+      "import": "./dist/container-runtime.js",
+      "types": "./dist/container-runtime.d.ts",
+      "default": "./dist/container-runtime.js"
+    },
+    "./database-defaults": {
+      "bun": "./dist/database-defaults.js",
+      "import": "./dist/database-defaults.js",
+      "types": "./dist/database-defaults.d.ts",
+      "default": "./dist/database-defaults.js"
+    },
+    "./drone": {
+      "bun": "./dist/drone.js",
+      "import": "./dist/drone.js",
+      "types": "./dist/drone.d.ts",
+      "default": "./dist/drone.js"
+    },
+    "./error-codes": {
+      "bun": "./dist/error-codes.js",
+      "import": "./dist/error-codes.js",
+      "types": "./dist/error-codes.d.ts",
+      "default": "./dist/error-codes.js"
+    },
+    "./error-taxonomy": {
+      "bun": "./dist/error-taxonomy.js",
+      "import": "./dist/error-taxonomy.js",
+      "types": "./dist/error-taxonomy.d.ts",
+      "default": "./dist/error-taxonomy.js"
+    },
+    "./external-endpoints": {
+      "bun": "./dist/external-endpoints.js",
+      "import": "./dist/external-endpoints.js",
+      "types": "./dist/external-endpoints.d.ts",
+      "default": "./dist/external-endpoints.js"
+    },
+    "./ecosystem-lexicon": {
+      "bun": "./dist/ecosystem-lexicon.js",
+      "import": "./dist/ecosystem-lexicon.js",
+      "types": "./dist/ecosystem-lexicon.d.ts",
+      "default": "./dist/ecosystem-lexicon.js"
+    },
+    "./htmx-error-boundary": {
+      "bun": "./dist/htmx-error-boundary.js",
+      "import": "./dist/htmx-error-boundary.js",
+      "types": "./dist/htmx-error-boundary.d.ts",
+      "default": "./dist/htmx-error-boundary.js"
+    },
+    "./http-status": {
+      "bun": "./dist/http-status.js",
+      "import": "./dist/http-status.js",
+      "types": "./dist/http-status.d.ts",
+      "default": "./dist/http-status.js"
+    },
+    "./imager-config": {
+      "bun": "./dist/imager-config.js",
+      "import": "./dist/imager-config.js",
+      "types": "./dist/imager-config.d.ts",
+      "default": "./dist/imager-config.js"
+    },
+    "./infrastructure-api-paths": {
+      "bun": "./dist/infrastructure-api-paths.js",
+      "import": "./dist/infrastructure-api-paths.js",
+      "types": "./dist/infrastructure-api-paths.d.ts",
+      "default": "./dist/infrastructure-api-paths.js"
+    },
+    "./layout": {
+      "bun": "./dist/layout.js",
+      "import": "./dist/layout.js",
+      "types": "./dist/layout.d.ts",
+      "default": "./dist/layout.js"
+    },
+    "./loopback-hosts": {
+      "bun": "./dist/loopback-hosts.js",
+      "import": "./dist/loopback-hosts.js",
+      "types": "./dist/loopback-hosts.d.ts",
+      "default": "./dist/loopback-hosts.js"
+    },
+    "./metrics-annotations": {
+      "bun": "./dist/metrics-annotations.js",
+      "import": "./dist/metrics-annotations.js",
+      "types": "./dist/metrics-annotations.d.ts",
+      "default": "./dist/metrics-annotations.js"
+    },
+    "./mime-types": {
+      "bun": "./dist/mime-types.js",
+      "import": "./dist/mime-types.js",
+      "types": "./dist/mime-types.d.ts",
+      "default": "./dist/mime-types.js"
+    },
+    "./network": {
+      "bun": "./dist/network.js",
+      "import": "./dist/network.js",
+      "types": "./dist/network.d.ts",
+      "default": "./dist/network.js"
+    },
+    "./bao-control-plane-bootstrap-components": {
+      "bun": "./dist/bao-control-plane-bootstrap-components.js",
+      "import": "./dist/bao-control-plane-bootstrap-components.js",
+      "types": "./dist/bao-control-plane-bootstrap-components.d.ts",
+      "default": "./dist/bao-control-plane-bootstrap-components.js"
+    },
+    "./bao-control-plane-defaults": {
+      "bun": "./dist/bao-control-plane-defaults.js",
+      "import": "./dist/bao-control-plane-defaults.js",
+      "types": "./dist/bao-control-plane-defaults.d.ts",
+      "default": "./dist/bao-control-plane-defaults.js"
+    },
+    "./bao-control-plane-gate-env": {
+      "bun": "./dist/bao-control-plane-gate-env.js",
+      "import": "./dist/bao-control-plane-gate-env.js",
+      "types": "./dist/bao-control-plane-gate-env.d.ts",
+      "default": "./dist/bao-control-plane-gate-env.js"
+    },
+    "./bao-runtime-limits": {
+      "bun": "./dist/bao-runtime-limits.js",
+      "import": "./dist/bao-runtime-limits.js",
+      "types": "./dist/bao-runtime-limits.d.ts",
+      "default": "./dist/bao-runtime-limits.js"
+    },
+    "./bao-runtime": {
+      "bun": "./dist/bao-runtime.js",
+      "import": "./dist/bao-runtime.js",
+      "types": "./dist/bao-runtime.d.ts",
+      "default": "./dist/bao-runtime.js"
+    },
+    "./bao-control-plane-secrets": {
+      "bun": "./dist/bao-control-plane-secrets.js",
+      "import": "./dist/bao-control-plane-secrets.js",
+      "types": "./dist/bao-control-plane-secrets.d.ts",
+      "default": "./dist/bao-control-plane-secrets.js"
+    },
+    "./bao-control-plane-status": {
+      "bun": "./dist/bao-control-plane-status.js",
+      "import": "./dist/bao-control-plane-status.js",
+      "types": "./dist/bao-control-plane-status.d.ts",
+      "default": "./dist/bao-control-plane-status.js"
+    },
+    "./pagination": {
+      "bun": "./dist/pagination.js",
+      "import": "./dist/pagination.js",
+      "types": "./dist/pagination.d.ts",
+      "default": "./dist/pagination.js"
+    },
+    "./pipeline-constraints": {
+      "bun": "./dist/pipeline-constraints.js",
+      "import": "./dist/pipeline-constraints.js",
+      "types": "./dist/pipeline-constraints.d.ts",
+      "default": "./dist/pipeline-constraints.js"
+    },
+    "./pipeline-inputs": {
+      "bun": "./dist/pipeline-inputs.js",
+      "import": "./dist/pipeline-inputs.js",
+      "types": "./dist/pipeline-inputs.d.ts",
+      "default": "./dist/pipeline-inputs.js"
+    },
+    "./pipeline-resources": {
+      "bun": "./dist/pipeline-resources.js",
+      "import": "./dist/pipeline-resources.js",
+      "types": "./dist/pipeline-resources.d.ts",
+      "default": "./dist/pipeline-resources.js"
+    },
+    "./plugin-contract": {
+      "bun": "./dist/plugin-contract.js",
+      "import": "./dist/plugin-contract.js",
+      "types": "./dist/plugin-contract.d.ts",
+      "default": "./dist/plugin-contract.js"
+    },
+    "./realtime-topics": {
+      "bun": "./dist/realtime-topics.js",
+      "import": "./dist/realtime-topics.js",
+      "types": "./dist/realtime-topics.d.ts",
+      "default": "./dist/realtime-topics.js"
+    },
+    "./resource-labels": {
+      "bun": "./dist/resource-labels.js",
+      "import": "./dist/resource-labels.js",
+      "types": "./dist/resource-labels.d.ts",
+      "default": "./dist/resource-labels.js"
+    },
+    "./retries": {
+      "bun": "./dist/retries.js",
+      "import": "./dist/retries.js",
+      "types": "./dist/retries.d.ts",
+      "default": "./dist/retries.js"
+    },
+    "./rpa-defaults": {
+      "bun": "./dist/rpa-defaults.js",
+      "import": "./dist/rpa-defaults.js",
+      "types": "./dist/rpa-defaults.d.ts",
+      "default": "./dist/rpa-defaults.js"
+    },
+    "./scanner-bunbuddy": {
+      "bun": "./dist/scanner-bunbuddy.js",
+      "import": "./dist/scanner-bunbuddy.js",
+      "types": "./dist/scanner-bunbuddy.d.ts",
+      "default": "./dist/scanner-bunbuddy.js"
+    },
+    "./status-core": {
+      "bun": "./dist/status-core.js",
+      "import": "./dist/status-core.js",
+      "types": "./dist/status-core.d.ts",
+      "default": "./dist/status-core.js"
+    },
+    "./status-unified": {
+      "bun": "./dist/status-unified.js",
+      "import": "./dist/status-unified.js",
+      "types": "./dist/status-unified.d.ts",
+      "default": "./dist/status-unified.js"
+    },
+    "./system-health": {
+      "bun": "./dist/system-health.js",
+      "import": "./dist/system-health.js",
+      "types": "./dist/system-health.d.ts",
+      "default": "./dist/system-health.js"
+    },
+    "./time": {
+      "bun": "./dist/time.js",
+      "import": "./dist/time.js",
+      "types": "./dist/time.d.ts",
+      "default": "./dist/time.js"
+    },
+    "./streaming": {
+      "bun": "./dist/streaming.js",
+      "import": "./dist/streaming.js",
+      "types": "./dist/streaming.d.ts",
+      "default": "./dist/streaming.js"
+    },
+    "./timeouts": {
+      "bun": "./dist/timeouts.js",
+      "import": "./dist/timeouts.js",
+      "types": "./dist/timeouts.d.ts",
+      "default": "./dist/timeouts.js"
+    },
+    "./ui-error-classification": {
+      "bun": "./dist/ui-error-classification.js",
+      "import": "./dist/ui-error-classification.js",
+      "types": "./dist/ui-error-classification.d.ts",
+      "default": "./dist/ui-error-classification.js"
+    },
+    "./websocket": {
+      "bun": "./dist/websocket.js",
+      "import": "./dist/websocket.js",
+      "types": "./dist/websocket.d.ts",
+      "default": "./dist/websocket.js"
+    },
+    "./xr-experience": {
+      "bun": "./dist/xr-experience.js",
+      "import": "./dist/xr-experience.js",
+      "types": "./dist/xr-experience.d.ts",
+      "default": "./dist/xr-experience.js"
+    },
+    "./xr-experience.options": {
+      "bun": "./dist/xr-experience.options.js",
+      "import": "./dist/xr-experience.options.js",
+      "types": "./dist/xr-experience.options.d.ts",
+      "default": "./dist/xr-experience.options.js"
+    },
+    "./xr-share": {
+      "bun": "./dist/xr-share.js",
+      "import": "./dist/xr-share.js",
+      "types": "./dist/xr-share.d.ts",
+      "default": "./dist/xr-share.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "license": "MIT",
+  "description": "Shared constants for .bao packages — API paths, timeouts, HTTP status, time units, and more",
+  "dependencies": {
+    "@baohaus/bao-schemas": "0.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

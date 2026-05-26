@@ -1,0 +1,25 @@
+namespace baohaus.realtime.v1;
+
+/// Message kind for wrapped realtime payloads.
+enum RealtimePayloadKindV1:ubyte {
+  NONE = 0,
+  DRONE_REALTIME = 1,
+  SCANNER_PROGRESS = 2,
+  TELEMETRY_TYPED = 3,
+}
+
+/// Generic wrapper for internal binary websocket transport.
+/// `payload` contains a nested FlatBuffer payload chosen by `kind`.
+table WsEnvelopeV1 {
+  version:ushort = 1 (id: 0);
+  kind:RealtimePayloadKindV1 = NONE (id: 1);
+  payload:[ubyte] (id: 2);
+  timestamp:string (id: 3);
+  /// Optional schema version for debug and compatibility checks.
+  schemaVersion:uint32 = 1 (id: 4);
+  /// Optional generation timestamp (ISO 8601) for debugging.
+  generationTimestamp:string (id: 5);
+}
+
+root_type WsEnvelopeV1;
+file_identifier "WSV1";

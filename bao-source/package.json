@@ -1,0 +1,61 @@
+{
+  "name": "@baohaus/baohaus-source-root",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.3.13",
+  "scripts": {
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.typecheck.json",
+    "audit:bun-deps": "bun run scripts/audit-bun-dependencies.ts",
+    "audit:bun-boundaries": "bun run scripts/audit-bun-boundaries.ts",
+    "audit:bun-dropins": "bun run scripts/audit-bun-dropins.ts",
+    "build:android": "bun run --cwd flow-dumpling src/cli.ts build android",
+    "build:ios": "bun run --cwd flow-dumpling src/cli.ts build ios",
+    "build:desktop": "bun run --cwd flow-dumpling src/cli.ts build desktop",
+    "build:matrix": "bun run --cwd flow-dumpling src/cli.ts build matrix"
+  },
+  "dependencies": {
+    "@baohaus/bao-config": "0.1.0",
+    "@baohaus/bao-schemas": "0.1.0",
+    "@baohaus/baobox": "0.1.1",
+    "@baohaus/yaml-bao": "0.1.0",
+    "elysia": "1.4.28"
+  },
+  "devDependencies": {
+    "@types/bun": "1.3.13",
+    "bun-types": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "exports": {
+    "./contracts/device-ai-protocol": "./src/contracts/device-ai-protocol.ts",
+    "./contracts/flow-contracts/ai-workflows": "./src/contracts/flow-contracts/ai-workflows.ts",
+    "./contracts/flow-contracts/app-build": "./src/contracts/flow-contracts/app-build.ts",
+    "./contracts/flow-contracts/chat": "./src/contracts/flow-contracts/chat.ts",
+    "./contracts/flow-contracts/commands-registry": "./src/contracts/flow-contracts/commands-registry.ts",
+    "./contracts/flow-contracts/conversations": "./src/contracts/flow-contracts/conversations.ts",
+    "./contracts/flow-contracts/core": "./src/contracts/flow-contracts/core.ts",
+    "./contracts/flow-contracts/device-ai": "./src/contracts/flow-contracts/device-ai.ts",
+    "./contracts/flow-contracts/errors": "./src/contracts/flow-contracts/errors.ts",
+    "./contracts/flow-contracts/flow-run": "./src/contracts/flow-contracts/flow-run.ts",
+    "./contracts/flow-contracts/flow-validation": "./src/contracts/flow-contracts/flow-validation.ts",
+    "./contracts/flow-contracts/models": "./src/contracts/flow-contracts/models.ts",
+    "./contracts/flow-contracts/operator-verification": "./src/contracts/flow-contracts/operator-verification.ts",
+    "./contracts/flow-contracts/preferences": "./src/contracts/flow-contracts/preferences.ts",
+    "./contracts/flow-contracts/providers": "./src/contracts/flow-contracts/providers.ts",
+    "./contracts/flow-parser": "./src/contracts/flow-parser.ts",
+    "./contracts/flow-parser-yaml": "./src/contracts/flow-parser-yaml.ts",
+    "./contracts/operator-verification-report": "./src/contracts/operator-verification-report.ts",
+    "./contracts/ucp-contracts": "./src/contracts/ucp-contracts.ts",
+    "./services/bao-install/bao-install.plugin": "./src/services/bao-install/bao-install.plugin.ts",
+    "./shared/app-build": "./src/shared/app-build.ts",
+    "./shared/app-build-failures": "./src/shared/app-build-failures.ts",
+    "./shared/app-build-matrix-report": "./src/shared/app-build-matrix-report.ts",
+    "./shared/bao/bao-archive": "./src/shared/bao/bao-archive.ts",
+    "./shared/bao/bao-archive.contract": "./src/shared/bao/bao-archive.contract.ts",
+    "./shared/brand-tokens.json": "./src/shared/brand-tokens.json",
+    "./shared/brand-tokens": "./src/shared/brand-tokens.ts",
+    "./shared/device-ai-readiness": "./src/shared/device-ai-readiness.ts",
+    "./shared/failure": "./src/shared/failure.ts",
+    "./shared/host-tooling": "./src/shared/host-tooling.ts"
+  }
+}

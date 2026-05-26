@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "bao-types",
+  "packageName": "@baohaus/bao-types",
+  "packageVersion": "0.1.0",
+  "resolved": [
+    {
+      "name": "@baohaus/bao-config",
+      "version": "0.1.0",
+      "ociRepository": "baohaus/bao-config",
+      "ociDigest": "sha256:4717308fcbf6e5814f49d68bdf2fa8d33ab525465fcb53a72312ace695d9722a",
+      "integrity": "sha256-Rxcwj8v25YFPSdaL3y+o0zq1JUZfy1OnIxKs5pXZcio=",
+      "signature": {
+        "provider": "ed25519",
+        "bundle": "roQW1DyP7btSNuFPmive2ZK4aQNsFqaXScEb6nYeX0oFzjODgQAblPSn55GF0rDuZPqkuKxLx8LWBZDkRURgBA==",
+        "keyId": "727d68a8ba3f30644216294d054d0366ee6b3db4b87b780b5f6b3002b45450ce",
+        "transparencyLog": "https://rekor.sigstore.dev"
+      },
+      "resolvedFrom": "oci-registry"
+    },
+    {
+      "name": "@baohaus/bao-constants",
+      "version": "0.1.0",
+      "ociRepository": "baohaus/bao-constants",
+      "ociDigest": "sha256:b76e64434747c67ccbbb1ec431fa8f6ff39d6b6295e158fce252de27358eb14c",
+      "integrity": "sha256-t25kQ0dHxnzLux7EMfqPb/Oda2KV4Vj84lLeJzWOsUw=",
+      "signature": {
+        "provider": "ed25519",
+        "bundle": "YpPtuR1A92/93WjEq2qcwrbdl/kwOrWQquU8T/sgsgE36k2ihZcxYqYz9h+e3zKtR8m45hhtOkNgrrZGTmw8Bw==",
+        "keyId": "727d68a8ba3f30644216294d054d0366ee6b3db4b87b780b5f6b3002b45450ce",
+        "transparencyLog": "https://rekor.sigstore.dev"
+      },
+      "resolvedFrom": "oci-registry"
+    },
+    {
+      "name": "@baohaus/bao-core",
+      "version": "0.1.0",
+      "ociRepository": "baohaus/bao-core",
+      "ociDigest": "sha256:908fb1304a0e46883338cac4798d299c2935134af7904ec5425bd334befb3373",
+      "integrity": "sha256-kI+xMEoORogzOMrEeY0pnCk1E0r3kE7FQlvTNL77M3M=",
+      "signature": {
+        "provider": "ed25519",
+        "bundle": "4lRfm0/Gdp6/edFg0QrQlxpY6/bdCezHO/4cC3THZyU6FOyplhXHpqDrOYhzmZIax5NLvUa9Y9P2FfHdMEVECg==",
+        "keyId": "727d68a8ba3f30644216294d054d0366ee6b3db4b87b780b5f6b3002b45450ce",
+        "transparencyLog": "https://rekor.sigstore.dev"
+      },
+      "resolvedFrom": "oci-registry"
+    },
+    {
+      "name": "@baohaus/bao-schemas",
+      "version": "0.1.0",
+      "ociRepository": "baohaus/bao-schemas",
+      "ociDigest": "sha256:03161584ac81910408852a52eec8d29c8665b0b417cf5f9e0d5e0c4f4d153dd9",
+      "integrity": "sha256-AxYVhKyBkQQIhSpS7sjSnIZlsLQXz1+eDV4MT00VPdk=",
+      "signature": {
+        "provider": "ed25519",
+        "bundle": "h1TiWBE1xMFjZ6DFAVwH0Ggv4wgEzaacY5LfhxPK4LRsOocSmEMYAibfGi3NK0YdSDbGJbhIblDHAWJs88pRDQ==",
+        "keyId": "727d68a8ba3f30644216294d054d0366ee6b3db4b87b780b5f6b3002b45450ce",
+        "transparencyLog": "https://rekor.sigstore.dev"
+      },
+      "resolvedFrom": "oci-registry"
+    },
+    {
+      "name": "@baohaus/bao-utils",
+      "version": "0.1.0",
+      "ociRepository": "baohaus/bao-utils",
+      "ociDigest": "sha256:5b2f700ad984767844b08c187a28ee03406f5547270cd402ba4da73b0d112cdd",
+      "integrity": "sha256-Wy9wCtmEdnhEsIwYeijuA0BvVUcnDNQCuk2nOw0RLN0=",
+      "signature": {
+        "provider": "ed25519",
+        "bundle": "K8emMb9dOseQbdrj0ydRtrQ69oe9GAkpW4snl6NRyrXzbe8NQV/Ff0U4SbVYVDAYJwInnA8CTsri2qXsp3ZGBQ==",
+        "keyId": "727d68a8ba3f30644216294d054d0366ee6b3db4b87b780b5f6b3002b45450ce",
+        "transparencyLog": "https://rekor.sigstore.dev"
+      },
+      "resolvedFrom": "oci-registry"
+    },
+    {
+      "name": "@baohaus/baobox",
+      "version": "0.1.1",
+      "ociRepository": "baohaus/baobox",
+      "ociDigest": "sha256:c88470eacfeb3cfb601f05772c99e37bbf4728e9e2b5ba22aa023d7f25e0ecbd",
+      "integrity": "sha256-yIRw6s/rPPtgHwV3LJnje79HKOnitboiqgI9fyXg7L0=",
+      "signature": {
+        "provider": "ed25519",
+        "bundle": "3tFN3nc+wExvKuGMIGcoadCdKFNadU76jLqXuUFsubPrWu9+3GrhtHazynGSIYUKcFq+jhBjUvYoSy+HeBf0BQ==",
+        "keyId": "727d68a8ba3f30644216294d054d0366ee6b3db4b87b780b5f6b3002b45450ce",
+        "transparencyLog": "https://rekor.sigstore.dev"
+      },
+      "resolvedFrom": "oci-registry"
+    }
+  ]
+}

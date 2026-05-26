@@ -1,0 +1,16 @@
+namespace baohaus.realtime.v1;
+
+/// Internal scanner progress payload for high-frequency transport.
+/// Evolution policy: append-only fields, deprecate instead of deleting.
+table ScannerProgressV1 {
+  scan_id:string (id: 0);
+  phase:string (id: 1);
+  current_step:uint32 (id: 2);
+  total_steps:uint32 (id: 3);
+  percentage:float (id: 4);
+  message:string (id: 5);
+  timestamp:string (id: 6);
+}
+
+root_type ScannerProgressV1;
+file_identifier "SCV1";

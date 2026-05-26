@@ -1,0 +1,37 @@
+{
+  "manifestVersion": 1,
+  "inputFingerprint": "658abf0b8e77b71126bdce4ae5e9d78e5d34b0e42cd8407b499e20c2cd5cc96a",
+  "tsOutputFingerprint": "adfe0a13c454db21c4493f2a4ee6ff26299a3dc9a64e5fa6ccefff4fa92e11a7",
+  "pythonOutputFingerprint": "d0746eb2218780c68b6ebcdbe4268813d818c681e42a87af363f279d6284197b",
+  "schemaFiles": [
+    "ai_chat_stream_v1.fbs",
+    "bao_dependency_graph_v1.fbs",
+    "bao_install_manifest_v1.fbs",
+    "baodown_payloads_v1.fbs",
+    "baodown_run_event_v1.fbs",
+    "cache_envelope_v1.fbs",
+    "device_event_v1.fbs",
+    "drone_realtime_v1.fbs",
+    "gimbal_event_v1.fbs",
+    "hardware_state_event_v1.fbs",
+    "mesh_v1.fbs",
+    "observability_batch_v1.fbs",
+    "onnx_inference_v1.fbs",
+    "point_cloud_v1.fbs",
+    "rag_retrieval_v1.fbs",
+    "scanner_progress_v1.fbs",
+    "telemetry_payload_v1.fbs",
+    "telemetry_structs_v1.fbs",
+    "training_progress_v1.fbs",
+    "ws_envelope_v1.fbs"
+  ],
+  "sizePrefixed": false,
+  "flatbuffersPackageVersion": "^25.9.23",
+  "tsFileCount": 80,
+  "pythonFileCount": 162,
+  "generatedAt": "2026-04-04T10:15:17.097Z",
+  "flatc": {
+    "path": "/opt/homebrew/bin/flatc",
+    "version": "flatc version 25.12.19"
+  }
+}

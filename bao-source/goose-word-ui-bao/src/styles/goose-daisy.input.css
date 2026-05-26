@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "baohaus-aurora-light";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: oklch(99% 0.004 286);
+  --color-base-200: oklch(96% 0.01 200);
+  --color-base-300: oklch(92% 0.018 200);
+  --color-base-content: oklch(22% 0.02 286);
+
+  --color-primary: oklch(62% 0.18 200);
+  --color-primary-content: oklch(99% 0.005 200);
+
+  --color-secondary: oklch(68% 0.15 240);
+  --color-secondary-content: oklch(99% 0.005 240);
+
+  --color-accent: oklch(74% 0.15 165);
+  --color-accent-content: oklch(15% 0.03 165);
+
+  --color-neutral: oklch(28% 0.02 286);
+  --color-neutral-content: oklch(96% 0.006 286);
+
+  --color-info: oklch(72% 0.14 220);
+  --color-info-content: oklch(15% 0.03 220);
+
+  --color-success: oklch(72% 0.17 145);
+  --color-success-content: oklch(15% 0.04 145);
+
+  --color-warning: oklch(82% 0.17 85);
+  --color-warning-content: oklch(20% 0.04 85);
+
+  --color-error: oklch(64% 0.22 27);
+  --color-error-content: oklch(98% 0.01 27);
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+
+  --depth: 1;
+  --noise: 0;
+
+  font-family:
+    var(--bao-aurora-font-handwriting, "Goose Hand"), "Segoe Script", "Bradley Hand", cursive;
+}
+
+@source "../../../../goose-word/src/http/html/**/*.ts";
+@source "../../../../bao-source/soy-view-kit/src/templates/**/*.ts";

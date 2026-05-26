@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "theme-aurora-glass-bao",
+  "name": "@baohaus/theme-aurora-glass-bao",
+  "version": "0.1.0",
+  "identity": {
+    "id": "theme-aurora-glass-bao",
+    "packageName": "@baohaus/theme-aurora-glass-bao",
+    "packageVersion": "0.1.0"
+  },
+  "channel": "local",
+  "visibility": "private",
+  "description": "Glassy aurora variant theme for Goose Word using .bao tokens.",
+  "copyFirst": {
+    "required": true,
+    "installRoot": "~/.goose-word/bao/theme-aurora-glass-bao",
+    "archivePolicy": "no-prebuilt-archives"
+  },
+  "targets": [
+    {
+      "kind": "theme",
+      "entrypoint": "dist/bao-extensions/theme.js"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "name": "@baohaus/har-gow-config",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/env-core.js",
+      "import": "./dist/env-core.js",
+      "types": "./dist/env-core.d.ts",
+      "default": "./dist/env-core.js"
+    },
+    "./assistant-runtime": {
+      "bun": "./dist/assistant-runtime.js",
+      "import": "./dist/assistant-runtime.js",
+      "types": "./dist/assistant-runtime.d.ts",
+      "default": "./dist/assistant-runtime.js"
+    },
+    "./env-core": {
+      "bun": "./dist/env-core.js",
+      "import": "./dist/env-core.js",
+      "types": "./dist/env-core.d.ts",
+      "default": "./dist/env-core.js"
+    },
+    "./env-platform": {
+      "bun": "./dist/env-platform.js",
+      "import": "./dist/env-platform.js",
+      "types": "./dist/env-platform.d.ts",
+      "default": "./dist/env-platform.js"
+    },
+    "./env-server": {
+      "bun": "./dist/env-server.js",
+      "import": "./dist/env-server.js",
+      "types": "./dist/env-server.d.ts",
+      "default": "./dist/env-server.js"
+    },
+    "./routes": {
+      "bun": "./dist/routes.js",
+      "import": "./dist/routes.js",
+      "types": "./dist/routes.d.ts",
+      "default": "./dist/routes.js"
+    },
+    "./workflow-execute-auth": {
+      "bun": "./dist/workflow-execute-auth.js",
+      "import": "./dist/workflow-execute-auth.js",
+      "types": "./dist/workflow-execute-auth.d.ts",
+      "default": "./dist/workflow-execute-auth.js"
+    }
+  },
+  "main": "./dist/env-core.js",
+  "types": "./dist/env-core.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "UNLICENSED",
+  "description": "Typed Baohaus runtime configuration for Bun services and packages.",
+  "dependencies": {
+    "@baohaus/baobox": "0.1.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

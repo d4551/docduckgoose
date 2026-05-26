@@ -1,0 +1,97 @@
+// RAG retrieval binary protocol for FlatBuffer transport.
+// Provides efficient serialisation for vector search queries and results.
+namespace baohaus.rag.v1;
+
+/// Embedding source type enum matching @shared/types/rag.
+enum RagSourceTypeV1:ubyte {
+  ASSET = 0,
+  ANNOTATION = 1,
+  DOCUMENT = 2,
+  CONVERSATION = 3,
+  NOTE = 4,
+  MANUAL = 5,
+  LIBRARY_DOC = 6
+}
+
+/// Match strategy used to retrieve a chunk.
+enum RagMatchStrategyV1:ubyte {
+  VECTOR = 0,
+  KEYWORD = 1,
+  DETERMINISTIC = 2,
+  MCP = 3
+}
+
+/// A source reference for retrieval queries.
+table RagSourceRefV1 {
+  source_type:RagSourceTypeV1 (id: 0);
+  source_id:string (id: 1);
+  max_chunks:uint16 = 10 (id: 2);
+}
+
+/// RAG retrieval query request.
+table RagRetrievalQueryV1 {
+  /// Correlation ID for request tracing.
+  correlation_id:string (id: 0);
+  /// Sources to retrieve context from.
+  sources:[RagSourceRefV1] (id: 1);
+  /// Optional query text for vector/keyword search.
+  query_text:string (id: 2);
+  /// Maximum total characters in response prompt.
+  max_chars:uint32 = 8192 (id: 3);
+  /// Whether to prefer vector search over deterministic.
+  prefer_vector_search:bool = true (id: 4);
+}
+
+/// A single retrieved chunk with match metadata.
+table RagChunkMatchV1 {
+  /// Source type of the matched chunk.
+  source_type:RagSourceTypeV1 (id: 0);
+  /// Source identifier.
+  source_id:string (id: 1);
+  /// Chunk index within the source document.
+  chunk_index:uint32 (id: 2);
+  /// The chunk text content.
+  chunk_text:string (id: 3);
+  /// Match score (higher = better relevance).
+  score:float32 (id: 4);
+  /// Strategy used to match this chunk.
+  strategy:RagMatchStrategyV1 (id: 5);
+  /// Vector distance (when strategy = VECTOR).
+  distance:float32 (id: 6);
+  /// Vector certainty (when strategy = VECTOR).
+  certainty:float32 (id: 7);
+  /// SHA-256 hash of chunk content for deduplication.
+  content_hash:string (id: 8);
+  /// Character count of the chunk.
+  chars:uint32 (id: 9);
+  /// Whether the chunk was truncated to fit within max_chars.
+  truncated:bool = false (id: 10);
+}
+
+/// Per-source retrieval summary.
+table RagSourceSummaryV1 {
+  source_type:RagSourceTypeV1 (id: 0);
+  source_id:string (id: 1);
+  chunks_included:uint16 (id: 2);
+}
+
+/// RAG retrieval response.
+table RagRetrievalResponseV1 {
+  /// Whether retrieval was successful.
+  ok:bool (id: 0);
+  /// Assembled prompt text from retrieved chunks.
+  prompt:string (id: 1);
+  /// Per-source summary of included chunks.
+  sources:[RagSourceSummaryV1] (id: 2);
+  /// Total chunks included in the prompt.
+  chunks_included:uint16 (id: 3);
+  /// Total characters included in the prompt.
+  chars_included:uint32 (id: 4);
+  /// Detailed match metadata for each included chunk.
+  matches:[RagChunkMatchV1] (id: 5);
+  /// Error message when ok = false.
+  error:string (id: 6);
+}
+
+file_identifier "RRV1";
+root_type RagRetrievalResponseV1;

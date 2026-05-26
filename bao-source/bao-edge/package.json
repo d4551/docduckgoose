@@ -1,0 +1,203 @@
+{
+  "name": "@baohaus/bao-edge",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun run build && bun run test && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/index.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package-descriptor": {
+      "bun": "./dist/package-descriptor.js",
+      "import": "./dist/package-descriptor.js",
+      "types": "./dist/package-descriptor.d.ts",
+      "default": "./dist/package-descriptor.js"
+    },
+    "./services/bao-install/target-handlers/ai-model.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/ai-model.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/ai-model.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/ai-model.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/ai-model.handler.js"
+    },
+    "./services/bao-install/target-handlers/baodown-flow.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/baodown-flow.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/baodown-flow.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/baodown-flow.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/baodown-flow.handler.js"
+    },
+    "./services/bao-install/target-handlers/baodown-node.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/baodown-node.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/baodown-node.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/baodown-node.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/baodown-node.handler.js"
+    },
+    "./services/bao-install/target-handlers/bao-package.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/bao-package.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/bao-package.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/bao-package.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/bao-package.handler.js"
+    },
+    "./services/bao-install/target-handlers/bun-plugin.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/bun-plugin.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/bun-plugin.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/bun-plugin.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/bun-plugin.handler.js"
+    },
+    "./services/bao-install/target-handlers/bunbuddy-contract.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/bunbuddy-contract.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/bunbuddy-contract.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/bunbuddy-contract.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/bunbuddy-contract.handler.js"
+    },
+    "./services/bao-install/target-handlers/config-overlay.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/config-overlay.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/config-overlay.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/config-overlay.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/config-overlay.handler.js"
+    },
+    "./services/bao-install/target-handlers/better-auth-extension.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/better-auth-extension.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/better-auth-extension.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/better-auth-extension.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/better-auth-extension.handler.js"
+    },
+    "./services/bao-install/target-handlers/elysia-plugin.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/elysia-plugin.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/elysia-plugin.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/elysia-plugin.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/elysia-plugin.handler.js"
+    },
+    "./services/bao-install/target-handlers/flatbuffer-schema.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/flatbuffer-schema.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/flatbuffer-schema.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/flatbuffer-schema.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/flatbuffer-schema.handler.js"
+    },
+    "./services/bao-install/target-handlers/hardware-driver.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/hardware-driver.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/hardware-driver.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/hardware-driver.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/hardware-driver.handler.js"
+    },
+    "./services/bao-install/target-handlers/htmx-extension.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/htmx-extension.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/htmx-extension.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/htmx-extension.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/htmx-extension.handler.js"
+    },
+    "./services/bao-install/target-handlers/mcp-provider.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/mcp-provider.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/mcp-provider.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/mcp-provider.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/mcp-provider.handler.js"
+    },
+    "./services/bao-install/target-handlers/oci-image.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/oci-image.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/oci-image.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/oci-image.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/oci-image.handler.js"
+    },
+    "./services/bao-install/target-handlers/bao-runtime-workload.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/bao-runtime-workload.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/bao-runtime-workload.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/bao-runtime-workload.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/bao-runtime-workload.handler.js"
+    },
+    "./services/bao-install/target-handlers/prisma-extension.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/prisma-extension.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/prisma-extension.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/prisma-extension.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/prisma-extension.handler.js"
+    },
+    "./services/bao-install/target-handlers/register-all": {
+      "bun": "./dist/services/bao-install/target-handlers/register-all.js",
+      "import": "./dist/services/bao-install/target-handlers/register-all.js",
+      "types": "./dist/services/bao-install/target-handlers/register-all.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/register-all.js"
+    },
+    "./services/bao-install/target-handlers/ui-component-kit.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/ui-component-kit.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/ui-component-kit.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/ui-component-kit.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/ui-component-kit.handler.js"
+    },
+    "./services/bao-install/target-handlers/usd-scene.handler": {
+      "bun": "./dist/services/bao-install/target-handlers/usd-scene.handler.js",
+      "import": "./dist/services/bao-install/target-handlers/usd-scene.handler.js",
+      "types": "./dist/services/bao-install/target-handlers/usd-scene.handler.d.ts",
+      "default": "./dist/services/bao-install/target-handlers/usd-scene.handler.js"
+    },
+    "./services/bao-install/bao-target-handler-registry": {
+      "bun": "./dist/services/bao-install/bao-target-handler-registry.js",
+      "import": "./dist/services/bao-install/bao-target-handler-registry.js",
+      "types": "./dist/services/bao-install/bao-target-handler-registry.d.ts",
+      "default": "./dist/services/bao-install/bao-target-handler-registry.js"
+    },
+    "./services/bao-install/bao-install-config.service": {
+      "bun": "./dist/services/bao-install/bao-install-config.service.js",
+      "import": "./dist/services/bao-install/bao-install-config.service.js",
+      "types": "./dist/services/bao-install/bao-install-config.service.d.ts",
+      "default": "./dist/services/bao-install/bao-install-config.service.js"
+    },
+    "./services/bao-install/bao-install-validator.service": {
+      "bun": "./dist/services/bao-install/bao-install-validator.service.js",
+      "import": "./dist/services/bao-install/bao-install-validator.service.js",
+      "types": "./dist/services/bao-install/bao-install-validator.service.d.ts",
+      "default": "./dist/services/bao-install/bao-install-validator.service.js"
+    },
+    "./services/bao-install/bao-install.plugin": {
+      "bun": "./dist/services/bao-install/bao-install.plugin.js",
+      "import": "./dist/services/bao-install/bao-install.plugin.js",
+      "types": "./dist/services/bao-install/bao-install.plugin.d.ts",
+      "default": "./dist/services/bao-install/bao-install.plugin.js"
+    },
+    "./services/bao-install/bao-manifest-paths.service": {
+      "bun": "./dist/services/bao-install/bao-manifest-paths.service.js",
+      "import": "./dist/services/bao-install/bao-manifest-paths.service.js",
+      "types": "./dist/services/bao-install/bao-manifest-paths.service.d.ts",
+      "default": "./dist/services/bao-install/bao-manifest-paths.service.js"
+    },
+    "./services/bao-install/bao-manifest-trust.service": {
+      "bun": "./dist/services/bao-install/bao-manifest-trust.service.js",
+      "import": "./dist/services/bao-install/bao-manifest-trust.service.js",
+      "types": "./dist/services/bao-install/bao-manifest-trust.service.d.ts",
+      "default": "./dist/services/bao-install/bao-manifest-trust.service.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "UNLICENSED",
+  "packageManager": "bun@1.3.13",
+  "dependencies": {
+    "@baohaus/bao-config": "0.1.0",
+    "@baohaus/bao-schemas": "0.1.0",
+    "@baohaus/bao-sdk": "0.1.0",
+    "@baohaus/bao-spec": "0.1.0",
+    "@baohaus/bao-utils": "0.1.0",
+    "@baohaus/baobox": "0.1.1",
+    "@baohaus/yaml-bao": "0.1.0",
+    "elysia": "1.4.28"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  }
+}

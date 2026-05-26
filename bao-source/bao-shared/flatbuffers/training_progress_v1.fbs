@@ -1,0 +1,99 @@
+// Training progress binary protocol for FlatBuffer transport.
+// Provides efficient serialisation for real-time training progress updates
+// streamed via WebSocket.
+namespace baohaus.training.v1;
+
+/// Training stage identifier.
+enum TrainingStageV1:ubyte {
+  IDLE = 0,
+  DATA_LOADING = 1,
+  PREPROCESSING = 2,
+  TRAINING = 3,
+  VALIDATION = 4,
+  EVALUATION = 5,
+  EXPORT = 6,
+  COMPLETED = 7,
+  FAILED = 8,
+  CANCELLED = 9
+}
+
+/// Loss metric type.
+enum LossTypeV1:ubyte {
+  CROSS_ENTROPY = 0,
+  MSE = 1,
+  MAE = 2,
+  CUSTOM = 3
+}
+
+/// Hardware utilization snapshot.
+table HardwareSnapshotV1 {
+  /// GPU utilization percentage (0-100).
+  gpu_utilization:uint8 (id: 0);
+  /// GPU memory used in MB.
+  gpu_memory_mb:uint32 (id: 1);
+  /// GPU temperature in Celsius.
+  gpu_temp_celsius:uint8 (id: 2);
+  /// CPU utilization percentage (0-100).
+  cpu_utilization:uint8 (id: 3);
+  /// System memory used in MB.
+  system_memory_mb:uint32 (id: 4);
+}
+
+/// Per-epoch metrics.
+table EpochMetricsV1 {
+  /// Current epoch number (0-indexed).
+  epoch:uint16 (id: 0);
+  /// Total epochs planned.
+  total_epochs:uint16 (id: 1);
+  /// Training loss value.
+  train_loss:float32 (id: 2);
+  /// Validation loss value (NaN if not yet computed).
+  val_loss:float32 (id: 3);
+  /// Learning rate at this epoch.
+  learning_rate:float32 (id: 4);
+  /// Loss metric type.
+  loss_type:LossTypeV1 = CROSS_ENTROPY (id: 5);
+  /// Samples processed this epoch.
+  samples_processed:uint32 (id: 6);
+  /// Total samples in the epoch.
+  total_samples:uint32 (id: 7);
+  /// Epoch duration in milliseconds.
+  epoch_duration_ms:uint32 (id: 8);
+}
+
+/// Training progress update message.
+table TrainingProgressV1 {
+  /// Correlation ID for request tracing.
+  correlation_id:string (id: 0);
+  /// Training job identifier.
+  job_id:string (id: 1);
+  /// Model identifier.
+  model_id:string (id: 2);
+  /// Current training stage.
+  stage:TrainingStageV1 (id: 3);
+  /// Overall progress percentage (0.0–100.0).
+  progress_pct:float32 (id: 4);
+  /// Wall-clock elapsed time in milliseconds.
+  elapsed_ms:uint64 (id: 5);
+  /// Estimated remaining time in milliseconds.
+  eta_ms:uint64 (id: 6);
+  /// Current epoch metrics (when in TRAINING or VALIDATION stage).
+  epoch_metrics:EpochMetricsV1 (id: 7);
+  /// Hardware utilization snapshot.
+  hardware:HardwareSnapshotV1 (id: 8);
+  /// User-visible status message.
+  status_message:string (id: 9);
+  /// Timestamp in milliseconds since epoch.
+  timestamp_ms:uint64 (id: 10);
+  /// Error message (when stage = FAILED).
+  error_message:string (id: 11);
+}
+
+/// Batch of training progress updates.
+table TrainingProgressBatchV1 {
+  /// Batch of progress updates.
+  updates:[TrainingProgressV1] (id: 0);
+}
+
+file_identifier "TPV1";
+root_type TrainingProgressV1;

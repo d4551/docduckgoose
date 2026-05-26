@@ -1,0 +1,34 @@
+// BaoDown run event for Redis full-event pub/sub.
+// Enables cross-replica SSE without DB poll when WRAPTURE_BAODOWN_REDIS_FULL_EVENT=true.
+include "baodown_payloads_v1.fbs";
+
+namespace baohaus.baodown.v1;
+
+enum BaoDownRunEventKindV1:ubyte {
+  RUN_STARTED = 0,
+  RUN_COMPLETED = 1,
+  RUN_FAILED = 2,
+  RUN_CANCELLED = 3,
+  NODE_STARTED = 4,
+  NODE_COMPLETED = 5,
+  NODE_FAILED = 6,
+  NODE_LOG = 7
+}
+
+union BaoDownPayloadUnion {
+  LogPayload,
+  NodeOutputPayload,
+  RunMetadataPayload
+}
+
+table BaoDownRunEventV1 {
+  runId:string (id: 0);
+  seq:uint32 (id: 1);
+  kind:BaoDownRunEventKindV1 (id: 2);
+  timestamp:string (id: 3);
+  nodeId:string (id: 4);
+  payload:BaoDownPayloadUnion (id: 6);
+}
+
+file_identifier "BRE1";
+root_type BaoDownRunEventV1;

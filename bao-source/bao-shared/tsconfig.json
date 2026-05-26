@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "outDir": "./dist",
+    "rootDir": ".."
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "__tests__",
+    "dist",
+    "node_modules",
+    "scripts",
+    "tests"
+  ],
+  "extends": "./tsconfig.package.json"
+}

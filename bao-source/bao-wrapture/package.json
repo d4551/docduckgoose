@@ -1,0 +1,145 @@
+{
+  "name": "@baohaus/bao-wrapture",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bunx --bun tsc --project tsconfig.build.json",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun run build && bun run test && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/config.js",
+      "import": "./dist/config.js",
+      "types": "./dist/config.d.ts",
+      "default": "./dist/config.js"
+    },
+    "./builder-pool": {
+      "bun": "./dist/builder-pool.js",
+      "import": "./dist/builder-pool.js",
+      "types": "./dist/builder-pool.d.ts",
+      "default": "./dist/builder-pool.js"
+    },
+    "./config": {
+      "bun": "./dist/config.js",
+      "import": "./dist/config.js",
+      "types": "./dist/config.d.ts",
+      "default": "./dist/config.js"
+    },
+    "./decode-cache": {
+      "bun": "./dist/decode-cache.js",
+      "import": "./dist/decode-cache.js",
+      "types": "./dist/decode-cache.d.ts",
+      "default": "./dist/decode-cache.js"
+    },
+    "./decode-pool": {
+      "bun": "./dist/decode-pool.js",
+      "import": "./dist/decode-pool.js",
+      "types": "./dist/decode-pool.d.ts",
+      "default": "./dist/decode-pool.js"
+    },
+    "./defaults": {
+      "bun": "./dist/defaults.js",
+      "import": "./dist/defaults.js",
+      "types": "./dist/defaults.d.ts",
+      "default": "./dist/defaults.js"
+    },
+    "./event-coalescer": {
+      "bun": "./dist/event-coalescer.js",
+      "import": "./dist/event-coalescer.js",
+      "types": "./dist/event-coalescer.d.ts",
+      "default": "./dist/event-coalescer.js"
+    },
+    "./metrics": {
+      "bun": "./dist/metrics.js",
+      "import": "./dist/metrics.js",
+      "types": "./dist/metrics.d.ts",
+      "default": "./dist/metrics.js"
+    },
+    "./protocols/bao-install": {
+      "bun": "./dist/protocols/bao-install.js",
+      "import": "./dist/protocols/bao-install.js",
+      "types": "./dist/protocols/bao-install.d.ts",
+      "default": "./dist/protocols/bao-install.js"
+    },
+    "./protocols/bao-manifest": {
+      "bun": "./dist/protocols/bao-manifest.js",
+      "import": "./dist/protocols/bao-manifest.js",
+      "types": "./dist/protocols/bao-manifest.d.ts",
+      "default": "./dist/protocols/bao-manifest.js"
+    },
+    "./protocols/baodown": {
+      "bun": "./dist/protocols/baodown.js",
+      "import": "./dist/protocols/baodown.js",
+      "types": "./dist/protocols/baodown.d.ts",
+      "default": "./dist/protocols/baodown.js"
+    },
+    "./protocols/cache": {
+      "bun": "./dist/protocols/cache.js",
+      "import": "./dist/protocols/cache.js",
+      "types": "./dist/protocols/cache.d.ts",
+      "default": "./dist/protocols/cache.js"
+    },
+    "./protocols/hardware-state": {
+      "bun": "./dist/protocols/hardware-state.js",
+      "import": "./dist/protocols/hardware-state.js",
+      "types": "./dist/protocols/hardware-state.d.ts",
+      "default": "./dist/protocols/hardware-state.js"
+    },
+    "./protocols/module-lifecycle": {
+      "bun": "./dist/protocols/module-lifecycle.js",
+      "import": "./dist/protocols/module-lifecycle.js",
+      "types": "./dist/protocols/module-lifecycle.d.ts",
+      "default": "./dist/protocols/module-lifecycle.js"
+    },
+    "./protocols/observability": {
+      "bun": "./dist/protocols/observability.js",
+      "import": "./dist/protocols/observability.js",
+      "types": "./dist/protocols/observability.d.ts",
+      "default": "./dist/protocols/observability.js"
+    },
+    "./protocols/perception": {
+      "bun": "./dist/protocols/perception.js",
+      "import": "./dist/protocols/perception.js",
+      "types": "./dist/protocols/perception.d.ts",
+      "default": "./dist/protocols/perception.js"
+    },
+    "./transport": {
+      "bun": "./dist/transport.js",
+      "import": "./dist/transport.js",
+      "types": "./dist/transport.d.ts",
+      "default": "./dist/transport.js"
+    },
+    "./verifier": {
+      "bun": "./dist/verifier.js",
+      "import": "./dist/verifier.js",
+      "types": "./dist/verifier.d.ts",
+      "default": "./dist/verifier.js"
+    }
+  },
+  "main": "./dist/config.js",
+  "types": "./dist/config.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@baohaus/bao-config": "0.1.0",
+    "@baohaus/bao-core": "0.1.0",
+    "@baohaus/bao-schemas": "0.1.0",
+    "@baohaus/bao-utils": "0.1.0",
+    "@baohaus/flatbuf-bao": "0.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

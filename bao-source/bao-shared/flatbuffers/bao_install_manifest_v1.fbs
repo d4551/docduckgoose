@@ -1,0 +1,73 @@
+// Binary transport for .bao install manifests.
+// Enables efficient serialization of manifest + targets for
+// cross-service transport and caching.
+//
+// Schema evolution: all table fields use explicit (id: N).
+// Append new fields at the end with incrementing IDs for backwards compat.
+namespace baohaus.baoinstall.v1;
+
+/// Supported target kinds for .bao install targets.
+/// Permission scope levels for .bao install targets.
+enum BaoPermissionScope : byte {
+  Read = 0,
+  Write,
+  Execute,
+  Admin,
+  Network,
+  Hardware
+}
+
+/// Single hardware requirement declaration for a .bao manifest.
+table BaoHardwareRequirementV1 {
+  device_kind:string (id: 0);     // "gpu", "usb", "bluetooth", "serial", "camera"
+  vendor_id:string (id: 1);       // e.g. "0x2341" for Arduino
+  product_id:string (id: 2);      // e.g. "0x8036"
+  min_memory_mb:uint32 (id: 3);   // Minimum device memory
+  driver:string (id: 4);          // Required driver or sidecar name
+  optional:bool (id: 5);          // Graceful degradation when unavailable
+}
+
+/// Permission declaration for a .bao manifest target or manifest-level scope.
+table BaoPermissionV1 {
+  scope:BaoPermissionScope (id: 0);
+  resource:string (id: 1);        // e.g. "prisma:AiModel", "mcp:tools/*"
+  reason:string (id: 2);          // Human-readable justification
+}
+
+/// Lifecycle hook declarations for pre/post install/uninstall phases.
+table BaoLifecycleHooksV1 {
+  pre_install:string (id: 0);     // Script path or module specifier
+  post_install:string (id: 1);
+  pre_uninstall:string (id: 2);
+  post_uninstall:string (id: 3);
+  health_check:string (id: 4);    // Periodic health check endpoint
+}
+
+/// Single install target within a manifest.
+table BaoInstallTargetV1 {
+  kind:string (id: 0);            // Canonical `.bao` adapter kind
+  id:string (id: 1);              // Stable target identifier
+  module_id:string (id: 2);       // Runtime module specifier
+  config_json:string (id: 3);     // JSON-encoded target configuration
+}
+
+/// Binary-encoded .bao install manifest (v1 schema).
+table BaoInstallManifestV1 {
+  name:string (id: 0);
+  version:string (id: 1);
+  description:string (id: 2);
+  targets:[BaoInstallTargetV1] (id: 3);
+  metadata_json:string (id: 4);   // Additional metadata as JSON
+  created_at:string (id: 5);      // ISO 8601 timestamp
+
+  // v1 archive metadata extensions; older readers ignore these fields.
+  hardware:[BaoHardwareRequirementV1] (id: 6);    // B-2: Hardware declarations
+  runtime_constraints:[string] (id: 7);            // B-3: e.g. ["bun>=1.2", "onnxruntime>=1.18"]
+  permissions:[BaoPermissionV1] (id: 8);           // B-4: Required permissions
+  hooks:BaoLifecycleHooksV1 (id: 9);              // B-5: Install lifecycle hooks
+  checksum_sha256:string (id: 10);                 // B-6: SHA-256 of packaged content
+  signature:string (id: 11);                       // B-6: PEM-encoded signature
+}
+
+file_identifier "BIM1";
+root_type BaoInstallManifestV1;

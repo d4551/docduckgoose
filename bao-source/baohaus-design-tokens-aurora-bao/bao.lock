@@ -1,0 +1,8 @@
+{
+  "$schema": "../../bao/schemas/bao-lock.schema.json",
+  "schemaVersion": 1,
+  "id": "baohaus-design-tokens-aurora-bao",
+  "packageName": "@baohaus/baohaus-design-tokens-aurora-bao",
+  "packageVersion": "0.1.0",
+  "resolved": []
+}

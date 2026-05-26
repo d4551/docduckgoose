@@ -1,0 +1,192 @@
+{
+  "name": "@baohaus/bao-config",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bunx --bun tsc --project tsconfig.build.json",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun run build && bun run test && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/index.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./bao-install-routes": {
+      "bun": "./dist/bao-install-routes.js",
+      "import": "./dist/bao-install-routes.js",
+      "types": "./dist/bao-install-routes.d.ts",
+      "default": "./dist/bao-install-routes.js"
+    },
+    "./baodown-defaults": {
+      "bun": "./dist/baodown-defaults.js",
+      "import": "./dist/baodown-defaults.js",
+      "types": "./dist/baodown-defaults.d.ts",
+      "default": "./dist/baodown-defaults.js"
+    },
+    "./baofire-defaults": {
+      "bun": "./dist/baofire-defaults.js",
+      "import": "./dist/baofire-defaults.js",
+      "types": "./dist/baofire-defaults.d.ts",
+      "default": "./dist/baofire-defaults.js"
+    },
+    "./drone-training-defaults": {
+      "bun": "./dist/drone-training-defaults.js",
+      "import": "./dist/drone-training-defaults.js",
+      "types": "./dist/drone-training-defaults.d.ts",
+      "default": "./dist/drone-training-defaults.js"
+    },
+    "./drone.defaults": {
+      "bun": "./dist/drone.defaults.js",
+      "import": "./dist/drone.defaults.js",
+      "types": "./dist/drone.defaults.d.ts",
+      "default": "./dist/drone.defaults.js"
+    },
+    "./ecosystem-observability": {
+      "bun": "./dist/ecosystem-observability.js",
+      "import": "./dist/ecosystem-observability.js",
+      "types": "./dist/ecosystem-observability.d.ts",
+      "default": "./dist/ecosystem-observability.js"
+    },
+    "./ecosystem-urls": {
+      "bun": "./dist/ecosystem-urls.js",
+      "import": "./dist/ecosystem-urls.js",
+      "types": "./dist/ecosystem-urls.d.ts",
+      "default": "./dist/ecosystem-urls.js"
+    },
+    "./ecosystem-dev-defaults": {
+      "bun": "./src/ecosystem-dev-defaults.ts",
+      "import": "./src/ecosystem-dev-defaults.ts",
+      "types": "./src/ecosystem-dev-defaults.ts",
+      "default": "./src/ecosystem-dev-defaults.ts"
+    },
+    "./env": {
+      "bun": "./dist/env.js",
+      "import": "./dist/env.js",
+      "types": "./dist/env.d.ts",
+      "default": "./dist/env.js"
+    },
+    "./env-boolean": {
+      "bun": "./dist/env-boolean.js",
+      "import": "./dist/env-boolean.js",
+      "types": "./dist/env-boolean.d.ts",
+      "default": "./dist/env-boolean.js"
+    },
+    "./env-utils": {
+      "bun": "./dist/env-utils.js",
+      "import": "./dist/env-utils.js",
+      "types": "./dist/env-utils.d.ts",
+      "default": "./dist/env-utils.js"
+    },
+    "./config-diff": {
+      "bun": "./dist/config-diff.js",
+      "import": "./dist/config-diff.js",
+      "types": "./dist/config-diff.d.ts",
+      "default": "./dist/config-diff.js"
+    },
+    "./governance-overrides": {
+      "bun": "./dist/governance-overrides.js",
+      "import": "./dist/governance-overrides.js",
+      "types": "./dist/governance-overrides.d.ts",
+      "default": "./dist/governance-overrides.js"
+    },
+    "./openapi": {
+      "bun": "./src/openapi.ts",
+      "import": "./src/openapi.ts",
+      "types": "./src/openapi.ts",
+      "default": "./src/openapi.ts"
+    },
+    "./happydumpling-defaults": {
+      "bun": "./dist/happydumpling-defaults.js",
+      "import": "./dist/happydumpling-defaults.js",
+      "types": "./dist/happydumpling-defaults.d.ts",
+      "default": "./dist/happydumpling-defaults.js"
+    },
+    "./help-center-content": {
+      "bun": "./dist/help-center-content.js",
+      "import": "./dist/help-center-content.js",
+      "types": "./dist/help-center-content.d.ts",
+      "default": "./dist/help-center-content.js"
+    },
+    "./htmx-events": {
+      "bun": "./dist/htmx-events.js",
+      "import": "./dist/htmx-events.js",
+      "types": "./dist/htmx-events.d.ts",
+      "default": "./dist/htmx-events.js"
+    },
+    "./htmx-routes": {
+      "bun": "./dist/htmx-routes.js",
+      "import": "./dist/htmx-routes.js",
+      "types": "./dist/htmx-routes.d.ts",
+      "default": "./dist/htmx-routes.js"
+    },
+    "./local-federation-hmac": {
+      "bun": "./dist/local-federation-hmac.js",
+      "import": "./dist/local-federation-hmac.js",
+      "types": "./dist/local-federation-hmac.d.ts",
+      "default": "./dist/local-federation-hmac.js"
+    },
+    "./local-service-token": {
+      "bun": "./dist/local-service-token.js",
+      "import": "./dist/local-service-token.js",
+      "types": "./dist/local-service-token.d.ts",
+      "default": "./dist/local-service-token.js"
+    },
+    "./package-descriptor": {
+      "bun": "./dist/package-descriptor.js",
+      "import": "./dist/package-descriptor.js",
+      "types": "./dist/package-descriptor.d.ts",
+      "default": "./dist/package-descriptor.js"
+    },
+    "./robotics-training-defaults": {
+      "bun": "./dist/robotics-training-defaults.js",
+      "import": "./dist/robotics-training-defaults.js",
+      "types": "./dist/robotics-training-defaults.d.ts",
+      "default": "./dist/robotics-training-defaults.js"
+    },
+    "./robotics.defaults": {
+      "bun": "./dist/robotics.defaults.js",
+      "import": "./dist/robotics.defaults.js",
+      "types": "./dist/robotics.defaults.d.ts",
+      "default": "./dist/robotics.defaults.js"
+    },
+    "./service-ports": {
+      "bun": "./dist/service-ports.js",
+      "import": "./dist/service-ports.js",
+      "types": "./dist/service-ports.d.ts",
+      "default": "./dist/service-ports.js"
+    },
+    "./setup-wizard-actions": {
+      "bun": "./dist/setup-wizard-actions.js",
+      "import": "./dist/setup-wizard-actions.js",
+      "types": "./dist/setup-wizard-actions.d.ts",
+      "default": "./dist/setup-wizard-actions.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@baohaus/bao-constants": "0.1.0",
+    "@baohaus/bao-schemas": "0.1.0",
+    "@baohaus/bao-types": "0.1.0",
+    "@baohaus/bao-utils": "0.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

@@ -1,0 +1,240 @@
+{
+  "name": "@baohaus/soy-view-kit",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/html.js",
+      "import": "./dist/html.js",
+      "types": "./dist/html.d.ts",
+      "default": "./dist/html.js"
+    },
+    "./audio": {
+      "bun": "./dist/audio.js",
+      "import": "./dist/audio.js",
+      "types": "./dist/audio.d.ts",
+      "default": "./dist/audio.js"
+    },
+    "./html": {
+      "bun": "./dist/html.js",
+      "import": "./dist/html.js",
+      "types": "./dist/html.d.ts",
+      "default": "./dist/html.js"
+    },
+    "./i18n": {
+      "bun": "./dist/i18n.js",
+      "import": "./dist/i18n.js",
+      "types": "./dist/i18n.d.ts",
+      "default": "./dist/i18n.js"
+    },
+    "./i18n-types": {
+      "bun": "./dist/i18n-types.js",
+      "import": "./dist/i18n-types.js",
+      "types": "./dist/i18n-types.d.ts",
+      "default": "./dist/i18n-types.js"
+    },
+    "./locales/en": {
+      "bun": "./dist/locales/en.js",
+      "import": "./dist/locales/en.js",
+      "types": "./dist/locales/en.d.ts",
+      "default": "./dist/locales/en.js"
+    },
+    "./locales/ko": {
+      "bun": "./dist/locales/ko.js",
+      "import": "./dist/locales/ko.js",
+      "types": "./dist/locales/ko.d.ts",
+      "default": "./dist/locales/ko.js"
+    },
+    "./templates/types": {
+      "bun": "./dist/templates/types.js",
+      "import": "./dist/templates/types.js",
+      "types": "./dist/templates/types.d.ts",
+      "default": "./dist/templates/types.js"
+    },
+    "./templates/design-tokens": {
+      "bun": "./dist/templates/design-tokens.js",
+      "import": "./dist/templates/design-tokens.js",
+      "types": "./dist/templates/design-tokens.d.ts",
+      "default": "./dist/templates/design-tokens.js"
+    },
+    "./templates/icons": {
+      "bun": "./dist/templates/icons.js",
+      "import": "./dist/templates/icons.js",
+      "types": "./dist/templates/icons.d.ts",
+      "default": "./dist/templates/icons.js"
+    },
+    "./templates/buttons": {
+      "bun": "./dist/templates/buttons.js",
+      "import": "./dist/templates/buttons.js",
+      "types": "./dist/templates/buttons.d.ts",
+      "default": "./dist/templates/buttons.js"
+    },
+    "./templates/htmx": {
+      "bun": "./dist/templates/htmx.js",
+      "import": "./dist/templates/htmx.js",
+      "types": "./dist/templates/htmx.d.ts",
+      "default": "./dist/templates/htmx.js"
+    },
+    "./templates/alert": {
+      "bun": "./dist/templates/alert.js",
+      "import": "./dist/templates/alert.js",
+      "types": "./dist/templates/alert.d.ts",
+      "default": "./dist/templates/alert.js"
+    },
+    "./templates/status-badge": {
+      "bun": "./dist/templates/status-badge.js",
+      "import": "./dist/templates/status-badge.js",
+      "types": "./dist/templates/status-badge.d.ts",
+      "default": "./dist/templates/status-badge.js"
+    },
+    "./templates/breadcrumbs": {
+      "bun": "./dist/templates/breadcrumbs.js",
+      "import": "./dist/templates/breadcrumbs.js",
+      "types": "./dist/templates/breadcrumbs.d.ts",
+      "default": "./dist/templates/breadcrumbs.js"
+    },
+    "./templates/page-header": {
+      "bun": "./dist/templates/page-header.js",
+      "import": "./dist/templates/page-header.js",
+      "types": "./dist/templates/page-header.d.ts",
+      "default": "./dist/templates/page-header.js"
+    },
+    "./templates/skeleton": {
+      "bun": "./dist/templates/skeleton.js",
+      "import": "./dist/templates/skeleton.js",
+      "types": "./dist/templates/skeleton.d.ts",
+      "default": "./dist/templates/skeleton.js"
+    },
+    "./templates/page-states": {
+      "bun": "./dist/templates/page-states.js",
+      "import": "./dist/templates/page-states.js",
+      "types": "./dist/templates/page-states.d.ts",
+      "default": "./dist/templates/page-states.js"
+    },
+    "./templates/empty-state": {
+      "bun": "./dist/templates/empty-state.js",
+      "import": "./dist/templates/empty-state.js",
+      "types": "./dist/templates/empty-state.d.ts",
+      "default": "./dist/templates/empty-state.js"
+    },
+    "./templates/toast-container": {
+      "bun": "./dist/templates/toast-container.js",
+      "import": "./dist/templates/toast-container.js",
+      "types": "./dist/templates/toast-container.d.ts",
+      "default": "./dist/templates/toast-container.js"
+    },
+    "./templates/confirm-dialog": {
+      "bun": "./dist/templates/confirm-dialog.js",
+      "import": "./dist/templates/confirm-dialog.js",
+      "types": "./dist/templates/confirm-dialog.d.ts",
+      "default": "./dist/templates/confirm-dialog.js"
+    },
+    "./templates/pagination": {
+      "bun": "./dist/templates/pagination.js",
+      "import": "./dist/templates/pagination.js",
+      "types": "./dist/templates/pagination.d.ts",
+      "default": "./dist/templates/pagination.js"
+    },
+    "./templates/stat-card": {
+      "bun": "./dist/templates/stat-card.js",
+      "import": "./dist/templates/stat-card.js",
+      "types": "./dist/templates/stat-card.d.ts",
+      "default": "./dist/templates/stat-card.js"
+    },
+    "./templates/metric-row": {
+      "bun": "./dist/templates/metric-row.js",
+      "import": "./dist/templates/metric-row.js",
+      "types": "./dist/templates/metric-row.d.ts",
+      "default": "./dist/templates/metric-row.js"
+    },
+    "./templates/section-card": {
+      "bun": "./dist/templates/section-card.js",
+      "import": "./dist/templates/section-card.js",
+      "types": "./dist/templates/section-card.d.ts",
+      "default": "./dist/templates/section-card.js"
+    },
+    "./templates/filter-bar": {
+      "bun": "./dist/templates/filter-bar.js",
+      "import": "./dist/templates/filter-bar.js",
+      "types": "./dist/templates/filter-bar.d.ts",
+      "default": "./dist/templates/filter-bar.js"
+    },
+    "./templates/definition-grid": {
+      "bun": "./dist/templates/definition-grid.js",
+      "import": "./dist/templates/definition-grid.js",
+      "types": "./dist/templates/definition-grid.d.ts",
+      "default": "./dist/templates/definition-grid.js"
+    },
+    "./templates/entity-header": {
+      "bun": "./dist/templates/entity-header.js",
+      "import": "./dist/templates/entity-header.js",
+      "types": "./dist/templates/entity-header.d.ts",
+      "default": "./dist/templates/entity-header.js"
+    },
+    "./templates/tab-strip": {
+      "bun": "./dist/templates/tab-strip.js",
+      "import": "./dist/templates/tab-strip.js",
+      "types": "./dist/templates/tab-strip.d.ts",
+      "default": "./dist/templates/tab-strip.js"
+    },
+    "./templates/data-table": {
+      "bun": "./dist/templates/data-table.js",
+      "import": "./dist/templates/data-table.js",
+      "types": "./dist/templates/data-table.d.ts",
+      "default": "./dist/templates/data-table.js"
+    },
+    "./templates/loading-indicator": {
+      "bun": "./dist/templates/loading-indicator.js",
+      "import": "./dist/templates/loading-indicator.js",
+      "types": "./dist/templates/loading-indicator.d.ts",
+      "default": "./dist/templates/loading-indicator.js"
+    },
+    "./templates/error-boundary": {
+      "bun": "./dist/templates/error-boundary.js",
+      "import": "./dist/templates/error-boundary.js",
+      "types": "./dist/templates/error-boundary.d.ts",
+      "default": "./dist/templates/error-boundary.js"
+    },
+    "./templates/sidebar": {
+      "bun": "./dist/templates/sidebar.js",
+      "import": "./dist/templates/sidebar.js",
+      "types": "./dist/templates/sidebar.d.ts",
+      "default": "./dist/templates/sidebar.js"
+    },
+    "./templates/form-group": {
+      "bun": "./dist/templates/form-group.js",
+      "import": "./dist/templates/form-group.js",
+      "types": "./dist/templates/form-group.d.ts",
+      "default": "./dist/templates/form-group.js"
+    },
+    "./templates/styles/templates.css": "./dist/templates/styles/templates.css"
+  },
+  "main": "./dist/html.js",
+  "types": "./dist/html.d.ts",
+  "files": [
+    "dist",
+    "src/templates/styles",
+    "README.md"
+  ],
+  "license": "UNLICENSED",
+  "description": "Server-rendered view helpers and HTMX response primitives for Baohaus.",
+  "dependencies": {
+    "@baohaus/har-gow-config": "0.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

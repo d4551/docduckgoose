@@ -1,0 +1,35 @@
+// Hardware state event for cross-process device status transport.
+// Replaces the minimal DeviceEventV1 (5 fields) with a full 16-field envelope
+// covering state changes, sensor readings, commands, calibration, and health.
+namespace baohaus.realtime.v1;
+
+enum HardwareEventKindV1 : ubyte {
+  StateChange = 0,
+  SensorReading = 1,
+  CommandSent = 2,
+  CommandResult = 3,
+  CalibrationUpdate = 4,
+  HealthTransition = 5,
+}
+
+table HardwareStateEventV1 {
+  device_id:string      (id:0);
+  event_kind:HardwareEventKindV1 (id:1);
+  status:string         (id:2);
+  metric:string         (id:3);
+  value_float:float     (id:4);
+  value_string:string   (id:5);
+  unit:string           (id:6);
+  quality:ubyte         (id:7);
+  command:string        (id:8);
+  acknowledged:bool     (id:9);
+  health_score:float    (id:10);
+  reason:string         (id:11);
+  correlation_id:string (id:12);
+  latency_ms:uint32     (id:13);
+  timestamp:string      (id:14);
+  metadata_json:string  (id:15);
+}
+
+file_identifier "HWS1";
+root_type HardwareStateEventV1;

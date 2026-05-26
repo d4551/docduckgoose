@@ -1,0 +1,109 @@
+// AI chat stream binary protocol for FlatBuffer transport.
+// Provides efficient serialisation for real-time AI chat/completion token
+// streams sent via WebSocket or SSE.
+namespace baohaus.ai.chat.v1;
+
+/// AI provider identifier.
+enum AiProviderV1:ubyte {
+  UNKNOWN = 0,
+  OPENAI = 1,
+  ANTHROPIC = 2,
+  OLLAMA = 3,
+  ONNX_LOCAL = 4,
+  CUSTOM = 5
+}
+
+/// Token stream event type.
+enum StreamEventV1:ubyte {
+  TOKEN = 0,
+  METADATA = 1,
+  DONE = 2,
+  ERROR = 3,
+  TOOL_CALL = 4,
+  CITATION = 5
+}
+
+/// Finish reason for a completed stream.
+enum FinishReasonV1:ubyte {
+  NONE = 0,
+  STOP = 1,
+  LENGTH = 2,
+  TOOL_CALLS = 3,
+  CONTENT_FILTER = 4,
+  ERROR = 5
+}
+
+/// Usage statistics for a completed response.
+table UsageStatsV1 {
+  /// Number of prompt tokens consumed.
+  prompt_tokens:uint32 (id: 0);
+  /// Number of completion tokens generated.
+  completion_tokens:uint32 (id: 1);
+  /// Total tokens (prompt + completion).
+  total_tokens:uint32 (id: 2);
+  /// Estimated cost in microdollars.
+  cost_microdollars:uint32 (id: 3);
+}
+
+/// Tool call payload within a stream.
+table ToolCallV1 {
+  /// Tool call ID.
+  id:string (id: 0);
+  /// Tool name.
+  name:string (id: 1);
+  /// Serialized arguments (JSON string).
+  arguments:string (id: 2);
+}
+
+/// Citation reference within a stream.
+table CitationV1 {
+  /// Source document identifier.
+  source_id:string (id: 0);
+  /// Source document title/name.
+  title:string (id: 1);
+  /// Character offset start in the output.
+  offset_start:uint32 (id: 2);
+  /// Character offset end in the output.
+  offset_end:uint32 (id: 3);
+  /// Relevance score (0.0–1.0).
+  score:float32 (id: 4);
+}
+
+/// Single chat stream event.
+table AiChatStreamEventV1 {
+  /// Correlation ID for request tracing.
+  correlation_id:string (id: 0);
+  /// Stream event type.
+  event_type:StreamEventV1 (id: 1);
+  /// Token content (when event_type = TOKEN).
+  token:string (id: 2);
+  /// Sequence index of this token in the stream.
+  sequence:uint32 (id: 3);
+  /// AI model identifier.
+  model_id:string (id: 4);
+  /// AI provider.
+  provider:AiProviderV1 = UNKNOWN (id: 5);
+  /// Finish reason (when event_type = DONE).
+  finish_reason:FinishReasonV1 = NONE (id: 6);
+  /// Usage statistics (when event_type = DONE).
+  usage:UsageStatsV1 (id: 7);
+  /// Tool calls (when event_type = TOOL_CALL).
+  tool_calls:[ToolCallV1] (id: 8);
+  /// Citations (when event_type = CITATION).
+  citations:[CitationV1] (id: 9);
+  /// Error message (when event_type = ERROR).
+  error:string (id: 10);
+  /// Timestamp in milliseconds since epoch.
+  timestamp_ms:uint64 (id: 11);
+  /// Latency in milliseconds for this token.
+  latency_ms:uint16 (id: 12);
+}
+
+/// Batch of chat stream events (for WebSocket frame aggregation).
+table AiChatStreamBatchV1 {
+  /// Batch of stream events.
+  events:[AiChatStreamEventV1] (id: 0);
+}
+
+file_identifier "ACV1";
+root_type AiChatStreamEventV1;

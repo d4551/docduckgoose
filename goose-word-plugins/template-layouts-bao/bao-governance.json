@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "template-layouts-bao",
+  "name": "@baohaus/template-layouts-bao",
+  "version": "0.1.0",
+  "identity": {
+    "id": "template-layouts-bao",
+    "packageName": "@baohaus/template-layouts-bao",
+    "packageVersion": "0.1.0"
+  },
+  "channel": "local",
+  "visibility": "private",
+  "description": "Document layout templates and draft styles for Goose Word.",
+  "copyFirst": {
+    "required": true,
+    "installRoot": "~/.goose-word/bao/template-layouts-bao",
+    "archivePolicy": "no-prebuilt-archives"
+  },
+  "targets": [
+    {
+      "kind": "document-template",
+      "entrypoint": "dist/bao-extensions/document-template.js"
+    }
+  ]
+}

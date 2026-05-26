@@ -1,0 +1,132 @@
+{
+  "name": "@baohaus/bao-install-handlers-bao",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "packageManager": "bun@1.3.13",
+  "description": "Canonical Class A install-target handler implementations + asset-pack registry. Generic-runtime install handlers that depend only on @baohaus/bao-sdk + @baohaus/bao-schemas + @baohaus/contribution-registry-bao surfaces. Per-app handlers (Class B) stay in their consuming app. Resolves the previously-duplicated handler interfaces across registry, bao-runtime, forge, .bao AI Gateway.",
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun @biomejs/biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test && bun run build && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    "./asset-pack-registry": {
+      "bun": "./dist/asset-pack-registry.js",
+      "import": "./dist/asset-pack-registry.js",
+      "types": "./dist/asset-pack-registry.d.ts",
+      "default": "./dist/asset-pack-registry.js"
+    },
+    "./asset-pack-kinds": {
+      "bun": "./dist/asset-pack-kinds.js",
+      "import": "./dist/asset-pack-kinds.js",
+      "types": "./dist/asset-pack-kinds.d.ts",
+      "default": "./dist/asset-pack-kinds.js"
+    },
+    "./theme-pack": {
+      "bun": "./dist/theme-pack.js",
+      "import": "./dist/theme-pack.js",
+      "types": "./dist/theme-pack.d.ts",
+      "default": "./dist/theme-pack.js"
+    },
+    "./design-tokens": {
+      "bun": "./dist/design-tokens.js",
+      "import": "./dist/design-tokens.js",
+      "types": "./dist/design-tokens.d.ts",
+      "default": "./dist/design-tokens.js"
+    },
+    "./motion-preset": {
+      "bun": "./dist/motion-preset.js",
+      "import": "./dist/motion-preset.js",
+      "types": "./dist/motion-preset.d.ts",
+      "default": "./dist/motion-preset.js"
+    },
+    "./density-preset": {
+      "bun": "./dist/density-preset.js",
+      "import": "./dist/density-preset.js",
+      "types": "./dist/density-preset.d.ts",
+      "default": "./dist/density-preset.js"
+    },
+    "./sidebar": {
+      "bun": "./dist/sidebar.js",
+      "import": "./dist/sidebar.js",
+      "types": "./dist/sidebar.d.ts",
+      "default": "./dist/sidebar.js"
+    },
+    "./settings-tab": {
+      "bun": "./dist/settings-tab.js",
+      "import": "./dist/settings-tab.js",
+      "types": "./dist/settings-tab.d.ts",
+      "default": "./dist/settings-tab.js"
+    },
+    "./palette-entry-group": {
+      "bun": "./dist/palette-entry-group.js",
+      "import": "./dist/palette-entry-group.js",
+      "types": "./dist/palette-entry-group.d.ts",
+      "default": "./dist/palette-entry-group.js"
+    },
+    "./api-group": {
+      "bun": "./dist/api-group.js",
+      "import": "./dist/api-group.js",
+      "types": "./dist/api-group.d.ts",
+      "default": "./dist/api-group.js"
+    },
+    "./tile-group": {
+      "bun": "./dist/tile-group.js",
+      "import": "./dist/tile-group.js",
+      "types": "./dist/tile-group.d.ts",
+      "default": "./dist/tile-group.js"
+    },
+    "./topbar": {
+      "bun": "./dist/topbar.js",
+      "import": "./dist/topbar.js",
+      "types": "./dist/topbar.d.ts",
+      "default": "./dist/topbar.js"
+    },
+    "./htmx-extension": {
+      "bun": "./dist/htmx-extension.js",
+      "import": "./dist/htmx-extension.js",
+      "types": "./dist/htmx-extension.d.ts",
+      "default": "./dist/htmx-extension.js"
+    },
+    "./ui-component-kit": {
+      "bun": "./dist/ui-component-kit.js",
+      "import": "./dist/ui-component-kit.js",
+      "types": "./dist/ui-component-kit.d.ts",
+      "default": "./dist/ui-component-kit.js"
+    },
+    "./registry-factory": {
+      "bun": "./dist/registry-factory.js",
+      "import": "./dist/registry-factory.js",
+      "types": "./dist/registry-factory.d.ts",
+      "default": "./dist/registry-factory.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "UNLICENSED",
+  "engines": {
+    "bun": ">=1.3.0"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "@baohaus/bao-sdk": "0.1.0",
+    "@baohaus/bao-schemas": "0.1.0",
+    "@baohaus/bao-types": "0.1.0",
+    "@baohaus/bao-utils": "0.1.0",
+    "@baohaus/baobox": "0.1.1",
+    "@baohaus/contribution-registry-bao": "0.1.0",
+    "@baohaus/ecosystem-events-bao": "0.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  }
+}

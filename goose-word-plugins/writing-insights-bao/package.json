@@ -1,0 +1,25 @@
+{
+  "name": "@baohaus/writing-insights-bao",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.3.13",
+  "scripts": {
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "build": "bun run ./scripts/build.ts",
+    "bao:validate": "bun run ../../goose-word/scripts/bao-validate.ts --plugin .",
+    "bao:build": "bun run build"
+  },
+  "exports": {
+    ".": {
+      "bun": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "devDependencies": {
+    "@types/bun": "1.3.13",
+    "elysia": "1.4.28",
+    "typescript": "6.0.3"
+  }
+}

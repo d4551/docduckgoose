@@ -1,0 +1,68 @@
+{
+  "name": "@baohaus/http-bao",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "packageManager": "bun@1.3.13",
+  "description": "Bao HTTP framework parity: declarative routes, middleware, validation, WebSocket, type inference",
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun @biomejs/biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test && bun run build && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/index.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./app": {
+      "bun": "./dist/app.js",
+      "import": "./dist/app.js",
+      "types": "./dist/app.d.ts",
+      "default": "./dist/app.js"
+    },
+    "./context": {
+      "bun": "./dist/context.js",
+      "import": "./dist/context.js",
+      "types": "./dist/context.d.ts",
+      "default": "./dist/context.js"
+    },
+    "./handler": {
+      "bun": "./dist/handler.js",
+      "import": "./dist/handler.js",
+      "types": "./dist/handler.d.ts",
+      "default": "./dist/handler.js"
+    },
+    "./validator": {
+      "bun": "./dist/validator.js",
+      "import": "./dist/validator.js",
+      "types": "./dist/validator.d.ts",
+      "default": "./dist/validator.js"
+    },
+    "./websocket": {
+      "bun": "./dist/websocket.js",
+      "import": "./dist/websocket.js",
+      "types": "./dist/websocket.d.ts",
+      "default": "./dist/websocket.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts"
+}

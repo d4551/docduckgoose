@@ -1,0 +1,141 @@
+{
+  "colors": {
+    "gold": "#D4B978",
+    "goldDeep": "#C4A55E",
+    "goldLight": "#E8D9A8",
+    "black": "#080808",
+    "charcoal": "#111111",
+    "cream": "#F2EDE5",
+    "ivory": "#FAF7F2",
+    "ruby": "#D4364E",
+    "rubyDeep": "#7A1D2E",
+    "titanium": "#B5AFA7",
+    "graphite": "#1C1C1C"
+  },
+  "semantic": {
+    "success": { "light": "#5A7F3A", "dark": "#A8D17B" },
+    "warning": { "light": "#8F6E2A", "dark": "#E8D9A8" },
+    "error": { "light": "#B3261E", "dark": "#F2B8B5" },
+    "info": { "light": "#4A6FA5", "dark": "#93B8E8" },
+    "accent": { "light": "#D4364E", "dark": "#D4364E" }
+  },
+  "shape": {
+    "panel": 28,
+    "input": 24,
+    "bubble": 22,
+    "button": 18,
+    "chip": 999
+  },
+  "spacing": {
+    "panelPadding": 18,
+    "panelGap": 14,
+    "chipPaddingH": 12,
+    "chipPaddingV": 9,
+    "buttonPaddingH": 16,
+    "buttonPaddingV": 12,
+    "iconGap": 8
+  },
+  "typography": {
+    "roles": ["display", "heading", "title", "body", "label", "code"],
+    "fonts": {
+      "canonical": {
+        "display": "Playfair Display",
+        "body": "DM Sans",
+        "code": "IBM Plex Mono"
+      },
+      "codebase": {
+        "display": "Instrument Serif",
+        "body": "Syne",
+        "code": "IBM Plex Mono"
+      }
+    },
+    "minBodyPx": 16,
+    "lineHeightBody": [1.6, 1.85]
+  },
+  "animation": {
+    "durationFastMs": 150,
+    "durationMediumMs": 300,
+    "durationSlowMs": 500,
+    "pulseIntervalMs": 4000,
+    "easingDecelerate": "cubic-bezier(0.22, 1, 0.36, 1)",
+    "htmxSettleMs": 200,
+    "pressScale": 0.96
+  },
+  "motion": {
+    "policy": ["cinematic", "standard", "reduced"],
+    "defaultPolicy": "standard",
+    "respectPrefersReducedMotion": true
+  },
+  "accessibility": {
+    "minTouchTargetPt": 44,
+    "minTouchTargetRem": 2.75,
+    "iconOnlyRequiresAriaLabel": true,
+    "hintMustNotDuplicateLabel": true
+  },
+  "components": {
+    "compactAction": {
+      "modes": ["iconOnly", "iconAndLabel", "labelOnly"],
+      "defaultMode": "iconAndLabel",
+      "iconOnlyMinTouchPt": 44,
+      "expandTrigger": ["sheet", "menu", "popover"]
+    },
+    "chip": {
+      "role": "status",
+      "maxLabelChars": 24
+    }
+  },
+  "icons": {
+    "actions": {
+      "summarize": {
+        "sfSymbol": "text.append",
+        "material": "summarize",
+        "web": "text-summary"
+      },
+      "continue": {
+        "sfSymbol": "arrow.turn.down.right",
+        "material": "continue",
+        "web": "continue"
+      },
+      "describeImage": {
+        "sfSymbol": "photo",
+        "material": "image",
+        "web": "image"
+      },
+      "refresh": {
+        "sfSymbol": "arrow.clockwise",
+        "material": "refresh",
+        "web": "refresh"
+      },
+      "cancel": {
+        "sfSymbol": "xmark",
+        "material": "close",
+        "web": "close"
+      },
+      "pause": {
+        "sfSymbol": "pause.fill",
+        "material": "pause",
+        "web": "pause"
+      },
+      "play": {
+        "sfSymbol": "play.fill",
+        "material": "play_arrow",
+        "web": "play"
+      },
+      "resume": {
+        "sfSymbol": "play.fill",
+        "material": "play_arrow",
+        "web": "play-resume"
+      },
+      "copy": {
+        "sfSymbol": "doc.on.doc",
+        "material": "content_copy",
+        "web": "copy"
+      },
+      "runtime": {
+        "sfSymbol": "cpu",
+        "material": "memory",
+        "web": "cpu"
+      }
+    }
+  }
+}

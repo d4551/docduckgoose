@@ -1,0 +1,39 @@
+{
+  "name": "sillygoosebao",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.3.13",
+  "workspaces": {
+    "packages": [
+      "goose-word",
+      "goose-word-plugins/*",
+      "bao-source/bao-json-safe",
+      "bao-source/baohaus-density-preset-aurora-bao",
+      "bao-source/baohaus-design-tokens-aurora-bao",
+      "bao-source/baohaus-theme-aurora-light-bao",
+      "bao-source/baobox",
+      "bao-source/font-bao",
+      "bao-source/goose-word-ui-bao",
+      "bao-source/har-gow-config",
+      "bao-source/htmx-vendor-bao",
+      "bao-source/markdown-bao",
+      "bao-source/sanitize-bao",
+      "bao-source/soy-view-kit",
+      "bao-source/tangyuan-i18n"
+    ]
+  },
+  "scripts": {
+    "dev": "bun run --cwd goose-word dev",
+    "start": "bun run --cwd goose-word start",
+    "typecheck": "bun run --cwd goose-word typecheck",
+    "test": "bun run --cwd goose-word test",
+    "lint": "bunx --bun @biomejs/biome lint --config-path=./biome.json --files-ignore-unknown=true package.json biome.json README.md goose-word/src goose-word/test goose-word/package.json goose-word/tsconfig.json goose-word-plugins",
+    "lint:fix": "bunx --bun @biomejs/biome check --config-path=./biome.json --write --files-ignore-unknown=true package.json biome.json README.md goose-word/src goose-word/test goose-word/package.json goose-word/tsconfig.json goose-word-plugins",
+    "bao:validate": "bun run --cwd bao-source/goose-word-ui-bao bao:validate && bun run --cwd goose-word bao:validate",
+    "bao:build": "bun run --cwd goose-word bao:build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14"
+  }
+}

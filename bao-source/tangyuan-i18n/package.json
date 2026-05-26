@@ -1,0 +1,104 @@
+{
+  "name": "@baohaus/tangyuan-i18n",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/translator.js",
+      "import": "./dist/translator.js",
+      "types": "./dist/translator.d.ts",
+      "default": "./dist/translator.js"
+    },
+    "./accept-language": {
+      "bun": "./dist/accept-language.js",
+      "import": "./dist/accept-language.js",
+      "types": "./dist/accept-language.d.ts",
+      "default": "./dist/accept-language.js"
+    },
+    "./bcp47": {
+      "bun": "./dist/bcp47.js",
+      "import": "./dist/bcp47.js",
+      "types": "./dist/bcp47.d.ts",
+      "default": "./dist/bcp47.js"
+    },
+    "./catalog": {
+      "bun": "./dist/catalog.js",
+      "import": "./dist/catalog.js",
+      "types": "./dist/catalog.d.ts",
+      "default": "./dist/catalog.js"
+    },
+    "./contracts": {
+      "bun": "./dist/contracts.js",
+      "import": "./dist/contracts.js",
+      "types": "./dist/contracts.d.ts",
+      "default": "./dist/contracts.js"
+    },
+    "./detect": {
+      "bun": "./dist/detect.js",
+      "import": "./dist/detect.js",
+      "types": "./dist/detect.d.ts",
+      "default": "./dist/detect.js"
+    },
+    "./elysia": {
+      "bun": "./dist/elysia.js",
+      "import": "./dist/elysia.js",
+      "types": "./dist/elysia.d.ts",
+      "default": "./dist/elysia.js"
+    },
+    "./icu": {
+      "bun": "./dist/icu.js",
+      "import": "./dist/icu.js",
+      "types": "./dist/icu.d.ts",
+      "default": "./dist/icu.js"
+    },
+    "./package-descriptor": {
+      "bun": "./dist/package-descriptor.js",
+      "import": "./dist/package-descriptor.js",
+      "types": "./dist/package-descriptor.d.ts",
+      "default": "./dist/package-descriptor.js"
+    },
+    "./parity": {
+      "bun": "./dist/parity.js",
+      "import": "./dist/parity.js",
+      "types": "./dist/parity.d.ts",
+      "default": "./dist/parity.js"
+    },
+    "./translator": {
+      "bun": "./dist/translator.js",
+      "import": "./dist/translator.js",
+      "types": "./dist/translator.d.ts",
+      "default": "./dist/translator.js"
+    }
+  },
+  "main": "./dist/translator.js",
+  "types": "./dist/translator.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "UNLICENSED",
+  "description": "Canonical SSR i18n primitive: ICU MessageFormat, Accept-Language negotiation, parity audit, and an Elysia plugin. Built on @baohaus/baobox.",
+  "dependencies": {
+    "@baohaus/baobox": "0.1.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "elysia": "1.4.28",
+    "typescript": "6.0.3"
+  },
+  "peerDependencies": {
+    "elysia": "1.4.28"
+  },
+  "packageManager": "bun@1.3.13"
+}

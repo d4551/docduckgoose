@@ -1,0 +1,1919 @@
+{
+  "version": "1.5.0",
+  "versionPolicy": "Registry schema version is independent from individual bunbuddy package versions. Each bunbuddy owns its own semantic version in its .bao manifest and package descriptor.",
+  "bunbuddies": {
+    "usb": {
+      "operations": {
+        "command": "deviceCommand"
+      },
+      "discovery": {
+        "listContractKey": "devices"
+      },
+      "timeouts": {
+        "defaultSec": 5
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "docsJson": {
+          "method": "GET",
+          "path": "/docs/json"
+        },
+        "devices": {
+          "method": "GET",
+          "path": "/devices"
+        },
+        "devicesUsb": {
+          "method": "GET",
+          "path": "/devices/usb"
+        },
+        "serial": {
+          "method": "GET",
+          "path": "/serial"
+        },
+        "devicesCameras": {
+          "method": "GET",
+          "path": "/devices/cameras"
+        },
+        "device": {
+          "method": "GET",
+          "path": "/devices/{id}"
+        },
+        "deviceRead": {
+          "method": "POST",
+          "path": "/devices/{id}/read"
+        },
+        "deviceCommand": {
+          "method": "POST",
+          "path": "/devices/{id}/command"
+        },
+        "deviceCapture": {
+          "method": "POST",
+          "path": "/devices/{id}/capture"
+        },
+        "deviceUsbInfo": {
+          "method": "GET",
+          "path": "/devices/{id}/usb/info"
+        },
+        "deviceRecover": {
+          "method": "POST",
+          "path": "/devices/{id}/recover"
+        },
+        "arducam200mpCapabilities": {
+          "method": "GET",
+          "path": "/arducam/200mp/capabilities"
+        },
+        "arducam200mpConvert": {
+          "method": "POST",
+          "path": "/arducam/200mp/convert"
+        },
+        "scan": {
+          "method": "POST",
+          "path": "/scan"
+        },
+        "metrics": {
+          "method": "GET",
+          "path": "/metrics"
+        },
+        "wsDevices": {
+          "method": "WS",
+          "path": "/ws/devices"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/usb-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "USB BunBuddy API",
+        "description": "USB/HID device enumeration, communication, and camera capture integration",
+        "notes": ["USB HID + libusb descriptor enumeration"],
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/usb-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "USB/HID device enumeration, communication, and camera capture integration",
+        "tags": ["bunbuddy", "usb", "mcp"]
+      }
+    },
+    "ble": {
+      "discovery": {
+        "listContractKey": "devices"
+      },
+      "timeouts": {
+        "defaultSec": 5
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "docsJson": {
+          "method": "GET",
+          "path": "/docs/json"
+        },
+        "devices": {
+          "method": "GET",
+          "path": "/devices"
+        },
+        "device": {
+          "method": "GET",
+          "path": "/devices/{deviceId}"
+        },
+        "deviceConnect": {
+          "method": "POST",
+          "path": "/devices/{deviceId}/connect"
+        },
+        "deviceDisconnect": {
+          "method": "POST",
+          "path": "/devices/{deviceId}/disconnect"
+        },
+        "scan": {
+          "method": "POST",
+          "path": "/scan"
+        },
+        "adapter": {
+          "method": "GET",
+          "path": "/adapter"
+        },
+        "metrics": {
+          "method": "GET",
+          "path": "/metrics"
+        },
+        "diagnostics": {
+          "method": "GET",
+          "path": "/diagnostics"
+        },
+        "wsDevices": {
+          "method": "WS",
+          "path": "/ws/devices"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/bluetooth-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Bluetooth BunBuddy API",
+        "description": "Bluetooth device discovery (BLE + optional classic)",
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/bluetooth-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "Bluetooth device discovery (BLE + optional classic)",
+        "tags": ["bunbuddy", "ble", "mcp"]
+      }
+    },
+    "lighting": {
+      "discovery": {
+        "listContractKey": "devices"
+      },
+      "timeouts": {
+        "defaultSec": 5
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "openapi": {
+          "method": "GET",
+          "path": "/openapi"
+        },
+        "openapiJson": {
+          "method": "GET",
+          "path": "/openapi/json"
+        },
+        "devices": {
+          "method": "GET",
+          "path": "/devices"
+        },
+        "devicesCreate": {
+          "method": "POST",
+          "path": "/devices"
+        },
+        "device": {
+          "method": "GET",
+          "path": "/devices/{deviceId}"
+        },
+        "deviceUpdate": {
+          "method": "PATCH",
+          "path": "/devices/{deviceId}"
+        },
+        "deviceDelete": {
+          "method": "DELETE",
+          "path": "/devices/{deviceId}"
+        },
+        "deviceBrightness": {
+          "method": "PATCH",
+          "path": "/devices/{deviceId}/brightness"
+        },
+        "deviceTemperature": {
+          "method": "PATCH",
+          "path": "/devices/{deviceId}/temperature"
+        },
+        "deviceCalibrate": {
+          "method": "POST",
+          "path": "/devices/{deviceId}/calibrate"
+        },
+        "globalSettings": {
+          "method": "GET",
+          "path": "/global/settings"
+        },
+        "globalBrightness": {
+          "method": "PATCH",
+          "path": "/global/brightness"
+        },
+        "globalTemperature": {
+          "method": "PATCH",
+          "path": "/global/temperature"
+        },
+        "scan": {
+          "method": "POST",
+          "path": "/scan"
+        },
+        "metrics": {
+          "method": "GET",
+          "path": "/metrics"
+        },
+        "wsLighting": {
+          "method": "WS",
+          "path": "/ws/lighting"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/lighting-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Lighting BunBuddy API",
+        "description": "DMX/Art-Net lighting control service with WebSocket real-time updates",
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/lighting-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "DMX/Art-Net lighting control service with WebSocket real-time updates",
+        "tags": ["bunbuddy", "lighting", "mcp"]
+      }
+    },
+    "basler": {
+      "discovery": {
+        "listContractKey": "cameras"
+      },
+      "timeouts": {
+        "defaultSec": 10
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "docsJson": {
+          "method": "GET",
+          "path": "/docs/json"
+        },
+        "metrics": {
+          "method": "GET",
+          "path": "/metrics"
+        },
+        "cameras": {
+          "method": "GET",
+          "path": "/cameras"
+        },
+        "camera": {
+          "method": "GET",
+          "path": "/cameras/{cameraId}"
+        },
+        "cameraSettings": {
+          "method": "GET",
+          "path": "/cameras/{cameraId}/settings"
+        },
+        "cameraSettingsUpdate": {
+          "method": "PUT",
+          "path": "/cameras/{cameraId}/settings"
+        },
+        "cameraSettingsReset": {
+          "method": "POST",
+          "path": "/cameras/{cameraId}/settings/reset"
+        },
+        "capture": {
+          "method": "POST",
+          "path": "/capture"
+        },
+        "cameraCapture": {
+          "method": "POST",
+          "path": "/cameras/{cameraId}/capture"
+        },
+        "cameraArrayCapture": {
+          "method": "POST",
+          "path": "/cameras/array/capture"
+        },
+        "cameraStream": {
+          "method": "GET",
+          "path": "/stream/{cameraId}"
+        },
+        "cameraHistogram": {
+          "method": "GET",
+          "path": "/cameras/{cameraId}/histogram"
+        },
+        "analyzeBarcode": {
+          "method": "POST",
+          "path": "/analyze/barcode"
+        },
+        "analyzeQr": {
+          "method": "POST",
+          "path": "/analyze/qr"
+        },
+        "analyzeOcr": {
+          "method": "POST",
+          "path": "/analyze/ocr"
+        },
+        "analyzeQuality": {
+          "method": "POST",
+          "path": "/analyze/quality"
+        },
+        "analyzeFocus": {
+          "method": "POST",
+          "path": "/analyze/focus-score"
+        },
+        "analyzeEdges": {
+          "method": "POST",
+          "path": "/analyze/edges"
+        },
+        "analyzePreprocess": {
+          "method": "POST",
+          "path": "/analyze/preprocess"
+        },
+        "analyzeRectify": {
+          "method": "POST",
+          "path": "/analyze/rectify"
+        },
+        "cameraAutofocus": {
+          "method": "POST",
+          "path": "/cameras/{cameraId}/autofocus"
+        },
+        "cameraWhiteBalance": {
+          "method": "POST",
+          "path": "/cameras/{cameraId}/white-balance"
+        },
+        "analyzeCalibrate": {
+          "method": "POST",
+          "path": "/analyze/calibrate"
+        },
+        "calibration": {
+          "method": "GET",
+          "path": "/calibration/{cameraId}"
+        },
+        "cameraTrigger": {
+          "method": "GET",
+          "path": "/cameras/{cameraId}/trigger"
+        },
+        "cameraTriggerUpdate": {
+          "method": "PUT",
+          "path": "/cameras/{cameraId}/trigger"
+        },
+        "cameraIo": {
+          "method": "GET",
+          "path": "/cameras/{cameraId}/io"
+        },
+        "scan": {
+          "method": "POST",
+          "path": "/scan"
+        },
+        "wsStream": {
+          "method": "WS",
+          "path": "/ws/stream/{cameraId}"
+        },
+        "wsEvents": {
+          "method": "WS",
+          "path": "/ws/events"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/basler-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Basler BunBuddy API",
+        "description": "Industrial-grade camera control bunbuddy for Basler cameras.\n\n## Features\n- Real-time MJPEG and WebSocket streaming\n- Advanced camera controls (exposure, gain, white balance, ROI)\n- Multi-camera support with synchronized capture\n- Hardware triggering configuration\n- Image analysis (barcode, QR, OCR, quality, focus detection)\n\n## Communication\n- REST API for configuration and single captures\n- MJPEG streaming for browser preview\n- WebSocket for low-latency binary frames and events",
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/basler-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "Industrial-grade camera control bunbuddy for Basler cameras.",
+        "tags": ["bunbuddy", "basler", "mcp"]
+      }
+    },
+    "printer": {
+      "discovery": {
+        "listContractKey": "devices"
+      },
+      "timeouts": {
+        "defaultSec": 5
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "docsJson": {
+          "method": "GET",
+          "path": "/docs/json"
+        },
+        "devices": {
+          "method": "GET",
+          "path": "/devices"
+        },
+        "devicesCreate": {
+          "method": "POST",
+          "path": "/devices"
+        },
+        "device": {
+          "method": "GET",
+          "path": "/devices/{printerId}"
+        },
+        "deviceDelete": {
+          "method": "DELETE",
+          "path": "/devices/{printerId}"
+        },
+        "printText": {
+          "method": "POST",
+          "path": "/print/text"
+        },
+        "printLabel": {
+          "method": "POST",
+          "path": "/print/label"
+        },
+        "printReceipt": {
+          "method": "POST",
+          "path": "/print/receipt"
+        },
+        "scanBarcode": {
+          "method": "POST",
+          "path": "/scan/barcode"
+        },
+        "scanQr": {
+          "method": "POST",
+          "path": "/scan/qr"
+        },
+        "scan": {
+          "method": "POST",
+          "path": "/scan"
+        },
+        "jobs": {
+          "method": "GET",
+          "path": "/jobs"
+        },
+        "job": {
+          "method": "GET",
+          "path": "/jobs/{jobId}"
+        },
+        "metrics": {
+          "method": "GET",
+          "path": "/metrics"
+        },
+        "wsDevices": {
+          "method": "WS",
+          "path": "/ws/devices"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/printer-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Printer BunBuddy API",
+        "description": "Thermal printer control and barcode/QR scanning",
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/printer-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "Thermal printer control and barcode/QR scanning",
+        "tags": ["bunbuddy", "printer", "mcp"]
+      }
+    },
+    "industrial": {
+      "discovery": {
+        "listContractKey": "devices"
+      },
+      "timeouts": {
+        "defaultSec": 8
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "docsJson": {
+          "method": "GET",
+          "path": "/docs/json"
+        },
+        "devices": {
+          "method": "GET",
+          "path": "/devices"
+        },
+        "devicesCreate": {
+          "method": "POST",
+          "path": "/devices"
+        },
+        "device": {
+          "method": "GET",
+          "path": "/devices/{deviceId}"
+        },
+        "deviceUpdate": {
+          "method": "PATCH",
+          "path": "/devices/{deviceId}"
+        },
+        "deviceDelete": {
+          "method": "DELETE",
+          "path": "/devices/{deviceId}"
+        },
+        "deviceConnect": {
+          "method": "POST",
+          "path": "/devices/{deviceId}/connect"
+        },
+        "deviceDisconnect": {
+          "method": "POST",
+          "path": "/devices/{deviceId}/disconnect"
+        },
+        "modbusHoldingGet": {
+          "method": "GET",
+          "path": "/modbus/{deviceId}/holding/{address}/{count}"
+        },
+        "modbusHoldingPost": {
+          "method": "POST",
+          "path": "/modbus/{deviceId}/holding/{address}"
+        },
+        "modbusInputGet": {
+          "method": "GET",
+          "path": "/modbus/{deviceId}/input/{address}/{count}"
+        },
+        "modbusCoilsGet": {
+          "method": "GET",
+          "path": "/modbus/{deviceId}/coils/{address}/{count}"
+        },
+        "modbusCoilsPost": {
+          "method": "POST",
+          "path": "/modbus/{deviceId}/coils/{address}"
+        },
+        "modbusDiscreteGet": {
+          "method": "GET",
+          "path": "/modbus/{deviceId}/discrete/{address}/{count}"
+        },
+        "modbusStatus": {
+          "method": "GET",
+          "path": "/modbus/status"
+        },
+        "scan": {
+          "method": "POST",
+          "path": "/scan"
+        },
+        "metrics": {
+          "method": "GET",
+          "path": "/metrics"
+        },
+        "wsDevices": {
+          "method": "WS",
+          "path": "/ws/devices"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/industrial-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Industrial BunBuddy API",
+        "description": "Modbus RTU/TCP industrial protocol support",
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/industrial-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "Modbus RTU/TCP industrial protocol support",
+        "tags": ["bunbuddy", "industrial", "mcp"]
+      }
+    },
+    "iot": {
+      "discovery": {
+        "listContractKey": "devices"
+      },
+      "timeouts": {
+        "defaultSec": 6
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "docsJson": {
+          "method": "GET",
+          "path": "/docs/json"
+        },
+        "metrics": {
+          "method": "GET",
+          "path": "/metrics"
+        },
+        "scan": {
+          "method": "POST",
+          "path": "/scan"
+        },
+        "diagnostics": {
+          "method": "GET",
+          "path": "/diagnostics"
+        },
+        "devices": {
+          "method": "GET",
+          "path": "/devices"
+        },
+        "device": {
+          "method": "GET",
+          "path": "/devices/{deviceId}"
+        },
+        "sensors": {
+          "method": "GET",
+          "path": "/sensors"
+        },
+        "sensorsCreate": {
+          "method": "POST",
+          "path": "/sensors"
+        },
+        "sensor": {
+          "method": "GET",
+          "path": "/sensors/{sensorId}"
+        },
+        "sensorDelete": {
+          "method": "DELETE",
+          "path": "/sensors/{sensorId}"
+        },
+        "sensorReading": {
+          "method": "GET",
+          "path": "/sensors/{sensorId}/reading"
+        },
+        "sensorHistory": {
+          "method": "GET",
+          "path": "/sensors/{sensorId}/history"
+        },
+        "outputs": {
+          "method": "GET",
+          "path": "/outputs"
+        },
+        "outputsCreate": {
+          "method": "POST",
+          "path": "/outputs"
+        },
+        "output": {
+          "method": "GET",
+          "path": "/outputs/{outputId}"
+        },
+        "outputDelete": {
+          "method": "DELETE",
+          "path": "/outputs/{outputId}"
+        },
+        "outputState": {
+          "method": "POST",
+          "path": "/outputs/{outputId}/state"
+        },
+        "wsDevices": {
+          "method": "WS",
+          "path": "/ws/devices"
+        },
+        "ws": {
+          "method": "WS",
+          "path": "/ws"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/iot-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "IoT BunBuddy API",
+        "description": "API for controlling IoT devices via Johnny-Five and MQTT",
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/iot-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "API for controlling IoT devices via Johnny-Five and MQTT",
+        "tags": ["bunbuddy", "iot", "mcp"]
+      }
+    },
+    "scanner": {
+      "discovery": {
+        "listContractKey": "devices",
+        "listResponseKeys": ["devices", "scanners"]
+      },
+      "timeouts": {
+        "defaultSec": 8
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "openapi": {
+          "method": "GET",
+          "path": "/openapi.json"
+        },
+        "devices": {
+          "method": "GET",
+          "path": "/devices"
+        },
+        "scanners": {
+          "method": "GET",
+          "path": "/scanners"
+        },
+        "scannerConnect": {
+          "method": "POST",
+          "path": "/scanners/{scannerId}/connect"
+        },
+        "scannerDisconnect": {
+          "method": "POST",
+          "path": "/scanners/{scannerId}/disconnect"
+        },
+        "turntables": {
+          "method": "GET",
+          "path": "/turntables"
+        },
+        "turntableConnect": {
+          "method": "POST",
+          "path": "/turntables/{turntableId}/connect"
+        },
+        "turntableDisconnect": {
+          "method": "POST",
+          "path": "/turntables/{turntableId}/disconnect"
+        },
+        "turntableTilt": {
+          "method": "POST",
+          "path": "/turntable/tilt"
+        },
+        "turntableRotate": {
+          "method": "POST",
+          "path": "/turntable/rotate"
+        },
+        "turntableHome": {
+          "method": "POST",
+          "path": "/turntable/home"
+        },
+        "turntableStop": {
+          "method": "POST",
+          "path": "/turntable/stop"
+        },
+        "scanStart": {
+          "method": "POST",
+          "path": "/scan/start"
+        },
+        "scanCapture": {
+          "method": "POST",
+          "path": "/scan/{scanId}/capture"
+        },
+        "scanStop": {
+          "method": "POST",
+          "path": "/scan/{scanId}/stop"
+        },
+        "scanStatus": {
+          "method": "GET",
+          "path": "/scan/{scanId}"
+        },
+        "scanAutomated": {
+          "method": "POST",
+          "path": "/scan/automated"
+        },
+        "processAlign": {
+          "method": "POST",
+          "path": "/process/align"
+        },
+        "processMesh": {
+          "method": "POST",
+          "path": "/process/mesh"
+        },
+        "processExport": {
+          "method": "POST",
+          "path": "/process/export"
+        },
+        "process": {
+          "method": "POST",
+          "path": "/process"
+        },
+        "scanDownload": {
+          "method": "GET",
+          "path": "/scan/{scanId}/download"
+        },
+        "metrics": {
+          "method": "GET",
+          "path": "/metrics"
+        },
+        "wsScan": {
+          "method": "WS",
+          "path": "/ws/scan/{scanId}"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/scanner-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Scanner BunBuddy API",
+        "description": "3D scanner bunbuddy for Revopoint devices and turntable control with optional Open3D/Trimesh processing and GLTF/mesh exports. Provides discovery, connect/disconnect, scan capture, processing, and download endpoints.",
+        "notes": ["Revopoint SDK and Open3D processing"],
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/scanner-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "3D scanner bunbuddy for Revopoint devices and turntable control with optional Open3D/Trimesh processing and GLTF/mesh exports. Provides discovery, connect/disconnect, scan capture, processing, and download endpoints.",
+        "tags": ["bunbuddy", "scanner", "mcp"]
+      }
+    },
+    "drone": {
+      "discovery": {
+        "listContractKey": "devices",
+        "listResponseKeys": ["devices", "vehicles"]
+      },
+      "timeouts": {
+        "defaultSec": 8
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "docsJson": {
+          "method": "GET",
+          "path": "/docs/json"
+        },
+        "devices": {
+          "method": "GET",
+          "path": "/devices"
+        },
+        "devicesCreate": {
+          "method": "POST",
+          "path": "/devices"
+        },
+        "device": {
+          "method": "GET",
+          "path": "/devices/{id}"
+        },
+        "deviceDelete": {
+          "method": "DELETE",
+          "path": "/devices/{id}"
+        },
+        "deviceConnect": {
+          "method": "POST",
+          "path": "/devices/{id}/connect"
+        },
+        "deviceDisconnect": {
+          "method": "POST",
+          "path": "/devices/{id}/disconnect"
+        },
+        "deviceArm": {
+          "method": "POST",
+          "path": "/devices/{id}/arm"
+        },
+        "deviceDisarm": {
+          "method": "POST",
+          "path": "/devices/{id}/disarm"
+        },
+        "deviceTakeoff": {
+          "method": "POST",
+          "path": "/devices/{id}/takeoff"
+        },
+        "deviceLand": {
+          "method": "POST",
+          "path": "/devices/{id}/land"
+        },
+        "deviceRtl": {
+          "method": "POST",
+          "path": "/devices/{id}/rtl"
+        },
+        "deviceHover": {
+          "method": "POST",
+          "path": "/devices/{id}/hover"
+        },
+        "deviceMode": {
+          "method": "POST",
+          "path": "/devices/{id}/mode"
+        },
+        "deviceMove": {
+          "method": "POST",
+          "path": "/devices/{id}/move"
+        },
+        "deviceVelocity": {
+          "method": "POST",
+          "path": "/devices/{id}/velocity"
+        },
+        "deviceGoto": {
+          "method": "POST",
+          "path": "/devices/{id}/goto"
+        },
+        "deviceEmergencyStop": {
+          "method": "POST",
+          "path": "/devices/{id}/emergency-stop"
+        },
+        "deviceTelemetry": {
+          "method": "GET",
+          "path": "/devices/{id}/telemetry"
+        },
+        "deviceTelemetryExtended": {
+          "method": "GET",
+          "path": "/devices/{id}/telemetry/extended"
+        },
+        "deviceAutopilot": {
+          "method": "GET",
+          "path": "/devices/{id}/autopilot"
+        },
+        "deviceSensors": {
+          "method": "GET",
+          "path": "/devices/{id}/sensors"
+        },
+        "deviceMission": {
+          "method": "POST",
+          "path": "/devices/{id}/mission"
+        },
+        "deviceMissionStart": {
+          "method": "POST",
+          "path": "/devices/{id}/mission/start"
+        },
+        "deviceMissionPause": {
+          "method": "POST",
+          "path": "/devices/{id}/mission/pause"
+        },
+        "deviceMissionResume": {
+          "method": "POST",
+          "path": "/devices/{id}/mission/resume"
+        },
+        "deviceMissionDelete": {
+          "method": "DELETE",
+          "path": "/devices/{id}/mission"
+        },
+        "deviceGimbal": {
+          "method": "POST",
+          "path": "/devices/{id}/gimbal"
+        },
+        "deviceCameraSnapshot": {
+          "method": "GET",
+          "path": "/devices/{id}/camera/snapshot"
+        },
+        "deviceCameraPhoto": {
+          "method": "POST",
+          "path": "/devices/{id}/camera/photo"
+        },
+        "deviceCameraRecordStart": {
+          "method": "POST",
+          "path": "/devices/{id}/camera/record/start"
+        },
+        "deviceCameraRecordStop": {
+          "method": "POST",
+          "path": "/devices/{id}/camera/record/stop"
+        },
+        "deviceVideo": {
+          "method": "GET",
+          "path": "/devices/{id}/video"
+        },
+        "deviceGeofence": {
+          "method": "GET",
+          "path": "/devices/{id}/geofence"
+        },
+        "deviceGeofenceUpdate": {
+          "method": "PUT",
+          "path": "/devices/{id}/geofence"
+        },
+        "deviceGeofenceClear": {
+          "method": "DELETE",
+          "path": "/devices/{id}/geofence"
+        },
+        "deviceRallyPoints": {
+          "method": "GET",
+          "path": "/devices/{id}/rally-points"
+        },
+        "deviceRallyPointsUpdate": {
+          "method": "PUT",
+          "path": "/devices/{id}/rally-points"
+        },
+        "deviceRallyPointsClear": {
+          "method": "DELETE",
+          "path": "/devices/{id}/rally-points"
+        },
+        "deviceRtkStatus": {
+          "method": "GET",
+          "path": "/devices/{id}/rtk"
+        },
+        "deviceRtkCorrection": {
+          "method": "POST",
+          "path": "/devices/{id}/rtk/corrections"
+        },
+        "deviceOffboardStatus": {
+          "method": "GET",
+          "path": "/devices/{id}/offboard"
+        },
+        "deviceOffboardStart": {
+          "method": "POST",
+          "path": "/devices/{id}/offboard/start"
+        },
+        "deviceOffboardStop": {
+          "method": "POST",
+          "path": "/devices/{id}/offboard/stop"
+        },
+        "deviceOffboardSetpoint": {
+          "method": "POST",
+          "path": "/devices/{id}/offboard/setpoint"
+        },
+        "deviceVideoFusion": {
+          "method": "GET",
+          "path": "/devices/{id}/video-fusion"
+        },
+        "deviceVideoFusionUpdate": {
+          "method": "PUT",
+          "path": "/devices/{id}/video-fusion"
+        },
+        "deviceLogs": {
+          "method": "GET",
+          "path": "/devices/{id}/logs"
+        },
+        "deviceLogsStart": {
+          "method": "POST",
+          "path": "/devices/{id}/logs/start"
+        },
+        "deviceLogsStop": {
+          "method": "POST",
+          "path": "/devices/{id}/logs/stop"
+        },
+        "deviceLogsDownload": {
+          "method": "GET",
+          "path": "/devices/{id}/logs/{sessionId}/download"
+        },
+        "scan": {
+          "method": "POST",
+          "path": "/scan"
+        },
+        "metrics": {
+          "method": "GET",
+          "path": "/metrics"
+        },
+        "wsDevices": {
+          "method": "WS",
+          "path": "/ws/devices"
+        },
+        "wsTelemetry": {
+          "method": "WS",
+          "path": "/ws/telemetry"
+        },
+        "wsSensors": {
+          "method": "WS",
+          "path": "/ws/sensors"
+        },
+        "wsSensorsVehicle": {
+          "method": "WS",
+          "path": "/ws/sensors/{vehicleId}"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/drone-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Drone BunBuddy API",
+        "description": "Multi-protocol drone and ground vehicle control API.",
+        "notes": ["MAVLink, Tello, and RC vehicle protocols"],
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/drone-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "Multi-protocol drone and ground vehicle control API.",
+        "tags": ["bunbuddy", "drone", "mcp"]
+      }
+    },
+    "robotics": {
+      "operations": {
+        "connect": "deviceConnect",
+        "disconnect": "deviceDisconnect",
+        "telemetry": "deviceTelemetry",
+        "command": "deviceCommand",
+        "home": "deviceHome",
+        "stop": "deviceStop",
+        "joint": "deviceJoint",
+        "pose": "devicePose",
+        "gripper": "deviceGripper",
+        "policyCheck": "policyCheck",
+        "motionPlan": "motionPlan",
+        "localizationStatus": "localizationStatus",
+        "localizationControl": "localizationControl",
+        "telemetryReplay": "telemetryReplay",
+        "navigationStatus": "navigationStatus",
+        "navigationGoal": "navigationGoal",
+        "navigationWaypoints": "navigationWaypoints",
+        "navigationCancel": "navigationCancel",
+        "navigationClearCostmaps": "navigationClearCostmaps",
+        "navigationVelocity": "navigationVelocity",
+        "navigationStop": "navigationStop"
+      },
+      "discovery": {
+        "listContractKey": "devices",
+        "listResponseKeys": ["devices", "robots"]
+      },
+      "timeouts": {
+        "defaultSec": 8
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "openapi": {
+          "method": "GET",
+          "path": "/openapi"
+        },
+        "openapiJson": {
+          "method": "GET",
+          "path": "/openapi/json"
+        },
+        "metrics": {
+          "method": "GET",
+          "path": "/metrics"
+        },
+        "devices": {
+          "method": "GET",
+          "path": "/devices"
+        },
+        "devicesCreate": {
+          "method": "POST",
+          "path": "/devices"
+        },
+        "scan": {
+          "method": "POST",
+          "path": "/scan"
+        },
+        "device": {
+          "method": "GET",
+          "path": "/devices/{id}"
+        },
+        "deviceUpdate": {
+          "method": "PATCH",
+          "path": "/devices/{id}"
+        },
+        "deviceDelete": {
+          "method": "DELETE",
+          "path": "/devices/{id}"
+        },
+        "deviceTelemetry": {
+          "method": "GET",
+          "path": "/devices/{id}/telemetry"
+        },
+        "deviceConnect": {
+          "method": "POST",
+          "path": "/devices/{id}/connect"
+        },
+        "deviceDisconnect": {
+          "method": "POST",
+          "path": "/devices/{id}/disconnect"
+        },
+        "deviceHome": {
+          "method": "POST",
+          "path": "/devices/{id}/home"
+        },
+        "deviceStop": {
+          "method": "POST",
+          "path": "/devices/{id}/stop"
+        },
+        "deviceJoint": {
+          "method": "POST",
+          "path": "/devices/{id}/joint"
+        },
+        "devicePose": {
+          "method": "POST",
+          "path": "/devices/{id}/pose"
+        },
+        "deviceGripper": {
+          "method": "POST",
+          "path": "/devices/{id}/gripper"
+        },
+        "deviceCommand": {
+          "method": "POST",
+          "path": "/devices/{id}/command"
+        },
+        "policyCheck": {
+          "method": "POST",
+          "path": "/policy/check"
+        },
+        "motionPlan": {
+          "method": "POST",
+          "path": "/motion/plan"
+        },
+        "localizationStatus": {
+          "method": "GET",
+          "path": "/localization/{id}/status"
+        },
+        "localizationControl": {
+          "method": "POST",
+          "path": "/localization/{id}/control"
+        },
+        "telemetryReplay": {
+          "method": "POST",
+          "path": "/telemetry/{id}/replay"
+        },
+        "navigationStatus": {
+          "method": "GET",
+          "path": "/navigation/{id}/status"
+        },
+        "navigationGoal": {
+          "method": "POST",
+          "path": "/navigation/{id}/goal"
+        },
+        "navigationWaypoints": {
+          "method": "POST",
+          "path": "/navigation/{id}/waypoints"
+        },
+        "navigationCancel": {
+          "method": "POST",
+          "path": "/navigation/{id}/cancel"
+        },
+        "navigationClearCostmaps": {
+          "method": "POST",
+          "path": "/navigation/{id}/clear-costmaps"
+        },
+        "navigationVelocity": {
+          "method": "POST",
+          "path": "/navigation/{id}/velocity"
+        },
+        "navigationStop": {
+          "method": "POST",
+          "path": "/navigation/{id}/stop"
+        },
+        "navigationServices": {
+          "method": "GET",
+          "path": "/navigation/services"
+        },
+        "navigationServiceDelete": {
+          "method": "DELETE",
+          "path": "/navigation/{id}/service"
+        },
+        "ros2Graph": {
+          "method": "GET",
+          "path": "/ros2/{id}/graph"
+        },
+        "ros2Topics": {
+          "method": "GET",
+          "path": "/ros2/{id}/topics"
+        },
+        "ros2Services": {
+          "method": "GET",
+          "path": "/ros2/{id}/services"
+        },
+        "ros2Actions": {
+          "method": "GET",
+          "path": "/ros2/{id}/actions"
+        },
+        "ros2Nodes": {
+          "method": "GET",
+          "path": "/ros2/{id}/nodes"
+        },
+        "ros2Params": {
+          "method": "GET",
+          "path": "/ros2/{id}/params"
+        },
+        "ros2Publish": {
+          "method": "POST",
+          "path": "/ros2/{id}/publish"
+        },
+        "ros2Service": {
+          "method": "POST",
+          "path": "/ros2/{id}/service"
+        },
+        "ros2Action": {
+          "method": "POST",
+          "path": "/ros2/{id}/action"
+        },
+        "ros2ParamsQuery": {
+          "method": "POST",
+          "path": "/ros2/{id}/params/query"
+        },
+        "ros2ParamsSet": {
+          "method": "POST",
+          "path": "/ros2/{id}/params/set"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/robotics-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Robotics BunBuddy API",
+        "description": "ROS2/ros2ws robotics device management, control, and Nav2 navigation",
+        "notes": ["Robot arms and mobile robots with ROS transport support"],
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/robotics-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "ROS2/ros2ws robotics device management, control, and Nav2 navigation",
+        "tags": ["bunbuddy", "robotics", "mcp"]
+      }
+    },
+    "perception": {
+      "operations": {
+        "capabilities": "capabilities",
+        "align": "pointcloudAlign",
+        "mesh": "pointcloudMesh"
+      },
+      "timeouts": {
+        "defaultSec": 30
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "docsJson": {
+          "method": "GET",
+          "path": "/docs/json"
+        },
+        "openapi": {
+          "method": "GET",
+          "path": "/openapi"
+        },
+        "openapiJson": {
+          "method": "GET",
+          "path": "/openapi/json"
+        },
+        "metrics": {
+          "method": "GET",
+          "path": "/metrics"
+        },
+        "metricsOpenMetrics": {
+          "method": "GET",
+          "path": "/metrics/openmetrics"
+        },
+        "diagnostics": {
+          "method": "GET",
+          "path": "/diagnostics"
+        },
+        "imageRectify": {
+          "method": "POST",
+          "path": "/image/rectify"
+        },
+        "imageDetect": {
+          "method": "POST",
+          "path": "/image/detect"
+        },
+        "imageSegment": {
+          "method": "POST",
+          "path": "/image/segment"
+        },
+        "imageCalibrationGet": {
+          "method": "GET",
+          "path": "/image/calibration/{cameraId}"
+        },
+        "imageCalibrationPost": {
+          "method": "POST",
+          "path": "/image/calibration/{cameraId}"
+        },
+        "pointcloudFilter": {
+          "method": "POST",
+          "path": "/pointcloud/filter"
+        },
+        "pointcloudAlign": {
+          "method": "POST",
+          "path": "/pointcloud/align"
+        },
+        "pointcloudMesh": {
+          "method": "POST",
+          "path": "/pointcloud/mesh"
+        },
+        "pointcloudDetect": {
+          "method": "POST",
+          "path": "/pointcloud/detect"
+        },
+        "pointcloudRansac": {
+          "method": "POST",
+          "path": "/pointcloud/ransac-plane"
+        },
+        "pointcloudExtractClusters": {
+          "method": "POST",
+          "path": "/pointcloud/extract-clusters"
+        },
+        "pointcloudEstimateNormals": {
+          "method": "POST",
+          "path": "/pointcloud/estimate-normals"
+        },
+        "depthToLaserscan": {
+          "method": "POST",
+          "path": "/depth/to-laserscan"
+        },
+        "stream": {
+          "method": "WS",
+          "path": "/ws/stream/{pipelineId}"
+        },
+        "events": {
+          "method": "WS",
+          "path": "/ws/events"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/perception-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Perception BunBuddy API",
+        "description": "ROS2 Perception bunbuddy providing ROS2 image interop, PCL, and vision_msgs operations",
+        "notes": ["ROS2 perception integration (OpenCV interop, PCL, vision_msgs)"],
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/perception-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "ROS2 Perception bunbuddy providing ROS2 image interop, PCL, and vision_msgs operations",
+        "tags": ["bunbuddy", "perception", "mcp"]
+      }
+    },
+    "vision": {
+      "timeouts": {
+        "defaultSec": 30
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "openapi": {
+          "method": "GET",
+          "path": "/openapi.json"
+        },
+        "classify": {
+          "method": "POST",
+          "path": "/classify"
+        },
+        "vitClassify": {
+          "method": "POST",
+          "path": "/vit/pytorch/classify"
+        },
+        "segment": {
+          "method": "POST",
+          "path": "/segment"
+        },
+        "explain": {
+          "method": "POST",
+          "path": "/explain"
+        },
+        "translatePix2Pix": {
+          "method": "POST",
+          "path": "/translate/pix2pix"
+        },
+        "translateCycleGan": {
+          "method": "POST",
+          "path": "/translate/cyclegan"
+        },
+        "preprocess": {
+          "method": "POST",
+          "path": "/preprocess"
+        },
+        "exportOnnx": {
+          "method": "POST",
+          "path": "/export/onnx"
+        },
+        "memvidIndex": {
+          "method": "POST",
+          "path": "/memvid/index"
+        },
+        "memvidSearch": {
+          "method": "POST",
+          "path": "/memvid/search"
+        },
+        "trainLightning": {
+          "method": "POST",
+          "path": "/train/lightning"
+        },
+        "trainLightningStatus": {
+          "method": "GET",
+          "path": "/train/lightning/{jobId}"
+        },
+        "trainLightningOnnxArtifact": {
+          "method": "GET",
+          "path": "/train/lightning/{jobId}/artifact/onnx"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/vision-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Vision AI BunBuddy",
+        "description": "PyTorch-based vision inference with ViT, segmentation, and GradCAM",
+        "notes": [
+          "Vision AI bunbuddy (ViT, segmentation, GradCAM, memvid, libvips)",
+          "PyTorch Lightning training + TorchMetrics"
+        ],
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/vision-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "PyTorch-based vision inference with ViT, segmentation, and GradCAM",
+        "tags": ["bunbuddy", "vision", "mcp"]
+      }
+    },
+    "gaussian": {
+      "operations": {
+        "train": "startTraining",
+        "render": "renderView",
+        "export": "exportModel"
+      },
+      "timeouts": {
+        "defaultSec": 30
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "healthLive": {
+          "method": "GET",
+          "path": "/health/live"
+        },
+        "healthReady": {
+          "method": "GET",
+          "path": "/health/ready"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "openapi": {
+          "method": "GET",
+          "path": "/openapi.json"
+        },
+        "train": {
+          "method": "POST",
+          "path": "/train"
+        },
+        "trainStatus": {
+          "method": "GET",
+          "path": "/train/{jobId}"
+        },
+        "trainCancel": {
+          "method": "DELETE",
+          "path": "/train/{jobId}"
+        },
+        "render": {
+          "method": "POST",
+          "path": "/render"
+        },
+        "pytorch3dRender": {
+          "method": "POST",
+          "path": "/pytorch3d/render"
+        },
+        "pytorch3dMeshSummary": {
+          "method": "POST",
+          "path": "/pytorch3d/mesh/summary"
+        },
+        "export": {
+          "method": "POST",
+          "path": "/export"
+        },
+        "models": {
+          "method": "GET",
+          "path": "/models"
+        },
+        "modelUnload": {
+          "method": "DELETE",
+          "path": "/models/{modelPath}"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/gaussian-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Gaussian Splatting BunBuddy",
+        "description": "3D Gaussian Splatting training and rendering bunbuddy with gsplat. Provides async training jobs, real-time rasterization rendering, PLY model export, PyTorch3D mesh rendering, and mesh analysis endpoints.",
+        "notes": [
+          "Training requires CUDA-enabled GPU; CPU/MPS for inference only",
+          "Async training jobs with progress tracking via polling",
+          "Vectorized PLY I/O for high-performance model serialization",
+          "PyTorch3D mesh rendering and analysis integration"
+        ],
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/gaussian-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "3D Gaussian Splatting training and rendering bunbuddy with gsplat. Provides async training jobs, real-time rasterization rendering, PLY model export, PyTorch3D mesh rendering, and mesh analysis endpoints.",
+        "tags": ["bunbuddy", "gaussian", "mcp"]
+      }
+    },
+    "rpa": {
+      "timeouts": {
+        "defaultSec": 20
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "openapi": {
+          "method": "GET",
+          "path": "/openapi.json"
+        },
+        "execute": {
+          "method": "POST",
+          "path": "/execute"
+        },
+        "keyword": {
+          "method": "POST",
+          "path": "/keyword"
+        },
+        "validate": {
+          "method": "POST",
+          "path": "/validate"
+        },
+        "libraries": {
+          "method": "GET",
+          "path": "/libraries"
+        },
+        "library": {
+          "method": "GET",
+          "path": "/libraries/{libraryName}"
+        },
+        "execution": {
+          "method": "GET",
+          "path": "/executions/{executionId}"
+        },
+        "executionCancel": {
+          "method": "POST",
+          "path": "/executions/{executionId}/cancel"
+        },
+        "wsExecution": {
+          "method": "WS",
+          "path": "/ws/execution/{executionId}"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/rpa-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "RPA BunBuddy",
+        "description": "Robot Framework execution service for Baohaus",
+        "notes": ["Robot Framework execution and workflow automation"],
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/rpa-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "Robot Framework execution service for Baohaus",
+        "tags": ["bunbuddy", "rpa", "mcp"]
+      }
+    },
+    "dimsum": {
+      "operations": {
+        "stow": "dicomWebStudiesStow",
+        "qido": "dicomWebStudies",
+        "wado": "wado"
+      },
+      "discovery": {
+        "listContractKey": "studies",
+        "listResponseKeys": ["studies"]
+      },
+      "timeouts": {
+        "defaultSec": 10
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "docsJson": {
+          "method": "GET",
+          "path": "/docs/json"
+        },
+        "system": {
+          "method": "GET",
+          "path": "/system"
+        },
+        "studies": {
+          "method": "GET",
+          "path": "/studies"
+        },
+        "studySeries": {
+          "method": "GET",
+          "path": "/studies/{studyUid}/series"
+        },
+        "instance": {
+          "method": "GET",
+          "path": "/instances/{instanceUid}"
+        },
+        "instanceFile": {
+          "method": "GET",
+          "path": "/instances/{instanceUid}/file"
+        },
+        "instancesCreate": {
+          "method": "POST",
+          "path": "/instances"
+        },
+        "instanceDelete": {
+          "method": "DELETE",
+          "path": "/instances/{instanceUid}"
+        },
+        "wado": {
+          "method": "GET",
+          "path": "/wado"
+        },
+        "dicomWebStudiesStow": {
+          "method": "POST",
+          "path": "/dicom-web/studies"
+        },
+        "dicomWebStudies": {
+          "method": "GET",
+          "path": "/dicom-web/studies"
+        },
+        "dicomWebStudySeries": {
+          "method": "GET",
+          "path": "/dicom-web/studies/{studyUid}/series"
+        },
+        "dicomWebSeriesInstances": {
+          "method": "GET",
+          "path": "/dicom-web/studies/{studyUid}/series/{seriesUid}/instances"
+        },
+        "dicomWebStudyMetadata": {
+          "method": "GET",
+          "path": "/dicom-web/studies/{studyUid}/metadata"
+        },
+        "dicomWebSeriesMetadata": {
+          "method": "GET",
+          "path": "/dicom-web/studies/{studyUid}/series/{seriesUid}/metadata"
+        },
+        "dicomWebInstanceMetadata": {
+          "method": "GET",
+          "path": "/dicom-web/studies/{studyUid}/series/{seriesUid}/instances/{instanceUid}/metadata"
+        },
+        "dicomWebInstanceRetrieve": {
+          "method": "GET",
+          "path": "/dicom-web/studies/{studyUid}/series/{seriesUid}/instances/{instanceUid}"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/dimsum-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Dimsum BunBuddy API",
+        "description": "First-party DICOM archive service for Baohaus.",
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/dimsum-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "First-party DICOM archive service for Baohaus.",
+        "tags": ["bunbuddy", "dimsum", "mcp"]
+      }
+    },
+    "scoutdumpling": {
+      "operations": {
+        "discover": "discover",
+        "collectPage": "collectPage",
+        "collectSite": "collectSite",
+        "extract": "extract",
+        "runResearchJob": "researchJobs"
+      },
+      "timeouts": {
+        "defaultSec": 30
+      },
+      "contracts": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "capabilities": {
+          "method": "GET",
+          "path": "/capabilities"
+        },
+        "docs": {
+          "method": "GET",
+          "path": "/docs"
+        },
+        "docsJson": {
+          "method": "GET",
+          "path": "/docs/json"
+        },
+        "discover": {
+          "method": "POST",
+          "path": "/discover"
+        },
+        "collectPage": {
+          "method": "POST",
+          "path": "/collect/page"
+        },
+        "collectSite": {
+          "method": "POST",
+          "path": "/collect/site"
+        },
+        "extract": {
+          "method": "POST",
+          "path": "/extract"
+        },
+        "browserSessionCreate": {
+          "method": "POST",
+          "path": "/browser/session"
+        },
+        "browserSessionStep": {
+          "method": "POST",
+          "path": "/browser/session/{sessionId}/step"
+        },
+        "browserSessionDelete": {
+          "method": "DELETE",
+          "path": "/browser/session/{sessionId}"
+        },
+        "memoryUpsert": {
+          "method": "POST",
+          "path": "/memory/upsert"
+        },
+        "memorySearch": {
+          "method": "POST",
+          "path": "/memory/search"
+        },
+        "briefs": {
+          "method": "POST",
+          "path": "/briefs"
+        },
+        "researchJobs": {
+          "method": "POST",
+          "path": "/research/jobs"
+        },
+        "researchJobStatus": {
+          "method": "GET",
+          "path": "/research/jobs/{jobId}"
+        }
+      },
+      "openapiFile": "bao-source/bunbuddy-shared/src/bunbuddies/scoutdumpling-bunbuddy/openapi.yaml",
+      "docsMetadata": {
+        "title": "Scoutdumpling Research API",
+        "description": "Web collection, context memory, and research orchestration for the Scoutdumpling research stack.",
+        "notes": [
+          "Replaces external Firecrawl and OpenViking dependencies with first-party implementations",
+          "Browser automation requires Playwright (optional, degrades gracefully)"
+        ],
+        "readmePath": "bao-source/bunbuddy-shared/src/bunbuddies/scoutdumpling-bunbuddy/README.md",
+        "systemDocPath": "docs/architecture/bunbuddy-contract-model.md"
+      },
+      "mcpMetadata": {
+        "description": "Scoutdumpling research bunbuddy - web collection, context memory, and orchestration",
+        "tags": ["bunbuddy", "scoutdumpling", "mcp"]
+      }
+    }
+  }
+}

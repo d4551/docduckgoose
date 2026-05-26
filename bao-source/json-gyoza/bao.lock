@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "json-gyoza",
+  "packageName": "@baohaus/json-gyoza",
+  "packageVersion": "0.1.0",
+  "resolved": [
+    {
+      "name": "@baohaus/chili-oil-errors",
+      "version": "0.1.0",
+      "ociRepository": "baohaus/chili-oil-errors",
+      "ociDigest": "sha256:238fb50325ca43fad471d8027f11acd7a4de022c75a3e6c7260c7db47c3d0e81",
+      "integrity": "sha256-I4+1AyXKQ/rUcdgCfxGs16TeAix1o+bHJgx9tHw9DoE=",
+      "signature": {
+        "provider": "ed25519",
+        "bundle": "kieW86u+KwPyW+Cf/559TV6B36WMqDeuahGnCiJQ1FKJ3Ctubwv/eemtdnGEOGFbWSuRXf0WpqRbLxoBocwBAA==",
+        "keyId": "727d68a8ba3f30644216294d054d0366ee6b3db4b87b780b5f6b3002b45450ce",
+        "transparencyLog": "https://rekor.sigstore.dev"
+      },
+      "resolvedFrom": "oci-registry"
+    }
+  ]
+}

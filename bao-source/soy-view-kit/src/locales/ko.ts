@@ -1,0 +1,242 @@
+import type { TranslationMap } from "../i18n-types.js";
+
+export const koDictionary: TranslationMap = {
+  app: {
+    name: "Baohaus",
+    tagline: "오디오 전사, 워크플로, 패키지 중심 AI 도구.",
+  },
+  builder: {
+    actions: {
+      execute: "실행",
+      validate: "검증",
+    },
+    app: {
+      tagline: "HTMX 중심 워크플로 빌더, 미디어 운영, 템플릿, 실행 이력.",
+      title: "Bonkbun 워크플로 빌더",
+    },
+    catalog: {
+      title: "노드 카탈로그",
+    },
+    editor: {
+      contextJson: "실행 컨텍스트 JSON",
+      exampleName: "데모 워크플로",
+      title: "워크플로 편집기",
+      workflowJson: "워크플로 JSON",
+    },
+    execution: {
+      executionId: "실행 ID",
+      resultTitle: "실행 결과",
+      status: "상태",
+    },
+    executions: {
+      actions: "동작",
+      cancel: "취소",
+      cancelled: "실행이 취소되었습니다.",
+      denied: "이 실행에 접근할 수 없습니다.",
+      detailTitle: "실행 상세",
+      empty: "저장된 워크플로 실행이 아직 없습니다.",
+      missing: "실행을 찾을 수 없습니다.",
+      started: "시작 시각",
+      status: "상태",
+      view: "보기",
+      workflow: "워크플로",
+    },
+    home: {
+      openBuilder: "빌더 열기",
+    },
+    media: {
+      delete: "삭제",
+      denied: "이 미디어 자산에 접근할 수 없습니다.",
+      empty: "미디어 자산이 없습니다. WAV 파일을 업로드해 시작하세요.",
+      file: "파일",
+      missing: "미디어 자산을 찾을 수 없습니다.",
+      upload: "자산 업로드",
+      uploadTitle: "미디어 업로드",
+    },
+    nav: {
+      builder: "빌더",
+      close: "사이드바 닫기",
+      executions: "실행",
+      media: "미디어",
+      section: "작업공간",
+      templates: "템플릿",
+      toggle: "사이드바 열기",
+    },
+    pages: {
+      builder: {
+        description: "HTMX 파셜로 워크플로 JSON을 작성, 검증, 실행합니다.",
+        title: "빌더",
+      },
+      executions: {
+        description: "지속 저장된 워크플로 실행과 결과를 확인합니다.",
+        title: "실행",
+      },
+      media: {
+        description: "업로드된 오디오와 파생 미디어 자산을 관리합니다.",
+        title: "미디어",
+      },
+      templates: {
+        description: "기본 템플릿을 탐색하고 재사용 가능한 워크플로 시작점을 만듭니다.",
+        title: "템플릿",
+      },
+    },
+    templates: {
+      empty: "사용 가능한 템플릿이 없습니다.",
+      missing: "템플릿을 찾을 수 없습니다.",
+      title: "템플릿",
+      use: "템플릿 사용",
+    },
+    theme: {
+      toggle: "테마 전환",
+    },
+    validation: {
+      valid: "워크플로 검증이 통과했습니다.",
+    },
+  },
+  auth: {
+    email: "이메일",
+    invalidSubmission: "잘못된 입력입니다.",
+    password: "비밀번호",
+    signIn: "로그인",
+    signInFailed: "로그인에 실패했습니다.",
+    signInInvalidFormat: "유효한 이메일과 비밀번호를 입력하세요.",
+    signInTitle: "로그인",
+    signOut: "로그아웃",
+  },
+  assistant: {
+    actions: {
+      compact: "압축",
+      createSession: "세션 생성",
+      refreshSession: "세션 새로고침",
+      runTurn: "턴 실행",
+      viewSession: "세션 보기",
+    },
+    app: {
+      description:
+        "전환된 어시스턴트 시스템의 공급자 상태, 런타임 세션, 도구 인벤토리, 슬래시 명령, MCP 서버를 점검합니다.",
+      title: "모치 운영 데크",
+    },
+    commands: {
+      empty: "등록된 슬래시 명령이 없습니다.",
+      localOnly: "로컬",
+      resumeSupported: "재개",
+      title: "슬래시 명령",
+    },
+    errors: {
+      providerAuthMissing: "선택한 공급자가 아직 인증되지 않았습니다.",
+      providerUnavailable: "어시스턴트 턴에 사용할 인증된 공급자가 없습니다.",
+      requestFailed:
+        "어시스턴트 요청을 완료할 수 없습니다. 공급자 상태를 확인한 뒤 다시 시도하세요.",
+    },
+    health: {
+      mcpServers: "MCP 서버",
+      providers: "공급자",
+      queueSchedules: "스케줄",
+      queues: "큐",
+      sessions: "세션",
+      title: "런타임 상태",
+      tools: "도구",
+    },
+    mcp: {
+      empty: "구성된 MCP 서버가 없습니다.",
+      server: "서버",
+      signature: "서명",
+      title: "MCP 인벤토리",
+      transport: "전송",
+    },
+    providers: {
+      auth: "인증",
+      authConfigured: "구성됨",
+      authMissing: "없음",
+      empty: "사용 가능한 공급자가 없습니다.",
+      model: "모델",
+      provider: "공급자",
+      tasks: "작업",
+      title: "공급자",
+    },
+    pages: {
+      inventory: {
+        description: "등록된 도구 매니페스트와 구성된 MCP 서버를 점검합니다.",
+        title: "런타임 인벤토리",
+      },
+      runtime: {
+        description: "공급자 상태, 활성 세션, 최근 어시스턴트 턴을 모니터링합니다.",
+        title: "어시스턴트 런타임",
+      },
+    },
+    session: {
+      automaticProvider: "자동 공급자 선택",
+      inputDescription:
+        "턴은 공유 런타임 매니저를 통해 실행되며 가능할 때 선택한 공급자 선호를 따릅니다.",
+      empty: "세션을 만들어 어시스턴트 런타임에 턴을 실행하세요.",
+      inputLabel: "턴 입력",
+      inputPlaceholder: "런타임에게 작업공간 점검 또는 변경을 요청하세요.",
+      iterations: "반복 횟수",
+      latestTurn: "최근 턴",
+      latestTurnEmpty: "최근 어시스턴트 요약을 보려면 턴을 실행하세요.",
+      missing: "어시스턴트 세션 {id}을(를) 찾을 수 없습니다.",
+      providerDescription: "이번 턴에 사용할 공급자를 고정하거나 자동 선택을 유지하세요.",
+      providerLabel: "선호 공급자",
+      recentMessages: "최근 메시지",
+      title: "세션 상세",
+      usage: "사용량",
+      usageSummary: "입력 토큰: {inputTokens} • 출력 토큰: {outputTokens}",
+    },
+    sessions: {
+      actions: "동작",
+      empty: "어시스턴트 세션이 아직 없습니다.",
+      id: "세션",
+      messages: "메시지",
+      title: "세션",
+      updated: "업데이트",
+    },
+    tabs: {
+      inventory: "인벤토리",
+      runtime: "런타임",
+    },
+    tools: {
+      empty: "등록된 도구가 없습니다.",
+      name: "도구",
+      permission: "권한",
+      source: "출처",
+      title: "도구 매니페스트",
+    },
+  },
+  common: {
+    confirm: "확인",
+    loading: "불러오는 중",
+  },
+  modal: {
+    cancel: "취소",
+    close: "닫기",
+  },
+  status: {
+    emptyTitle: "표시할 내용이 아직 없습니다",
+    loading: "불러오는 중",
+    refresh: "새로고침",
+    retry: "다시 시도",
+  },
+  ui: {
+    audioHealthTitle: "오디오 서비스",
+    cacheLabel: "캐시",
+    emptyTranscript: "(비어 있음)",
+    errorTitle: "오류",
+    languageHint: "비워 두면 서비스가 음성 언어를 추정합니다.",
+    languageLabel: "언어",
+    languagePlaceholder: "선택 사항",
+    modelHint: "비워 두면 서비스 기본 ONNX Whisper 모델을 사용합니다.",
+    modelInputLabel: "모델 ID",
+    modelLabel: "모델",
+    modelPlaceholder: "기본값: Xenova/whisper-tiny.en",
+    runtimeLabel: "런타임",
+    statusLabel: "상태",
+    transcriptTitle: "전사 결과",
+    transcribeAction: "전사",
+    transcribeFormAriaLabel: "오디오 파일 전사",
+    transcribeIntro:
+      "WAV 입력만 지원합니다. 서버에서 16kHz 모노로 리샘플링한 뒤 ONNX 전사를 수행합니다.",
+    transcribeTitle: "전사 (ONNX Whisper)",
+    uploadHint: "전사를 위해 WAV 파일 하나를 업로드하세요.",
+    uploadLabel: "WAV 파일",
+  },
+};

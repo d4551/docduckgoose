@@ -1,0 +1,21 @@
+// BaoDown typed payload tables for run events.
+// Encoded via the BaoDownPayloadUnion in BaoDownRunEventV1.
+namespace baohaus.baodown.v1;
+
+/// Node output for NODE_COMPLETED events.
+table NodeOutputPayload {
+  output_json:string (id: 0);
+}
+
+/// Log line for NODE_LOG events.
+table LogPayload {
+  level:string (id: 0);
+  message:string (id: 1);
+}
+
+/// Run-level metadata for RUN_STARTED, RUN_COMPLETED, RUN_FAILED, RUN_CANCELLED.
+table RunMetadataPayload {
+  code:string (id: 0);
+  message:string (id: 1);
+  details_json:string (id: 2);
+}

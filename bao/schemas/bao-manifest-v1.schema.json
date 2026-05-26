@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://baohaus.dev/schemas/bao-manifest-v1.schema.json",
+  "title": "Baohaus bao-governance.json manifest",
+  "description": "Canonical per-repo governance manifest for Baohaus .bao archives.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "specRevision",
+    "mediaType",
+    "formatKind",
+    "manifestEncoding",
+    "identity",
+    "classification",
+    "runtime",
+    "publish",
+    "dependencies",
+    "sbom",
+    "provenance",
+    "reproducibleBuild"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "specRevision": {
+      "const": "1.0.0"
+    },
+    "mediaType": {
+      "const": "application/vnd.baohaus.bao.archive.v1+tar"
+    },
+    "formatKind": {
+      "const": "canonical"
+    },
+    "manifestEncoding": {
+      "const": "json"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "packageName", "packageVersion", "ociRepository", "registryNamespace"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "packageName": {
+          "type": "string",
+          "pattern": "^@baohaus/[a-z0-9][a-z0-9-]*$"
+        },
+        "packageVersion": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
+        },
+        "ociRepository": {
+          "type": "string",
+          "pattern": "^baohaus/[a-z0-9][a-z0-9-]*$"
+        },
+        "registryNamespace": {
+          "const": "baohaus"
+        }
+      }
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["channel", "visibility", "packageKind"],
+      "properties": {
+        "channel": {
+          "enum": ["public", "internal", "test", "labs"]
+        },
+        "visibility": {
+          "enum": ["public", "hidden"]
+        },
+        "packageKind": {
+          "enum": ["library", "runtime-package", "extension", "internal", "test"]
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["installable", "composeDependencies"],
+      "properties": {
+        "installable": {
+          "type": "boolean"
+        },
+        "composeDependencies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "publish": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gateProfile"],
+      "properties": {
+        "gateProfile": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dependency"
+      }
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/target"
+      }
+    },
+    "sourceRepository": {
+      "$ref": "#/$defs/sourceRepository"
+    },
+    "sbom": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reproducibleBuild": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceDateEpoch", "toolchain"],
+      "properties": {
+        "sourceDateEpoch": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "toolchain": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["bun"],
+          "properties": {
+            "bun": {
+              "type": "string",
+              "pattern": "^\\d+\\.\\d+\\.\\d+$"
+            }
+          }
+        }
+      }
+    },
+    "sandbox": {
+      "$ref": "./bao-sandbox-v1.schema.json",
+      "description": "BaoSandbox capability declaration. Optional for libraries; required for installable runtime packages with intent build|test|run|shell."
+    }
+  },
+  "$defs": {
+    "sourceRepository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "namespace", "slug"],
+      "properties": {
+        "kind": {
+          "const": "forge"
+        },
+        "namespace": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["kind", "target"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "bao-package",
+            "better-auth-extension",
+            "htmx-extension",
+            "prisma-extension",
+            "elysia-plugin",
+            "baodown-node",
+            "bun-plugin",
+            "flatbuffer-schema",
+            "hardware-driver",
+            "ai-model",
+            "baodown-flow",
+            "bunbuddy-contract",
+            "bao-runtime-workload",
+            "config-overlay",
+            "mcp-provider",
+            "oci-image",
+            "usd-scene",
+            "ui-component-kit",
+            "theme-pack",
+            "design-tokens",
+            "motion-preset",
+            "density-preset",
+            "sidebar",
+            "nav",
+            "settings-tab",
+            "palette-entry-group",
+            "api-group",
+            "tile-group"
+          ]
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "module": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nodeModule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sidebarModule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "navModule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "routeModule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pluginModule": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "ociRepository", "ociDigest", "integrity", "signature"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^@baohaus/[a-z0-9][a-z0-9-]*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
+        },
+        "ociRepository": {
+          "type": "string",
+          "pattern": "^baohaus/[a-z0-9][a-z0-9-]*$"
+        },
+        "ociDigest": {
+          "type": ["string", "null"],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "integrity": {
+          "type": ["string", "null"],
+          "pattern": "^sha(?:256|384|512)-[A-Za-z0-9+/]+=*$"
+        },
+        "signature": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["provider", "bundle"],
+          "properties": {
+            "provider": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bundle": {
+              "type": "string",
+              "minLength": 1
+            },
+            "keyId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "transparencyLog": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

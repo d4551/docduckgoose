@@ -1,0 +1,7 @@
+{
+  "extends": "../../goose-word/tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": ["src/**/*.ts"]
+}

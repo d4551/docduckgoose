@@ -1,0 +1,29 @@
+// Observability span batch for binary transport.
+// Enables efficient batch export of trace spans via Redis/FlatBuffers.
+namespace baohaus.observability.v1;
+
+/// Trace span for batch export.
+table SpanV1 {
+  trace_id:string (id: 0);
+  span_id:string (id: 1);
+  parent_span_id:string (id: 2);
+  name:string (id: 3);
+  kind:ubyte (id: 4);         // 0=internal, 1=server, 2=client, 3=producer, 4=consumer
+  start_time_unix_nano:uint64 (id: 5);
+  end_time_unix_nano:uint64 (id: 6);
+  status_code:ubyte (id: 7);  // 0=unset, 1=ok, 2=error
+  status_message:string (id: 8);
+  attributes_json:string (id: 9);
+}
+
+/// Batch of spans for a single service.
+table ObservabilityBatchV1 {
+  service_name:string (id: 0);
+  batch_id:string (id: 1);
+  timestamp:string (id: 2);
+  spans:[SpanV1] (id: 3);
+  dropped_count:uint32 (id: 4);
+}
+
+file_identifier "OBS1";
+root_type ObservabilityBatchV1;

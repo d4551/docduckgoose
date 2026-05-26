@@ -1,0 +1,36 @@
+{
+  "$schema": "../../bao/schemas/bao-manifest-v1.schema.json",
+  "classification": {
+    "channel": "public",
+    "visibility": "public",
+    "packageKind": "library"
+  },
+  "formatKind": "canonical",
+  "identity": {
+    "id": "bao-sdk",
+    "packageName": "@baohaus/bao-sdk",
+    "packageVersion": "0.1.0",
+    "ociRepository": "baohaus/bao-sdk",
+    "registryNamespace": "baohaus"
+  },
+  "manifestEncoding": "json",
+  "mediaType": "application/vnd.baohaus.bao.archive.v1+tar",
+  "provenance": "SLSA.provenance.intoto.jsonl",
+  "publish": {
+    "gateProfile": "standard"
+  },
+  "dependencies": [],
+  "reproducibleBuild": {
+    "sourceDateEpoch": 1745366400,
+    "toolchain": {
+      "bun": "1.3.13"
+    }
+  },
+  "runtime": {
+    "installable": true,
+    "composeDependencies": []
+  },
+  "sbom": "SBOM.cdx.json",
+  "schemaVersion": 1,
+  "specRevision": "1.0.0"
+}

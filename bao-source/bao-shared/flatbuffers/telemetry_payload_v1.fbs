@@ -1,0 +1,25 @@
+// Typed telemetry payload for drone/vehicle realtime transport.
+// Replaces JSON-in-payload with native FlatBuffers fields.
+include "telemetry_structs_v1.fbs";
+
+namespace baohaus.realtime.v1;
+
+table TelemetryPayloadV1 {
+  vehicleId:string (id: 0);
+  timestamp:string (id: 1);
+  connectionState:ubyte (id: 2);
+  armed:bool (id: 3);
+  flightMode:ubyte (id: 4);
+  position:Position3D (id: 5);
+  attitude:Attitude (id: 6);
+  velocity:Velocity3D (id: 7);
+  gpsFixType:ubyte (id: 8);
+  satelliteCount:ubyte (id: 9);
+  battery:BatteryStatus (id: 10);
+  signalStrength:float (id: 11);
+  flightTime:float (id: 12);
+  payload_json:string (id: 13, deprecated);
+}
+
+file_identifier "TPV1";
+root_type TelemetryPayloadV1;

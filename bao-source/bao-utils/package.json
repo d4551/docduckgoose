@@ -1,0 +1,826 @@
+{
+  "name": "@baohaus/bao-utils",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bunx --bun tsc --project tsconfig.build.json",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun run build && bun run test && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    "./ai-service-alignment": {
+      "bun": "./dist/ai-service-alignment.js",
+      "import": "./dist/ai-service-alignment.js",
+      "types": "./dist/ai-service-alignment.d.ts",
+      "default": "./dist/ai-service-alignment.js"
+    },
+    "./annotation-utils": {
+      "bun": "./dist/annotation-utils.js",
+      "import": "./dist/annotation-utils.js",
+      "types": "./dist/annotation-utils.d.ts",
+      "default": "./dist/annotation-utils.js"
+    },
+    "./async-result": {
+      "bun": "./dist/async-result.js",
+      "import": "./dist/async-result.js",
+      "types": "./dist/async-result.d.ts",
+      "default": "./dist/async-result.js"
+    },
+    "./seeded-prng": {
+      "bun": "./dist/seeded-prng.js",
+      "import": "./dist/seeded-prng.js",
+      "types": "./dist/seeded-prng.d.ts",
+      "default": "./dist/seeded-prng.js"
+    },
+    "./error-severity": {
+      "bun": "./dist/error-severity.js",
+      "import": "./dist/error-severity.js",
+      "types": "./dist/error-severity.d.ts",
+      "default": "./dist/error-severity.js"
+    },
+    "./recovery-strategy": {
+      "bun": "./dist/recovery-strategy.js",
+      "import": "./dist/recovery-strategy.js",
+      "types": "./dist/recovery-strategy.d.ts",
+      "default": "./dist/recovery-strategy.js"
+    },
+    "./managed-interval": {
+      "bun": "./dist/managed-interval.js",
+      "import": "./dist/managed-interval.js",
+      "types": "./dist/managed-interval.d.ts",
+      "default": "./dist/managed-interval.js"
+    },
+    "./managed-polling-lifecycle": {
+      "bun": "./dist/managed-polling-lifecycle.js",
+      "import": "./dist/managed-polling-lifecycle.js",
+      "types": "./dist/managed-polling-lifecycle.d.ts",
+      "default": "./dist/managed-polling-lifecycle.js"
+    },
+    "./bao-authz-client": {
+      "bun": "./dist/bao-authz-client.js",
+      "import": "./dist/bao-authz-client.js",
+      "types": "./dist/bao-authz-client.d.ts",
+      "default": "./dist/bao-authz-client.js"
+    },
+    "./bao-bundle": {
+      "bun": "./dist/bao-bundle.js",
+      "import": "./dist/bao-bundle.js",
+      "types": "./dist/bao-bundle.d.ts",
+      "default": "./dist/bao-bundle.js"
+    },
+    "./bao-manifest-checksum": {
+      "bun": "./dist/bao-manifest-checksum.js",
+      "import": "./dist/bao-manifest-checksum.js",
+      "types": "./dist/bao-manifest-checksum.d.ts",
+      "default": "./dist/bao-manifest-checksum.js"
+    },
+    "./baodown-events": {
+      "bun": "./dist/baodown-events.js",
+      "import": "./dist/baodown-events.js",
+      "types": "./dist/baodown-events.d.ts",
+      "default": "./dist/baodown-events.js"
+    },
+    "./baodown-graph-diff": {
+      "bun": "./dist/baodown-graph-diff.js",
+      "import": "./dist/baodown-graph-diff.js",
+      "types": "./dist/baodown-graph-diff.d.ts",
+      "default": "./dist/baodown-graph-diff.js"
+    },
+    "./biome-cli": {
+      "bun": "./dist/biome-cli.js",
+      "import": "./dist/biome-cli.js",
+      "types": "./dist/biome-cli.d.ts",
+      "default": "./dist/biome-cli.js"
+    },
+    "./bun-events": {
+      "bun": "./dist/bun-events.js",
+      "import": "./dist/bun-events.js",
+      "types": "./dist/bun-events.d.ts",
+      "default": "./dist/bun-events.js"
+    },
+    "./bun-exec": {
+      "bun": "./dist/bun-exec.js",
+      "import": "./dist/bun-exec.js",
+      "types": "./dist/bun-exec.d.ts",
+      "default": "./dist/bun-exec.js"
+    },
+    "./bun-fs": {
+      "bun": "./dist/bun-fs.js",
+      "import": "./dist/bun-fs.js",
+      "types": "./dist/bun-fs.d.ts",
+      "default": "./dist/bun-fs.js"
+    },
+    "./bun-native": {
+      "bun": "./dist/bun-native.js",
+      "import": "./dist/bun-native.js",
+      "types": "./dist/bun-native.d.ts",
+      "default": "./dist/bun-native.js"
+    },
+    "./bun-net": {
+      "bun": "./dist/bun-net.js",
+      "import": "./dist/bun-net.js",
+      "types": "./dist/bun-net.d.ts",
+      "default": "./dist/bun-net.js"
+    },
+    "./bun-os": {
+      "bun": "./dist/bun-os.js",
+      "import": "./dist/bun-os.js",
+      "types": "./dist/bun-os.d.ts",
+      "default": "./dist/bun-os.js"
+    },
+    "./bun-path": {
+      "bun": "./dist/bun-path.js",
+      "import": "./dist/bun-path.js",
+      "types": "./dist/bun-path.d.ts",
+      "default": "./dist/bun-path.js"
+    },
+    "./bun-readline": {
+      "bun": "./dist/bun-readline.js",
+      "import": "./dist/bun-readline.js",
+      "types": "./dist/bun-readline.d.ts",
+      "default": "./dist/bun-readline.js"
+    },
+    "./bun-util": {
+      "bun": "./dist/bun-util.js",
+      "import": "./dist/bun-util.js",
+      "types": "./dist/bun-util.d.ts",
+      "default": "./dist/bun-util.js"
+    },
+    "./bunbuddy-capabilities": {
+      "bun": "./dist/bunbuddy-capabilities.js",
+      "import": "./dist/bunbuddy-capabilities.js",
+      "types": "./dist/bunbuddy-capabilities.d.ts",
+      "default": "./dist/bunbuddy-capabilities.js"
+    },
+    "./bunbuddy-contract-registry": {
+      "bun": "./dist/bunbuddy-contract-registry.js",
+      "import": "./dist/bunbuddy-contract-registry.js",
+      "types": "./dist/bunbuddy-contract-registry.d.ts",
+      "default": "./dist/bunbuddy-contract-registry.js"
+    },
+    "./bunbuddy-contract-requirements": {
+      "bun": "./dist/bunbuddy-contract-requirements.js",
+      "import": "./dist/bunbuddy-contract-requirements.js",
+      "types": "./dist/bunbuddy-contract-requirements.d.ts",
+      "default": "./dist/bunbuddy-contract-requirements.js"
+    },
+    "./bunbuddy-docs-contracts": {
+      "bun": "./dist/bunbuddy-docs-contracts.js",
+      "import": "./dist/bunbuddy-docs-contracts.js",
+      "types": "./dist/bunbuddy-docs-contracts.d.ts",
+      "default": "./dist/bunbuddy-docs-contracts.js"
+    },
+    "./bunbuddy-workload-registry": {
+      "bun": "./dist/bunbuddy-workload-registry.js",
+      "import": "./dist/bunbuddy-workload-registry.js",
+      "types": "./dist/bunbuddy-workload-registry.d.ts",
+      "default": "./dist/bunbuddy-workload-registry.js"
+    },
+    "./canonical/bao-archive": {
+      "bun": "./dist/canonical/bao-archive.js",
+      "import": "./dist/canonical/bao-archive.js",
+      "types": "./dist/canonical/bao-archive.d.ts",
+      "default": "./dist/canonical/bao-archive.js"
+    },
+    "./canonical/bao-archive-payload": {
+      "bun": "./dist/canonical/bao-archive-payload.js",
+      "import": "./dist/canonical/bao-archive-payload.js",
+      "types": "./dist/canonical/bao-archive-payload.d.ts",
+      "default": "./dist/canonical/bao-archive-payload.js"
+    },
+    "./canonical/bao-archive-tar": {
+      "bun": "./dist/canonical/bao-archive-tar.js",
+      "import": "./dist/canonical/bao-archive-tar.js",
+      "types": "./dist/canonical/bao-archive-tar.d.ts",
+      "default": "./dist/canonical/bao-archive-tar.js"
+    },
+    "./canonical/bao-archive.types": {
+      "bun": "./dist/canonical/bao-archive.types.js",
+      "import": "./dist/canonical/bao-archive.types.js",
+      "types": "./dist/canonical/bao-archive.types.d.ts",
+      "default": "./dist/canonical/bao-archive.types.js"
+    },
+    "./canonical/bao-canonical-signing": {
+      "bun": "./dist/canonical/bao-canonical-signing.js",
+      "import": "./dist/canonical/bao-canonical-signing.js",
+      "types": "./dist/canonical/bao-canonical-signing.d.ts",
+      "default": "./dist/canonical/bao-canonical-signing.js"
+    },
+    "./canonical/bao-error": {
+      "bun": "./dist/canonical/bao-error.js",
+      "import": "./dist/canonical/bao-error.js",
+      "types": "./dist/canonical/bao-error.d.ts",
+      "default": "./dist/canonical/bao-error.js"
+    },
+    "./canonical/bao-error-api": {
+      "bun": "./dist/canonical/bao-error-api.js",
+      "import": "./dist/canonical/bao-error-api.js",
+      "types": "./dist/canonical/bao-error-api.d.ts",
+      "default": "./dist/canonical/bao-error-api.js"
+    },
+    "./canonical/bao-error-helpers": {
+      "bun": "./dist/canonical/bao-error-helpers.js",
+      "import": "./dist/canonical/bao-error-helpers.js",
+      "types": "./dist/canonical/bao-error-helpers.d.ts",
+      "default": "./dist/canonical/bao-error-helpers.js"
+    },
+    "./canonical/bao-manifest-attestor": {
+      "bun": "./dist/canonical/bao-manifest-attestor.js",
+      "import": "./dist/canonical/bao-manifest-attestor.js",
+      "types": "./dist/canonical/bao-manifest-attestor.d.ts",
+      "default": "./dist/canonical/bao-manifest-attestor.js"
+    },
+    "./canonical/bao-manifest-attestor.types": {
+      "bun": "./dist/canonical/bao-manifest-attestor.types.js",
+      "import": "./dist/canonical/bao-manifest-attestor.types.js",
+      "types": "./dist/canonical/bao-manifest-attestor.types.d.ts",
+      "default": "./dist/canonical/bao-manifest-attestor.types.js"
+    },
+    "./canonical/bao-manifest-bin": {
+      "bun": "./dist/canonical/bao-manifest-bin.js",
+      "import": "./dist/canonical/bao-manifest-bin.js",
+      "types": "./dist/canonical/bao-manifest-bin.d.ts",
+      "default": "./dist/canonical/bao-manifest-bin.js"
+    },
+    "./canonical/bao-manifest-checksum": {
+      "bun": "./dist/canonical/bao-manifest-checksum.js",
+      "import": "./dist/canonical/bao-manifest-checksum.js",
+      "types": "./dist/canonical/bao-manifest-checksum.d.ts",
+      "default": "./dist/canonical/bao-manifest-checksum.js"
+    },
+    "./canonical/bao-manifest-wrapture": {
+      "bun": "./dist/canonical/bao-manifest-wrapture.js",
+      "import": "./dist/canonical/bao-manifest-wrapture.js",
+      "types": "./dist/canonical/bao-manifest-wrapture.d.ts",
+      "default": "./dist/canonical/bao-manifest-wrapture.js"
+    },
+    "./canonical/bao-manifest-signer": {
+      "bun": "./dist/canonical/bao-manifest-signer.js",
+      "import": "./dist/canonical/bao-manifest-signer.js",
+      "types": "./dist/canonical/bao-manifest-signer.d.ts",
+      "default": "./dist/canonical/bao-manifest-signer.js"
+    },
+    "./canonical/bao-manifest-validator": {
+      "bun": "./dist/canonical/bao-manifest-validator.js",
+      "import": "./dist/canonical/bao-manifest-validator.js",
+      "types": "./dist/canonical/bao-manifest-validator.d.ts",
+      "default": "./dist/canonical/bao-manifest-validator.js"
+    },
+    "./canonical/bao-manifest-validator-gates": {
+      "bun": "./dist/canonical/bao-manifest-validator-gates.js",
+      "import": "./dist/canonical/bao-manifest-validator-gates.js",
+      "types": "./dist/canonical/bao-manifest-validator-gates.d.ts",
+      "default": "./dist/canonical/bao-manifest-validator-gates.js"
+    },
+    "./canonical/bao-manifest-validator-payload": {
+      "bun": "./dist/canonical/bao-manifest-validator-payload.js",
+      "import": "./dist/canonical/bao-manifest-validator-payload.js",
+      "types": "./dist/canonical/bao-manifest-validator-payload.d.ts",
+      "default": "./dist/canonical/bao-manifest-validator-payload.js"
+    },
+    "./canonical/bao-manifest-validator.types": {
+      "bun": "./dist/canonical/bao-manifest-validator.types.js",
+      "import": "./dist/canonical/bao-manifest-validator.types.js",
+      "types": "./dist/canonical/bao-manifest-validator.types.d.ts",
+      "default": "./dist/canonical/bao-manifest-validator.types.js"
+    },
+    "./canonical/bao-semver-range": {
+      "bun": "./dist/canonical/bao-semver-range.js",
+      "import": "./dist/canonical/bao-semver-range.js",
+      "types": "./dist/canonical/bao-semver-range.d.ts",
+      "default": "./dist/canonical/bao-semver-range.js"
+    },
+    "./canonical/bao-target-graph": {
+      "bun": "./dist/canonical/bao-target-graph.js",
+      "import": "./dist/canonical/bao-target-graph.js",
+      "types": "./dist/canonical/bao-target-graph.d.ts",
+      "default": "./dist/canonical/bao-target-graph.js"
+    },
+    "./canonical/bao-target-payload": {
+      "bun": "./dist/canonical/bao-target-payload.js",
+      "import": "./dist/canonical/bao-target-payload.js",
+      "types": "./dist/canonical/bao-target-payload.d.ts",
+      "default": "./dist/canonical/bao-target-payload.js"
+    },
+    "./canonical/result": {
+      "bun": "./dist/canonical/result.js",
+      "import": "./dist/canonical/result.js",
+      "types": "./dist/canonical/result.d.ts",
+      "default": "./dist/canonical/result.js"
+    },
+    "./canonical/typebox-runtime": {
+      "bun": "./dist/canonical/typebox-runtime.js",
+      "import": "./dist/canonical/typebox-runtime.js",
+      "types": "./dist/canonical/typebox-runtime.d.ts",
+      "default": "./dist/canonical/typebox-runtime.js"
+    },
+    "./capability-ownership-focus": {
+      "bun": "./dist/capability-ownership-focus.js",
+      "import": "./dist/capability-ownership-focus.js",
+      "types": "./dist/capability-ownership-focus.d.ts",
+      "default": "./dist/capability-ownership-focus.js"
+    },
+    "./capability-ownership-maps": {
+      "bun": "./dist/capability-ownership-maps.js",
+      "import": "./dist/capability-ownership-maps.js",
+      "types": "./dist/capability-ownership-maps.d.ts",
+      "default": "./dist/capability-ownership-maps.js"
+    },
+    "./capability-ownership-summary": {
+      "bun": "./dist/capability-ownership-summary.js",
+      "import": "./dist/capability-ownership-summary.js",
+      "types": "./dist/capability-ownership-summary.d.ts",
+      "default": "./dist/capability-ownership-summary.js"
+    },
+    "./capability-ownership-surfaces": {
+      "bun": "./dist/capability-ownership-surfaces.js",
+      "import": "./dist/capability-ownership-surfaces.js",
+      "types": "./dist/capability-ownership-surfaces.d.ts",
+      "default": "./dist/capability-ownership-surfaces.js"
+    },
+    "./correlation-id": {
+      "bun": "./dist/correlation-id.js",
+      "import": "./dist/correlation-id.js",
+      "types": "./dist/correlation-id.d.ts",
+      "default": "./dist/correlation-id.js"
+    },
+    "./common": {
+      "bun": "./dist/common.js",
+      "import": "./dist/common.js",
+      "types": "./dist/common.d.ts",
+      "default": "./dist/common.js"
+    },
+    "./config-parsing": {
+      "bun": "./dist/config-parsing.js",
+      "import": "./dist/config-parsing.js",
+      "types": "./dist/config-parsing.d.ts",
+      "default": "./dist/config-parsing.js"
+    },
+    "./daisyui-badge": {
+      "bun": "./dist/daisyui-badge.js",
+      "import": "./dist/daisyui-badge.js",
+      "types": "./dist/daisyui-badge.d.ts",
+      "default": "./dist/daisyui-badge.js"
+    },
+    "./data-result": {
+      "bun": "./dist/data-result.js",
+      "import": "./dist/data-result.js",
+      "types": "./dist/data-result.d.ts",
+      "default": "./dist/data-result.js"
+    },
+    "./deterministic-dependency-order": {
+      "bun": "./dist/deterministic-dependency-order.js",
+      "import": "./dist/deterministic-dependency-order.js",
+      "types": "./dist/deterministic-dependency-order.d.ts",
+      "default": "./dist/deterministic-dependency-order.js"
+    },
+    "./device-diagnostics": {
+      "bun": "./dist/device-diagnostics.js",
+      "import": "./dist/device-diagnostics.js",
+      "types": "./dist/device-diagnostics.d.ts",
+      "default": "./dist/device-diagnostics.js"
+    },
+    "./drone-policy": {
+      "bun": "./dist/drone-policy.js",
+      "import": "./dist/drone-policy.js",
+      "types": "./dist/drone-policy.d.ts",
+      "default": "./dist/drone-policy.js"
+    },
+    "./eden-response-normalize": {
+      "bun": "./dist/eden-response-normalize.js",
+      "import": "./dist/eden-response-normalize.js",
+      "types": "./dist/eden-response-normalize.d.ts",
+      "default": "./dist/eden-response-normalize.js"
+    },
+    "./env": {
+      "bun": "./dist/env.js",
+      "import": "./dist/env.js",
+      "types": "./dist/env.d.ts",
+      "default": "./dist/env.js"
+    },
+    "./error-envelope": {
+      "bun": "./dist/error-envelope.js",
+      "import": "./dist/error-envelope.js",
+      "types": "./dist/error-envelope.d.ts",
+      "default": "./dist/error-envelope.js"
+    },
+    "./error-keys": {
+      "bun": "./dist/error-keys.js",
+      "import": "./dist/error-keys.js",
+      "types": "./dist/error-keys.d.ts",
+      "default": "./dist/error-keys.js"
+    },
+    "./extension-primitives": {
+      "bun": "./dist/extension-primitives.js",
+      "import": "./dist/extension-primitives.js",
+      "types": "./dist/extension-primitives.d.ts",
+      "default": "./dist/extension-primitives.js"
+    },
+    "./formatting": {
+      "bun": "./dist/formatting.js",
+      "import": "./dist/formatting.js",
+      "types": "./dist/formatting.d.ts",
+      "default": "./dist/formatting.js"
+    },
+    "./global-cache": {
+      "bun": "./dist/global-cache.js",
+      "import": "./dist/global-cache.js",
+      "types": "./dist/global-cache.d.ts",
+      "default": "./dist/global-cache.js"
+    },
+    "./go-template-subset": {
+      "bun": "./dist/go-template-subset.js",
+      "import": "./dist/go-template-subset.js",
+      "types": "./dist/go-template-subset.d.ts",
+      "default": "./dist/go-template-subset.js"
+    },
+    "./go-template-yaml": {
+      "bun": "./dist/go-template-yaml.js",
+      "import": "./dist/go-template-yaml.js",
+      "types": "./dist/go-template-yaml.d.ts",
+      "default": "./dist/go-template-yaml.js"
+    },
+    "./http-client": {
+      "bun": "./dist/http-client.js",
+      "import": "./dist/http-client.js",
+      "types": "./dist/http-client.d.ts",
+      "default": "./dist/http-client.js"
+    },
+    "./icon-registry": {
+      "bun": "./dist/icon-registry.js",
+      "import": "./dist/icon-registry.js",
+      "types": "./dist/icon-registry.d.ts",
+      "default": "./dist/icon-registry.js"
+    },
+    "./idempotency": {
+      "bun": "./dist/idempotency.js",
+      "import": "./dist/idempotency.js",
+      "types": "./dist/idempotency.d.ts",
+      "default": "./dist/idempotency.js"
+    },
+    "./pagination-query": {
+      "bun": "./dist/pagination-query.js",
+      "import": "./dist/pagination-query.js",
+      "types": "./dist/pagination-query.d.ts",
+      "default": "./dist/pagination-query.js"
+    },
+    "./ttl-cache": {
+      "bun": "./dist/ttl-cache.js",
+      "import": "./dist/ttl-cache.js",
+      "types": "./dist/ttl-cache.d.ts",
+      "default": "./dist/ttl-cache.js"
+    },
+    "./integration-annotations": {
+      "bun": "./dist/integration-annotations.js",
+      "import": "./dist/integration-annotations.js",
+      "types": "./dist/integration-annotations.d.ts",
+      "default": "./dist/integration-annotations.js"
+    },
+    "./integration-ownership": {
+      "bun": "./dist/integration-ownership.js",
+      "import": "./dist/integration-ownership.js",
+      "types": "./dist/integration-ownership.d.ts",
+      "default": "./dist/integration-ownership.js"
+    },
+    "./log-redaction": {
+      "bun": "./dist/log-redaction.js",
+      "import": "./dist/log-redaction.js",
+      "types": "./dist/log-redaction.d.ts",
+      "default": "./dist/log-redaction.js"
+    },
+    "./log-serializers": {
+      "bun": "./dist/log-serializers.js",
+      "import": "./dist/log-serializers.js",
+      "types": "./dist/log-serializers.d.ts",
+      "default": "./dist/log-serializers.js"
+    },
+    "./logger-browser": {
+      "bun": "./dist/logger-browser.js",
+      "import": "./dist/logger-browser.js",
+      "types": "./dist/logger-browser.d.ts",
+      "default": "./dist/logger-browser.js"
+    },
+    "./managed-process-registry": {
+      "bun": "./dist/managed-process-registry.js",
+      "import": "./dist/managed-process-registry.js",
+      "types": "./dist/managed-process-registry.d.ts",
+      "default": "./dist/managed-process-registry.js"
+    },
+    "./managed-subprocess": {
+      "bun": "./dist/managed-subprocess.js",
+      "import": "./dist/managed-subprocess.js",
+      "types": "./dist/managed-subprocess.d.ts",
+      "default": "./dist/managed-subprocess.js"
+    },
+    "./mcp": {
+      "bun": "./dist/mcp.js",
+      "import": "./dist/mcp.js",
+      "types": "./dist/mcp.d.ts",
+      "default": "./dist/mcp.js"
+    },
+    "./memory-global": {
+      "bun": "./dist/memory-global.js",
+      "import": "./dist/memory-global.js",
+      "types": "./dist/memory-global.d.ts",
+      "default": "./dist/memory-global.js"
+    },
+    "./naming-conventions": {
+      "bun": "./dist/naming-conventions.js",
+      "import": "./dist/naming-conventions.js",
+      "types": "./dist/naming-conventions.d.ts",
+      "default": "./dist/naming-conventions.js"
+    },
+    "./number": {
+      "bun": "./dist/number.js",
+      "import": "./dist/number.js",
+      "types": "./dist/number.d.ts",
+      "default": "./dist/number.js"
+    },
+    "./oci-registry": {
+      "bun": "./dist/oci-registry.js",
+      "import": "./dist/oci-registry.js",
+      "types": "./dist/oci-registry.d.ts",
+      "default": "./dist/oci-registry.js"
+    },
+    "./bao-control-plane-failure": {
+      "bun": "./dist/bao-control-plane-failure.js",
+      "import": "./dist/bao-control-plane-failure.js",
+      "types": "./dist/bao-control-plane-failure.d.ts",
+      "default": "./dist/bao-control-plane-failure.js"
+    },
+    "./bao-control-plane-local-cluster-provider": {
+      "bun": "./dist/bao-control-plane-local-cluster-provider.js",
+      "import": "./dist/bao-control-plane-local-cluster-provider.js",
+      "types": "./dist/bao-control-plane-local-cluster-provider.d.ts",
+      "default": "./dist/bao-control-plane-local-cluster-provider.js"
+    },
+    "./bao-control-plane-platform": {
+      "bun": "./dist/bao-control-plane-platform.js",
+      "import": "./dist/bao-control-plane-platform.js",
+      "types": "./dist/bao-control-plane-platform.d.ts",
+      "default": "./dist/bao-control-plane-platform.js"
+    },
+    "./bao-control-plane-registry": {
+      "bun": "./dist/bao-control-plane-registry.js",
+      "import": "./dist/bao-control-plane-registry.js",
+      "types": "./dist/bao-control-plane-registry.d.ts",
+      "default": "./dist/bao-control-plane-registry.js"
+    },
+    "./path-exists": {
+      "bun": "./dist/path-exists.js",
+      "import": "./dist/path-exists.js",
+      "types": "./dist/path-exists.d.ts",
+      "default": "./dist/path-exists.js"
+    },
+    "./pipeline-events": {
+      "bun": "./dist/pipeline-events.js",
+      "import": "./dist/pipeline-events.js",
+      "types": "./dist/pipeline-events.d.ts",
+      "default": "./dist/pipeline-events.js"
+    },
+    "./poll-until": {
+      "bun": "./dist/poll-until.js",
+      "import": "./dist/poll-until.js",
+      "types": "./dist/poll-until.d.ts",
+      "default": "./dist/poll-until.js"
+    },
+    "./problem": {
+      "bun": "./dist/problem.js",
+      "import": "./dist/problem.js",
+      "types": "./dist/problem.d.ts",
+      "default": "./dist/problem.js"
+    },
+    "./process-exit": {
+      "bun": "./dist/process-exit.js",
+      "import": "./dist/process-exit.js",
+      "types": "./dist/process-exit.d.ts",
+      "default": "./dist/process-exit.js"
+    },
+    "./process-liveness": {
+      "bun": "./dist/process-liveness.js",
+      "import": "./dist/process-liveness.js",
+      "types": "./dist/process-liveness.d.ts",
+      "default": "./dist/process-liveness.js"
+    },
+    "./provider-color-tokens": {
+      "bun": "./dist/provider-color-tokens.js",
+      "import": "./dist/provider-color-tokens.js",
+      "types": "./dist/provider-color-tokens.d.ts",
+      "default": "./dist/provider-color-tokens.js"
+    },
+    "./rate-limit": {
+      "bun": "./dist/rate-limit.js",
+      "import": "./dist/rate-limit.js",
+      "types": "./dist/rate-limit.d.ts",
+      "default": "./dist/rate-limit.js"
+    },
+    "./resolved-platform-runtime": {
+      "bun": "./dist/resolved-platform-runtime.js",
+      "import": "./dist/resolved-platform-runtime.js",
+      "types": "./dist/resolved-platform-runtime.d.ts",
+      "default": "./dist/resolved-platform-runtime.js"
+    },
+    "./result-helpers": {
+      "bun": "./dist/result-helpers.js",
+      "import": "./dist/result-helpers.js",
+      "types": "./dist/result-helpers.d.ts",
+      "default": "./dist/result-helpers.js"
+    },
+    "./retry": {
+      "bun": "./dist/retry.js",
+      "import": "./dist/retry.js",
+      "types": "./dist/retry.d.ts",
+      "default": "./dist/retry.js"
+    },
+    "./retry-with-backoff": {
+      "bun": "./dist/retry-with-backoff.js",
+      "import": "./dist/retry-with-backoff.js",
+      "types": "./dist/retry-with-backoff.d.ts",
+      "default": "./dist/retry-with-backoff.js"
+    },
+    "./robotics-motion": {
+      "bun": "./dist/robotics-motion.js",
+      "import": "./dist/robotics-motion.js",
+      "types": "./dist/robotics-motion.d.ts",
+      "default": "./dist/robotics-motion.js"
+    },
+    "./robotics-policy": {
+      "bun": "./dist/robotics-policy.js",
+      "import": "./dist/robotics-policy.js",
+      "types": "./dist/robotics-policy.d.ts",
+      "default": "./dist/robotics-policy.js"
+    },
+    "./rpc-stream": {
+      "bun": "./dist/rpc-stream.js",
+      "import": "./dist/rpc-stream.js",
+      "types": "./dist/rpc-stream.d.ts",
+      "default": "./dist/rpc-stream.js"
+    },
+    "./safe-decode-uri": {
+      "bun": "./dist/safe-decode-uri.js",
+      "import": "./dist/safe-decode-uri.js",
+      "types": "./dist/safe-decode-uri.d.ts",
+      "default": "./dist/safe-decode-uri.js"
+    },
+    "./safe-json-parse": {
+      "bun": "./dist/safe-json-parse.js",
+      "import": "./dist/safe-json-parse.js",
+      "types": "./dist/safe-json-parse.d.ts",
+      "default": "./dist/safe-json-parse.js"
+    },
+    "./schema-formats": {
+      "bun": "./dist/schema-formats.js",
+      "import": "./dist/schema-formats.js",
+      "types": "./dist/schema-formats.d.ts",
+      "default": "./dist/schema-formats.js"
+    },
+    "./schema-validation": {
+      "bun": "./dist/schema-validation.js",
+      "import": "./dist/schema-validation.js",
+      "types": "./dist/schema-validation.d.ts",
+      "default": "./dist/schema-validation.js"
+    },
+    "./setup-environment-files": {
+      "bun": "./dist/setup-environment-files.js",
+      "import": "./dist/setup-environment-files.js",
+      "types": "./dist/setup-environment-files.d.ts",
+      "default": "./dist/setup-environment-files.js"
+    },
+    "./setup-wizard-bun": {
+      "bun": "./dist/setup-wizard-bun.js",
+      "import": "./dist/setup-wizard-bun.js",
+      "types": "./dist/setup-wizard-bun.d.ts",
+      "default": "./dist/setup-wizard-bun.js"
+    },
+    "./storage-safe": {
+      "bun": "./dist/storage-safe.js",
+      "import": "./dist/storage-safe.js",
+      "types": "./dist/storage-safe.d.ts",
+      "default": "./dist/storage-safe.js"
+    },
+    "./ssr": {
+      "bun": "./dist/ssr.js",
+      "import": "./dist/ssr.js",
+      "types": "./dist/ssr.d.ts",
+      "default": "./dist/ssr.js"
+    },
+    "./stable-json": {
+      "bun": "./dist/stable-json.js",
+      "import": "./dist/stable-json.js",
+      "types": "./dist/stable-json.d.ts",
+      "default": "./dist/stable-json.js"
+    },
+    "./status": {
+      "bun": "./dist/status.js",
+      "import": "./dist/status.js",
+      "types": "./dist/status.d.ts",
+      "default": "./dist/status.js"
+    },
+    "./strict-boolean": {
+      "bun": "./dist/strict-boolean.js",
+      "import": "./dist/strict-boolean.js",
+      "types": "./dist/strict-boolean.d.ts",
+      "default": "./dist/strict-boolean.js"
+    },
+    "./string": {
+      "bun": "./dist/string.js",
+      "import": "./dist/string.js",
+      "types": "./dist/string.d.ts",
+      "default": "./dist/string.js"
+    },
+    "./tailwind-cli": {
+      "bun": "./dist/tailwind-cli.js",
+      "import": "./dist/tailwind-cli.js",
+      "types": "./dist/tailwind-cli.d.ts",
+      "default": "./dist/tailwind-cli.js"
+    },
+    "./text-format": {
+      "bun": "./dist/text-format.js",
+      "import": "./dist/text-format.js",
+      "types": "./dist/text-format.d.ts",
+      "default": "./dist/text-format.js"
+    },
+    "./timeout-signal": {
+      "bun": "./dist/timeout-signal.js",
+      "import": "./dist/timeout-signal.js",
+      "types": "./dist/timeout-signal.d.ts",
+      "default": "./dist/timeout-signal.js"
+    },
+    "./timestamp": {
+      "bun": "./dist/timestamp.js",
+      "import": "./dist/timestamp.js",
+      "types": "./dist/timestamp.d.ts",
+      "default": "./dist/timestamp.js"
+    },
+    "./type-guards": {
+      "bun": "./dist/type-guards.js",
+      "import": "./dist/type-guards.js",
+      "types": "./dist/type-guards.d.ts",
+      "default": "./dist/type-guards.js"
+    },
+    "./typed-json-guards": {
+      "bun": "./dist/typed-json-guards.js",
+      "import": "./dist/typed-json-guards.js",
+      "types": "./dist/typed-json-guards.d.ts",
+      "default": "./dist/typed-json-guards.js"
+    },
+    "./url-scheme": {
+      "bun": "./dist/url-scheme.js",
+      "import": "./dist/url-scheme.js",
+      "types": "./dist/url-scheme.d.ts",
+      "default": "./dist/url-scheme.js"
+    },
+    "./usd-annotation-roundtrip": {
+      "bun": "./dist/usd-annotation-roundtrip.js",
+      "import": "./dist/usd-annotation-roundtrip.js",
+      "types": "./dist/usd-annotation-roundtrip.d.ts",
+      "default": "./dist/usd-annotation-roundtrip.js"
+    },
+    "./vector": {
+      "bun": "./dist/vector.js",
+      "import": "./dist/vector.js",
+      "types": "./dist/vector.d.ts",
+      "default": "./dist/vector.js"
+    },
+    "./markdown/render": {
+      "bun": "./dist/markdown/render.js",
+      "import": "./dist/markdown/render.js",
+      "types": "./dist/markdown/render.d.ts",
+      "default": "./dist/markdown/render.js"
+    }
+  },
+  "main": "./dist/async-result.js",
+  "types": "./dist/async-result.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "license": "MIT",
+  "description": "Bun-native utility functions for .bao packages — async-result, path, fs, type-guards, and more",
+  "dependencies": {
+    "@baohaus/bao-config": "0.1.0",
+    "@baohaus/bao-constants": "0.1.0",
+    "@baohaus/bao-contracts": "0.1.0",
+    "@baohaus/bao-schemas": "0.1.0",
+    "@baohaus/bao-sdk": "0.1.0",
+    "@baohaus/bao-types": "0.1.0",
+    "@baohaus/bao-wrapture": "0.1.0",
+    "@baohaus/baobox": "0.1.1",
+    "@baohaus/dayjs-bao": "0.1.0",
+    "@baohaus/markdown-bao": "0.1.0",
+    "@baohaus/sanitize-bao": "0.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

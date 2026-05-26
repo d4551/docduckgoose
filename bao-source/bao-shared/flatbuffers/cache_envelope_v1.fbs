@@ -1,0 +1,68 @@
+// Cache envelope for Redis FlatBuffers payloads.
+// Base64 transport; valueFormat: 0=json, 1=flatbuffer (future).
+namespace baohaus.cache.v1;
+
+enum CacheValueFormatV1:ubyte {
+  JSON = 0,
+  FLATBUFFER = 1
+}
+
+table CacheEnvelopeV1 {
+  cachedAtMs:uint64 (id: 0);
+  fingerprint:string (id: 1);
+  valueFormat:CacheValueFormatV1 = JSON (id: 2);
+  valueBytes:[ubyte] (id: 3);
+  /// Optional schema version for debug and compatibility checks.
+  schemaVersion:uint32 = 1 (id: 4);
+  /// Optional generation timestamp (ISO 8601) for debugging.
+  generationTimestamp:string (id: 5);
+}
+
+// Package controller event payload for Redis stream consumers.
+table PackageEventV1 {
+  runId:string (id: 0);
+  phase:string (id: 1);
+  message:string (id: 2);
+}
+
+// GitOps sync event payload for Redis stream consumers.
+table GitOpsSyncEventV1 {
+  runId:string (id: 0);
+  phase:string (id: 1);
+  commit:string (id: 2);
+  message:string (id: 3);
+}
+
+// BunBuddy probe event payload for Redis stream consumers.
+table BunBuddyProbeEventV1 {
+  runId:string (id: 0);
+  bunbuddyId:string (id: 1);
+  phase:string (id: 2);
+  latencyMs:uint32 (id: 3);
+  message:string (id: 4);
+}
+
+// Module lifecycle event payload for Redis stream consumers.
+table ModuleLifecycleEventV1 {
+  runId:string (id: 0);
+  moduleId:string (id: 1);
+  lifecycle:string (id: 2);
+  state:string (id: 3);
+  healthState:string (id: 4);
+  durationMs:uint32 (id: 5);
+  message:string (id: 6);
+}
+
+// Bao install event payload for Redis stream consumers.
+table BaoInstallEventV1 {
+  runId:string (id: 0);
+  phase:string (id: 1);
+  manifestName:string (id: 2);
+  manifestVersion:string (id: 3);
+  targetCount:uint32 (id: 4);
+  durationMs:uint32 (id: 5);
+  message:string (id: 6);
+}
+
+file_identifier "CEV1";
+root_type CacheEnvelopeV1;

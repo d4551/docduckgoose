@@ -1,0 +1,191 @@
+/*
+ * Copyright 2025 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.google.ai.edge.gallery.customtasks.mobileactions
+
+import com.google.ai.edge.gallery.common.StructuredLog
+import com.google.ai.edge.litertlm.Tool
+import com.google.ai.edge.litertlm.ToolParam
+
+private const val TAG = "AGMATools"
+
+class MobileActionsTools(val onFunctionCalled: (Action) -> Unit) {
+  /** Turns on flashlight. */
+  @Tool(description = "Turns the flashlight on")
+  fun turnOnFlashlight(): Map<String, String> {
+    StructuredLog.d(TAG, "mobile_actions_flashlight_on_requested")
+
+    // Call the callback with the recognized action.
+    onFunctionCalled(FlashlightOnAction())
+
+    // Return a response object to the model confirming the action.
+    return mapOf("result" to "success")
+  }
+
+  /** Turns off flashlight. */
+  @Tool(description = "Turns the flashlight off")
+  fun turnOffFlashlight(): Map<String, String> {
+    StructuredLog.d(TAG, "mobile_actions_flashlight_off_requested")
+
+    // Call the callback with the recognized action.
+    onFunctionCalled(FlashlightOffAction())
+
+    // Return a response object to the model confirming the action.
+    return mapOf("result" to "success")
+  }
+
+  /** Creates contact. */
+  @Tool(description = "Creates a contact in the phone's contact list.")
+  fun createContact(
+    @ToolParam(description = "The first name of the contact.") firstName: String,
+    @ToolParam(description = "The last name of the contact.") lastName: String,
+    @ToolParam(description = "The phone number of the contact.") phoneNumber: String,
+    @ToolParam(description = "The email address of the contact.") email: String,
+  ): Map<String, String> {
+    StructuredLog.d(
+      TAG,
+      "mobile_actions_create_contact_requested",
+      "hasFirstName" to firstName.isNotBlank(),
+      "hasLastName" to lastName.isNotBlank(),
+      "hasPhoneNumber" to phoneNumber.isNotBlank(),
+      "hasEmail" to email.isNotBlank(),
+    )
+
+    onFunctionCalled(
+      CreateContactAction(
+        firstName = firstName,
+        lastName = lastName,
+        phoneNumber = phoneNumber,
+        email = email,
+      )
+    )
+
+    return mapOf(
+      "result" to "success",
+      "first_name" to firstName,
+      "last_name" to lastName,
+      "phone_number" to phoneNumber,
+      "email" to email,
+    )
+  }
+
+  /** Sends email. */
+  @Tool(description = "Sends an email.")
+  fun sendEmail(
+    @ToolParam(description = "The email address of the recipient.") to: String,
+    @ToolParam(description = "The subject of the email.") subject: String,
+    @ToolParam(description = "The body of the email.") body: String,
+  ): Map<String, String> {
+    StructuredLog.d(
+      TAG,
+      "mobile_actions_send_email_requested",
+      "hasRecipient" to to.isNotBlank(),
+      "subjectLength" to subject.length,
+      "bodyLength" to body.length,
+    )
+
+    onFunctionCalled(SendEmailAction(to = to, subject = subject, body = body))
+
+    return mapOf("result" to "success", "to" to to, "subject" to subject, "body" to body)
+  }
+
+  /** Shows location on map. */
+  @Tool(description = "Shows a location on the map.")
+  fun showLocationOnMap(
+    @ToolParam(
+      description =
+        "The location to search for. May be the name of a place, a business, or an address."
+    )
+    location: String
+  ): Map<String, String> {
+    StructuredLog.d(
+      TAG,
+      "mobile_actions_show_location_requested",
+      "queryLength" to location.length,
+    )
+
+    onFunctionCalled(ShowLocationOnMap(location = location))
+
+    return mapOf("result" to "success", "location" to location)
+  }
+
+  /** Opens wifi settings. */
+  @Tool(description = "Opens the WiFi settings.")
+  fun openWifiSettings(): Map<String, String> {
+    StructuredLog.d(TAG, "mobile_actions_open_wifi_settings_requested")
+
+    onFunctionCalled(OpenWifiSettingsAction())
+
+    return mapOf("result" to "success")
+  }
+
+  /** Creates calendar events. */
+  @Tool(description = "Creates a new calendar event.")
+  fun createCalendarEvent(
+    @ToolParam(description = "The date and time of the event in the format YYYY-MM-DDTHH:MM:SS.")
+    datetime: String,
+    @ToolParam(description = "The title of the event.") title: String,
+  ): Map<String, String> {
+    StructuredLog.d(
+      TAG,
+      "mobile_actions_create_calendar_event_requested",
+      "hasDatetime" to datetime.isNotBlank(),
+      "titleLength" to title.length,
+    )
+
+    onFunctionCalled(CreateCalendarEventAction(datetime = datetime, title = title))
+
+    return mapOf("result" to "success", "datetime" to datetime, "title" to title)
+  }
+
+  /** Executes a YAML automation flow with safety guard checks. */
+  @Tool(
+    description =
+      "Runs a fallback automation flow in Maestro-style YAML. Use only when other tools cannot satisfy the request."
+  )
+  fun runAutomationFlow(
+    @ToolParam(
+      description =
+        "YAML flow with appId and steps. Example: appId: com.android.settings --- - launchApp - tapOn: \"Network\""
+    )
+    flowYaml: String,
+    @ToolParam(
+      description =
+        "Optional per-run safety consent token returned by a previous requires_confirmation response."
+    )
+    consentToken: String? = null,
+    @ToolParam(
+      description =
+        "Optional external correlation id to trace the run across logs and safety audit records."
+    )
+    correlationId: String? = null
+  ): Map<String, String> {
+    StructuredLog.d(
+      TAG,
+      "mobile_actions_run_automation_requested",
+      "yamlLength" to flowYaml.length,
+      "hasConsentToken" to !consentToken.isNullOrBlank(),
+      "hasCorrelationId" to !correlationId.isNullOrBlank(),
+    )
+    onFunctionCalled(
+      ExecuteFlowAction(
+        flowYaml = flowYaml,
+        consentToken = consentToken,
+        correlationId = correlationId,
+      )
+    )
+    return mapOf("result" to "accepted")
+  }
+}

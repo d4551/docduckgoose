@@ -1,0 +1,42 @@
+{
+  "extends": "./tsconfig.package.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "declarationMap": false,
+    "rootDir": "src",
+    "outDir": "dist",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "paths": {
+      "@baohaus/bao-config/*": ["../bao-config/dist/*"],
+      "@baohaus/bao-constants/*": ["../bao-constants/dist/*"],
+      "@baohaus/bao-contracts/*": ["../bao-contracts/dist/*"],
+      "@baohaus/bao-core/*": ["../bao-core/dist/*"],
+      "@baohaus/bao-schemas/*": ["../bao-schemas/dist/*"],
+      "@baohaus/bao-sdk/*": ["../bao-sdk/dist/*"],
+      "@baohaus/bao-types": ["../bao-types/dist/index.d.ts"],
+      "@baohaus/bao-types/*": ["../bao-types/dist/*"],
+      "@baohaus/bao-utils/*": ["../bao-utils/dist/*"],
+      "@baohaus/bao-wrapture/*": ["../bao-wrapture/dist/*"],
+      "@baohaus/schema-shumai/*": ["../schema-shumai/dist/*"],
+      "@baohaus/bao-shared": ["./src/index.ts"],
+      "@baohaus/bao-shared/*": ["./src/*"],
+      "@baohaus/baobox/*": ["../baobox/dist/*"],
+      "@baohaus/bunbuddy-shared/*": ["../bunbuddy-shared/dist/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "__tests__",
+    "dist",
+    "node_modules",
+    "scripts",
+    "tests"
+  ]
+}

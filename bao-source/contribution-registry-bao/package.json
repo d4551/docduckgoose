@@ -1,0 +1,131 @@
+{
+  "name": "@baohaus/contribution-registry-bao",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "packageManager": "bun@1.3.13",
+  "description": "Canonical per-surface contribution registry factory consumed by every Bao app's `.bao` install handler chain. Generalises the legacy sidebar-only registry into a typed, order-stable store that any contribution surface (sidebar / settings-tab / palette-entry-group / api-group / tile-group / ui-asset-pack) can instantiate without redeclaring lifecycle semantics.",
+  "exports": {
+    "./registry": {
+      "bun": "./dist/registry.js",
+      "import": "./dist/registry.js",
+      "types": "./dist/registry.d.ts",
+      "default": "./dist/registry.js"
+    },
+    "./sidebar": {
+      "bun": "./dist/sidebar.js",
+      "import": "./dist/sidebar.js",
+      "types": "./dist/sidebar.d.ts",
+      "default": "./dist/sidebar.js"
+    },
+    "./sidebar-validate": {
+      "bun": "./dist/sidebar-validate.js",
+      "import": "./dist/sidebar-validate.js",
+      "types": "./dist/sidebar-validate.d.ts",
+      "default": "./dist/sidebar-validate.js"
+    },
+    "./settings-tab": {
+      "bun": "./dist/settings-tab.js",
+      "import": "./dist/settings-tab.js",
+      "types": "./dist/settings-tab.d.ts",
+      "default": "./dist/settings-tab.js"
+    },
+    "./settings-tab-validate": {
+      "bun": "./dist/settings-tab-validate.js",
+      "import": "./dist/settings-tab-validate.js",
+      "types": "./dist/settings-tab-validate.d.ts",
+      "default": "./dist/settings-tab-validate.js"
+    },
+    "./palette-entry-group": {
+      "bun": "./dist/palette-entry-group.js",
+      "import": "./dist/palette-entry-group.js",
+      "types": "./dist/palette-entry-group.d.ts",
+      "default": "./dist/palette-entry-group.js"
+    },
+    "./palette-entry-group-validate": {
+      "bun": "./dist/palette-entry-group-validate.js",
+      "import": "./dist/palette-entry-group-validate.js",
+      "types": "./dist/palette-entry-group-validate.d.ts",
+      "default": "./dist/palette-entry-group-validate.js"
+    },
+    "./api-group": {
+      "bun": "./dist/api-group.js",
+      "import": "./dist/api-group.js",
+      "types": "./dist/api-group.d.ts",
+      "default": "./dist/api-group.js"
+    },
+    "./api-group-validate": {
+      "bun": "./dist/api-group-validate.js",
+      "import": "./dist/api-group-validate.js",
+      "types": "./dist/api-group-validate.d.ts",
+      "default": "./dist/api-group-validate.js"
+    },
+    "./tile-group": {
+      "bun": "./dist/tile-group.js",
+      "import": "./dist/tile-group.js",
+      "types": "./dist/tile-group.d.ts",
+      "default": "./dist/tile-group.js"
+    },
+    "./topbar": {
+      "bun": "./dist/topbar.js",
+      "import": "./dist/topbar.js",
+      "types": "./dist/topbar.d.ts",
+      "default": "./dist/topbar.js"
+    },
+    "./topbar-validate": {
+      "bun": "./dist/topbar-validate.js",
+      "import": "./dist/topbar-validate.js",
+      "types": "./dist/topbar-validate.d.ts",
+      "default": "./dist/topbar-validate.js"
+    },
+    "./tile-group-validate": {
+      "bun": "./dist/tile-group-validate.js",
+      "import": "./dist/tile-group-validate.js",
+      "types": "./dist/tile-group-validate.d.ts",
+      "default": "./dist/tile-group-validate.js"
+    },
+    "./ui-asset-pack": {
+      "bun": "./dist/ui-asset-pack.js",
+      "import": "./dist/ui-asset-pack.js",
+      "types": "./dist/ui-asset-pack.d.ts",
+      "default": "./dist/ui-asset-pack.js"
+    },
+    "./ui-asset-pack-validate": {
+      "bun": "./dist/ui-asset-pack-validate.js",
+      "import": "./dist/ui-asset-pack-validate.js",
+      "types": "./dist/ui-asset-pack-validate.d.ts",
+      "default": "./dist/ui-asset-pack-validate.js"
+    },
+    "./types": {
+      "bun": "./dist/types.js",
+      "import": "./dist/types.js",
+      "types": "./dist/types.d.ts",
+      "default": "./dist/types.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@baohaus/ecosystem-events-bao": "0.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "engines": {
+    "bun": ">=1.3.0"
+  }
+}

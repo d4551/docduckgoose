@@ -1,0 +1,9 @@
+node_modules/
+dist/*
+!dist/bao/
+coverage/
+artifacts/
+.bao-build/
+*.tsbuildinfo
+.env
+.env.*

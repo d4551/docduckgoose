@@ -1,0 +1,100 @@
+// ONNX inference binary protocol for FlatBuffer transport.
+// Provides efficient serialisation for batch inference requests and results.
+namespace baohaus.onnx.v1;
+
+/// Execution provider (GPU/CPU backend).
+enum ExecutionProviderV1:ubyte {
+  CPU = 0,
+  WASM = 1,
+  WEBGPU = 2
+}
+
+/// Inference result status.
+enum InferenceStatusV1:ubyte {
+  SUCCESS = 0,
+  ERROR = 1,
+  TIMEOUT = 2,
+  CANCELLED = 3
+}
+
+/// Tensor data type for inference IO.
+enum TensorTypeV1:ubyte {
+  FLOAT32 = 0,
+  FLOAT16 = 1,
+  INT32 = 2,
+  INT64 = 3,
+  UINT8 = 4,
+  BOOL = 5,
+  STRING = 6
+}
+
+/// A single tensor value.
+table TensorV1 {
+  /// Tensor name (e.g., "input_ids", "logits").
+  name:string (id: 0);
+  /// Tensor shape dimensions.
+  shape:[int32] (id: 1);
+  /// Tensor element type.
+  dtype:TensorTypeV1 = FLOAT32 (id: 2);
+  /// Raw tensor data bytes (layout depends on dtype).
+  data:[ubyte] (id: 3);
+}
+
+/// A single item in a batch inference request.
+table BatchItemV1 {
+  /// Client-provided unique ID for correlation.
+  id:string (id: 0);
+  /// Input tensors for this item.
+  inputs:[TensorV1] (id: 1);
+}
+
+/// Batch inference request.
+table OnnxBatchRequestV1 {
+  /// Correlation ID for request tracing.
+  correlation_id:string (id: 0);
+  /// ONNX model identifier.
+  model_id:string (id: 1);
+  /// Preferred execution provider.
+  execution_provider:ExecutionProviderV1 = WEBGPU (id: 2);
+  /// Batch items to infer.
+  items:[BatchItemV1] (id: 3);
+  /// Timeout per item in milliseconds.
+  timeout_ms:uint32 = 30000 (id: 4);
+  /// Whether to collect per-item performance metrics.
+  collect_metrics:bool = false (id: 5);
+}
+
+/// Result for a single batch item.
+table BatchItemResultV1 {
+  /// Correlation ID matching BatchItemV1.id.
+  id:string (id: 0);
+  /// Inference status for this item.
+  status:InferenceStatusV1 (id: 1);
+  /// Output tensors (when status = SUCCESS).
+  outputs:[TensorV1] (id: 2);
+  /// Error message (when status != SUCCESS).
+  error:string (id: 3);
+  /// Latency in milliseconds for this item.
+  latency_ms:uint32 (id: 4);
+}
+
+/// Batch inference response.
+table OnnxBatchResponseV1 {
+  /// Whether all items succeeded.
+  ok:bool (id: 0);
+  /// Total items in the batch.
+  total_items:uint16 (id: 1);
+  /// Number of successful inferences.
+  success_count:uint16 (id: 2);
+  /// Number of failed inferences.
+  failure_count:uint16 (id: 3);
+  /// Total batch latency in milliseconds.
+  total_latency_ms:uint32 (id: 4);
+  /// Execution provider actually used.
+  execution_provider:ExecutionProviderV1 (id: 5);
+  /// Per-item results.
+  results:[BatchItemResultV1] (id: 6);
+}
+
+file_identifier "OIV1";
+root_type OnnxBatchResponseV1;

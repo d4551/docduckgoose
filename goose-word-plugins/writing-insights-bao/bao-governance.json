@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "writing-insights-bao",
+  "name": "@baohaus/writing-insights-bao",
+  "version": "0.1.0",
+  "identity": {
+    "id": "writing-insights-bao",
+    "packageName": "@baohaus/writing-insights-bao",
+    "packageVersion": "0.1.0"
+  },
+  "channel": "local",
+  "visibility": "private",
+  "description": "Writing analytics plugin for Goose Word drafts.",
+  "copyFirst": {
+    "required": true,
+    "installRoot": "~/.goose-word/bao/writing-insights-bao",
+    "archivePolicy": "no-prebuilt-archives"
+  },
+  "targets": [
+    {
+      "kind": "settings-tab",
+      "entrypoint": "dist/bao-extensions/settings-tab.js"
+    },
+    {
+      "kind": "elysia-plugin",
+      "entrypoint": "dist/bao-extensions/elysia-plugin.js"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "goose-word",
+  "name": "@baohaus/goose-word",
+  "version": "0.1.0",
+  "identity": {
+    "id": "goose-word",
+    "packageName": "@baohaus/goose-word",
+    "packageVersion": "0.1.0"
+  },
+  "channel": "local",
+  "visibility": "private",
+  "description": "Local-first markdown word processor with browser-native speech and optional edge deploy targets",
+  "copyFirst": {
+    "required": true,
+    "installRoot": "~/.goose-word/bao",
+    "archivePolicy": "no-prebuilt-archives",
+    "notes": [
+      "Local MVP installs are directories copied under ~/.goose-word/bao/<id>.",
+      "Do not commit .bao, .zip, .tar, or .tar.gz package archives."
+    ]
+  },
+  "runtime": {
+    "bun": ">=1.3.13",
+    "target": "linux-arm64",
+    "deployTargetHint": "Raspberry Pi Zero 2 W"
+  },
+  "localAi": {
+    "whisper": {
+      "mode": "browser-api-first",
+      "fallback": "copy a small local model beside the plugin package"
+    },
+    "tts": {
+      "mode": "browser-speech-synthesis-first",
+      "fallback": "local command service plugin may be mounted later"
+    }
+  },
+  "targets": [
+    {
+      "kind": "goose-word-app",
+      "entrypoint": "dist/goose-word-linux-arm64"
+    }
+  ]
+}

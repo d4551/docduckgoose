@@ -1,0 +1,13 @@
+// Binary mesh (vertices + faces) for perception pipelines.
+// vertices: Nx3 layout; faces: Mx3 indices into vertices.
+namespace baohaus.perception.v1;
+
+table MeshV1 {
+  vertexCount:uint32 (id: 0);
+  faceCount:uint32 (id: 1);
+  vertices:[float] (id: 2);
+  faces:[uint32] (id: 3);
+}
+
+file_identifier "MSV1";
+root_type MeshV1;

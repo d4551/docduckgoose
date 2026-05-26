@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "verbatimModuleSyntax": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "types": ["bun"],
+    "paths": {
+      "@baohaus/bao-config/*": ["../bao-config/src/*"],
+      "@baohaus/bao-constants/*": ["../bao-constants/src/*"],
+      "@baohaus/bao-contracts/*": ["../bao-contracts/src/*"],
+      "@baohaus/bao-core/*": ["../bao-core/src/*"],
+      "@baohaus/bao-schemas/*": ["../bao-schemas/src/*"],
+      "@baohaus/bao-sdk/*": ["../bao-sdk/src/*"],
+      "@baohaus/bao-types": ["../bao-types/src/index.ts"],
+      "@baohaus/bao-types/*": ["../bao-types/src/*"],
+      "@baohaus/bao-utils/*": ["../bao-utils/src/*"],
+      "@baohaus/bao-wrapture/*": ["../bao-wrapture/src/*"],
+      "@baohaus/flatbuf-bao": ["../flatbuf-bao/src/index.ts"],
+      "@baohaus/flatbuf-bao/*": ["../flatbuf-bao/src/*"],
+      "@baohaus/schema-shumai/*": ["../schema-shumai/src/*"],
+      "@baohaus/bao-shared": ["./src/index.ts"],
+      "@baohaus/bao-shared/*": ["./src/*"],
+      "@baohaus/baobox/*": ["../baobox/src/*"],
+      "@baohaus/bunbuddy-shared/*": ["../bunbuddy-shared/src/*"],
+      "elysia": ["./node_modules/elysia"]
+    }
+  }
+}

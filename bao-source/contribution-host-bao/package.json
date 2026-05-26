@@ -1,0 +1,132 @@
+{
+  "name": "@baohaus/contribution-host-bao",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "packageManager": "bun@1.3.13",
+  "description": "Per-app contribution host: instantiates one process-local singleton per contribution surface (sidebar / settings-tab / palette-entry-group / api-group / tile-group / ui-asset-pack) on top of the canonical generic factory in @baohaus/contribution-registry-bao. Lifts bao-runtime's per-surface registry-service modules into a shared, typed factory so registry, forge, bao-ai-gateway and any future .bao app can mount the same .bao install host without re-implementing the lifecycle wiring.",
+  "exports": {
+    "./sidebar": {
+      "bun": "./dist/sidebar.js",
+      "import": "./dist/sidebar.js",
+      "types": "./dist/sidebar.d.ts",
+      "default": "./dist/sidebar.js"
+    },
+    "./settings-tab": {
+      "bun": "./dist/settings-tab.js",
+      "import": "./dist/settings-tab.js",
+      "types": "./dist/settings-tab.d.ts",
+      "default": "./dist/settings-tab.js"
+    },
+    "./palette-entry-group": {
+      "bun": "./dist/palette-entry-group.js",
+      "import": "./dist/palette-entry-group.js",
+      "types": "./dist/palette-entry-group.d.ts",
+      "default": "./dist/palette-entry-group.js"
+    },
+    "./topbar": {
+      "bun": "./dist/topbar.js",
+      "import": "./dist/topbar.js",
+      "types": "./dist/topbar.d.ts",
+      "default": "./dist/topbar.js"
+    },
+    "./federation-pull": {
+      "bun": "./dist/federation-pull.js",
+      "import": "./dist/federation-pull.js",
+      "types": "./dist/federation-pull.d.ts",
+      "default": "./dist/federation-pull.js"
+    },
+    "./federation-pull-service": {
+      "bun": "./dist/federation-pull-service.js",
+      "import": "./dist/federation-pull-service.js",
+      "types": "./dist/federation-pull-service.d.ts",
+      "default": "./dist/federation-pull-service.js"
+    },
+    "./api-group": {
+      "bun": "./dist/api-group.js",
+      "import": "./dist/api-group.js",
+      "types": "./dist/api-group.d.ts",
+      "default": "./dist/api-group.js"
+    },
+    "./tile-group": {
+      "bun": "./dist/tile-group.js",
+      "import": "./dist/tile-group.js",
+      "types": "./dist/tile-group.d.ts",
+      "default": "./dist/tile-group.js"
+    },
+    "./ui-asset-pack": {
+      "bun": "./dist/ui-asset-pack.js",
+      "import": "./dist/ui-asset-pack.js",
+      "types": "./dist/ui-asset-pack.d.ts",
+      "default": "./dist/ui-asset-pack.js"
+    },
+    "./federation-wire": {
+      "bun": "./dist/federation-wire.js",
+      "import": "./dist/federation-wire.js",
+      "types": "./dist/federation-wire.d.ts",
+      "default": "./dist/federation-wire.js"
+    },
+    "./federation-snapshot": {
+      "bun": "./dist/federation-snapshot.js",
+      "import": "./dist/federation-snapshot.js",
+      "types": "./dist/federation-snapshot.d.ts",
+      "default": "./dist/federation-snapshot.js"
+    },
+    "./federation-snapshot-parsers": {
+      "bun": "./dist/federation-snapshot-parsers.js",
+      "import": "./dist/federation-snapshot-parsers.js",
+      "types": "./dist/federation-snapshot-parsers.d.ts",
+      "default": "./dist/federation-snapshot-parsers.js"
+    },
+    "./federation-validator": {
+      "bun": "./dist/federation-validator.js",
+      "import": "./dist/federation-validator.js",
+      "types": "./dist/federation-validator.d.ts",
+      "default": "./dist/federation-validator.js"
+    },
+    "./federation-snapshot-cache": {
+      "bun": "./dist/federation-snapshot-cache.js",
+      "import": "./dist/federation-snapshot-cache.js",
+      "types": "./dist/federation-snapshot-cache.d.ts",
+      "default": "./dist/federation-snapshot-cache.js"
+    },
+    "./federation-orchestrator": {
+      "bun": "./dist/federation-orchestrator.js",
+      "import": "./dist/federation-orchestrator.js",
+      "types": "./dist/federation-orchestrator.d.ts",
+      "default": "./dist/federation-orchestrator.js"
+    },
+    "./federation-service-token": {
+      "bun": "./dist/federation-service-token.js",
+      "import": "./dist/federation-service-token.js",
+      "types": "./dist/federation-service-token.d.ts",
+      "default": "./dist/federation-service-token.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test && bun run build && bun run bao:build && bun run bao:validate"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@baohaus/bao-utils": "0.1.0",
+    "@baohaus/contribution-registry-bao": "0.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "engines": {
+    "bun": ">=1.3.0"
+  }
+}

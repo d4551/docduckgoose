@@ -1,0 +1,15 @@
+{
+  "id": "goose-word-ui-bao",
+  "name": "@baohaus/goose-word-ui-bao",
+  "version": "0.1.0",
+  "copyFirst": {
+    "required": true,
+    "archivePolicy": "no-prebuilt-archives"
+  },
+  "targets": [
+    {
+      "kind": "ui-asset-pack",
+      "surface": "goose-word"
+    }
+  ]
+}

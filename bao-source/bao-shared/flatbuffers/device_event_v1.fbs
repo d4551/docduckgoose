@@ -1,0 +1,14 @@
+// Typed device event for drone realtime transport.
+// Replaces JSON payload for device status events.
+namespace baohaus.realtime.v1;
+
+table DeviceEventV1 {
+  deviceId:string (id:0);
+  type:string (id:1);
+  status:ubyte (id:2);
+  value:float (id:3);
+  timestamp:string (id:4);
+}
+
+file_identifier "DEV1";
+root_type DeviceEventV1;

@@ -1,0 +1,1304 @@
+{
+  "name": "@baohaus/bao-schemas",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bunx --bun tsc --project tsconfig.build.json",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun run build && bun run test && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/baobox-enum.js",
+      "import": "./dist/baobox-enum.js",
+      "types": "./dist/baobox-enum.d.ts",
+      "default": "./dist/baobox-enum.js"
+    },
+    "./admin.schemas": {
+      "bun": "./dist/admin.schemas.js",
+      "import": "./dist/admin.schemas.js",
+      "types": "./dist/admin.schemas.d.ts",
+      "default": "./dist/admin.schemas.js"
+    },
+    "./ai-device-assist-config.schemas": {
+      "bun": "./dist/ai-device-assist-config.schemas.js",
+      "import": "./dist/ai-device-assist-config.schemas.js",
+      "types": "./dist/ai-device-assist-config.schemas.d.ts",
+      "default": "./dist/ai-device-assist-config.schemas.js"
+    },
+    "./ai-device-assist.schemas": {
+      "bun": "./dist/ai-device-assist.schemas.js",
+      "import": "./dist/ai-device-assist.schemas.js",
+      "types": "./dist/ai-device-assist.schemas.d.ts",
+      "default": "./dist/ai-device-assist.schemas.js"
+    },
+    "./ai-embeddings.schemas": {
+      "bun": "./dist/ai-embeddings.schemas.js",
+      "import": "./dist/ai-embeddings.schemas.js",
+      "types": "./dist/ai-embeddings.schemas.d.ts",
+      "default": "./dist/ai-embeddings.schemas.js"
+    },
+    "./ai-gateway.schemas": {
+      "bun": "./dist/ai-gateway.schemas.js",
+      "import": "./dist/ai-gateway.schemas.js",
+      "types": "./dist/ai-gateway.schemas.d.ts",
+      "default": "./dist/ai-gateway.schemas.js"
+    },
+    "./ai-provider-health.schemas": {
+      "bun": "./dist/ai-provider-health.schemas.js",
+      "import": "./dist/ai-provider-health.schemas.js",
+      "types": "./dist/ai-provider-health.schemas.d.ts",
+      "default": "./dist/ai-provider-health.schemas.js"
+    },
+    "./ai-provider.schemas": {
+      "bun": "./dist/ai-provider.schemas.js",
+      "import": "./dist/ai-provider.schemas.js",
+      "types": "./dist/ai-provider.schemas.d.ts",
+      "default": "./dist/ai-provider.schemas.js"
+    },
+    "./ai-service-alignment.schemas": {
+      "bun": "./dist/ai-service-alignment.schemas.js",
+      "import": "./dist/ai-service-alignment.schemas.js",
+      "types": "./dist/ai-service-alignment.schemas.d.ts",
+      "default": "./dist/ai-service-alignment.schemas.js"
+    },
+    "./ai-text.schemas": {
+      "bun": "./dist/ai-text.schemas.js",
+      "import": "./dist/ai-text.schemas.js",
+      "types": "./dist/ai-text.schemas.d.ts",
+      "default": "./dist/ai-text.schemas.js"
+    },
+    "./annotation-alignment.schemas": {
+      "bun": "./dist/annotation-alignment.schemas.js",
+      "import": "./dist/annotation-alignment.schemas.js",
+      "types": "./dist/annotation-alignment.schemas.d.ts",
+      "default": "./dist/annotation-alignment.schemas.js"
+    },
+    "./annotation-auto-ingest.schemas": {
+      "bun": "./dist/annotation-auto-ingest.schemas.js",
+      "import": "./dist/annotation-auto-ingest.schemas.js",
+      "types": "./dist/annotation-auto-ingest.schemas.d.ts",
+      "default": "./dist/annotation-auto-ingest.schemas.js"
+    },
+    "./api-response.schemas": {
+      "bun": "./dist/api-response.schemas.js",
+      "import": "./dist/api-response.schemas.js",
+      "types": "./dist/api-response.schemas.d.ts",
+      "default": "./dist/api-response.schemas.js"
+    },
+    "./app-config.schemas": {
+      "bun": "./dist/app-config.schemas.js",
+      "import": "./dist/app-config.schemas.js",
+      "types": "./dist/app-config.schemas.d.ts",
+      "default": "./dist/app-config.schemas.js"
+    },
+    "./brand-tokens.schemas": {
+      "bun": "./dist/brand-tokens.schemas.js",
+      "import": "./dist/brand-tokens.schemas.js",
+      "types": "./dist/brand-tokens.schemas.d.ts",
+      "default": "./dist/brand-tokens.schemas.js"
+    },
+    "./auth-sso.schemas": {
+      "bun": "./dist/auth-sso.schemas.js",
+      "import": "./dist/auth-sso.schemas.js",
+      "types": "./dist/auth-sso.schemas.d.ts",
+      "default": "./dist/auth-sso.schemas.js"
+    },
+    "./autonomy-integration.schemas": {
+      "bun": "./dist/autonomy-integration.schemas.js",
+      "import": "./dist/autonomy-integration.schemas.js",
+      "types": "./dist/autonomy-integration.schemas.d.ts",
+      "default": "./dist/autonomy-integration.schemas.js"
+    },
+    "./autopilot.schemas": {
+      "bun": "./dist/autopilot.schemas.js",
+      "import": "./dist/autopilot.schemas.js",
+      "types": "./dist/autopilot.schemas.d.ts",
+      "default": "./dist/autopilot.schemas.js"
+    },
+    "./bao-install-primitives.schemas": {
+      "bun": "./dist/bao-install-primitives.schemas.js",
+      "import": "./dist/bao-install-primitives.schemas.js",
+      "types": "./dist/bao-install-primitives.schemas.d.ts",
+      "default": "./dist/bao-install-primitives.schemas.js"
+    },
+    "./bao-install-sections.schemas": {
+      "bun": "./dist/bao-install-sections.schemas.js",
+      "import": "./dist/bao-install-sections.schemas.js",
+      "types": "./dist/bao-install-sections.schemas.d.ts",
+      "default": "./dist/bao-install-sections.schemas.js"
+    },
+    "./bao-status": {
+      "bun": "./dist/bao-status.js",
+      "import": "./dist/bao-status.js",
+      "types": "./dist/bao-status.d.ts",
+      "default": "./dist/bao-status.js"
+    },
+    "./bao-authz.schemas": {
+      "bun": "./dist/bao-authz.schemas.js",
+      "import": "./dist/bao-authz.schemas.js",
+      "types": "./dist/bao-authz.schemas.d.ts",
+      "default": "./dist/bao-authz.schemas.js"
+    },
+    "./tenancy.schemas": {
+      "bun": "./dist/tenancy.schemas.js",
+      "import": "./dist/tenancy.schemas.js",
+      "types": "./dist/tenancy.schemas.d.ts",
+      "default": "./dist/tenancy.schemas.js"
+    },
+    "./bao-ecosystem": {
+      "bun": "./dist/bao-ecosystem.js",
+      "import": "./dist/bao-ecosystem.js",
+      "types": "./dist/bao-ecosystem.d.ts",
+      "default": "./dist/bao-ecosystem.js"
+    },
+    "./bao-install/artifact.schemas": {
+      "bun": "./dist/bao-install/artifact.schemas.js",
+      "import": "./dist/bao-install/artifact.schemas.js",
+      "types": "./dist/bao-install/artifact.schemas.d.ts",
+      "default": "./dist/bao-install/artifact.schemas.js"
+    },
+    "./bao-install/core.schemas": {
+      "bun": "./dist/bao-install/core.schemas.js",
+      "import": "./dist/bao-install/core.schemas.js",
+      "types": "./dist/bao-install/core.schemas.d.ts",
+      "default": "./dist/bao-install/core.schemas.js"
+    },
+    "./bao-install/manifest.schemas": {
+      "bun": "./dist/bao-install/manifest.schemas.js",
+      "import": "./dist/bao-install/manifest.schemas.js",
+      "types": "./dist/bao-install/manifest.schemas.d.ts",
+      "default": "./dist/bao-install/manifest.schemas.js"
+    },
+    "./bao-install/manifest-checksum": {
+      "bun": "./dist/bao-install/manifest-checksum.js",
+      "import": "./dist/bao-install/manifest-checksum.js",
+      "types": "./dist/bao-install/manifest-checksum.d.ts",
+      "default": "./dist/bao-install/manifest-checksum.js"
+    },
+    "./bao-install/requests.schemas": {
+      "bun": "./dist/bao-install/requests.schemas.js",
+      "import": "./dist/bao-install/requests.schemas.js",
+      "types": "./dist/bao-install/requests.schemas.d.ts",
+      "default": "./dist/bao-install/requests.schemas.js"
+    },
+    "./bao-install/source-resolution.schemas": {
+      "bun": "./dist/bao-install/source-resolution.schemas.js",
+      "import": "./dist/bao-install/source-resolution.schemas.js",
+      "types": "./dist/bao-install/source-resolution.schemas.d.ts",
+      "default": "./dist/bao-install/source-resolution.schemas.js"
+    },
+    "./bao-install/runtime.schemas": {
+      "bun": "./dist/bao-install/runtime.schemas.js",
+      "import": "./dist/bao-install/runtime.schemas.js",
+      "types": "./dist/bao-install/runtime.schemas.d.ts",
+      "default": "./dist/bao-install/runtime.schemas.js"
+    },
+    "./bao-install/targets.schemas": {
+      "bun": "./dist/bao-install/targets.schemas.js",
+      "import": "./dist/bao-install/targets.schemas.js",
+      "types": "./dist/bao-install/targets.schemas.d.ts",
+      "default": "./dist/bao-install/targets.schemas.js"
+    },
+    "./bao-lock.schemas": {
+      "bun": "./dist/bao-lock.schemas.js",
+      "import": "./dist/bao-lock.schemas.js",
+      "types": "./dist/bao-lock.schemas.d.ts",
+      "default": "./dist/bao-lock.schemas.js"
+    },
+    "./bao-observability.schemas": {
+      "bun": "./dist/bao-observability.schemas.js",
+      "import": "./dist/bao-observability.schemas.js",
+      "types": "./dist/bao-observability.schemas.d.ts",
+      "default": "./dist/bao-observability.schemas.js"
+    },
+    "./bao-target-payload-common.schemas": {
+      "bun": "./dist/bao-target-payload-common.schemas.js",
+      "import": "./dist/bao-target-payload-common.schemas.js",
+      "types": "./dist/bao-target-payload-common.schemas.d.ts",
+      "default": "./dist/bao-target-payload-common.schemas.js"
+    },
+    "./bao-target-payload-distribution.schemas": {
+      "bun": "./dist/bao-target-payload-distribution.schemas.js",
+      "import": "./dist/bao-target-payload-distribution.schemas.js",
+      "types": "./dist/bao-target-payload-distribution.schemas.d.ts",
+      "default": "./dist/bao-target-payload-distribution.schemas.js"
+    },
+    "./bao-target-payload-extension.schemas": {
+      "bun": "./dist/bao-target-payload-extension.schemas.js",
+      "import": "./dist/bao-target-payload-extension.schemas.js",
+      "types": "./dist/bao-target-payload-extension.schemas.d.ts",
+      "default": "./dist/bao-target-payload-extension.schemas.js"
+    },
+    "./bao-target-payload-platform.schemas": {
+      "bun": "./dist/bao-target-payload-platform.schemas.js",
+      "import": "./dist/bao-target-payload-platform.schemas.js",
+      "types": "./dist/bao-target-payload-platform.schemas.d.ts",
+      "default": "./dist/bao-target-payload-platform.schemas.js"
+    },
+    "./bao-target-payloads.schemas": {
+      "bun": "./dist/bao-target-payloads.schemas.js",
+      "import": "./dist/bao-target-payloads.schemas.js",
+      "types": "./dist/bao-target-payloads.schemas.d.ts",
+      "default": "./dist/bao-target-payloads.schemas.js"
+    },
+    "./basler-bunbuddy.schemas": {
+      "bun": "./dist/basler-bunbuddy.schemas.js",
+      "import": "./dist/basler-bunbuddy.schemas.js",
+      "types": "./dist/basler-bunbuddy.schemas.d.ts",
+      "default": "./dist/basler-bunbuddy.schemas.js"
+    },
+    "./bao/bao-archive.contract": {
+      "bun": "./dist/bao/bao-archive.contract.js",
+      "import": "./dist/bao/bao-archive.contract.js",
+      "types": "./dist/bao/bao-archive.contract.d.ts",
+      "default": "./dist/bao/bao-archive.contract.js"
+    },
+    "./baodown/baodown-flow.schemas": {
+      "bun": "./dist/baodown/baodown-flow.schemas.js",
+      "import": "./dist/baodown/baodown-flow.schemas.js",
+      "types": "./dist/baodown/baodown-flow.schemas.d.ts",
+      "default": "./dist/baodown/baodown-flow.schemas.js"
+    },
+    "./baodown/baodown-graph-contract": {
+      "bun": "./dist/baodown/baodown-graph-contract.js",
+      "import": "./dist/baodown/baodown-graph-contract.js",
+      "types": "./dist/baodown/baodown-graph-contract.d.ts",
+      "default": "./dist/baodown/baodown-graph-contract.js"
+    },
+    "./baodown/baodown-node-catalog.schemas": {
+      "bun": "./dist/baodown/baodown-node-catalog.schemas.js",
+      "import": "./dist/baodown/baodown-node-catalog.schemas.js",
+      "types": "./dist/baodown/baodown-node-catalog.schemas.d.ts",
+      "default": "./dist/baodown/baodown-node-catalog.schemas.js"
+    },
+    "./baodown/baodown-pg-notify.schemas": {
+      "bun": "./dist/baodown/baodown-pg-notify.schemas.js",
+      "import": "./dist/baodown/baodown-pg-notify.schemas.js",
+      "types": "./dist/baodown/baodown-pg-notify.schemas.d.ts",
+      "default": "./dist/baodown/baodown-pg-notify.schemas.js"
+    },
+    "./baodown/baodown-redis-notify.schemas": {
+      "bun": "./dist/baodown/baodown-redis-notify.schemas.js",
+      "import": "./dist/baodown/baodown-redis-notify.schemas.js",
+      "types": "./dist/baodown/baodown-redis-notify.schemas.d.ts",
+      "default": "./dist/baodown/baodown-redis-notify.schemas.js"
+    },
+    "./ble.schemas": {
+      "bun": "./dist/ble.schemas.js",
+      "import": "./dist/ble.schemas.js",
+      "types": "./dist/ble.schemas.d.ts",
+      "default": "./dist/ble.schemas.js"
+    },
+    "./bunbuddy-capabilities-config.schemas": {
+      "bun": "./dist/bunbuddy-capabilities-config.schemas.js",
+      "import": "./dist/bunbuddy-capabilities-config.schemas.js",
+      "types": "./dist/bunbuddy-capabilities-config.schemas.d.ts",
+      "default": "./dist/bunbuddy-capabilities-config.schemas.js"
+    },
+    "./bunbuddy-capability-snapshot.schemas": {
+      "bun": "./dist/bunbuddy-capability-snapshot.schemas.js",
+      "import": "./dist/bunbuddy-capability-snapshot.schemas.js",
+      "types": "./dist/bunbuddy-capability-snapshot.schemas.d.ts",
+      "default": "./dist/bunbuddy-capability-snapshot.schemas.js"
+    },
+    "./bunbuddy-contracts.schemas": {
+      "bun": "./dist/bunbuddy-contracts.schemas.js",
+      "import": "./dist/bunbuddy-contracts.schemas.js",
+      "types": "./dist/bunbuddy-contracts.schemas.d.ts",
+      "default": "./dist/bunbuddy-contracts.schemas.js"
+    },
+    "./bunbuddy-proxy.schemas": {
+      "bun": "./dist/bunbuddy-proxy.schemas.js",
+      "import": "./dist/bunbuddy-proxy.schemas.js",
+      "types": "./dist/bunbuddy-proxy.schemas.d.ts",
+      "default": "./dist/bunbuddy-proxy.schemas.js"
+    },
+    "./bunbuddy-routing.schemas": {
+      "bun": "./dist/bunbuddy-routing.schemas.js",
+      "import": "./dist/bunbuddy-routing.schemas.js",
+      "types": "./dist/bunbuddy-routing.schemas.d.ts",
+      "default": "./dist/bunbuddy-routing.schemas.js"
+    },
+    "./bunbuddy-runtime.schemas": {
+      "bun": "./dist/bunbuddy-runtime.schemas.js",
+      "import": "./dist/bunbuddy-runtime.schemas.js",
+      "types": "./dist/bunbuddy-runtime.schemas.d.ts",
+      "default": "./dist/bunbuddy-runtime.schemas.js"
+    },
+    "./bunbuddy.schemas": {
+      "bun": "./dist/bunbuddy.schemas.js",
+      "import": "./dist/bunbuddy.schemas.js",
+      "types": "./dist/bunbuddy.schemas.d.ts",
+      "default": "./dist/bunbuddy.schemas.js"
+    },
+    "./calibration.schemas": {
+      "bun": "./dist/calibration.schemas.js",
+      "import": "./dist/calibration.schemas.js",
+      "types": "./dist/calibration.schemas.d.ts",
+      "default": "./dist/calibration.schemas.js"
+    },
+    "./capability-domain-map-api-config.schemas": {
+      "bun": "./dist/capability-domain-map-api-config.schemas.js",
+      "import": "./dist/capability-domain-map-api-config.schemas.js",
+      "types": "./dist/capability-domain-map-api-config.schemas.d.ts",
+      "default": "./dist/capability-domain-map-api-config.schemas.js"
+    },
+    "./capability-domain-map-config.schemas": {
+      "bun": "./dist/capability-domain-map-config.schemas.js",
+      "import": "./dist/capability-domain-map-config.schemas.js",
+      "types": "./dist/capability-domain-map-config.schemas.d.ts",
+      "default": "./dist/capability-domain-map-config.schemas.js"
+    },
+    "./capability-domain-map.schemas": {
+      "bun": "./dist/capability-domain-map.schemas.js",
+      "import": "./dist/capability-domain-map.schemas.js",
+      "types": "./dist/capability-domain-map.schemas.d.ts",
+      "default": "./dist/capability-domain-map.schemas.js"
+    },
+    "./capability-impact.schemas": {
+      "bun": "./dist/capability-impact.schemas.js",
+      "import": "./dist/capability-impact.schemas.js",
+      "types": "./dist/capability-impact.schemas.d.ts",
+      "default": "./dist/capability-impact.schemas.js"
+    },
+    "./capability-ownership-config.schemas": {
+      "bun": "./dist/capability-ownership-config.schemas.js",
+      "import": "./dist/capability-ownership-config.schemas.js",
+      "types": "./dist/capability-ownership-config.schemas.d.ts",
+      "default": "./dist/capability-ownership-config.schemas.js"
+    },
+    "./capability-ownership.schemas": {
+      "bun": "./dist/capability-ownership.schemas.js",
+      "import": "./dist/capability-ownership.schemas.js",
+      "types": "./dist/capability-ownership.schemas.d.ts",
+      "default": "./dist/capability-ownership.schemas.js"
+    },
+    "./capability-ownership/category": {
+      "bun": "./dist/capability-ownership/category.js",
+      "import": "./dist/capability-ownership/category.js",
+      "types": "./dist/capability-ownership/category.d.ts",
+      "default": "./dist/capability-ownership/category.js"
+    },
+    "./capability-ownership/coverage-map": {
+      "bun": "./dist/capability-ownership/coverage-map.js",
+      "import": "./dist/capability-ownership/coverage-map.js",
+      "types": "./dist/capability-ownership/coverage-map.d.ts",
+      "default": "./dist/capability-ownership/coverage-map.js"
+    },
+    "./capability-ownership/coverage": {
+      "bun": "./dist/capability-ownership/coverage.js",
+      "import": "./dist/capability-ownership/coverage.js",
+      "types": "./dist/capability-ownership/coverage.d.ts",
+      "default": "./dist/capability-ownership/coverage.js"
+    },
+    "./capability-ownership/domain": {
+      "bun": "./dist/capability-ownership/domain.js",
+      "import": "./dist/capability-ownership/domain.js",
+      "types": "./dist/capability-ownership/domain.d.ts",
+      "default": "./dist/capability-ownership/domain.js"
+    },
+    "./capability-ownership/entry": {
+      "bun": "./dist/capability-ownership/entry.js",
+      "import": "./dist/capability-ownership/entry.js",
+      "types": "./dist/capability-ownership/entry.d.ts",
+      "default": "./dist/capability-ownership/entry.js"
+    },
+    "./capability-ownership/enums": {
+      "bun": "./dist/capability-ownership/enums.js",
+      "import": "./dist/capability-ownership/enums.js",
+      "types": "./dist/capability-ownership/enums.d.ts",
+      "default": "./dist/capability-ownership/enums.js"
+    },
+    "./capability-ownership/errors": {
+      "bun": "./dist/capability-ownership/errors.js",
+      "import": "./dist/capability-ownership/errors.js",
+      "types": "./dist/capability-ownership/errors.d.ts",
+      "default": "./dist/capability-ownership/errors.js"
+    },
+    "./capability-ownership/focus": {
+      "bun": "./dist/capability-ownership/focus.js",
+      "import": "./dist/capability-ownership/focus.js",
+      "types": "./dist/capability-ownership/focus.d.ts",
+      "default": "./dist/capability-ownership/focus.js"
+    },
+    "./capability-ownership/group": {
+      "bun": "./dist/capability-ownership/group.js",
+      "import": "./dist/capability-ownership/group.js",
+      "types": "./dist/capability-ownership/group.d.ts",
+      "default": "./dist/capability-ownership/group.js"
+    },
+    "./capability-ownership/highlights": {
+      "bun": "./dist/capability-ownership/highlights.js",
+      "import": "./dist/capability-ownership/highlights.js",
+      "types": "./dist/capability-ownership/highlights.d.ts",
+      "default": "./dist/capability-ownership/highlights.js"
+    },
+    "./capability-ownership/matrix": {
+      "bun": "./dist/capability-ownership/matrix.js",
+      "import": "./dist/capability-ownership/matrix.js",
+      "types": "./dist/capability-ownership/matrix.d.ts",
+      "default": "./dist/capability-ownership/matrix.js"
+    },
+    "./capability-ownership/mcp-surface": {
+      "bun": "./dist/capability-ownership/mcp-surface.js",
+      "import": "./dist/capability-ownership/mcp-surface.js",
+      "types": "./dist/capability-ownership/mcp-surface.d.ts",
+      "default": "./dist/capability-ownership/mcp-surface.js"
+    },
+    "./capability-ownership/metadata": {
+      "bun": "./dist/capability-ownership/metadata.js",
+      "import": "./dist/capability-ownership/metadata.js",
+      "types": "./dist/capability-ownership/metadata.d.ts",
+      "default": "./dist/capability-ownership/metadata.js"
+    },
+    "./capability-ownership/owner-map": {
+      "bun": "./dist/capability-ownership/owner-map.js",
+      "import": "./dist/capability-ownership/owner-map.js",
+      "types": "./dist/capability-ownership/owner-map.d.ts",
+      "default": "./dist/capability-ownership/owner-map.js"
+    },
+    "./capability-ownership/requests": {
+      "bun": "./dist/capability-ownership/requests.js",
+      "import": "./dist/capability-ownership/requests.js",
+      "types": "./dist/capability-ownership/requests.d.ts",
+      "default": "./dist/capability-ownership/requests.js"
+    },
+    "./capability-ownership/responses": {
+      "bun": "./dist/capability-ownership/responses.js",
+      "import": "./dist/capability-ownership/responses.js",
+      "types": "./dist/capability-ownership/responses.d.ts",
+      "default": "./dist/capability-ownership/responses.js"
+    },
+    "./capability-ownership/segment": {
+      "bun": "./dist/capability-ownership/segment.js",
+      "import": "./dist/capability-ownership/segment.js",
+      "types": "./dist/capability-ownership/segment.d.ts",
+      "default": "./dist/capability-ownership/segment.js"
+    },
+    "./capability-ownership/source": {
+      "bun": "./dist/capability-ownership/source.js",
+      "import": "./dist/capability-ownership/source.js",
+      "types": "./dist/capability-ownership/source.d.ts",
+      "default": "./dist/capability-ownership/source.js"
+    },
+    "./capability-ownership/stack-entry": {
+      "bun": "./dist/capability-ownership/stack-entry.js",
+      "import": "./dist/capability-ownership/stack-entry.js",
+      "types": "./dist/capability-ownership/stack-entry.d.ts",
+      "default": "./dist/capability-ownership/stack-entry.js"
+    },
+    "./capability-ownership/stack": {
+      "bun": "./dist/capability-ownership/stack.js",
+      "import": "./dist/capability-ownership/stack.js",
+      "types": "./dist/capability-ownership/stack.d.ts",
+      "default": "./dist/capability-ownership/stack.js"
+    },
+    "./capability-ownership/summary": {
+      "bun": "./dist/capability-ownership/summary.js",
+      "import": "./dist/capability-ownership/summary.js",
+      "types": "./dist/capability-ownership/summary.d.ts",
+      "default": "./dist/capability-ownership/summary.js"
+    },
+    "./capability-ownership/surface": {
+      "bun": "./dist/capability-ownership/surface.js",
+      "import": "./dist/capability-ownership/surface.js",
+      "types": "./dist/capability-ownership/surface.d.ts",
+      "default": "./dist/capability-ownership/surface.js"
+    },
+    "./capability-portfolio.schemas": {
+      "bun": "./dist/capability-portfolio.schemas.js",
+      "import": "./dist/capability-portfolio.schemas.js",
+      "types": "./dist/capability-portfolio.schemas.d.ts",
+      "default": "./dist/capability-portfolio.schemas.js"
+    },
+    "./capability-registry.schemas": {
+      "bun": "./dist/capability-registry.schemas.js",
+      "import": "./dist/capability-registry.schemas.js",
+      "types": "./dist/capability-registry.schemas.d.ts",
+      "default": "./dist/capability-registry.schemas.js"
+    },
+    "./case-dashboard.schemas": {
+      "bun": "./dist/case-dashboard.schemas.js",
+      "import": "./dist/case-dashboard.schemas.js",
+      "types": "./dist/case-dashboard.schemas.d.ts",
+      "default": "./dist/case-dashboard.schemas.js"
+    },
+    "./case.schemas": {
+      "bun": "./dist/case.schemas.js",
+      "import": "./dist/case.schemas.js",
+      "types": "./dist/case.schemas.d.ts",
+      "default": "./dist/case.schemas.js"
+    },
+    "./chat-stream.schemas": {
+      "bun": "./dist/chat-stream.schemas.js",
+      "import": "./dist/chat-stream.schemas.js",
+      "types": "./dist/chat-stream.schemas.d.ts",
+      "default": "./dist/chat-stream.schemas.js"
+    },
+    "./chat.schemas": {
+      "bun": "./dist/chat.schemas.js",
+      "import": "./dist/chat.schemas.js",
+      "types": "./dist/chat.schemas.d.ts",
+      "default": "./dist/chat.schemas.js"
+    },
+    "./client-telemetry.schemas": {
+      "bun": "./dist/client-telemetry.schemas.js",
+      "import": "./dist/client-telemetry.schemas.js",
+      "types": "./dist/client-telemetry.schemas.d.ts",
+      "default": "./dist/client-telemetry.schemas.js"
+    },
+    "./common.schemas": {
+      "bun": "./dist/common.schemas.js",
+      "import": "./dist/common.schemas.js",
+      "types": "./dist/common.schemas.d.ts",
+      "default": "./dist/common.schemas.js"
+    },
+    "./deployment.schemas": {
+      "bun": "./dist/deployment.schemas.js",
+      "import": "./dist/deployment.schemas.js",
+      "types": "./dist/deployment.schemas.d.ts",
+      "default": "./dist/deployment.schemas.js"
+    },
+    "./device-assignment.schemas": {
+      "bun": "./dist/device-assignment.schemas.js",
+      "import": "./dist/device-assignment.schemas.js",
+      "types": "./dist/device-assignment.schemas.d.ts",
+      "default": "./dist/device-assignment.schemas.js"
+    },
+    "./device-diagnostics.schemas": {
+      "bun": "./dist/device-diagnostics.schemas.js",
+      "import": "./dist/device-diagnostics.schemas.js",
+      "types": "./dist/device-diagnostics.schemas.d.ts",
+      "default": "./dist/device-diagnostics.schemas.js"
+    },
+    "./device-imager.schemas": {
+      "bun": "./dist/device-imager.schemas.js",
+      "import": "./dist/device-imager.schemas.js",
+      "types": "./dist/device-imager.schemas.d.ts",
+      "default": "./dist/device-imager.schemas.js"
+    },
+    "./device-inventory.schemas": {
+      "bun": "./dist/device-inventory.schemas.js",
+      "import": "./dist/device-inventory.schemas.js",
+      "types": "./dist/device-inventory.schemas.d.ts",
+      "default": "./dist/device-inventory.schemas.js"
+    },
+    "./device-lifecycle.schemas": {
+      "bun": "./dist/device-lifecycle.schemas.js",
+      "import": "./dist/device-lifecycle.schemas.js",
+      "types": "./dist/device-lifecycle.schemas.d.ts",
+      "default": "./dist/device-lifecycle.schemas.js"
+    },
+    "./device.schemas": {
+      "bun": "./dist/device.schemas.js",
+      "import": "./dist/device.schemas.js",
+      "types": "./dist/device.schemas.d.ts",
+      "default": "./dist/device.schemas.js"
+    },
+    "./devices-detect.schemas": {
+      "bun": "./dist/devices-detect.schemas.js",
+      "import": "./dist/devices-detect.schemas.js",
+      "types": "./dist/devices-detect.schemas.d.ts",
+      "default": "./dist/devices-detect.schemas.js"
+    },
+    "./devices-list.schemas": {
+      "bun": "./dist/devices-list.schemas.js",
+      "import": "./dist/devices-list.schemas.js",
+      "types": "./dist/devices-list.schemas.d.ts",
+      "default": "./dist/devices-list.schemas.js"
+    },
+    "./devices-status.schemas": {
+      "bun": "./dist/devices-status.schemas.js",
+      "import": "./dist/devices-status.schemas.js",
+      "types": "./dist/devices-status.schemas.d.ts",
+      "default": "./dist/devices-status.schemas.js"
+    },
+    "./dicom.schemas": {
+      "bun": "./dist/dicom.schemas.js",
+      "import": "./dist/dicom.schemas.js",
+      "types": "./dist/dicom.schemas.d.ts",
+      "default": "./dist/dicom.schemas.js"
+    },
+    "./download-config.schemas": {
+      "bun": "./dist/download-config.schemas.js",
+      "import": "./dist/download-config.schemas.js",
+      "types": "./dist/download-config.schemas.d.ts",
+      "default": "./dist/download-config.schemas.js"
+    },
+    "./driver-registry-allowlist.schemas": {
+      "bun": "./dist/driver-registry-allowlist.schemas.js",
+      "import": "./dist/driver-registry-allowlist.schemas.js",
+      "types": "./dist/driver-registry-allowlist.schemas.d.ts",
+      "default": "./dist/driver-registry-allowlist.schemas.js"
+    },
+    "./driver-registry.schemas": {
+      "bun": "./dist/driver-registry.schemas.js",
+      "import": "./dist/driver-registry.schemas.js",
+      "types": "./dist/driver-registry.schemas.d.ts",
+      "default": "./dist/driver-registry.schemas.js"
+    },
+    "./drone-capability.schemas": {
+      "bun": "./dist/drone-capability.schemas.js",
+      "import": "./dist/drone-capability.schemas.js",
+      "types": "./dist/drone-capability.schemas.d.ts",
+      "default": "./dist/drone-capability.schemas.js"
+    },
+    "./uav-capability-registry": {
+      "bun": "./dist/uav-capability-registry.js",
+      "import": "./dist/uav-capability-registry.js",
+      "types": "./dist/uav-capability-registry.d.ts",
+      "default": "./dist/uav-capability-registry.js"
+    },
+    "./drone-history.schemas": {
+      "bun": "./dist/drone-history.schemas.js",
+      "import": "./dist/drone-history.schemas.js",
+      "types": "./dist/drone-history.schemas.d.ts",
+      "default": "./dist/drone-history.schemas.js"
+    },
+    "./drone-mission-planner.schemas": {
+      "bun": "./dist/drone-mission-planner.schemas.js",
+      "import": "./dist/drone-mission-planner.schemas.js",
+      "types": "./dist/drone-mission-planner.schemas.d.ts",
+      "default": "./dist/drone-mission-planner.schemas.js"
+    },
+    "./drone-ops.schemas": {
+      "bun": "./dist/drone-ops.schemas.js",
+      "import": "./dist/drone-ops.schemas.js",
+      "types": "./dist/drone-ops.schemas.d.ts",
+      "default": "./dist/drone-ops.schemas.js"
+    },
+    "./drone-realtime.schemas": {
+      "bun": "./dist/drone-realtime.schemas.js",
+      "import": "./dist/drone-realtime.schemas.js",
+      "types": "./dist/drone-realtime.schemas.d.ts",
+      "default": "./dist/drone-realtime.schemas.js"
+    },
+    "./drone-summary.schemas": {
+      "bun": "./dist/drone-summary.schemas.js",
+      "import": "./dist/drone-summary.schemas.js",
+      "types": "./dist/drone-summary.schemas.d.ts",
+      "default": "./dist/drone-summary.schemas.js"
+    },
+    "./drone-training-integration.schemas": {
+      "bun": "./dist/drone-training-integration.schemas.js",
+      "import": "./dist/drone-training-integration.schemas.js",
+      "types": "./dist/drone-training-integration.schemas.d.ts",
+      "default": "./dist/drone-training-integration.schemas.js"
+    },
+    "./bao-archive-authoring.schemas": {
+      "bun": "./dist/bao-archive-authoring.schemas.js",
+      "import": "./dist/bao-archive-authoring.schemas.js",
+      "types": "./dist/bao-archive-authoring.schemas.d.ts",
+      "default": "./dist/bao-archive-authoring.schemas.js"
+    },
+    "./bao-archive-authoring-profile.schemas": {
+      "bun": "./dist/bao-archive-authoring-profile.schemas.js",
+      "import": "./dist/bao-archive-authoring-profile.schemas.js",
+      "types": "./dist/bao-archive-authoring-profile.schemas.d.ts",
+      "default": "./dist/bao-archive-authoring-profile.schemas.js"
+    },
+    "./fleet-alerts.schemas": {
+      "bun": "./dist/fleet-alerts.schemas.js",
+      "import": "./dist/fleet-alerts.schemas.js",
+      "types": "./dist/fleet-alerts.schemas.d.ts",
+      "default": "./dist/fleet-alerts.schemas.js"
+    },
+    "./fleet-events.schemas": {
+      "bun": "./dist/fleet-events.schemas.js",
+      "import": "./dist/fleet-events.schemas.js",
+      "types": "./dist/fleet-events.schemas.d.ts",
+      "default": "./dist/fleet-events.schemas.js"
+    },
+    "./fleet.schemas": {
+      "bun": "./dist/fleet.schemas.js",
+      "import": "./dist/fleet.schemas.js",
+      "types": "./dist/fleet.schemas.d.ts",
+      "default": "./dist/fleet.schemas.js"
+    },
+    "./generated/bunbuddy-kinds.generated": {
+      "bun": "./dist/generated/bunbuddy-kinds.generated.js",
+      "import": "./dist/generated/bunbuddy-kinds.generated.js",
+      "types": "./dist/generated/bunbuddy-kinds.generated.d.ts",
+      "default": "./dist/generated/bunbuddy-kinds.generated.js"
+    },
+    "./geospatial.schemas": {
+      "bun": "./dist/geospatial.schemas.js",
+      "import": "./dist/geospatial.schemas.js",
+      "types": "./dist/geospatial.schemas.d.ts",
+      "default": "./dist/geospatial.schemas.js"
+    },
+    "./hardware-command.schemas": {
+      "bun": "./dist/hardware-command.schemas.js",
+      "import": "./dist/hardware-command.schemas.js",
+      "types": "./dist/hardware-command.schemas.d.ts",
+      "default": "./dist/hardware-command.schemas.js"
+    },
+    "./hardware-config.schemas": {
+      "bun": "./dist/hardware-config.schemas.js",
+      "import": "./dist/hardware-config.schemas.js",
+      "types": "./dist/hardware-config.schemas.d.ts",
+      "default": "./dist/hardware-config.schemas.js"
+    },
+    "./hardware-integration.schemas": {
+      "bun": "./dist/hardware-integration.schemas.js",
+      "import": "./dist/hardware-integration.schemas.js",
+      "types": "./dist/hardware-integration.schemas.d.ts",
+      "default": "./dist/hardware-integration.schemas.js"
+    },
+    "./hardware-policy.schemas": {
+      "bun": "./dist/hardware-policy.schemas.js",
+      "import": "./dist/hardware-policy.schemas.js",
+      "types": "./dist/hardware-policy.schemas.d.ts",
+      "default": "./dist/hardware-policy.schemas.js"
+    },
+    "./hardware-sensor.schemas": {
+      "bun": "./dist/hardware-sensor.schemas.js",
+      "import": "./dist/hardware-sensor.schemas.js",
+      "types": "./dist/hardware-sensor.schemas.d.ts",
+      "default": "./dist/hardware-sensor.schemas.js"
+    },
+    "./hardware-state-event.schemas": {
+      "bun": "./dist/hardware-state-event.schemas.js",
+      "import": "./dist/hardware-state-event.schemas.js",
+      "types": "./dist/hardware-state-event.schemas.d.ts",
+      "default": "./dist/hardware-state-event.schemas.js"
+    },
+    "./hardware-summary.schemas": {
+      "bun": "./dist/hardware-summary.schemas.js",
+      "import": "./dist/hardware-summary.schemas.js",
+      "types": "./dist/hardware-summary.schemas.d.ts",
+      "default": "./dist/hardware-summary.schemas.js"
+    },
+    "./health.schemas": {
+      "bun": "./dist/health.schemas.js",
+      "import": "./dist/health.schemas.js",
+      "types": "./dist/health.schemas.d.ts",
+      "default": "./dist/health.schemas.js"
+    },
+    "./i18n.schemas": {
+      "bun": "./dist/i18n.schemas.js",
+      "import": "./dist/i18n.schemas.js",
+      "types": "./dist/i18n.schemas.d.ts",
+      "default": "./dist/i18n.schemas.js"
+    },
+    "./imager-arducam.schemas": {
+      "bun": "./dist/imager-arducam.schemas.js",
+      "import": "./dist/imager-arducam.schemas.js",
+      "types": "./dist/imager-arducam.schemas.d.ts",
+      "default": "./dist/imager-arducam.schemas.js"
+    },
+    "./imager-asset.schemas": {
+      "bun": "./dist/imager-asset.schemas.js",
+      "import": "./dist/imager-asset.schemas.js",
+      "types": "./dist/imager-asset.schemas.d.ts",
+      "default": "./dist/imager-asset.schemas.js"
+    },
+    "./imager-calibration.schemas": {
+      "bun": "./dist/imager-calibration.schemas.js",
+      "import": "./dist/imager-calibration.schemas.js",
+      "types": "./dist/imager-calibration.schemas.d.ts",
+      "default": "./dist/imager-calibration.schemas.js"
+    },
+    "./imager-capture.schemas": {
+      "bun": "./dist/imager-capture.schemas.js",
+      "import": "./dist/imager-capture.schemas.js",
+      "types": "./dist/imager-capture.schemas.d.ts",
+      "default": "./dist/imager-capture.schemas.js"
+    },
+    "./imager-preprocess.schemas": {
+      "bun": "./dist/imager-preprocess.schemas.js",
+      "import": "./dist/imager-preprocess.schemas.js",
+      "types": "./dist/imager-preprocess.schemas.d.ts",
+      "default": "./dist/imager-preprocess.schemas.js"
+    },
+    "./imager-quality.schemas": {
+      "bun": "./dist/imager-quality.schemas.js",
+      "import": "./dist/imager-quality.schemas.js",
+      "types": "./dist/imager-quality.schemas.d.ts",
+      "default": "./dist/imager-quality.schemas.js"
+    },
+    "./imager-source.schemas": {
+      "bun": "./dist/imager-source.schemas.js",
+      "import": "./dist/imager-source.schemas.js",
+      "types": "./dist/imager-source.schemas.d.ts",
+      "default": "./dist/imager-source.schemas.js"
+    },
+    "./imager-status.schemas": {
+      "bun": "./dist/imager-status.schemas.js",
+      "import": "./dist/imager-status.schemas.js",
+      "types": "./dist/imager-status.schemas.d.ts",
+      "default": "./dist/imager-status.schemas.js"
+    },
+    "./infrastructure-health.schemas": {
+      "bun": "./dist/infrastructure-health.schemas.js",
+      "import": "./dist/infrastructure-health.schemas.js",
+      "types": "./dist/infrastructure-health.schemas.d.ts",
+      "default": "./dist/infrastructure-health.schemas.js"
+    },
+    "./integration-annotations.schemas": {
+      "bun": "./dist/integration-annotations.schemas.js",
+      "import": "./dist/integration-annotations.schemas.js",
+      "types": "./dist/integration-annotations.schemas.d.ts",
+      "default": "./dist/integration-annotations.schemas.js"
+    },
+    "./integration-ownership.schemas": {
+      "bun": "./dist/integration-ownership.schemas.js",
+      "import": "./dist/integration-ownership.schemas.js",
+      "types": "./dist/integration-ownership.schemas.d.ts",
+      "default": "./dist/integration-ownership.schemas.js"
+    },
+    "./json.schemas": {
+      "bun": "./dist/json.schemas.js",
+      "import": "./dist/json.schemas.js",
+      "types": "./dist/json.schemas.d.ts",
+      "default": "./dist/json.schemas.js"
+    },
+    "./library-registry.schemas": {
+      "bun": "./dist/library-registry.schemas.js",
+      "import": "./dist/library-registry.schemas.js",
+      "types": "./dist/library-registry.schemas.d.ts",
+      "default": "./dist/library-registry.schemas.js"
+    },
+    "./mavlink.schemas": {
+      "bun": "./dist/mavlink.schemas.js",
+      "import": "./dist/mavlink.schemas.js",
+      "types": "./dist/mavlink.schemas.d.ts",
+      "default": "./dist/mavlink.schemas.js"
+    },
+    "./mcp-host-config.schemas": {
+      "bun": "./dist/mcp-host-config.schemas.js",
+      "import": "./dist/mcp-host-config.schemas.js",
+      "types": "./dist/mcp-host-config.schemas.d.ts",
+      "default": "./dist/mcp-host-config.schemas.js"
+    },
+    "./mcp-runtime.schemas": {
+      "bun": "./dist/mcp-runtime.schemas.js",
+      "import": "./dist/mcp-runtime.schemas.js",
+      "types": "./dist/mcp-runtime.schemas.d.ts",
+      "default": "./dist/mcp-runtime.schemas.js"
+    },
+    "./mcp.schemas": {
+      "bun": "./dist/mcp.schemas.js",
+      "import": "./dist/mcp.schemas.js",
+      "types": "./dist/mcp.schemas.d.ts",
+      "default": "./dist/mcp.schemas.js"
+    },
+    "./minio.schemas": {
+      "bun": "./dist/minio.schemas.js",
+      "import": "./dist/minio.schemas.js",
+      "types": "./dist/minio.schemas.d.ts",
+      "default": "./dist/minio.schemas.js"
+    },
+    "./navigation.schemas": {
+      "bun": "./dist/navigation.schemas.js",
+      "import": "./dist/navigation.schemas.js",
+      "types": "./dist/navigation.schemas.d.ts",
+      "default": "./dist/navigation.schemas.js"
+    },
+    "./network-discovery.schemas": {
+      "bun": "./dist/network-discovery.schemas.js",
+      "import": "./dist/network-discovery.schemas.js",
+      "types": "./dist/network-discovery.schemas.d.ts",
+      "default": "./dist/network-discovery.schemas.js"
+    },
+    "./nim.schemas": {
+      "bun": "./dist/nim.schemas.js",
+      "import": "./dist/nim.schemas.js",
+      "types": "./dist/nim.schemas.d.ts",
+      "default": "./dist/nim.schemas.js"
+    },
+    "./bao-control-plane-config.contract.schemas": {
+      "bun": "./dist/bao-control-plane-config.contract.schemas.js",
+      "import": "./dist/bao-control-plane-config.contract.schemas.js",
+      "types": "./dist/bao-control-plane-config.contract.schemas.d.ts",
+      "default": "./dist/bao-control-plane-config.contract.schemas.js"
+    },
+    "./bao-runtime.schemas": {
+      "bun": "./dist/bao-runtime.schemas.js",
+      "import": "./dist/bao-runtime.schemas.js",
+      "types": "./dist/bao-runtime.schemas.d.ts",
+      "default": "./dist/bao-runtime.schemas.js"
+    },
+    "./bao-runtime-workload.schemas": {
+      "bun": "./dist/bao-runtime-workload.schemas.js",
+      "import": "./dist/bao-runtime-workload.schemas.js",
+      "types": "./dist/bao-runtime-workload.schemas.d.ts",
+      "default": "./dist/bao-runtime-workload.schemas.js"
+    },
+    "./onnx-integration.schemas": {
+      "bun": "./dist/onnx-integration.schemas.js",
+      "import": "./dist/onnx-integration.schemas.js",
+      "types": "./dist/onnx-integration.schemas.d.ts",
+      "default": "./dist/onnx-integration.schemas.js"
+    },
+    "./onnx.schemas": {
+      "bun": "./dist/onnx.schemas.js",
+      "import": "./dist/onnx.schemas.js",
+      "types": "./dist/onnx.schemas.d.ts",
+      "default": "./dist/onnx.schemas.js"
+    },
+    "./orchestration.schemas": {
+      "bun": "./dist/orchestration.schemas.js",
+      "import": "./dist/orchestration.schemas.js",
+      "types": "./dist/orchestration.schemas.d.ts",
+      "default": "./dist/orchestration.schemas.js"
+    },
+    "./perception.schemas": {
+      "bun": "./dist/perception.schemas.js",
+      "import": "./dist/perception.schemas.js",
+      "types": "./dist/perception.schemas.d.ts",
+      "default": "./dist/perception.schemas.js"
+    },
+    "./platform-runtime.schemas": {
+      "bun": "./dist/platform-runtime.schemas.js",
+      "import": "./dist/platform-runtime.schemas.js",
+      "types": "./dist/platform-runtime.schemas.d.ts",
+      "default": "./dist/platform-runtime.schemas.js"
+    },
+    "./plugin-contract.schemas": {
+      "bun": "./dist/plugin-contract.schemas.js",
+      "import": "./dist/plugin-contract.schemas.js",
+      "types": "./dist/plugin-contract.schemas.d.ts",
+      "default": "./dist/plugin-contract.schemas.js"
+    },
+    "./pointcloud-artifact.schemas": {
+      "bun": "./dist/pointcloud-artifact.schemas.js",
+      "import": "./dist/pointcloud-artifact.schemas.js",
+      "types": "./dist/pointcloud-artifact.schemas.d.ts",
+      "default": "./dist/pointcloud-artifact.schemas.js"
+    },
+    "./problem.schemas": {
+      "bun": "./dist/problem.schemas.js",
+      "import": "./dist/problem.schemas.js",
+      "types": "./dist/problem.schemas.d.ts",
+      "default": "./dist/problem.schemas.js"
+    },
+    "./query-params.schemas": {
+      "bun": "./dist/query-params.schemas.js",
+      "import": "./dist/query-params.schemas.js",
+      "types": "./dist/query-params.schemas.d.ts",
+      "default": "./dist/query-params.schemas.js"
+    },
+    "./queue-context.schemas": {
+      "bun": "./dist/queue-context.schemas.js",
+      "import": "./dist/queue-context.schemas.js",
+      "types": "./dist/queue-context.schemas.d.ts",
+      "default": "./dist/queue-context.schemas.js"
+    },
+    "./reports.schemas": {
+      "bun": "./dist/reports.schemas.js",
+      "import": "./dist/reports.schemas.js",
+      "types": "./dist/reports.schemas.d.ts",
+      "default": "./dist/reports.schemas.js"
+    },
+    "./operations-packages.schemas": {
+      "bun": "./dist/operations-packages.schemas.js",
+      "import": "./dist/operations-packages.schemas.js",
+      "types": "./dist/operations-packages.schemas.d.ts",
+      "default": "./dist/operations-packages.schemas.js"
+    },
+    "./robotics-capability.schemas": {
+      "bun": "./dist/robotics-capability.schemas.js",
+      "import": "./dist/robotics-capability.schemas.js",
+      "types": "./dist/robotics-capability.schemas.d.ts",
+      "default": "./dist/robotics-capability.schemas.js"
+    },
+    "./robotics-device.schemas": {
+      "bun": "./dist/robotics-device.schemas.js",
+      "import": "./dist/robotics-device.schemas.js",
+      "types": "./dist/robotics-device.schemas.d.ts",
+      "default": "./dist/robotics-device.schemas.js"
+    },
+    "./robotics-error.schemas": {
+      "bun": "./dist/robotics-error.schemas.js",
+      "import": "./dist/robotics-error.schemas.js",
+      "types": "./dist/robotics-error.schemas.d.ts",
+      "default": "./dist/robotics-error.schemas.js"
+    },
+    "./robotics-localization.schemas": {
+      "bun": "./dist/robotics-localization.schemas.js",
+      "import": "./dist/robotics-localization.schemas.js",
+      "types": "./dist/robotics-localization.schemas.d.ts",
+      "default": "./dist/robotics-localization.schemas.js"
+    },
+    "./robotics-mission.schemas": {
+      "bun": "./dist/robotics-mission.schemas.js",
+      "import": "./dist/robotics-mission.schemas.js",
+      "types": "./dist/robotics-mission.schemas.d.ts",
+      "default": "./dist/robotics-mission.schemas.js"
+    },
+    "./robotics-motion.schemas": {
+      "bun": "./dist/robotics-motion.schemas.js",
+      "import": "./dist/robotics-motion.schemas.js",
+      "types": "./dist/robotics-motion.schemas.d.ts",
+      "default": "./dist/robotics-motion.schemas.js"
+    },
+    "./robotics-policy.schemas": {
+      "bun": "./dist/robotics-policy.schemas.js",
+      "import": "./dist/robotics-policy.schemas.js",
+      "types": "./dist/robotics-policy.schemas.d.ts",
+      "default": "./dist/robotics-policy.schemas.js"
+    },
+    "./robotics-telemetry.schemas": {
+      "bun": "./dist/robotics-telemetry.schemas.js",
+      "import": "./dist/robotics-telemetry.schemas.js",
+      "types": "./dist/robotics-telemetry.schemas.d.ts",
+      "default": "./dist/robotics-telemetry.schemas.js"
+    },
+    "./robotics-training-integration.schemas": {
+      "bun": "./dist/robotics-training-integration.schemas.js",
+      "import": "./dist/robotics-training-integration.schemas.js",
+      "types": "./dist/robotics-training-integration.schemas.d.ts",
+      "default": "./dist/robotics-training-integration.schemas.js"
+    },
+    "./route-response-builders": {
+      "bun": "./dist/route-response-builders.js",
+      "import": "./dist/route-response-builders.js",
+      "types": "./dist/route-response-builders.d.ts",
+      "default": "./dist/route-response-builders.js"
+    },
+    "./route-response.schemas": {
+      "bun": "./dist/route-response.schemas.js",
+      "import": "./dist/route-response.schemas.js",
+      "types": "./dist/route-response.schemas.d.ts",
+      "default": "./dist/route-response.schemas.js"
+    },
+    "./rpa-generate.schemas": {
+      "bun": "./dist/rpa-generate.schemas.js",
+      "import": "./dist/rpa-generate.schemas.js",
+      "types": "./dist/rpa-generate.schemas.d.ts",
+      "default": "./dist/rpa-generate.schemas.js"
+    },
+    "./rpa.schemas": {
+      "bun": "./dist/rpa.schemas.js",
+      "import": "./dist/rpa.schemas.js",
+      "types": "./dist/rpa.schemas.d.ts",
+      "default": "./dist/rpa.schemas.js"
+    },
+    "./scanner-bunbuddy.schemas": {
+      "bun": "./dist/scanner-bunbuddy.schemas.js",
+      "import": "./dist/scanner-bunbuddy.schemas.js",
+      "types": "./dist/scanner-bunbuddy.schemas.d.ts",
+      "default": "./dist/scanner-bunbuddy.schemas.js"
+    },
+    "./scanner-config.schemas": {
+      "bun": "./dist/scanner-config.schemas.js",
+      "import": "./dist/scanner-config.schemas.js",
+      "types": "./dist/scanner-config.schemas.d.ts",
+      "default": "./dist/scanner-config.schemas.js"
+    },
+    "./secrets.schemas": {
+      "bun": "./dist/secrets.schemas.js",
+      "import": "./dist/secrets.schemas.js",
+      "types": "./dist/secrets.schemas.d.ts",
+      "default": "./dist/secrets.schemas.js"
+    },
+    "./sensor.schemas": {
+      "bun": "./dist/sensor.schemas.js",
+      "import": "./dist/sensor.schemas.js",
+      "types": "./dist/sensor.schemas.d.ts",
+      "default": "./dist/sensor.schemas.js"
+    },
+    "./setup-wizard.schemas": {
+      "bun": "./dist/setup-wizard.schemas.js",
+      "import": "./dist/setup-wizard.schemas.js",
+      "types": "./dist/setup-wizard.schemas.d.ts",
+      "default": "./dist/setup-wizard.schemas.js"
+    },
+    "./splatbao-anchors.schemas": {
+      "bun": "./dist/splatbao-anchors.schemas.js",
+      "import": "./dist/splatbao-anchors.schemas.js",
+      "types": "./dist/splatbao-anchors.schemas.d.ts",
+      "default": "./dist/splatbao-anchors.schemas.js"
+    },
+    "./splatbao-dumpling.schemas": {
+      "bun": "./dist/splatbao-dumpling.schemas.js",
+      "import": "./dist/splatbao-dumpling.schemas.js",
+      "types": "./dist/splatbao-dumpling.schemas.d.ts",
+      "default": "./dist/splatbao-dumpling.schemas.js"
+    },
+    "./splatbao-measurement.schemas": {
+      "bun": "./dist/splatbao-measurement.schemas.js",
+      "import": "./dist/splatbao-measurement.schemas.js",
+      "types": "./dist/splatbao-measurement.schemas.d.ts",
+      "default": "./dist/splatbao-measurement.schemas.js"
+    },
+    "./splatbao-model-library.schemas": {
+      "bun": "./dist/splatbao-model-library.schemas.js",
+      "import": "./dist/splatbao-model-library.schemas.js",
+      "types": "./dist/splatbao-model-library.schemas.d.ts",
+      "default": "./dist/splatbao-model-library.schemas.js"
+    },
+    "./splatbao-perception.schemas": {
+      "bun": "./dist/splatbao-perception.schemas.js",
+      "import": "./dist/splatbao-perception.schemas.js",
+      "types": "./dist/splatbao-perception.schemas.d.ts",
+      "default": "./dist/splatbao-perception.schemas.js"
+    },
+    "./splatbao-steamer.schemas": {
+      "bun": "./dist/splatbao-steamer.schemas.js",
+      "import": "./dist/splatbao-steamer.schemas.js",
+      "types": "./dist/splatbao-steamer.schemas.d.ts",
+      "default": "./dist/splatbao-steamer.schemas.js"
+    },
+    "./splatbao-training.schemas": {
+      "bun": "./dist/splatbao-training.schemas.js",
+      "import": "./dist/splatbao-training.schemas.js",
+      "types": "./dist/splatbao-training.schemas.d.ts",
+      "default": "./dist/splatbao-training.schemas.js"
+    },
+    "./splatbao-waypoint-activity.schemas": {
+      "bun": "./dist/splatbao-waypoint-activity.schemas.js",
+      "import": "./dist/splatbao-waypoint-activity.schemas.js",
+      "types": "./dist/splatbao-waypoint-activity.schemas.d.ts",
+      "default": "./dist/splatbao-waypoint-activity.schemas.js"
+    },
+    "./storage.schemas": {
+      "bun": "./dist/storage.schemas.js",
+      "import": "./dist/storage.schemas.js",
+      "types": "./dist/storage.schemas.d.ts",
+      "default": "./dist/storage.schemas.js"
+    },
+    "./streaming.schemas": {
+      "bun": "./dist/streaming.schemas.js",
+      "import": "./dist/streaming.schemas.js",
+      "types": "./dist/streaming.schemas.d.ts",
+      "default": "./dist/streaming.schemas.js"
+    },
+    "./system-context.schemas": {
+      "bun": "./dist/system-context.schemas.js",
+      "import": "./dist/system-context.schemas.js",
+      "types": "./dist/system-context.schemas.d.ts",
+      "default": "./dist/system-context.schemas.js"
+    },
+    "./system-health.schemas": {
+      "bun": "./dist/system-health.schemas.js",
+      "import": "./dist/system-health.schemas.js",
+      "types": "./dist/system-health.schemas.d.ts",
+      "default": "./dist/system-health.schemas.js"
+    },
+    "./tile-tileset.schemas": {
+      "bun": "./dist/tile-tileset.schemas.js",
+      "import": "./dist/tile-tileset.schemas.js",
+      "types": "./dist/tile-tileset.schemas.d.ts",
+      "default": "./dist/tile-tileset.schemas.js"
+    },
+    "./training-integration.schemas": {
+      "bun": "./dist/training-integration.schemas.js",
+      "import": "./dist/training-integration.schemas.js",
+      "types": "./dist/training-integration.schemas.d.ts",
+      "default": "./dist/training-integration.schemas.js"
+    },
+    "./training.schemas": {
+      "bun": "./dist/training.schemas.js",
+      "import": "./dist/training.schemas.js",
+      "types": "./dist/training.schemas.d.ts",
+      "default": "./dist/training.schemas.js"
+    },
+    "./baobox-enum": {
+      "bun": "./dist/baobox-enum.js",
+      "import": "./dist/baobox-enum.js",
+      "types": "./dist/baobox-enum.d.ts",
+      "default": "./dist/baobox-enum.js"
+    },
+    "./usd-annotations.schemas": {
+      "bun": "./dist/usd-annotations.schemas.js",
+      "import": "./dist/usd-annotations.schemas.js",
+      "types": "./dist/usd-annotations.schemas.d.ts",
+      "default": "./dist/usd-annotations.schemas.js"
+    },
+    "./usd.schemas": {
+      "bun": "./dist/usd.schemas.js",
+      "import": "./dist/usd.schemas.js",
+      "types": "./dist/usd.schemas.d.ts",
+      "default": "./dist/usd.schemas.js"
+    },
+    "./user-directory.schemas": {
+      "bun": "./dist/user-directory.schemas.js",
+      "import": "./dist/user-directory.schemas.js",
+      "types": "./dist/user-directory.schemas.d.ts",
+      "default": "./dist/user-directory.schemas.js"
+    },
+    "./user-self-service.schemas": {
+      "bun": "./dist/user-self-service.schemas.js",
+      "import": "./dist/user-self-service.schemas.js",
+      "types": "./dist/user-self-service.schemas.d.ts",
+      "default": "./dist/user-self-service.schemas.js"
+    },
+    "./user.schemas": {
+      "bun": "./dist/user.schemas.js",
+      "import": "./dist/user.schemas.js",
+      "types": "./dist/user.schemas.d.ts",
+      "default": "./dist/user.schemas.js"
+    },
+    "./web-vitals.schemas": {
+      "bun": "./dist/web-vitals.schemas.js",
+      "import": "./dist/web-vitals.schemas.js",
+      "types": "./dist/web-vitals.schemas.d.ts",
+      "default": "./dist/web-vitals.schemas.js"
+    },
+    "./xr-composition.schemas": {
+      "bun": "./dist/xr-composition.schemas.js",
+      "import": "./dist/xr-composition.schemas.js",
+      "types": "./dist/xr-composition.schemas.d.ts",
+      "default": "./dist/xr-composition.schemas.js"
+    },
+    "./xr-experience-ops.schemas": {
+      "bun": "./dist/xr-experience-ops.schemas.js",
+      "import": "./dist/xr-experience-ops.schemas.js",
+      "types": "./dist/xr-experience-ops.schemas.d.ts",
+      "default": "./dist/xr-experience-ops.schemas.js"
+    },
+    "./xr-experience.schemas": {
+      "bun": "./dist/xr-experience.schemas.js",
+      "import": "./dist/xr-experience.schemas.js",
+      "types": "./dist/xr-experience.schemas.d.ts",
+      "default": "./dist/xr-experience.schemas.js"
+    },
+    "./xr-review.schemas": {
+      "bun": "./dist/xr-review.schemas.js",
+      "import": "./dist/xr-review.schemas.js",
+      "types": "./dist/xr-review.schemas.d.ts",
+      "default": "./dist/xr-review.schemas.js"
+    },
+    "./xr-runtime.schemas": {
+      "bun": "./dist/xr-runtime.schemas.js",
+      "import": "./dist/xr-runtime.schemas.js",
+      "types": "./dist/xr-runtime.schemas.d.ts",
+      "default": "./dist/xr-runtime.schemas.js"
+    },
+    "./xr-session.schemas": {
+      "bun": "./dist/xr-session.schemas.js",
+      "import": "./dist/xr-session.schemas.js",
+      "types": "./dist/xr-session.schemas.d.ts",
+      "default": "./dist/xr-session.schemas.js"
+    }
+  },
+  "main": "./dist/baobox-enum.js",
+  "types": "./dist/baobox-enum.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@baohaus/bao-config": "0.1.0",
+    "@baohaus/bao-constants": "0.1.0",
+    "@baohaus/bao-utils": "0.1.0",
+    "@baohaus/baobox": "0.1.1",
+    "valibot": "1.3.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

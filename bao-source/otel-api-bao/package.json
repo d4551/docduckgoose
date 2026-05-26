@@ -1,0 +1,93 @@
+{
+  "name": "@baohaus/otel-api-bao",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "packageManager": "bun@1.3.13",
+  "description": "Bao-namespaced re-export seam for OpenTelemetry primitives (api, sdk-trace-base, instrumentation, core, exporter-trace-otlp-http).",
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun @biomejs/biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test && bun run build && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/index.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./trace": {
+      "bun": "./dist/trace.js",
+      "import": "./dist/trace.js",
+      "types": "./dist/trace.d.ts",
+      "default": "./dist/trace.js"
+    },
+    "./context": {
+      "bun": "./dist/context.js",
+      "import": "./dist/context.js",
+      "types": "./dist/context.d.ts",
+      "default": "./dist/context.js"
+    },
+    "./baggage": {
+      "bun": "./dist/baggage.js",
+      "import": "./dist/baggage.js",
+      "types": "./dist/baggage.d.ts",
+      "default": "./dist/baggage.js"
+    },
+    "./metrics": {
+      "bun": "./dist/metrics.js",
+      "import": "./dist/metrics.js",
+      "types": "./dist/metrics.d.ts",
+      "default": "./dist/metrics.js"
+    },
+    "./sdk-trace": {
+      "bun": "./dist/sdk-trace.js",
+      "import": "./dist/sdk-trace.js",
+      "types": "./dist/sdk-trace.d.ts",
+      "default": "./dist/sdk-trace.js"
+    },
+    "./instrumentation": {
+      "bun": "./dist/instrumentation.js",
+      "import": "./dist/instrumentation.js",
+      "types": "./dist/instrumentation.d.ts",
+      "default": "./dist/instrumentation.js"
+    },
+    "./core": {
+      "bun": "./dist/core.js",
+      "import": "./dist/core.js",
+      "types": "./dist/core.d.ts",
+      "default": "./dist/core.js"
+    },
+    "./exporter-trace-otlp-http": {
+      "bun": "./dist/exporter-trace-otlp-http.js",
+      "import": "./dist/exporter-trace-otlp-http.js",
+      "types": "./dist/exporter-trace-otlp-http.d.ts",
+      "default": "./dist/exporter-trace-otlp-http.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@opentelemetry/api": "1.9.1",
+    "@opentelemetry/core": "2.6.1",
+    "@opentelemetry/exporter-trace-otlp-http": "0.214.0",
+    "@opentelemetry/instrumentation": "0.214.0",
+    "@opentelemetry/resources": "2.6.1",
+    "@opentelemetry/sdk-trace-base": "2.6.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts"
+}

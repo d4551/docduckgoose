@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "spellcheck-bao",
+  "name": "@baohaus/spellcheck-bao",
+  "version": "0.1.0",
+  "identity": {
+    "id": "spellcheck-bao",
+    "packageName": "@baohaus/spellcheck-bao",
+    "packageVersion": "0.1.0"
+  },
+  "channel": "local",
+  "visibility": "private",
+  "description": "Copy-first local spellcheck plugin for Goose Word.",
+  "copyFirst": {
+    "required": true,
+    "installRoot": "~/.goose-word/bao/spellcheck-bao",
+    "archivePolicy": "no-prebuilt-archives"
+  },
+  "targets": [
+    {
+      "kind": "settings-tab",
+      "entrypoint": "dist/bao-extensions/settings-tab.js"
+    },
+    {
+      "kind": "elysia-plugin",
+      "entrypoint": "dist/bao-extensions/elysia-plugin.js"
+    }
+  ]
+}

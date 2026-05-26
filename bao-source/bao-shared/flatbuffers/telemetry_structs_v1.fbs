@@ -1,0 +1,32 @@
+// Shared structs for typed telemetry transport.
+// Schema evolution: append-only; use explicit (id: N) for field ordering.
+namespace baohaus.realtime.v1;
+
+struct Position3D {
+  latitude:double;
+  longitude:double;
+  altitude:double;
+  relativeAltitude:double;
+}
+
+struct Attitude {
+  roll:float;
+  pitch:float;
+  yaw:float;
+}
+
+struct Velocity3D {
+  x:float;
+  y:float;
+  z:float;
+  groundSpeed:float;
+  airSpeed:float;
+}
+
+struct BatteryStatus {
+  level:float;
+  voltage:float;
+  current:float;
+  temperature:float;
+  remainingPercent:float;
+}

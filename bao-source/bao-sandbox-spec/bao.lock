@@ -1,0 +1,36 @@
+{
+  "$schema": "../../bao/schemas/bao-lock.schema.json",
+  "schemaVersion": 1,
+  "id": "bao-sandbox-spec",
+  "packageName": "@baohaus/bao-sandbox-spec",
+  "packageVersion": "0.1.0",
+  "resolved": [
+    {
+      "name": "@baohaus/bao-bpf",
+      "version": "0.1.0",
+      "ociRepository": "baohaus/bao-bpf",
+      "ociDigest": null,
+      "integrity": null,
+      "signature": null,
+      "resolvedFrom": "pending-publish"
+    },
+    {
+      "name": "@baohaus/bao-cgroup",
+      "version": "0.1.0",
+      "ociRepository": "baohaus/bao-cgroup",
+      "ociDigest": null,
+      "integrity": null,
+      "signature": null,
+      "resolvedFrom": "pending-publish"
+    },
+    {
+      "name": "@baohaus/bao-landlock",
+      "version": "0.1.0",
+      "ociRepository": "baohaus/bao-landlock",
+      "ociDigest": null,
+      "integrity": null,
+      "signature": null,
+      "resolvedFrom": "pending-publish"
+    }
+  ]
+}

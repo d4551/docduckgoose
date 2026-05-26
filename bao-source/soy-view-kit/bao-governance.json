@@ -1,0 +1,50 @@
+{
+  "$schema": "../../bao/schemas/bao-manifest-v1.schema.json",
+  "classification": {
+    "channel": "public",
+    "visibility": "public",
+    "packageKind": "library"
+  },
+  "formatKind": "canonical",
+  "identity": {
+    "id": "soy-view-kit",
+    "packageName": "@baohaus/soy-view-kit",
+    "packageVersion": "0.1.0",
+    "ociRepository": "baohaus/soy-view-kit",
+    "registryNamespace": "baohaus"
+  },
+  "manifestEncoding": "json",
+  "mediaType": "application/vnd.baohaus.bao.archive.v1+tar",
+  "provenance": "SLSA.provenance.intoto.jsonl",
+  "publish": {
+    "gateProfile": "standard"
+  },
+  "dependencies": [
+    {
+      "name": "@baohaus/har-gow-config",
+      "version": "0.1.0",
+      "ociRepository": "baohaus/har-gow-config",
+      "ociDigest": "sha256:32d22120cbceb61af6cc8425edcb722426e909fabc9c7f177e19821fd5300eeb",
+      "integrity": "sha256-MtIhIMvOthr2zIQl7ctyJCbpCfq8nH8XfhmCH9UwDus=",
+      "signature": {
+        "provider": "ed25519",
+        "bundle": "1Yy6cj9W3rSqh6e2A9RtvS2SfGdK3d5A3UWa/NHgNCSibvo+Ynb7bgyFSkaxvj6ECdQV30OiHrv7lE5IFjATCw==",
+        "keyId": "727d68a8ba3f30644216294d054d0366ee6b3db4b87b780b5f6b3002b45450ce",
+        "transparencyLog": "https://rekor.sigstore.dev"
+      }
+    }
+  ],
+  "reproducibleBuild": {
+    "sourceDateEpoch": 1745366400,
+    "toolchain": {
+      "bun": "1.3.13"
+    }
+  },
+  "runtime": {
+    "installable": true,
+    "composeDependencies": []
+  },
+  "sbom": "SBOM.cdx.json",
+  "schemaVersion": 1,
+  "specRevision": "1.0.0"
+}

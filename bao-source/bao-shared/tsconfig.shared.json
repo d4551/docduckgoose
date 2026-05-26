@@ -1,0 +1,39 @@
+{
+  "extends": "./tsconfig.package.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "rootDir": "../..",
+    "outDir": "dist",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "emitDeclarationOnly": false,
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "lib": ["ESNext", "DOM"],
+    "baseUrl": ".",
+    "paths": {
+      "@shared/schemas/*": ["./src/schemas/*", "./src/schemas/*.schemas.ts"],
+      "@shared/*": ["./src/*"],
+      "@server/*": ["../../apps/server/*"],
+      "@config/*": ["../../config/*"],
+      "bun": ["../../node_modules/@types/bun/index.d.ts"],
+      "bun:*": ["../../node_modules/@types/bun/*.d.ts"],
+      "@baohaus/baobox/*": [
+        "../../packages/baobox/src/*/index.ts",
+        "../../packages/baobox/src/*.ts"
+      ]
+    },
+    "rootDirs": ["src", "../../apps/server/prisma/generated"]
+  },
+  "include": [
+    "src/**/*",
+    "../../apps/server/prisma/generated/**/*",
+    "../../apps/server/services/extensions/**/*.ts",
+    "../../bao-source/bunbuddy-shared/src/bunbuddies/shared/contracts/**/*.json",
+    "../../config/**/*.ts",
+    "../../registry/agentiflow/capability-matrix.generated.json",
+    "../../scripts/setup-workflows/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
+}

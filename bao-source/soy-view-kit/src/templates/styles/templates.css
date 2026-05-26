@@ -1,0 +1,239 @@
+/**
+ * Canonical CSS asset shared by every consumer of @baohaus/soy-view-kit/templates/*.
+ *
+ * Defines the keyframes, named animation utilities, skeleton shimmer, HTMX
+ * indicator transitions, and skip-link surface that the SSR primitives in
+ * @baohaus/soy-view-kit/templates/* reference. Consumers import this file
+ * once at the entry of their global stylesheet (e.g. via
+ *   @import "@baohaus/soy-view-kit/templates/styles/templates.css";
+ * or via Bun's `with { type: "text" }` for inlined critical CSS).
+ *
+ * Every utility name is stable. Every keyframe is reduced-motion safe via the
+ * @media (prefers-reduced-motion) gate near the bottom of the file.
+ */
+
+:root,
+[data-theme] {
+  --font-display:
+    "Bricolage Grotesque Variable", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-mono-data: "JetBrains Mono", ui-monospace, monospace;
+  --shadow-skip-link: 0 12px 24px color-mix(in oklab, var(--color-base-content) 12%, transparent);
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-data {
+  font-family: var(--font-mono-data);
+}
+
+.skip-links {
+  position: fixed;
+  inset-block-start: 1rem;
+  inset-inline-start: 1rem;
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.skip-links:not(:focus-within) {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-links:focus-within {
+  pointer-events: auto;
+}
+
+.skip-link {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-field);
+  background: var(--color-base-100);
+  color: var(--color-base-content);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--shadow-skip-link);
+}
+
+.skip-link:hover {
+  background: color-mix(in oklab, var(--color-primary) 12%, var(--color-base-100));
+}
+
+.skip-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.htmx-indicator {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease-in;
+}
+
+.htmx-request .htmx-indicator,
+.htmx-request.htmx-indicator {
+  opacity: 1;
+  visibility: visible;
+}
+
+.transition-shadow-border {
+  transition-property: box-shadow, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media (width >= 1280px) {
+  .skip-links {
+    inset-inline-start: 1.5rem;
+  }
+}
+
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+
+  to {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes stat-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes health-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slide-up-fade {
+  animation: slide-up-fade 200ms ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 150ms ease-out both;
+}
+
+.animate-stat-pulse {
+  animation: stat-pulse 1.6s ease-in-out infinite;
+}
+
+.animate-health-pulse {
+  animation: health-pulse 1.6s ease-in-out infinite;
+}
+
+.animation-delay-60 {
+  animation-delay: 60ms;
+}
+
+.animation-delay-120 {
+  animation-delay: 120ms;
+}
+
+.animation-delay-180 {
+  animation-delay: 180ms;
+}
+
+.animation-delay-240 {
+  animation-delay: 240ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(var(--color-base-300) / 100%) 25%,
+    oklch(var(--color-base-200) / 100%) 50%,
+    oklch(var(--color-base-300) / 100%) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-shell-swap-region="main"] > * {
+    transition: opacity 150ms ease-out;
+  }
+
+  [data-shell-swap-region="main"].htmx-settling > * {
+    opacity: 0;
+  }
+
+  .htmx-added {
+    animation: slide-up-fade 200ms ease-out both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-up-fade,
+  .animate-fade-in,
+  .animate-stat-pulse,
+  .animate-health-pulse,
+  .skeleton-shimmer {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+  }
+
+  .animation-delay-60,
+  .animation-delay-120,
+  .animation-delay-180,
+  .animation-delay-240,
+  .animation-delay-300 {
+    animation-delay: 0ms;
+  }
+}

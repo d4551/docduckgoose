@@ -1,0 +1,17 @@
+include "device_event_v1.fbs";
+include "gimbal_event_v1.fbs";
+
+namespace baohaus.realtime.v1;
+
+/// Internal drone realtime payload for high-frequency transport.
+table DroneRealtimeV1 {
+  channel:string (id: 0);
+  event:string (id: 1);
+  timestamp:string (id: 2);
+  base_url:string (id: 3);
+  deviceEvent:DeviceEventV1 (id: 4);
+  gimbalEvent:GimbalEventV1 (id: 5);
+}
+
+root_type DroneRealtimeV1;
+file_identifier "DRV1";

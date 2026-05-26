@@ -1,0 +1,37 @@
+{
+  "cycle": 2,
+  "active_task": "capability-first-cutover",
+  "active_ladder_item": "remove-device-gates",
+  "phase": "CERTIFY",
+  "hardest_first_reason": "Device/on-device gates blocked browser-first speech and input UX",
+  "honesty_delta_count": 0,
+  "todos": {
+    "blocked": 0,
+    "active": 0,
+    "verifying": 0,
+    "done": 1,
+    "rejected": 0
+  },
+  "audits": {
+    "modified_files_reviewed": 12,
+    "untracked_files_reviewed": 1,
+    "bao_consumption_gaps_open": 0,
+    "hardban_violations_open": 0,
+    "legacy_non_bao_open": 0,
+    "duplicate_contracts_open": 0
+  },
+  "verification": {
+    "typecheck": "pass",
+    "validate_strict": "not_run",
+    "test": "not_run",
+    "browser_smoke": "pass",
+    "curl_smoke": "pass"
+  },
+  "questions_answered": {
+    "enterprise_ready": "partial",
+    "dry_bao_beautiful": "partial",
+    "bao_first": "partial"
+  },
+  "open_rejections": [],
+  "out_of_scope_findings": []
+}

@@ -1,0 +1,14 @@
+node_modules/
+.DS_Store
+dist/
+goose-word/dist/
+goose-word-plugins/*/dist/
+.bao-local/
+.bao-build/
+.sisyphus/
+.build/
+logs/
+*.log
+*.sqlite-shm
+*.sqlite-wal
+bao-source/otel-api-bao/otel-api-bao

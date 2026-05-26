@@ -1,0 +1,56 @@
+{
+  "name": "@baohaus/tailwind-bao",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "packageManager": "bun@1.3.13",
+  "description": "Tailwind CSS v4 engine parity: JIT compiler, utility generation, arbitrary values, variants",
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun @biomejs/biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test && bun run build && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/index.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./compile": {
+      "bun": "./dist/compile.js",
+      "import": "./dist/compile.js",
+      "types": "./dist/compile.d.ts",
+      "default": "./dist/compile.js"
+    },
+    "./config": {
+      "bun": "./dist/config.js",
+      "import": "./dist/config.js",
+      "types": "./dist/config.d.ts",
+      "default": "./dist/config.js"
+    },
+    "./utilities": {
+      "bun": "./dist/utilities.js",
+      "import": "./dist/utilities.js",
+      "types": "./dist/utilities.d.ts",
+      "default": "./dist/utilities.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts"
+}

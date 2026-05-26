@@ -1,0 +1,175 @@
+{
+  "packages": {
+    "bao-runtime": {
+      "eli5": "Think of bao-runtime as the main floor that starts first. It loads every .bao box from the shelf, wires shared login and menus, and gives smaller add-ons a place to snap in.",
+      "overview": "BaoRuntime host: loads the .bao registry first, wires shared routes, auth, i18n, and design tokens, and mounts extension packages without per-app duplication.",
+      "mermaid": "flowchart TB\n  shelf[\".bao registry shelf\"]\n  runtime[\"bao-runtime\"]\n  host[\"App shell\"]\n  tiles[\"Extensions\"]\n  shelf --> runtime\n  runtime --> host\n  host --> tiles",
+      "owns": ["Host boot order", "Registry fabric", "Shared globals and route mounting"],
+      "consumes": ["bao-registry", "bao-sdk lifecycle", "Catalog + governance locks"],
+      "neverOwns": ["Individual feature apps", "Per-package duplicate schemas"]
+    },
+    "bao-registry": {
+      "overview": "Registry catalog and install resolution for .bao archives: package identity, versions, and OCI distribution metadata.",
+      "owns": ["Registry index", "Install resolution", "OCI distribution metadata"],
+      "consumes": ["bao-packages.json catalog", "bao-governance.json per package"],
+      "neverOwns": ["Runtime UI routes", "App-specific business logic"]
+    },
+    "bao-agent": {
+      "overview": "This workbench is the helper robot foreman. It reads factory rules, routes hard jobs through specialist lines, and reports back without hiding failed safety checks.",
+      "owns": ["Agent orchestration", "MAS routing hooks", "Workspace agent policies"],
+      "consumes": ["bao-sdk", "mas-team plugin contracts", "Runtime auth/session"],
+      "neverOwns": ["End-user product databases", "Registry publishing"]
+    },
+    "bao-ai-gateway": {
+      "overview": "This workbench is the model switchboard. Apps ask for completions here so keys, rate limits, and telemetry stay in one guarded room instead of every toy line rolling its own robot.",
+      "mermaid": "sequenceDiagram\n  participant App\n  participant Gateway as bao-ai-gateway\n  participant Provider\n  App->>Gateway: completion request\n  Gateway->>Provider: routed call\n  Provider-->>Gateway: tokens\n  Gateway-->>App: typed envelope",
+      "owns": ["Model routing", "Provider adapters", "Gateway env policy"],
+      "consumes": ["Auth/session contracts", "Shared telemetry tags"],
+      "neverOwns": ["App HTML shells", "Registry storage"]
+    },
+    "forge": {
+      "overview": "This workbench is the design forge. It shapes UI tokens, motion, and happydumpling/daisy patterns so every app screen looks like the same toy brand, not a pile of mismatched stickers.",
+      "owns": ["Design system delivery", "Token + motion presets", "Forge workbench UI"],
+      "consumes": ["bao-runtime host surfaces", "Shared i18n + route constants"],
+      "neverOwns": ["Backend persistence", "Package publishing pipeline"]
+    },
+    "bao-sdk": {
+      "overview": "This workbench teaches hosts how to adopt and retire .bao tiles. Detect, load, activate, suspend, unload — like a conveyor belt manager that never leaves a half-attached part on the line.",
+      "mermaid": "stateDiagram-v2\n  [*] --> Detected\n  Detected --> Loaded: load()\n  Loaded --> Active: activate()\n  Active --> Suspended: suspend()\n  Suspended --> Active: resume()\n  Active --> Unloaded: unload()\n  Unloaded --> [*]",
+      "owns": [".bao lifecycle state machine", "Host capability contracts"],
+      "consumes": ["Registry metadata", "Typed manifest envelopes"],
+      "neverOwns": ["Individual extension business logic", "OCI build pipelines"]
+    },
+    "bao-utils": {
+      "overview": "This workbench is the shared toolbox drawer. Async results, small helpers, and typed utilities live here so no bench smuggles duplicate screwdrivers into their crate.",
+      "owns": ["Cross-package utilities", "Async-result helpers"],
+      "consumes": ["bao-contracts"],
+      "neverOwns": ["App routes", "UI components"]
+    },
+    "contribution-host-bao": {
+      "eli5": "Think of contribution-host-bao as each app’s guest desk. It lists sidebar and settings tiles for that app, then trades signed snapshot cards with friend sites so menus stay in sync.",
+      "overview": "Per-app contribution host: register sidebar, settings, palette, and API explorer surfaces; exchange signed federation snapshots with peer Baohaus runtimes.",
+      "mermaid": "sequenceDiagram\n  participant Local as Local app\n  participant Host as contribution-host-bao\n  participant Peer as Peer app\n  Local->>Host: register surfaces\n  Peer->>Host: fetch snapshot\n  Host-->>Peer: FederatedContributionSnapshot",
+      "owns": ["Contribution host factories", "Federation snapshot wire"],
+      "consumes": ["Shared route constants", "Registration schemas"],
+      "neverOwns": ["Peer app databases", "Registry OCI builds"]
+    },
+    "auth-bao": {
+      "overview": "This workbench is the badge office. It checks who may enter, issues session cookies, and hands other benches a verified identity card — never stuffing secrets into the browser toy box.",
+      "owns": ["Auth policy aggregation", "Session contracts", "Better Auth integration"],
+      "consumes": ["bao-schemas", "Approved config modules"],
+      "neverOwns": ["Per-app screen layouts", "Unrelated crypto primitives"]
+    },
+    "command-bao": {
+      "overview": "This workbench catalogs slash commands and palette actions. Hosts query one shelf so command names, scopes, and keyboard paths stay consistent across apps.",
+      "owns": ["Command registry", "Palette grouping contracts"],
+      "consumes": ["bao-runtime host hooks"],
+      "neverOwns": ["Feature-specific business rules"]
+    },
+    "piratebao": {
+      "overview": "AI often spends tokens on greetings and hedges before it reaches the bug. PirateBao throws that filler overboard and keeps the cargo: commands, paths, risks, errors, and test output.",
+      "mermaid": "flowchart LR\n  raw[\"Verbose reply\"] --> kraken[\"PirateBao compress\"]\n  kraken --> cargo[\"Dense technical map\"]",
+      "owns": ["Compression hooks", "Captain mode skills", "Token governance checks"],
+      "consumes": ["Anthropic SDK", "Local governance JSON"],
+      "neverOwns": ["App runtime routes", ".bao archive builder"]
+    },
+    "bao-mcp-ecosystem": {
+      "overview": "This workbench is the robot-arm catalog for MCP tools. Hosts browse which helper arms exist, how they connect, and which crates must be on the shelf before a tool can run.",
+      "owns": ["MCP catalog entries", "Ecosystem staging metadata"],
+      "consumes": ["Registry source staging", "bao-packages catalog"],
+      "neverOwns": ["Individual MCP server implementations in other repos"]
+    },
+    "bao-contracts": {
+      "overview": "This workbench is the shared vocabulary book. Routes, envelopes, and capability names are written once here so every app speaks the same factory language.",
+      "owns": ["Cross-service contracts", "Shared route and schema identifiers"],
+      "consumes": ["bao-schemas where typed"],
+      "neverOwns": ["Runtime servers", "UI templates"]
+    },
+    "bao-schemas": {
+      "overview": "This workbench is the stencil vault for JSON shapes. Validators trace these outlines so bad data never rides the conveyor belt.",
+      "owns": ["TypeBox/JSON schemas", "Compile helpers for boundaries"],
+      "consumes": ["Spec revisions from bao kit"],
+      "neverOwns": ["HTTP handlers", "Database migrations"]
+    },
+    "crypto-double-ratchet-bao": {
+      "overview": "This workbench builds forward-secret message locks. Each reply turns the key so old whispered secrets cannot reopen later boxes.",
+      "mermaid": "sequenceDiagram\n  participant Alice\n  participant Ratchet as crypto-double-ratchet-bao\n  participant Bob\n  Alice->>Ratchet: seal message\n  Ratchet->>Bob: ciphertext + next chain step",
+      "owns": ["Double ratchet session state", "Prekey handling"],
+      "consumes": ["Approved crypto primitives"],
+      "neverOwns": ["Transport servers", "User profile storage"]
+    },
+    "crypto-sealed-sender-bao": {
+      "overview": "This workbench hides who sent the envelope while still delivering it safely. The post office sees the box, not the return address on the wrapper.",
+      "owns": ["Sealed-sender envelope format", "Sender anonymity helpers"],
+      "consumes": ["crypto-double-ratchet-bao sessions"],
+      "neverOwns": ["Mailbox HTTP routes", "Push notification UI"]
+    },
+    "docgen-bao": {
+      "overview": "This workbench is the instruction printer. It turns typed exports and routes into API manuals so engineers do not hand-copy paths.",
+      "owns": ["Doc generation pipelines", "OpenAPI/Markdown emitters"],
+      "consumes": ["package.json exports", "Route registries"],
+      "neverOwns": ["Runtime auth decisions", "Registry publishing"]
+    },
+    "bao-edge": {
+      "overview": "This workbench is the front door turnstile. It terminates TLS, applies edge policy, and forwards clean requests to inner factory floors.",
+      "mermaid": "sequenceDiagram\n  participant Browser\n  participant Edge as bao-edge\n  participant Runtime\n  Browser->>Edge: HTTPS\n  Edge->>Runtime: proxied request\n  Runtime-->>Edge: response\n  Edge-->>Browser: HTTPS",
+      "owns": ["Edge routing", "TLS termination policy"],
+      "consumes": ["auth-bao", "Shared route constants"],
+      "neverOwns": ["Business databases", "Desktop shell UI"]
+    },
+    "broker-pubsub-bao": {
+      "overview": "This workbench is the factory loud-hailer bus. Benches publish event tickets and subscribers hear them without polling every belt.",
+      "owns": ["Pub/sub broker contracts", "Topic naming"],
+      "consumes": ["bao-utils async envelopes"],
+      "neverOwns": ["Persistent chat history", "UI notification toasts"]
+    },
+    "bao-desktop": {
+      "overview": "This workbench is the pocket factory window (desktop shell). It hosts Tauri chrome, talks to bao-agent over IPC, and never stores secrets in toy drawers.",
+      "owns": ["Desktop shell", "IPC bridge to agent"],
+      "consumes": ["bao-agent", "bao-runtime capabilities"],
+      "neverOwns": ["Cloud registry storage", "Server-side databases"]
+    },
+    "harvest-contracts-bao": {
+      "overview": "This workbench defines how harvest robots report what they picked. Contracts say which fields must be filled before crates enter the catalog binder.",
+      "owns": ["Harvest manifest contracts", "Consumption mode schemas"],
+      "consumes": ["bao-schemas", "Catalog staging scripts"],
+      "neverOwns": ["Runtime harvest HTTP UI", "OCI publish pipeline"]
+    },
+    "ingestion-contract-bao": {
+      "overview": "This workbench is the loading dock checklist. Ingest jobs must present these shapes before raw material enters the factory floor.",
+      "owns": ["Ingestion wire contracts", "Validation entrypoints"],
+      "consumes": ["bao-contracts"],
+      "neverOwns": ["Long-term storage engines", "Forge UI"]
+    },
+    "otelcol-bao": {
+      "overview": "This workbench ships telemetry collectors like branded listening cones. Traces and metrics ride one belt into operator dashboards.",
+      "owns": ["Collector packaging", "OTel wiring defaults"],
+      "consumes": ["otel-* bao modules"],
+      "neverOwns": ["App feature routes", "End-user auth"]
+    },
+    "bao-boss": {
+      "overview": "This workbench is the factory job foreman. It queues background work in PostgreSQL with retries, cron schedules, pub/sub, dead-letter handling, and an HTMX dashboard so operators can see stuck belts.",
+      "mermaid": "sequenceDiagram\n  participant Worker\n  participant Boss as bao-boss\n  participant Postgres\n  Worker->>Boss: claim job (SKIP LOCKED)\n  Boss->>Postgres: read/update row\n  Postgres-->>Boss: ack\n  Boss-->>Worker: payload",
+      "owns": ["Postgres-backed job queue", "Cron scheduling", "HTMX operator dashboard"],
+      "consumes": ["PostgreSQL", "Shared HTMX patterns"],
+      "neverOwns": ["Unrelated app business rules", "Registry OCI publishing"]
+    },
+    "agentic-fabric-bao": {
+      "overview": "This workbench is the shared agent wiring closet. Apps implement small ports; the fabric assembles ecosystem, identity, AI, forge, and workspace contexts so every .bao agent speaks the same shapes.",
+      "mermaid": "flowchart LR\n  ports[\"App port adapters\"] --> fabric[\"agentic-fabric-bao\"]\n  fabric --> context[\"EcosystemContext bundle\"]\n  context[\"Agent runtimes\"]",
+      "owns": [
+        "Port-and-adapter contracts",
+        "Context assembly lifecycle",
+        "Fabric primitives for agent runs"
+      ],
+      "consumes": ["bao-agent-contracts", "bao-types", "bao-constants"],
+      "neverOwns": ["Per-app Prisma schemas", "Model provider HTTP servers"]
+    },
+    "postgres-bao": {
+      "overview": "This workbench is the warehouse clerk for Postgres toys. It knows how to connect, migrate, and hand rows to prisma benches safely.",
+      "owns": ["Postgres connection contracts", "Shared DB helpers"],
+      "consumes": ["prisma-* packages", "Approved config modules"],
+      "neverOwns": ["Business-specific tables in apps", "UI query screens"]
+    }
+  }
+}

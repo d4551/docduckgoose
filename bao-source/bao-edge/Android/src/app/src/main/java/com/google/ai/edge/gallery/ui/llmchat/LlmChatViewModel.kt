@@ -1,0 +1,274 @@
+/*
+ * Copyright 2025 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.google.ai.edge.gallery.ui.llmchat
+
+import android.content.Context
+import android.graphics.Bitmap
+import androidx.lifecycle.viewModelScope
+import com.google.ai.edge.gallery.common.StructuredLog
+import com.google.ai.edge.gallery.data.ConfigKeys
+import com.google.ai.edge.gallery.data.Model
+import com.google.ai.edge.gallery.data.Task
+import com.google.ai.edge.gallery.ui.common.chat.ChatMessageAudioClip
+import com.google.ai.edge.gallery.ui.common.chat.ChatMessageError
+import com.google.ai.edge.gallery.ui.common.chat.ChatMessageLoading
+import com.google.ai.edge.gallery.ui.common.chat.ChatMessageText
+import com.google.ai.edge.gallery.ui.common.chat.ChatMessageType
+import com.google.ai.edge.gallery.ui.common.chat.ChatMessageWarning
+import com.google.ai.edge.gallery.ui.common.chat.ChatSide
+import com.google.ai.edge.gallery.ui.common.chat.ChatViewModel
+import com.google.ai.edge.gallery.ui.modelmanager.ModelManagerViewModel
+import com.google.ai.edge.litertlm.ExperimentalApi
+import com.google.ai.edge.gallery.common.MODEL_INIT_TIMEOUT_MS
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
+private const val TAG = "AGLlmChatViewModel"
+
+@OptIn(ExperimentalApi::class)
+open class LlmChatViewModelBase() : ChatViewModel() {
+  fun generateResponse(
+    model: Model,
+    input: String,
+    images: List<Bitmap> = listOf(),
+    audioMessages: List<ChatMessageAudioClip> = listOf(),
+    onError: (String) -> Unit,
+  ) {
+    val accelerator = model.getStringConfigValue(key = ConfigKeys.ACCELERATOR, defaultValue = "")
+    viewModelScope.launch(Dispatchers.Default) {
+      setInProgress(true)
+      setPreparing(true)
+
+      // Loading.
+      addMessage(model = model, message = ChatMessageLoading(accelerator = accelerator))
+
+      // Wait for instance to be initialized (bounded to 60 s).
+      val initDeadline = System.currentTimeMillis() + MODEL_INIT_TIMEOUT_MS
+      while (model.instance == null) {
+        if (System.currentTimeMillis() > initDeadline) {
+          onError("Model initialization timed out after ${MODEL_INIT_TIMEOUT_MS / 1000}s")
+          setInProgress(false)
+          setPreparing(false)
+          return@launch
+        }
+        delay(100)
+      }
+      delay(500)
+
+      // Run inference.
+      val audioClips: MutableList<ByteArray> = mutableListOf()
+      for (audioMessage in audioMessages) {
+        audioClips.add(audioMessage.genByteArrayForWav())
+      }
+
+      var firstRun = true
+      val start = System.currentTimeMillis()
+
+      try {
+        LlmChatModelHelper.runInference(
+          model = model,
+          input = input,
+          images = images,
+          audioClips = audioClips,
+          resultListener = { partialResult, done ->
+            if (firstRun) {
+              firstRun = false
+              setPreparing(false)
+            }
+
+            // Remove the last message if it is a "loading" message.
+            // This will only be done once.
+            val lastMessage = getLastMessage(model = model)
+            if (lastMessage?.type == ChatMessageType.LOADING) {
+              removeLastMessage(model = model)
+
+              // Add an empty message that will receive streaming results.
+              addMessage(
+                model = model,
+                message =
+                  ChatMessageText(content = "", side = ChatSide.AGENT, accelerator = accelerator),
+              )
+            }
+
+            // Incrementally update the streamed partial results.
+            val latencyMs: Long = if (done) System.currentTimeMillis() - start else -1
+            updateLastTextMessageContentIncrementally(
+              model = model,
+              partialContent = partialResult,
+              latencyMs = latencyMs.toFloat(),
+            )
+
+            if (done) {
+              setInProgress(false)
+            }
+          },
+          cleanUpListener = {
+            setInProgress(false)
+            setPreparing(false)
+          },
+          onError = { message ->
+            StructuredLog.e(
+              TAG,
+              "llm_chat_inference_failed",
+              "model" to model.name,
+              "hasMessage" to message.isNotBlank(),
+            )
+            setInProgress(false)
+            setPreparing(false)
+            onError(message)
+          },
+        )
+      } catch (e: Exception) {
+        StructuredLog.e(TAG, "llm_chat_inference_exception", e, "model" to model.name)
+        setInProgress(false)
+        setPreparing(false)
+        onError(e.message ?: "")
+      }
+    }
+  }
+
+  fun stopResponse(model: Model) {
+    StructuredLog.d(TAG, "llm_chat_stop_requested", "model" to model.name)
+    if (getLastMessage(model = model) is ChatMessageLoading) {
+      removeLastMessage(model = model)
+    }
+    setInProgress(false)
+    val instance = model.instance as? LlmModelInstance
+    if (instance == null) {
+      StructuredLog.w(TAG, "llm_chat_stop_skipped_missing_instance", "model" to model.name)
+      return
+    }
+    instance.conversation.cancelProcess()
+    StructuredLog.d(TAG, "llm_chat_stop_completed", "model" to model.name)
+  }
+
+  fun resetSession(task: Task, model: Model, onError: (String) -> Unit = {}) {
+    viewModelScope.launch(Dispatchers.Default) {
+      setIsResettingSession(true)
+      clearAllMessages(model = model)
+      if (model.instance is LlmModelInstance) {
+        stopResponse(model = model)
+      } else {
+        setInProgress(false)
+      }
+
+      val maxRetries = 5
+      var attempt = 0
+      var succeeded = false
+      while (attempt < maxRetries) {
+        try {
+          val supportImage =
+            model.llmSupportImage &&
+              task.id == com.google.ai.edge.gallery.data.BuiltInTaskId.LLM_ASK_IMAGE
+          val supportAudio =
+            model.llmSupportAudio &&
+              task.id == com.google.ai.edge.gallery.data.BuiltInTaskId.LLM_ASK_AUDIO
+          LlmChatModelHelper.resetConversation(
+            model = model,
+            supportImage = supportImage,
+            supportAudio = supportAudio,
+          )
+          succeeded = true
+          break
+        } catch (e: Exception) {
+          attempt++
+          StructuredLog.w(
+            TAG,
+            "llm_chat_session_reset_retry",
+            "model" to model.name,
+            "attempt" to attempt,
+            "maxRetries" to maxRetries,
+          )
+        }
+        delay(200)
+      }
+      if (!succeeded) {
+        StructuredLog.e(
+          TAG,
+          "llm_chat_session_reset_failed",
+          "model" to model.name,
+          "maxRetries" to maxRetries,
+        )
+        onError("Session reset failed after $maxRetries attempts")
+      }
+      setIsResettingSession(false)
+    }
+  }
+
+  fun runAgain(model: Model, message: ChatMessageText, onError: (String) -> Unit) {
+    viewModelScope.launch(Dispatchers.Default) {
+      // Wait for model to be initialized (bounded to 60 s).
+      val initDeadline = System.currentTimeMillis() + MODEL_INIT_TIMEOUT_MS
+      while (model.instance == null) {
+        if (System.currentTimeMillis() > initDeadline) {
+          onError("Model initialization timed out after ${MODEL_INIT_TIMEOUT_MS / 1000}s")
+          return@launch
+        }
+        delay(100)
+      }
+
+      // Clone the clicked message and add it.
+      addMessage(model = model, message = message.clone())
+
+      // Run inference.
+      generateResponse(model = model, input = message.content, onError = onError)
+    }
+  }
+
+  fun handleError(
+    context: Context,
+    task: Task,
+    model: Model,
+    modelManagerViewModel: ModelManagerViewModel,
+    errorMessage: String,
+  ) {
+    // Remove the "loading" message.
+    if (getLastMessage(model = model) is ChatMessageLoading) {
+      removeLastMessage(model = model)
+    }
+
+    // Show error message.
+    addMessage(model = model, message = ChatMessageError(content = errorMessage))
+
+    // Clean up and re-initialize.
+    viewModelScope.launch(Dispatchers.Default) {
+      modelManagerViewModel.cleanupModel(
+        context = context,
+        task = task,
+        model = model,
+        onDone = {
+          modelManagerViewModel.initializeModel(context = context, task = task, model = model)
+
+          // Add a warning message for re-initializing the session.
+          addMessage(
+            model = model,
+            message = ChatMessageWarning(content = "Session re-initialized"),
+          )
+        },
+      )
+    }
+  }
+}
+
+@HiltViewModel class LlmChatViewModel @Inject constructor() : LlmChatViewModelBase()
+
+@HiltViewModel class LlmAskImageViewModel @Inject constructor() : LlmChatViewModelBase()
+
+@HiltViewModel class LlmAskAudioViewModel @Inject constructor() : LlmChatViewModelBase()

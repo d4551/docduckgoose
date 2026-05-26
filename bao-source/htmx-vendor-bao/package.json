@@ -1,0 +1,63 @@
+{
+  "name": "@baohaus/htmx-vendor-bao",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "packageManager": "bun@1.3.13",
+  "description": "Pinned HTMX core + official extension browser assets for Bun generate/static-bao pipelines. Single boundary owner for htmx.org npm packages.",
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun @biomejs/biome check --error-on-warnings .",
+    "verify": "bun run typecheck && bun run lint && bun test && bun run build"
+  },
+  "exports": {
+    "./manifest": {
+      "bun": "./dist/manifest.js",
+      "import": "./dist/manifest.js",
+      "types": "./dist/manifest.d.ts",
+      "default": "./dist/manifest.js"
+    },
+    "./runtime": {
+      "bun": "./dist/htmx-runtime.js",
+      "import": "./dist/htmx-runtime.js",
+      "types": "./dist/htmx-runtime.d.ts",
+      "default": "./dist/htmx-runtime.js"
+    },
+    "./side-effect": {
+      "bun": "./dist/htmx-side-effect.js",
+      "import": "./dist/htmx-side-effect.js",
+      "types": "./dist/htmx-side-effect.d.ts",
+      "default": "./dist/htmx-side-effect.js"
+    }
+  },
+  "sideEffects": [
+    "./dist/htmx-side-effect.js"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "htmx-ext-class-tools": "2.0.3",
+    "htmx-ext-head-support": "2.0.5",
+    "htmx-ext-json-enc": "2.0.3",
+    "htmx-ext-loading-states": "2.0.2",
+    "htmx-ext-preload": "2.1.2",
+    "htmx-ext-remove-me": "2.0.2",
+    "htmx-ext-response-targets": "2.0.4",
+    "htmx-ext-sse": "2.2.4",
+    "htmx-ext-ws": "2.0.4",
+    "htmx-ext-multi-swap": "2.0.2",
+    "htmx-ext-include-vals": "2.0.2",
+    "htmx.org": "2.0.10",
+    "idiomorph": "0.7.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  }
+}

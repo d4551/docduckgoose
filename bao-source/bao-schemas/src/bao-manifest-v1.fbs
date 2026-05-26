@@ -1,0 +1,439 @@
+// Baohaus Bao Manifest v1 — FlatBuffers binary index (BMv1).
+// Paired with bao-manifest-v1.schema.json (JSON canonical mirror).
+// Generated bindings target Bun runtime via @flatbuffers/flatbuffers.
+
+namespace baohaus.bao.v1;
+
+file_identifier "BMv1";
+file_extension "bmv1";
+
+enum TargetKind: uint16 {
+  BaoPackage = 0,
+  HtmxExtension = 1,
+  PrismaExtension = 2,
+  EasyAuthExtension = 3,
+  ElysiaPlugin = 4,
+  BaodownNode = 5,
+  McpProvider = 6,
+  BunPlugin = 7,
+  FlatbufferSchema = 8,
+  HardwareDriver = 9,
+  AiModel = 10,
+  BaodownFlow = 11,
+  BunbuddyContract = 12,
+  BaoRuntimeWorkload = 13,
+  ConfigOverlay = 14,
+  OciImage = 15,
+  UsdScene = 16,
+  UiComponentKit = 17
+}
+
+enum PlatformId: uint8 {
+  DarwinArm64 = 0,
+  DarwinX64 = 1,
+  LinuxArm64 = 2,
+  LinuxX64 = 3,
+  LinuxMuslArm64 = 4,
+  LinuxMuslX64 = 5,
+  WindowsArm64 = 6,
+  WindowsX64 = 7,
+  FreebsdX64 = 8
+}
+
+enum SandboxProfile: uint8 {
+  None = 0,
+  Relaxed = 1,
+  Strict = 2
+}
+
+enum UpgradeStrategy: uint8 {
+  InPlace = 0,
+  BlueGreen = 1,
+  Canary = 2
+}
+
+enum ProbeType: uint8 {
+  Http = 0,
+  Tcp = 1,
+  Exec = 2
+}
+
+enum Channel: uint8 {
+  Dev = 0,
+  Canary = 1,
+  Alpha = 2,
+  Beta = 3,
+  Stable = 4
+}
+
+enum DataClassification: uint8 {
+  Public = 0,
+  Internal = 1,
+  Confidential = 2,
+  Restricted = 3
+}
+
+enum PiiHandling: uint8 {
+  None = 0,
+  Pseudonymized = 1,
+  Encrypted = 2
+}
+
+enum SignatureAlgorithm: uint8 {
+  Ed25519 = 0,
+  Cosign = 1
+}
+
+enum InstallOrder: uint8 {
+  Pre = 0,
+  Main = 1,
+  Post = 2
+}
+
+enum DependencySource: uint8 {
+  Registry = 0,
+  Bundled = 1,
+  Peer = 2
+}
+
+table SemVer {
+  major: uint32;
+  minor: uint32;
+  patch: uint32;
+  prerelease: string;
+  build: string;
+}
+
+table Person {
+  name: string (required);
+  email: string;
+  url: string;
+}
+
+table Repository {
+  url: string (required);
+  commit: string;
+  tag: string;
+}
+
+table Contact {
+  security: string;
+  support: string;
+}
+
+table Identity {
+  name: string (required);
+  version: SemVer (required);
+  description: string (required);
+  summary: string;
+  homepage: string;
+  repository: Repository;
+  license: string (required);
+  license_files: [string];
+  authors: [Person] (required);
+  maintainers: [Person];
+  contact: Contact;
+}
+
+table Engines {
+  bun: string (required);
+}
+
+table Sandboxing {
+  profile: SandboxProfile;
+  seccomp: string;
+}
+
+table CompatibilityEntry {
+  name: string (required);
+  range: string (required);
+}
+
+table Runtime {
+  engines: Engines (required);
+  compatibility: [CompatibilityEntry];
+  platforms: [PlatformId] (required);
+  architectures: [string] (required);
+  capabilities: [string];
+  sandboxing: Sandboxing;
+}
+
+table Dependency {
+  name: string (required);
+  version: string;
+  kind: TargetKind;
+  required: bool;
+  source: DependencySource;
+  integrity: string;
+}
+
+table Probe {
+  type: ProbeType;
+  spec_json: string (required);
+}
+
+table Lifecycle {
+  hot_installable: bool;
+  restart_required: bool;
+  upgrade_strategy: UpgradeStrategy;
+  rollback_supported: bool;
+  pre_install: string;
+  post_install: string;
+  pre_uninstall: string;
+  healthcheck: Probe;
+  readiness: Probe;
+  liveness: Probe;
+}
+
+table TargetInterface {
+  openapi: string;
+  asyncapi: string;
+  typescript: string;
+}
+
+table Target {
+  id: string (required);
+  kind: TargetKind;
+  target: string (required);
+  before: [string];
+  after: [string];
+  dependencies: [Dependency];
+  interface: TargetInterface;
+  capabilities: [string];
+  lifecycle: Lifecycle;
+  kind_payload_json: string;
+}
+
+table EnvVariable {
+  name: string (required);
+  required: bool;
+  sensitive: bool;
+  description: string;
+  schema: string;
+  default: string;
+  enum_values: [string];
+  example: string;
+}
+
+table FeatureFlag {
+  name: string (required);
+  default: bool;
+  owner: string;
+}
+
+table Secret {
+  name: string (required);
+  store: string (required);
+  rotation: string;
+}
+
+table Configuration {
+  env: [EnvVariable];
+  config_schema: string;
+  feature_flags: [FeatureFlag];
+  secrets: [Secret];
+}
+
+table FileEntry {
+  path: string (required);
+  size_bytes: uint64;
+  sha256: string (required);
+  tar_offset: uint64;
+}
+
+table SharedPayload {
+  files: [FileEntry] (required);
+  entrypoints: [string] (required);
+}
+
+table PlatformPayload {
+  platform_id: PlatformId;
+  files: [FileEntry] (required);
+  native_addons: [string];
+}
+
+table BytecodePayload {
+  target: string (required);
+  files: [FileEntry] (required);
+}
+
+table WasmPayload {
+  files: [FileEntry] (required);
+}
+
+table Payload {
+  shared: SharedPayload (required);
+  platforms: [PlatformPayload] (required);
+  bytecode: BytecodePayload;
+  wasm: WasmPayload;
+}
+
+table Surfaces {
+  esm: bool;
+  cjs: bool;
+  bin: bool;
+  native_addon: bool;
+  postinstall: bool;
+  prisma: bool;
+  htmx: bool;
+  ssr: bool;
+}
+
+table Observability {
+  metrics: string;
+  traces: string;
+  events: string;
+  dashboards: [string];
+  alerts: [string];
+  log_format: string;
+}
+
+table Signature {
+  algorithm: SignatureAlgorithm;
+  value: string (required);
+  key_id: string (required);
+  transparency_log: string;
+  sigstore_bundle: string;
+}
+
+table Attestations {
+  slsa: string (required);
+  sbom_cyclonedx: string (required);
+  sbom_spdx: string (required);
+  vex: string (required);
+  license_scan: string (required);
+  vuln_scan: string (required);
+}
+
+table CspHintEntry {
+  directive: string (required);
+  sources: [string] (required);
+}
+
+table Security {
+  signature: Signature (required);
+  attestations: Attestations (required);
+  trust_policy: string (required);
+  network_policy: string;
+  required_capabilities: [string];
+  csp_hints: [CspHintEntry];
+  auth_scopes: [string];
+  data_classification: DataClassification;
+  export_control: string;
+}
+
+table Compliance {
+  tags: [string];
+  data_residency: [string];
+  pii_handling: PiiHandling;
+  certifications: [string];
+}
+
+table Checksum {
+  algorithm: string (required);
+  value: string (required);
+  covered_fields: [string] (required);
+}
+
+table Integrity {
+  checksum: Checksum (required);
+  merkle_root: string (required);
+  reproducible: bool;
+  build_environment: string (required);
+}
+
+table Deprecation {
+  feature: string (required);
+  since: string (required);
+  remove_in: string (required);
+}
+
+table SupportMatrix {
+  lts: bool;
+  until: string;
+}
+
+table Release {
+  channel: Channel;
+  release_date: string (required);
+  release_notes: string;
+  upgrade_path: string;
+  min_previous_version: string;
+  deprecations: [Deprecation];
+  support_matrix: SupportMatrix;
+}
+
+table Distribution {
+  registries: [string];
+  mirrors: [string];
+  install_order: InstallOrder;
+  install_groups: [string];
+}
+
+table Documentation {
+  readme: string;
+  changelog: string;
+  architecture: string;
+  examples: string;
+  openapi: string;
+  asyncapi: string;
+}
+
+table Testing {
+  fixtures: string;
+  compatibility_matrix: string;
+  benchmarks: string;
+  coverage: double;
+}
+
+table I18n {
+  default_locale: string (required);
+  supported_locales: [string] (required);
+  catalogs: string (required);
+}
+
+table Governance {
+  code_review: string;
+  dco: string;
+  owners: [string];
+}
+
+table Extension {
+  before: [string];
+  after: [string];
+  replaces: [string];
+  supersedes: [string];
+}
+
+table Header {
+  schema_version: uint16;
+  flags: uint16;
+  json_mirror_sha256: string (required);
+  index_size: uint32;
+  built_at_unix: int64;
+}
+
+table Manifest {
+  header: Header (required);
+  identity: Identity (required);
+  runtime: Runtime (required);
+  targets: [Target] (required);
+  configuration: Configuration;
+  dependencies: [Dependency];
+  payload: Payload (required);
+  surfaces: Surfaces (required);
+  exports_json: string;
+  observability: Observability;
+  security: Security (required);
+  compliance: Compliance;
+  integrity: Integrity (required);
+  release: Release (required);
+  distribution: Distribution;
+  documentation: Documentation;
+  testing: Testing;
+  i18n: I18n;
+  governance: Governance;
+  extension: Extension;
+}
+
+root_type Manifest;

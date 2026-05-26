@@ -1,0 +1,144 @@
+{
+  "name": "@baohaus/bao-sandbox-spec",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun test"
+  },
+  "exports": {
+    "./schema": {
+      "bun": "./dist/schema.js",
+      "import": "./dist/schema.js",
+      "types": "./dist/schema.d.ts",
+      "default": "./dist/schema.js"
+    },
+    "./validate": {
+      "bun": "./dist/validate.js",
+      "import": "./dist/validate.js",
+      "types": "./dist/validate.d.ts",
+      "default": "./dist/validate.js"
+    },
+    "./compile": {
+      "bun": "./dist/compile.js",
+      "import": "./dist/compile.js",
+      "types": "./dist/compile.d.ts",
+      "default": "./dist/compile.js"
+    },
+    "./wire-resize": {
+      "bun": "./dist/wire-resize.js",
+      "import": "./dist/wire-resize.js",
+      "types": "./dist/wire-resize.d.ts",
+      "default": "./dist/wire-resize.js"
+    },
+    "./package-descriptor": {
+      "bun": "./dist/package-descriptor.js",
+      "import": "./dist/package-descriptor.js",
+      "types": "./dist/package-descriptor.d.ts",
+      "default": "./dist/package-descriptor.js"
+    },
+    "./events": {
+      "bun": "./dist/events.js",
+      "import": "./dist/events.js",
+      "types": "./dist/events.d.ts",
+      "default": "./dist/events.js"
+    },
+    "./event-bus": {
+      "bun": "./dist/event-bus.js",
+      "import": "./dist/event-bus.js",
+      "types": "./dist/event-bus.d.ts",
+      "default": "./dist/event-bus.js"
+    },
+    "./matrix": {
+      "bun": "./dist/matrix.js",
+      "import": "./dist/matrix.js",
+      "types": "./dist/matrix.d.ts",
+      "default": "./dist/matrix.js"
+    },
+    "./resources": {
+      "bun": "./dist/resources.js",
+      "import": "./dist/resources.js",
+      "types": "./dist/resources.d.ts",
+      "default": "./dist/resources.js"
+    },
+    "./capabilities": {
+      "bun": "./dist/capabilities.js",
+      "import": "./dist/capabilities.js",
+      "types": "./dist/capabilities.d.ts",
+      "default": "./dist/capabilities.js"
+    },
+    "./grants": {
+      "bun": "./dist/grants.js",
+      "import": "./dist/grants.js",
+      "types": "./dist/grants.d.ts",
+      "default": "./dist/grants.js"
+    },
+    "./usage": {
+      "bun": "./dist/usage.js",
+      "import": "./dist/usage.js",
+      "types": "./dist/usage.d.ts",
+      "default": "./dist/usage.js"
+    },
+    "./grant-signer": {
+      "bun": "./dist/grant-signer.js",
+      "import": "./dist/grant-signer.js",
+      "types": "./dist/grant-signer.d.ts",
+      "default": "./dist/grant-signer.js"
+    },
+    "./scheduler": {
+      "bun": "./dist/scheduler.js",
+      "import": "./dist/scheduler.js",
+      "types": "./dist/scheduler.d.ts",
+      "default": "./dist/scheduler.js"
+    },
+    "./cluster": {
+      "bun": "./dist/cluster.js",
+      "import": "./dist/cluster.js",
+      "types": "./dist/cluster.d.ts",
+      "default": "./dist/cluster.js"
+    },
+    "./negotiate": {
+      "bun": "./dist/negotiate.js",
+      "import": "./dist/negotiate.js",
+      "types": "./dist/negotiate.d.ts",
+      "default": "./dist/negotiate.js"
+    },
+    "./canonical-json": {
+      "bun": "./dist/canonical-json.js",
+      "import": "./dist/canonical-json.js",
+      "types": "./dist/canonical-json.d.ts",
+      "default": "./dist/canonical-json.js"
+    },
+    "./computer-use": {
+      "bun": "./dist/computer-use.js",
+      "import": "./dist/computer-use.js",
+      "types": "./dist/computer-use.d.ts",
+      "default": "./dist/computer-use.js"
+    }
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "README.md"
+  ],
+  "license": "UNLICENSED",
+  "description": "Canonical .bao sandbox manifest schema, TypeScript shape, and validator → JailSpec compiler.",
+  "dependencies": {
+    "@baohaus/bao-constants": "0.1.0",
+    "@baohaus/bao-bpf": "0.1.0",
+    "@baohaus/bao-cgroup": "0.1.0",
+    "@baohaus/bao-landlock": "0.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

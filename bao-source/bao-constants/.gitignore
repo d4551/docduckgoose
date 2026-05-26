@@ -1,0 +1,15 @@
+node_modules/
+dist/*
+!dist/bao/
+coverage/
+artifacts/
+.bao-build/
+public/app.js
+public/styles.css
+public/vendor/
+public/fonts/
+*.tsbuildinfo
+.env
+.env.*
+.DS_Store
+bun.lock

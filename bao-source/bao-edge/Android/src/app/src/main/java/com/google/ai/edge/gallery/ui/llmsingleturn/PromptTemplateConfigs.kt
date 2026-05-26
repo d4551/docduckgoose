@@ -1,0 +1,281 @@
+/*
+ * Copyright 2025 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.google.ai.edge.gallery.ui.llmsingleturn
+
+import androidx.annotation.StringRes
+import androidx.compose.ui.graphics.Brush.Companion.linearGradient
+import com.google.ai.edge.gallery.R
+import com.google.ai.edge.gallery.ui.theme.goldTintDark
+import com.google.ai.edge.gallery.ui.theme.goldTintMedium
+import com.google.ai.edge.gallery.ui.theme.primaryLight
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
+
+enum class PromptTemplateInputEditorType {
+  SINGLE_SELECT
+}
+
+interface PromptTemplateOption {
+  val id: String
+  val label: String
+  @get:StringRes val labelResId: Int
+}
+
+enum class RewriteToneType(
+  override val id: String,
+  override val label: String,
+  @StringRes override val labelResId: Int,
+) : PromptTemplateOption {
+  FORMAL(id = "formal", label = "Formal", labelResId = R.string.prompt_tone_formal),
+  CASUAL(id = "casual", label = "Casual", labelResId = R.string.prompt_tone_casual),
+  FRIENDLY(id = "friendly", label = "Friendly", labelResId = R.string.prompt_tone_friendly),
+  POLITE(id = "polite", label = "Polite", labelResId = R.string.prompt_tone_polite),
+  ENTHUSIASTIC(id = "enthusiastic", label = "Enthusiastic", labelResId = R.string.prompt_tone_enthusiastic),
+  CONCISE(id = "concise", label = "Concise", labelResId = R.string.prompt_tone_concise);
+
+  companion object {
+    fun fromId(id: String): RewriteToneType? = entries.find { it.id == id }
+  }
+}
+
+enum class SummarizationType(
+  override val id: String,
+  override val label: String,
+  @StringRes override val labelResId: Int,
+) : PromptTemplateOption {
+  KEY_BULLET_POINT(
+    id = "key_bullet_points",
+    label = "Key bullet points (3-5)",
+    labelResId = R.string.prompt_style_key_bullet,
+  ),
+  SHORT_PARAGRAPH(
+    id = "short_paragraph",
+    label = "Short paragraph (1-2 sentences)",
+    labelResId = R.string.prompt_style_short_paragraph,
+  ),
+  CONCISE_SUMMARY(
+    id = "concise_summary",
+    label = "Concise summary (~50 words)",
+    labelResId = R.string.prompt_style_concise_summary,
+  ),
+  HEADLINE_TITLE(
+    id = "headline_title",
+    label = "Headline / title",
+    labelResId = R.string.prompt_style_headline,
+  ),
+  ONE_SENTENCE_SUMMARY(
+    id = "one_sentence_summary",
+    label = "One-sentence summary",
+    labelResId = R.string.prompt_style_one_sentence,
+  );
+
+  companion object {
+    fun fromId(id: String): SummarizationType? = entries.find { it.id == id }
+  }
+}
+
+enum class LanguageType(
+  override val id: String,
+  override val label: String,
+  @StringRes override val labelResId: Int,
+) : PromptTemplateOption {
+  CPP(id = "cpp", label = "C++", labelResId = R.string.prompt_lang_cpp),
+  JAVA(id = "java", label = "Java", labelResId = R.string.prompt_lang_java),
+  JAVASCRIPT(id = "javascript", label = "JavaScript", labelResId = R.string.prompt_lang_javascript),
+  KOTLIN(id = "kotlin", label = "Kotlin", labelResId = R.string.prompt_lang_kotlin),
+  PYTHON(id = "python", label = "Python", labelResId = R.string.prompt_lang_python),
+  SWIFT(id = "swift", label = "Swift", labelResId = R.string.prompt_lang_swift),
+  TYPESCRIPT(id = "typescript", label = "TypeScript", labelResId = R.string.prompt_lang_typescript);
+
+  companion object {
+    fun fromId(id: String): LanguageType? = entries.find { it.id == id }
+  }
+}
+
+enum class InputEditorLabel(val id: String, val label: String, @StringRes val labelResId: Int) {
+  TONE(id = "tone", label = "Tone", labelResId = R.string.prompt_tone),
+  STYLE(id = "style", label = "Style", labelResId = R.string.prompt_style),
+  LANGUAGE(id = "language", label = "Language", labelResId = R.string.prompt_language),
+}
+
+open class PromptTemplateInputEditor(
+  open val id: String,
+  open val label: String,
+  open val type: PromptTemplateInputEditorType,
+  open val defaultOptionId: String = "",
+)
+
+/** Single select that shows options in bottom sheet. */
+class PromptTemplateSingleSelectInputEditor(
+  override val id: String,
+  override val label: String,
+  val options: List<PromptTemplateOption> = listOf(),
+  override val defaultOptionId: String = "",
+  @StringRes val labelResId: Int? = null,
+) :
+  PromptTemplateInputEditor(
+    id = id,
+    label = label,
+    type = PromptTemplateInputEditorType.SINGLE_SELECT,
+    defaultOptionId = defaultOptionId,
+  )
+
+data class PromptTemplateConfig(val inputEditors: List<PromptTemplateInputEditor> = listOf())
+
+private val BAO_EDGE_GRADIENT_STYLE =
+  SpanStyle(
+    brush = linearGradient(colors = listOf(primaryLight, goldTintMedium, goldTintDark))
+  )
+
+@Suppress("ImmutableEnum")
+enum class PromptTemplateType(
+  val id: String,
+  val label: String,
+  @StringRes val labelResId: Int,
+  val config: PromptTemplateConfig,
+  val genFullPrompt: (userInput: String, inputEditorValues: Map<String, String>) -> AnnotatedString =
+    { _, _ ->
+      AnnotatedString("")
+    },
+  val examplePrompts: List<String> = listOf(),
+) {
+  FREE_FORM(
+    id = "free_form",
+    label = "Free form",
+    labelResId = R.string.prompt_type_free_form,
+    config = PromptTemplateConfig(),
+    genFullPrompt = { userInput, _ -> AnnotatedString(userInput) },
+    examplePrompts =
+      listOf(
+        "Suggest 3 topics for a podcast about \"Friendships in your 20s\".",
+        "Outline the key sections needed in a basic logo design brief.",
+        "List 3 pros and 3 cons to consider before buying a smart watch.",
+        "Write a short, optimistic quote about the future of technology.",
+        "Generate 3 potential names for a mobile app that helps users identify plants.",
+        "Explain the difference between AI and machine learning in 2 sentences.",
+        "Create a simple haiku about a cat sleeping in the sun.",
+        "List 3 ways to make instant noodles taste better using common kitchen ingredients.",
+      ),
+  ),
+  REWRITE_TONE(
+    id = "rewrite_tone",
+    label = "Rewrite tone",
+    labelResId = R.string.prompt_type_rewrite_tone,
+    config =
+      PromptTemplateConfig(
+        inputEditors =
+          listOf(
+            PromptTemplateSingleSelectInputEditor(
+              id = InputEditorLabel.TONE.id,
+              label = InputEditorLabel.TONE.label,
+              options = RewriteToneType.entries.toList(),
+              defaultOptionId = RewriteToneType.FORMAL.id,
+              labelResId = InputEditorLabel.TONE.labelResId,
+            )
+          )
+      ),
+    genFullPrompt = { userInput, inputEditorValues ->
+      val tone =
+        RewriteToneType.fromId(inputEditorValues[InputEditorLabel.TONE.id].orEmpty())?.label
+          ?: RewriteToneType.FORMAL.label
+      buildAnnotatedString {
+        withStyle(BAO_EDGE_GRADIENT_STYLE) {
+          append("Rewrite the following text using a ${tone.lowercase()} tone: ")
+        }
+        append(userInput)
+      }
+    },
+    examplePrompts =
+      listOf(
+        "Hey team, just wanted to remind everyone about the meeting tomorrow @ 10. Be there!",
+        "Our new software update includes several bug fixes and performance improvements.",
+        "Due to the fact that the weather was bad, we decided to postpone the event.",
+        "Please find attached the requested documentation for your perusal.",
+        "Welcome to the team. Review the onboarding materials.",
+      ),
+  ),
+  SUMMARIZE_TEXT(
+    id = "summarize_text",
+    label = "Summarize text",
+    labelResId = R.string.prompt_type_summarize_text,
+    config =
+      PromptTemplateConfig(
+        inputEditors =
+          listOf(
+            PromptTemplateSingleSelectInputEditor(
+              id = InputEditorLabel.STYLE.id,
+              label = InputEditorLabel.STYLE.label,
+              options = SummarizationType.entries.toList(),
+              defaultOptionId = SummarizationType.KEY_BULLET_POINT.id,
+              labelResId = InputEditorLabel.STYLE.labelResId,
+            )
+          )
+      ),
+    genFullPrompt = { userInput, inputEditorValues ->
+      val style =
+        SummarizationType.fromId(inputEditorValues[InputEditorLabel.STYLE.id].orEmpty())?.label
+          ?: SummarizationType.KEY_BULLET_POINT.label
+      buildAnnotatedString {
+        withStyle(BAO_EDGE_GRADIENT_STYLE) {
+          append("Please summarize the following in ${style.lowercase()}: ")
+        }
+        append(userInput)
+      }
+    },
+    examplePrompts =
+      listOf(
+        "The new Pixel phone features an advanced camera system with improved low-light performance and AI-powered editing tools. The display is brighter and more energy-efficient. It runs on the latest Tensor chip, offering faster processing and enhanced security features. Battery life has also been extended, providing all-day power for most users.",
+        "Beginning this Friday, January 24, giant pandas Bao Li and Qing Bao are officially on view to the public at the Smithsonian’s National Zoo and Conservation Biology Institute (NZCBI). The 3-year-old bears arrived in Washington this past October, undergoing a quarantine period before making their debut. Under NZCBI’s new agreement with the CWCA, Qing Bao and Bao Li will remain in the United States for ten years, until April 2034, in exchange for an annual fee of \$1 million. The pair are still too young to breed, as pandas only reach sexual maturity between ages 4 and 7. “Kind of picture them as like awkward teenagers right now,” Lally told WUSA9. “We still have about two years before we would probably even see signs that they’re ready to start mating.”",
+      ),
+  ),
+  CODE_SNIPPET(
+    id = "code_snippet",
+    label = "Code snippet",
+    labelResId = R.string.prompt_type_code_snippet,
+    config =
+      PromptTemplateConfig(
+        inputEditors =
+          listOf(
+            PromptTemplateSingleSelectInputEditor(
+              id = InputEditorLabel.LANGUAGE.id,
+              label = InputEditorLabel.LANGUAGE.label,
+              options = LanguageType.entries.toList(),
+              defaultOptionId = LanguageType.JAVASCRIPT.id,
+              labelResId = InputEditorLabel.LANGUAGE.labelResId,
+            )
+          )
+      ),
+    genFullPrompt = { userInput, inputEditorValues ->
+      val language =
+        LanguageType.fromId(inputEditorValues[InputEditorLabel.LANGUAGE.id].orEmpty())?.label
+          ?: LanguageType.JAVASCRIPT.label
+      buildAnnotatedString {
+        withStyle(BAO_EDGE_GRADIENT_STYLE) { append("Write a $language code snippet to ") }
+        append(userInput)
+      }
+    },
+    examplePrompts =
+      listOf(
+        "Create an alert box that says \"Hello, World!\"",
+        "Declare an immutable variable named 'appName' with the value \"AI Gallery\"",
+        "Print the numbers from 1 to 5 using a for loop.",
+        "Write a function that returns the square of an integer input.",
+      ),
+  ),
+}

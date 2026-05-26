@@ -1,0 +1,553 @@
+{
+  "name": "@baohaus/bao-contracts",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bunx --bun tsc --project tsconfig.build.json",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun run build && bun run test && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    ".": {
+      "bun": "./dist/contract-catalog.js",
+      "import": "./dist/contract-catalog.js",
+      "types": "./dist/contract-catalog.d.ts",
+      "default": "./dist/contract-catalog.js"
+    },
+    "./ai-bun.contract": {
+      "bun": "./dist/ai-bun.contract.js",
+      "import": "./dist/ai-bun.contract.js",
+      "types": "./dist/ai-bun.contract.d.ts",
+      "default": "./dist/ai-bun.contract.js"
+    },
+    "./bao/bao-archive.contract": {
+      "bun": "./dist/bao/bao-archive.contract.js",
+      "import": "./dist/bao/bao-archive.contract.js",
+      "types": "./dist/bao/bao-archive.contract.d.ts",
+      "default": "./dist/bao/bao-archive.contract.js"
+    },
+    "./bunbuddy-contracts": {
+      "bun": "./dist/bunbuddy-contracts.js",
+      "import": "./dist/bunbuddy-contracts.js",
+      "types": "./dist/bunbuddy-contracts.d.ts",
+      "default": "./dist/bunbuddy-contracts.js"
+    },
+    "./contracts/bunbuddy-contracts.embed": {
+      "bun": "./dist/contracts/bunbuddy-contracts.embed.js",
+      "import": "./dist/contracts/bunbuddy-contracts.embed.js",
+      "types": "./dist/contracts/bunbuddy-contracts.embed.d.ts",
+      "default": "./dist/contracts/bunbuddy-contracts.embed.js"
+    },
+    "./contracts/bunbuddy-workloads.embed": {
+      "bun": "./dist/contracts/bunbuddy-workloads.embed.js",
+      "import": "./dist/contracts/bunbuddy-workloads.embed.js",
+      "types": "./dist/contracts/bunbuddy-workloads.embed.d.ts",
+      "default": "./dist/contracts/bunbuddy-workloads.embed.js"
+    },
+    "./bunbuddy-routing-contracts": {
+      "bun": "./dist/bunbuddy-routing-contracts.js",
+      "import": "./dist/bunbuddy-routing-contracts.js",
+      "types": "./dist/bunbuddy-routing-contracts.d.ts",
+      "default": "./dist/bunbuddy-routing-contracts.js"
+    },
+    "./contract-catalog": {
+      "bun": "./dist/contract-catalog.js",
+      "import": "./dist/contract-catalog.js",
+      "types": "./dist/contract-catalog.d.ts",
+      "default": "./dist/contract-catalog.js"
+    },
+    "./snapshots/schema-snapshot": {
+      "bun": "./dist/snapshots/schema-snapshot.js",
+      "import": "./dist/snapshots/schema-snapshot.js",
+      "types": "./dist/snapshots/schema-snapshot.d.ts",
+      "default": "./dist/snapshots/schema-snapshot.js"
+    },
+    "./snapshots/v1.contracts": {
+      "bun": "./dist/snapshots/v1.contracts.js",
+      "import": "./dist/snapshots/v1.contracts.js",
+      "types": "./dist/snapshots/v1.contracts.d.ts",
+      "default": "./dist/snapshots/v1.contracts.js"
+    },
+    "./validation": {
+      "bun": "./dist/validation.js",
+      "import": "./dist/validation.js",
+      "types": "./dist/validation.d.ts",
+      "default": "./dist/validation.js"
+    },
+    "./versions/v1/ai-device-assist-config.contract": {
+      "bun": "./dist/versions/v1/ai-device-assist-config.contract.js",
+      "import": "./dist/versions/v1/ai-device-assist-config.contract.js",
+      "types": "./dist/versions/v1/ai-device-assist-config.contract.d.ts",
+      "default": "./dist/versions/v1/ai-device-assist-config.contract.js"
+    },
+    "./versions/v1/ai-device-assist.contract": {
+      "bun": "./dist/versions/v1/ai-device-assist.contract.js",
+      "import": "./dist/versions/v1/ai-device-assist.contract.js",
+      "types": "./dist/versions/v1/ai-device-assist.contract.d.ts",
+      "default": "./dist/versions/v1/ai-device-assist.contract.js"
+    },
+    "./versions/v1/ai-service-alignment.contract": {
+      "bun": "./dist/versions/v1/ai-service-alignment.contract.js",
+      "import": "./dist/versions/v1/ai-service-alignment.contract.js",
+      "types": "./dist/versions/v1/ai-service-alignment.contract.d.ts",
+      "default": "./dist/versions/v1/ai-service-alignment.contract.js"
+    },
+    "./versions/v1/ai-text.contract": {
+      "bun": "./dist/versions/v1/ai-text.contract.js",
+      "import": "./dist/versions/v1/ai-text.contract.js",
+      "types": "./dist/versions/v1/ai-text.contract.d.ts",
+      "default": "./dist/versions/v1/ai-text.contract.js"
+    },
+    "./versions/v1/annotation-alignment.contract": {
+      "bun": "./dist/versions/v1/annotation-alignment.contract.js",
+      "import": "./dist/versions/v1/annotation-alignment.contract.js",
+      "types": "./dist/versions/v1/annotation-alignment.contract.d.ts",
+      "default": "./dist/versions/v1/annotation-alignment.contract.js"
+    },
+    "./versions/v1/annotation-auto-ingest.contract": {
+      "bun": "./dist/versions/v1/annotation-auto-ingest.contract.js",
+      "import": "./dist/versions/v1/annotation-auto-ingest.contract.js",
+      "types": "./dist/versions/v1/annotation-auto-ingest.contract.d.ts",
+      "default": "./dist/versions/v1/annotation-auto-ingest.contract.js"
+    },
+    "./versions/v1/autonomy-integration.contract": {
+      "bun": "./dist/versions/v1/autonomy-integration.contract.js",
+      "import": "./dist/versions/v1/autonomy-integration.contract.js",
+      "types": "./dist/versions/v1/autonomy-integration.contract.d.ts",
+      "default": "./dist/versions/v1/autonomy-integration.contract.js"
+    },
+    "./versions/v1/bao-install.contract": {
+      "bun": "./dist/versions/v1/bao-install.contract.js",
+      "import": "./dist/versions/v1/bao-install.contract.js",
+      "types": "./dist/versions/v1/bao-install.contract.d.ts",
+      "default": "./dist/versions/v1/bao-install.contract.js"
+    },
+    "./versions/v1/bao-observability.contract": {
+      "bun": "./dist/versions/v1/bao-observability.contract.js",
+      "import": "./dist/versions/v1/bao-observability.contract.js",
+      "types": "./dist/versions/v1/bao-observability.contract.d.ts",
+      "default": "./dist/versions/v1/bao-observability.contract.js"
+    },
+    "./versions/v1/baodown-integration.contract": {
+      "bun": "./dist/versions/v1/baodown-integration.contract.js",
+      "import": "./dist/versions/v1/baodown-integration.contract.js",
+      "types": "./dist/versions/v1/baodown-integration.contract.d.ts",
+      "default": "./dist/versions/v1/baodown-integration.contract.js"
+    },
+    "./versions/v1/baodown-mcp.contract": {
+      "bun": "./dist/versions/v1/baodown-mcp.contract.js",
+      "import": "./dist/versions/v1/baodown-mcp.contract.js",
+      "types": "./dist/versions/v1/baodown-mcp.contract.d.ts",
+      "default": "./dist/versions/v1/baodown-mcp.contract.js"
+    },
+    "./versions/v1/baodown/definitions": {
+      "bun": "./dist/versions/v1/baodown/definitions.js",
+      "import": "./dist/versions/v1/baodown/definitions.js",
+      "types": "./dist/versions/v1/baodown/definitions.d.ts",
+      "default": "./dist/versions/v1/baodown/definitions.js"
+    },
+    "./versions/v1/baodown/integration": {
+      "bun": "./dist/versions/v1/baodown/integration.js",
+      "import": "./dist/versions/v1/baodown/integration.js",
+      "types": "./dist/versions/v1/baodown/integration.d.ts",
+      "default": "./dist/versions/v1/baodown/integration.js"
+    },
+    "./versions/v1/baodown/runs": {
+      "bun": "./dist/versions/v1/baodown/runs.js",
+      "import": "./dist/versions/v1/baodown/runs.js",
+      "types": "./dist/versions/v1/baodown/runs.d.ts",
+      "default": "./dist/versions/v1/baodown/runs.js"
+    },
+    "./versions/v1/baodown/schedules": {
+      "bun": "./dist/versions/v1/baodown/schedules.js",
+      "import": "./dist/versions/v1/baodown/schedules.js",
+      "types": "./dist/versions/v1/baodown/schedules.d.ts",
+      "default": "./dist/versions/v1/baodown/schedules.js"
+    },
+    "./versions/v1/baodown/shared": {
+      "bun": "./dist/versions/v1/baodown/shared.js",
+      "import": "./dist/versions/v1/baodown/shared.js",
+      "types": "./dist/versions/v1/baodown/shared.d.ts",
+      "default": "./dist/versions/v1/baodown/shared.js"
+    },
+    "./versions/v1/baodown/triggers": {
+      "bun": "./dist/versions/v1/baodown/triggers.js",
+      "import": "./dist/versions/v1/baodown/triggers.js",
+      "types": "./dist/versions/v1/baodown/triggers.d.ts",
+      "default": "./dist/versions/v1/baodown/triggers.js"
+    },
+    "./versions/v1/baodown/versions": {
+      "bun": "./dist/versions/v1/baodown/versions.js",
+      "import": "./dist/versions/v1/baodown/versions.js",
+      "types": "./dist/versions/v1/baodown/versions.d.ts",
+      "default": "./dist/versions/v1/baodown/versions.js"
+    },
+    "./versions/v1/baodown/webhooks": {
+      "bun": "./dist/versions/v1/baodown/webhooks.js",
+      "import": "./dist/versions/v1/baodown/webhooks.js",
+      "types": "./dist/versions/v1/baodown/webhooks.d.ts",
+      "default": "./dist/versions/v1/baodown/webhooks.js"
+    },
+    "./versions/v1/bunbuddy-capabilities.contract": {
+      "bun": "./dist/versions/v1/bunbuddy-capabilities.contract.js",
+      "import": "./dist/versions/v1/bunbuddy-capabilities.contract.js",
+      "types": "./dist/versions/v1/bunbuddy-capabilities.contract.d.ts",
+      "default": "./dist/versions/v1/bunbuddy-capabilities.contract.js"
+    },
+    "./versions/v1/bunbuddy-devices.contract": {
+      "bun": "./dist/versions/v1/bunbuddy-devices.contract.js",
+      "import": "./dist/versions/v1/bunbuddy-devices.contract.js",
+      "types": "./dist/versions/v1/bunbuddy-devices.contract.d.ts",
+      "default": "./dist/versions/v1/bunbuddy-devices.contract.js"
+    },
+    "./versions/v1/bunbuddy-health.contract": {
+      "bun": "./dist/versions/v1/bunbuddy-health.contract.js",
+      "import": "./dist/versions/v1/bunbuddy-health.contract.js",
+      "types": "./dist/versions/v1/bunbuddy-health.contract.d.ts",
+      "default": "./dist/versions/v1/bunbuddy-health.contract.js"
+    },
+    "./versions/v1/bunbuddy-routing.contract": {
+      "bun": "./dist/versions/v1/bunbuddy-routing.contract.js",
+      "import": "./dist/versions/v1/bunbuddy-routing.contract.js",
+      "types": "./dist/versions/v1/bunbuddy-routing.contract.d.ts",
+      "default": "./dist/versions/v1/bunbuddy-routing.contract.js"
+    },
+    "./versions/v1/calibration.contract": {
+      "bun": "./dist/versions/v1/calibration.contract.js",
+      "import": "./dist/versions/v1/calibration.contract.js",
+      "types": "./dist/versions/v1/calibration.contract.d.ts",
+      "default": "./dist/versions/v1/calibration.contract.js"
+    },
+    "./versions/v1/capability/core": {
+      "bun": "./dist/versions/v1/capability/core.js",
+      "import": "./dist/versions/v1/capability/core.js",
+      "types": "./dist/versions/v1/capability/core.d.ts",
+      "default": "./dist/versions/v1/capability/core.js"
+    },
+    "./versions/v1/capability/registry": {
+      "bun": "./dist/versions/v1/capability/registry.js",
+      "import": "./dist/versions/v1/capability/registry.js",
+      "types": "./dist/versions/v1/capability/registry.d.ts",
+      "default": "./dist/versions/v1/capability/registry.js"
+    },
+    "./versions/v1/capability/routes-ai-chat": {
+      "bun": "./dist/versions/v1/capability/routes-ai-chat.js",
+      "import": "./dist/versions/v1/capability/routes-ai-chat.js",
+      "types": "./dist/versions/v1/capability/routes-ai-chat.d.ts",
+      "default": "./dist/versions/v1/capability/routes-ai-chat.js"
+    },
+    "./versions/v1/capability/routes-hardware": {
+      "bun": "./dist/versions/v1/capability/routes-hardware.js",
+      "import": "./dist/versions/v1/capability/routes-hardware.js",
+      "types": "./dist/versions/v1/capability/routes-hardware.d.ts",
+      "default": "./dist/versions/v1/capability/routes-hardware.js"
+    },
+    "./versions/v1/capability/routes-pipelines": {
+      "bun": "./dist/versions/v1/capability/routes-pipelines.js",
+      "import": "./dist/versions/v1/capability/routes-pipelines.js",
+      "types": "./dist/versions/v1/capability/routes-pipelines.d.ts",
+      "default": "./dist/versions/v1/capability/routes-pipelines.js"
+    },
+    "./versions/v1/capability/routes-services": {
+      "bun": "./dist/versions/v1/capability/routes-services.js",
+      "import": "./dist/versions/v1/capability/routes-services.js",
+      "types": "./dist/versions/v1/capability/routes-services.d.ts",
+      "default": "./dist/versions/v1/capability/routes-services.js"
+    },
+    "./versions/v1/capability-domain-map.contract": {
+      "bun": "./dist/versions/v1/capability-domain-map.contract.js",
+      "import": "./dist/versions/v1/capability-domain-map.contract.js",
+      "types": "./dist/versions/v1/capability-domain-map.contract.d.ts",
+      "default": "./dist/versions/v1/capability-domain-map.contract.js"
+    },
+    "./versions/v1/capability-impact.contract": {
+      "bun": "./dist/versions/v1/capability-impact.contract.js",
+      "import": "./dist/versions/v1/capability-impact.contract.js",
+      "types": "./dist/versions/v1/capability-impact.contract.d.ts",
+      "default": "./dist/versions/v1/capability-impact.contract.js"
+    },
+    "./versions/v1/capability-ownership.contract": {
+      "bun": "./dist/versions/v1/capability-ownership.contract.js",
+      "import": "./dist/versions/v1/capability-ownership.contract.js",
+      "types": "./dist/versions/v1/capability-ownership.contract.d.ts",
+      "default": "./dist/versions/v1/capability-ownership.contract.js"
+    },
+    "./versions/v1/capability-registry-list.contract": {
+      "bun": "./dist/versions/v1/capability-registry-list.contract.js",
+      "import": "./dist/versions/v1/capability-registry-list.contract.js",
+      "types": "./dist/versions/v1/capability-registry-list.contract.d.ts",
+      "default": "./dist/versions/v1/capability-registry-list.contract.js"
+    },
+    "./versions/v1/chat-run.contract": {
+      "bun": "./dist/versions/v1/chat-run.contract.js",
+      "import": "./dist/versions/v1/chat-run.contract.js",
+      "types": "./dist/versions/v1/chat-run.contract.d.ts",
+      "default": "./dist/versions/v1/chat-run.contract.js"
+    },
+    "./versions/v1/chat-tools.contract": {
+      "bun": "./dist/versions/v1/chat-tools.contract.js",
+      "import": "./dist/versions/v1/chat-tools.contract.js",
+      "types": "./dist/versions/v1/chat-tools.contract.d.ts",
+      "default": "./dist/versions/v1/chat-tools.contract.js"
+    },
+    "./versions/v1/device-inventory-refresh.contract": {
+      "bun": "./dist/versions/v1/device-inventory-refresh.contract.js",
+      "import": "./dist/versions/v1/device-inventory-refresh.contract.js",
+      "types": "./dist/versions/v1/device-inventory-refresh.contract.d.ts",
+      "default": "./dist/versions/v1/device-inventory-refresh.contract.js"
+    },
+    "./versions/v1/driver-registry.contract": {
+      "bun": "./dist/versions/v1/driver-registry.contract.js",
+      "import": "./dist/versions/v1/driver-registry.contract.js",
+      "types": "./dist/versions/v1/driver-registry.contract.d.ts",
+      "default": "./dist/versions/v1/driver-registry.contract.js"
+    },
+    "./versions/v1/drone-capability.contract": {
+      "bun": "./dist/versions/v1/drone-capability.contract.js",
+      "import": "./dist/versions/v1/drone-capability.contract.js",
+      "types": "./dist/versions/v1/drone-capability.contract.d.ts",
+      "default": "./dist/versions/v1/drone-capability.contract.js"
+    },
+    "./versions/v1/drone-commands.contract": {
+      "bun": "./dist/versions/v1/drone-commands.contract.js",
+      "import": "./dist/versions/v1/drone-commands.contract.js",
+      "types": "./dist/versions/v1/drone-commands.contract.d.ts",
+      "default": "./dist/versions/v1/drone-commands.contract.js"
+    },
+    "./versions/v1/drone-history.contract": {
+      "bun": "./dist/versions/v1/drone-history.contract.js",
+      "import": "./dist/versions/v1/drone-history.contract.js",
+      "types": "./dist/versions/v1/drone-history.contract.d.ts",
+      "default": "./dist/versions/v1/drone-history.contract.js"
+    },
+    "./versions/v1/drone-mission-planner.contract": {
+      "bun": "./dist/versions/v1/drone-mission-planner.contract.js",
+      "import": "./dist/versions/v1/drone-mission-planner.contract.js",
+      "types": "./dist/versions/v1/drone-mission-planner.contract.d.ts",
+      "default": "./dist/versions/v1/drone-mission-planner.contract.js"
+    },
+    "./versions/v1/drone-realtime.contract": {
+      "bun": "./dist/versions/v1/drone-realtime.contract.js",
+      "import": "./dist/versions/v1/drone-realtime.contract.js",
+      "types": "./dist/versions/v1/drone-realtime.contract.d.ts",
+      "default": "./dist/versions/v1/drone-realtime.contract.js"
+    },
+    "./versions/v1/drone-summary.contract": {
+      "bun": "./dist/versions/v1/drone-summary.contract.js",
+      "import": "./dist/versions/v1/drone-summary.contract.js",
+      "types": "./dist/versions/v1/drone-summary.contract.d.ts",
+      "default": "./dist/versions/v1/drone-summary.contract.js"
+    },
+    "./versions/v1/drone-training-integration.contract": {
+      "bun": "./dist/versions/v1/drone-training-integration.contract.js",
+      "import": "./dist/versions/v1/drone-training-integration.contract.js",
+      "types": "./dist/versions/v1/drone-training-integration.contract.d.ts",
+      "default": "./dist/versions/v1/drone-training-integration.contract.js"
+    },
+    "./versions/v1/error-envelope.contract": {
+      "bun": "./dist/versions/v1/error-envelope.contract.js",
+      "import": "./dist/versions/v1/error-envelope.contract.js",
+      "types": "./dist/versions/v1/error-envelope.contract.d.ts",
+      "default": "./dist/versions/v1/error-envelope.contract.js"
+    },
+    "./versions/v1/fleet.contract": {
+      "bun": "./dist/versions/v1/fleet.contract.js",
+      "import": "./dist/versions/v1/fleet.contract.js",
+      "types": "./dist/versions/v1/fleet.contract.d.ts",
+      "default": "./dist/versions/v1/fleet.contract.js"
+    },
+    "./versions/v1/hardware-integration.contract": {
+      "bun": "./dist/versions/v1/hardware-integration.contract.js",
+      "import": "./dist/versions/v1/hardware-integration.contract.js",
+      "types": "./dist/versions/v1/hardware-integration.contract.d.ts",
+      "default": "./dist/versions/v1/hardware-integration.contract.js"
+    },
+    "./versions/v1/hardware-summary.contract": {
+      "bun": "./dist/versions/v1/hardware-summary.contract.js",
+      "import": "./dist/versions/v1/hardware-summary.contract.js",
+      "types": "./dist/versions/v1/hardware-summary.contract.d.ts",
+      "default": "./dist/versions/v1/hardware-summary.contract.js"
+    },
+    "./versions/v1/imager-status.contract": {
+      "bun": "./dist/versions/v1/imager-status.contract.js",
+      "import": "./dist/versions/v1/imager-status.contract.js",
+      "types": "./dist/versions/v1/imager-status.contract.d.ts",
+      "default": "./dist/versions/v1/imager-status.contract.js"
+    },
+    "./versions/v1/library-registry.contract": {
+      "bun": "./dist/versions/v1/library-registry.contract.js",
+      "import": "./dist/versions/v1/library-registry.contract.js",
+      "types": "./dist/versions/v1/library-registry.contract.d.ts",
+      "default": "./dist/versions/v1/library-registry.contract.js"
+    },
+    "./versions/v1/library-route-hints": {
+      "bun": "./dist/versions/v1/library-route-hints.js",
+      "import": "./dist/versions/v1/library-route-hints.js",
+      "types": "./dist/versions/v1/library-route-hints.d.ts",
+      "default": "./dist/versions/v1/library-route-hints.js"
+    },
+    "./versions/v1/mcp.contract": {
+      "bun": "./dist/versions/v1/mcp.contract.js",
+      "import": "./dist/versions/v1/mcp.contract.js",
+      "types": "./dist/versions/v1/mcp.contract.d.ts",
+      "default": "./dist/versions/v1/mcp.contract.js"
+    },
+    "./versions/v1/network-discovery.contract": {
+      "bun": "./dist/versions/v1/network-discovery.contract.js",
+      "import": "./dist/versions/v1/network-discovery.contract.js",
+      "types": "./dist/versions/v1/network-discovery.contract.d.ts",
+      "default": "./dist/versions/v1/network-discovery.contract.js"
+    },
+    "./versions/v1/bao-runtime.contract": {
+      "bun": "./dist/versions/v1/bao-runtime.contract.js",
+      "import": "./dist/versions/v1/bao-runtime.contract.js",
+      "types": "./dist/versions/v1/bao-runtime.contract.d.ts",
+      "default": "./dist/versions/v1/bao-runtime.contract.js"
+    },
+    "./versions/v1/rag.contract": {
+      "bun": "./dist/versions/v1/rag.contract.js",
+      "import": "./dist/versions/v1/rag.contract.js",
+      "types": "./dist/versions/v1/rag.contract.d.ts",
+      "default": "./dist/versions/v1/rag.contract.js"
+    },
+    "./versions/v1/reports.contract": {
+      "bun": "./dist/versions/v1/reports.contract.js",
+      "import": "./dist/versions/v1/reports.contract.js",
+      "types": "./dist/versions/v1/reports.contract.d.ts",
+      "default": "./dist/versions/v1/reports.contract.js"
+    },
+    "./versions/v1/robotics-capability.contract": {
+      "bun": "./dist/versions/v1/robotics-capability.contract.js",
+      "import": "./dist/versions/v1/robotics-capability.contract.js",
+      "types": "./dist/versions/v1/robotics-capability.contract.d.ts",
+      "default": "./dist/versions/v1/robotics-capability.contract.js"
+    },
+    "./versions/v1/robotics-commands.contract": {
+      "bun": "./dist/versions/v1/robotics-commands.contract.js",
+      "import": "./dist/versions/v1/robotics-commands.contract.js",
+      "types": "./dist/versions/v1/robotics-commands.contract.d.ts",
+      "default": "./dist/versions/v1/robotics-commands.contract.js"
+    },
+    "./versions/v1/robotics-devices.contract": {
+      "bun": "./dist/versions/v1/robotics-devices.contract.js",
+      "import": "./dist/versions/v1/robotics-devices.contract.js",
+      "types": "./dist/versions/v1/robotics-devices.contract.d.ts",
+      "default": "./dist/versions/v1/robotics-devices.contract.js"
+    },
+    "./versions/v1/robotics-localization.contract": {
+      "bun": "./dist/versions/v1/robotics-localization.contract.js",
+      "import": "./dist/versions/v1/robotics-localization.contract.js",
+      "types": "./dist/versions/v1/robotics-localization.contract.d.ts",
+      "default": "./dist/versions/v1/robotics-localization.contract.js"
+    },
+    "./versions/v1/robotics-mission.contract": {
+      "bun": "./dist/versions/v1/robotics-mission.contract.js",
+      "import": "./dist/versions/v1/robotics-mission.contract.js",
+      "types": "./dist/versions/v1/robotics-mission.contract.d.ts",
+      "default": "./dist/versions/v1/robotics-mission.contract.js"
+    },
+    "./versions/v1/robotics-motion.contract": {
+      "bun": "./dist/versions/v1/robotics-motion.contract.js",
+      "import": "./dist/versions/v1/robotics-motion.contract.js",
+      "types": "./dist/versions/v1/robotics-motion.contract.d.ts",
+      "default": "./dist/versions/v1/robotics-motion.contract.js"
+    },
+    "./versions/v1/robotics-policy.contract": {
+      "bun": "./dist/versions/v1/robotics-policy.contract.js",
+      "import": "./dist/versions/v1/robotics-policy.contract.js",
+      "types": "./dist/versions/v1/robotics-policy.contract.d.ts",
+      "default": "./dist/versions/v1/robotics-policy.contract.js"
+    },
+    "./versions/v1/robotics-summary.contract": {
+      "bun": "./dist/versions/v1/robotics-summary.contract.js",
+      "import": "./dist/versions/v1/robotics-summary.contract.js",
+      "types": "./dist/versions/v1/robotics-summary.contract.d.ts",
+      "default": "./dist/versions/v1/robotics-summary.contract.js"
+    },
+    "./versions/v1/robotics-telemetry.contract": {
+      "bun": "./dist/versions/v1/robotics-telemetry.contract.js",
+      "import": "./dist/versions/v1/robotics-telemetry.contract.js",
+      "types": "./dist/versions/v1/robotics-telemetry.contract.d.ts",
+      "default": "./dist/versions/v1/robotics-telemetry.contract.js"
+    },
+    "./versions/v1/robotics-training-integration.contract": {
+      "bun": "./dist/versions/v1/robotics-training-integration.contract.js",
+      "import": "./dist/versions/v1/robotics-training-integration.contract.js",
+      "types": "./dist/versions/v1/robotics-training-integration.contract.d.ts",
+      "default": "./dist/versions/v1/robotics-training-integration.contract.js"
+    },
+    "./versions/v1/rpa-training.contract": {
+      "bun": "./dist/versions/v1/rpa-training.contract.js",
+      "import": "./dist/versions/v1/rpa-training.contract.js",
+      "types": "./dist/versions/v1/rpa-training.contract.d.ts",
+      "default": "./dist/versions/v1/rpa-training.contract.js"
+    },
+    "./versions/v1/setup-wizard.contract": {
+      "bun": "./dist/versions/v1/setup-wizard.contract.js",
+      "import": "./dist/versions/v1/setup-wizard.contract.js",
+      "types": "./dist/versions/v1/setup-wizard.contract.d.ts",
+      "default": "./dist/versions/v1/setup-wizard.contract.js"
+    },
+    "./versions/v1/training-jobs.contract": {
+      "bun": "./dist/versions/v1/training-jobs.contract.js",
+      "import": "./dist/versions/v1/training-jobs.contract.js",
+      "types": "./dist/versions/v1/training-jobs.contract.d.ts",
+      "default": "./dist/versions/v1/training-jobs.contract.js"
+    },
+    "./versions/v1/usd-annotations.contract": {
+      "bun": "./dist/versions/v1/usd-annotations.contract.js",
+      "import": "./dist/versions/v1/usd-annotations.contract.js",
+      "types": "./dist/versions/v1/usd-annotations.contract.d.ts",
+      "default": "./dist/versions/v1/usd-annotations.contract.js"
+    },
+    "./versions/v1/usd-assets.contract": {
+      "bun": "./dist/versions/v1/usd-assets.contract.js",
+      "import": "./dist/versions/v1/usd-assets.contract.js",
+      "types": "./dist/versions/v1/usd-assets.contract.d.ts",
+      "default": "./dist/versions/v1/usd-assets.contract.js"
+    },
+    "./versions/v1/user-self-service.contract": {
+      "bun": "./dist/versions/v1/user-self-service.contract.js",
+      "import": "./dist/versions/v1/user-self-service.contract.js",
+      "types": "./dist/versions/v1/user-self-service.contract.d.ts",
+      "default": "./dist/versions/v1/user-self-service.contract.js"
+    },
+    "./versions/v1/users.contract": {
+      "bun": "./dist/versions/v1/users.contract.js",
+      "import": "./dist/versions/v1/users.contract.js",
+      "types": "./dist/versions/v1/users.contract.d.ts",
+      "default": "./dist/versions/v1/users.contract.js"
+    },
+    "./versions/v1/xr.contract": {
+      "bun": "./dist/versions/v1/xr.contract.js",
+      "import": "./dist/versions/v1/xr.contract.js",
+      "types": "./dist/versions/v1/xr.contract.d.ts",
+      "default": "./dist/versions/v1/xr.contract.js"
+    }
+  },
+  "main": "./dist/contract-catalog.js",
+  "types": "./dist/contract-catalog.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@baohaus/bao-config": "0.1.0",
+    "@baohaus/bao-constants": "0.1.0",
+    "@baohaus/bao-schemas": "0.1.0",
+    "@baohaus/baobox": "0.1.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

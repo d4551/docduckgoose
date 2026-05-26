@@ -1,0 +1,2676 @@
+{
+  "mcp": {
+    "providers": []
+  },
+  "plugins": [
+    "ai-inference-core",
+    "ai-model-core",
+    "ai-perception-artifacts",
+    "ai-provenance-core",
+    "android-shell-core",
+    "annotation-dataset",
+    "annotation-interop",
+    "annotation-review",
+    "annotation-spatial-geometry",
+    "annotation-viewport",
+    "anthro-pao",
+    "api-keys-bao",
+    "archive-bao",
+    "arducam",
+    "ast-parser-bao",
+    "auth-bao",
+    "auth-cli",
+    "auth-prisma",
+    "auth-sso",
+    "aws-sdk-bao",
+    "axe-bao",
+    "axe-cli-bao",
+    "bao-agent",
+    "bao-ai-gateway",
+    "bao-boss",
+    "bao-cli",
+    "bao-config",
+    "bao-constants",
+    "bao-contracts",
+    "bao-core",
+    "bao-desktop",
+    "bao-package-kit",
+    "bao-registry",
+    "bao-runtime",
+    "bao-schemas",
+    "bao-sdk",
+    "http-bao",
+    "bao-shared",
+    "bao-spec",
+    "bao-types",
+    "bao-utils",
+    "bao-validators",
+    "bao-wrapture",
+    "baobox",
+    "baodown-ai-nodes",
+    "baodown-annotation-nodes",
+    "baodown-medical-nodes",
+    "baodown-pathology-nodes",
+    "baodown-ui-nodes",
+    "baodown-usd-nodes",
+    "baofire-core",
+    "baofire-fhir",
+    "baozi-rbac",
+    "bash-bao",
+    "bearer-bao",
+    "benchmark-bao",
+    "bigbadbao",
+    "blobao",
+    "bonkbun",
+    "bootstrap-bao",
+    "buddhabao",
+    "bunbuddy-shared",
+    "candydumpling",
+    "casl-bao",
+    "char-siu-checkout",
+    "circuit-breaker-bao",
+    "cloud-azure-bao",
+    "code-diff-bao",
+    "command-bao",
+    "commit-parse-bao",
+    "compact-bao",
+    "config-hot-reload-bao",
+    "cors-bao",
+    "coverage-report-bao",
+    "cron-bao",
+    "crypto-utils-bao",
+    "csv-bao",
+    "currency-bao",
+    "daisy-bao",
+    "data-migrations-bao",
+    "data-pipeline-bao",
+    "dayjs-bao",
+    "debug-trace-bao",
+    "dependency-graph-bao",
+    "dicom-bao",
+    "dimsum-audit",
+    "distributed-lock-bao",
+    "docgen-bao",
+    "docker-bao",
+    "drone-schemas",
+    "eden-bao",
+    "elasticsearch-bao",
+    "email-bao",
+    "embedding-bao",
+    "eslint-bao",
+    "event-bus-bao",
+    "event-sourcing-bao",
+    "exec-mochi",
+    "feature-flags-bao",
+    "fhir-bao",
+    "fhir-client-bao",
+    "file-gyoza",
+    "filetype-bao",
+    "five-spice-gemini",
+    "five-spice-huggingface",
+    "five-spice-openai",
+    "flatbuf-bao",
+    "flow-dumpling",
+    "folded-forms",
+    "font-bao",
+    "forge",
+    "forge-core",
+    "forge-runtime",
+    "forge-server",
+    "forge-ssh",
+    "forge-worker",
+    "fortune-flags",
+    "bao-edge",
+    "gcp-bao",
+    "geo-bao",
+    "grabbun",
+    "grid-gyoza",
+    "grpc-bao",
+    "guardrails-bao",
+    "gym-bao",
+    "happydumpling",
+    "har-gow-config",
+    "harbao-health",
+    "hf-hub-bao",
+    "hf-infer-bao",
+    "hf-transform-bao",
+    "hookao",
+    "hot-broth-policy",
+    "html-eslint-bao",
+    "html-mantou",
+    "htmx-core",
+    "htmx-ext-bao",
+    "htmx-mantou",
+    "i18n-formatters-bao",
+    "image-bao",
+    "imaging-tile-core",
+    "imatou-image",
+    "jose-bao",
+    "jsdom-bao",
+    "json-gyoza",
+    "jsonpath-bao",
+    "jsx-bao",
+    "kubernetes-bao",
+    "libsql-bao",
+    "load-balancer-bao",
+    "lore-dumpling",
+    "lore-mantou",
+    "lore-motion",
+    "lotus-leaf-capabilities",
+    "mail-mantou",
+    "markdown-bao",
+    "matrix-bao",
+    "mcp-mantou",
+    "mdns-bao",
+    "medical-ai-review",
+    "medical-audit",
+    "medical-core",
+    "medical-deidentification",
+    "medical-dicomweb",
+    "medical-fhir-reporting",
+    "medical-imaging",
+    "message-queue-bao",
+    "meter-mochi",
+    "mirror-mantou",
+    "mock-server-bao",
+    "model-eval-bao",
+    "morph-bao",
+    "nahbao",
+    "oauth-xlb",
+    "onnx-node-bao",
+    "onnx-web-bao",
+    "onvif-bao",
+    "openapi-mantou",
+    "openfeature-bao",
+    "openid-bao",
+    "otel-api-bao",
+    "otel-bao",
+    "otel-exporter-bao",
+    "otel-instrument-bao",
+    "otel-sdk-bao",
+    "parity-pao",
+    "pathology-ai-runtime",
+    "pathology-annotations",
+    "pathology-consensus",
+    "pathology-core",
+    "pathology-dataset-curator",
+    "pathology-reporting",
+    "pathology-slide-viewer",
+    "pathology-spatial-context",
+    "pathology-usd-annotations",
+    "pdf-baozi",
+    "pdf-engine-bao",
+    "perception-schemas",
+    "permit-potsticker",
+    "pg-bao",
+    "piratebao",
+    "pitch-potsticker",
+    "pointcloud-artifact-core",
+    "policy-as-code-bao",
+    "prisma-cli-bao",
+    "prisma-client-bao",
+    "prisma-libsql",
+    "prisma-otel-bao",
+    "prisma-pao",
+    "prisma-pg-bao",
+    "prom-metrics-bao",
+    "prompt-templates-bao",
+    "prompt-wonton",
+    "proofbun",
+    "property-test-bao",
+    "query-builder-bao",
+    "queue-bao",
+    "rage-roll",
+    "ramen-rag",
+    "rate-limiter-bao",
+    "redis-bao",
+    "release-automation-bao",
+    "remote-bao",
+    "resend-bao",
+    "rice-noodle-persistence",
+    "robotics-schemas",
+    "ros-bao",
+    "route-dumpling",
+    "sanitize-bao",
+    "scallion-logger",
+    "scene-asset-core",
+    "schema-shumai",
+    "secret-rotation-bao",
+    "semver-bao",
+    "sentinel-shumai",
+    "sentry-bao",
+    "service-discovery-bao",
+    "sesame-crunch-analytics",
+    "session-dumpling",
+    "shaobing-secrets",
+    "shumai-audio",
+    "shumai-http",
+    "shumai-transform",
+    "shumai-trigger",
+    "sign-bao",
+    "slash-siu",
+    "soy-view-kit",
+    "splat-artifact-core",
+    "sse-bao",
+    "static-bao",
+    "stream-momo",
+    "style-shumai",
+    "stylelint-bao",
+    "swipebun",
+    "sysinfo-bao",
+    "tailwind-bao",
+    "tailwind-cli-bao",
+    "tangyuan-i18n",
+    "tar-bao",
+    "taro-cache",
+    "tauri-shell-core",
+    "tdz-tangyuan",
+    "tea-house-asr",
+    "terraform-bao",
+    "test-fixture-bao",
+    "text-classifier-bao",
+    "three-bao",
+    "throttle-bao",
+    "timing-bao",
+    "tls-bao",
+    "tool-boxiao",
+    "transcript-xiao",
+    "ts-eslint-bao",
+    "turnip-cake-jobs",
+    "typebox-bao",
+    "ui-canvas-locking",
+    "ui-language-core",
+    "ui-shell-core",
+    "ui-ssr-partials",
+    "usd-annotation-interop",
+    "usd-annotation-roundtrip",
+    "usd-asset-core",
+    "usd-scene-core",
+    "uuid-bao",
+    "vector-bao",
+    "viewer-bao",
+    "vulnerability-scanner-bao",
+    "ward-wonton",
+    "webhook-bao",
+    "websocket-bao",
+    "wonton",
+    "wonton-contracts",
+    "xiao-long-engine",
+    "xlb-upload",
+    "xml-bao",
+    "yaml-bao",
+    "ai-providers-bao"
+  ],
+  "packages": [
+    {
+      "id": "ai-inference-core",
+      "packageName": "@baohaus/ai-inference-core",
+      "ociRepository": "baohaus/ai-inference-core",
+      "archivePath": "../bao-source/ai-inference-core/dist/bao/ai-inference-core.bao"
+    },
+    {
+      "id": "ai-model-core",
+      "packageName": "@baohaus/ai-model-core",
+      "ociRepository": "baohaus/ai-model-core",
+      "archivePath": "../bao-source/ai-model-core/dist/bao/ai-model-core.bao"
+    },
+    {
+      "id": "ai-perception-artifacts",
+      "packageName": "@baohaus/ai-perception-artifacts",
+      "ociRepository": "baohaus/ai-perception-artifacts",
+      "archivePath": "../bao-source/ai-perception-artifacts/dist/bao/ai-perception-artifacts.bao"
+    },
+    {
+      "id": "ai-provenance-core",
+      "packageName": "@baohaus/ai-provenance-core",
+      "ociRepository": "baohaus/ai-provenance-core",
+      "archivePath": "../bao-source/ai-provenance-core/dist/bao/ai-provenance-core.bao"
+    },
+    {
+      "id": "android-shell-core",
+      "packageName": "@baohaus/android-shell-core",
+      "ociRepository": "baohaus/android-shell-core",
+      "archivePath": "../bao-source/android-shell-core/dist/bao/android-shell-core.bao"
+    },
+    {
+      "id": "annotation-dataset",
+      "packageName": "@baohaus/annotation-dataset",
+      "ociRepository": "baohaus/annotation-dataset",
+      "archivePath": "../bao-source/annotation-dataset/dist/bao/annotation-dataset.bao"
+    },
+    {
+      "id": "annotation-interop",
+      "packageName": "@baohaus/annotation-interop",
+      "ociRepository": "baohaus/annotation-interop",
+      "archivePath": "../bao-source/annotation-interop/dist/bao/annotation-interop.bao"
+    },
+    {
+      "id": "annotation-review",
+      "packageName": "@baohaus/annotation-review",
+      "ociRepository": "baohaus/annotation-review",
+      "archivePath": "../bao-source/annotation-review/dist/bao/annotation-review.bao"
+    },
+    {
+      "id": "annotation-spatial-geometry",
+      "packageName": "@baohaus/annotation-spatial-geometry",
+      "ociRepository": "baohaus/annotation-spatial-geometry",
+      "archivePath": "../bao-source/annotation-spatial-geometry/dist/bao/annotation-spatial-geometry.bao"
+    },
+    {
+      "id": "annotation-viewport",
+      "packageName": "@baohaus/annotation-viewport",
+      "ociRepository": "baohaus/annotation-viewport",
+      "archivePath": "../bao-source/annotation-viewport/dist/bao/annotation-viewport.bao"
+    },
+    {
+      "id": "anthro-pao",
+      "packageName": "@baohaus/anthro-pao",
+      "ociRepository": "baohaus/anthro-pao",
+      "archivePath": "../bao-source/anthro-pao/dist/bao/anthro-pao.bao"
+    },
+    {
+      "id": "api-keys-bao",
+      "packageName": "@baohaus/api-keys-bao",
+      "ociRepository": "baohaus/api-keys-bao",
+      "archivePath": "../bao-source/api-keys-bao/dist/bao/api-keys-bao.bao"
+    },
+    {
+      "id": "archive-bao",
+      "packageName": "@baohaus/archive-bao",
+      "ociRepository": "baohaus/archive-bao",
+      "archivePath": "../bao-source/archive-bao/dist/bao/archive-bao.bao"
+    },
+    {
+      "id": "arducam",
+      "packageName": "@baohaus/arducam",
+      "ociRepository": "baohaus/arducam",
+      "archivePath": "../bao-source/arducam/dist/bao/arducam.bao"
+    },
+    {
+      "id": "ast-parser-bao",
+      "packageName": "@baohaus/ast-parser-bao",
+      "ociRepository": "baohaus/ast-parser-bao",
+      "archivePath": "../bao-source/ast-parser-bao/dist/bao/ast-parser-bao.bao"
+    },
+    {
+      "id": "auth-bao",
+      "packageName": "@baohaus/auth-bao",
+      "ociRepository": "baohaus/auth-bao",
+      "archivePath": "../bao-source/auth-bao/dist/bao/auth-bao.bao"
+    },
+    {
+      "id": "auth-cli",
+      "packageName": "@baohaus/auth-cli",
+      "ociRepository": "baohaus/auth-cli",
+      "archivePath": "../bao-source/auth-cli/dist/bao/auth-cli.bao"
+    },
+    {
+      "id": "auth-prisma",
+      "packageName": "@baohaus/auth-prisma",
+      "ociRepository": "baohaus/auth-prisma",
+      "archivePath": "../bao-source/auth-prisma/dist/bao/auth-prisma.bao"
+    },
+    {
+      "id": "auth-sso",
+      "packageName": "@baohaus/auth-sso",
+      "ociRepository": "baohaus/auth-sso",
+      "archivePath": "../bao-source/auth-sso/dist/bao/auth-sso.bao"
+    },
+    {
+      "id": "aws-sdk-bao",
+      "packageName": "@baohaus/aws-sdk-bao",
+      "ociRepository": "baohaus/aws-sdk-bao",
+      "archivePath": "../bao-source/aws-sdk-bao/dist/bao/aws-sdk-bao.bao"
+    },
+    {
+      "id": "axe-bao",
+      "packageName": "@baohaus/axe-bao",
+      "ociRepository": "baohaus/axe-bao",
+      "archivePath": "../bao-source/axe-bao/dist/bao/axe-bao.bao"
+    },
+    {
+      "id": "axe-cli-bao",
+      "packageName": "@baohaus/axe-cli-bao",
+      "ociRepository": "baohaus/axe-cli-bao",
+      "archivePath": "../bao-source/axe-cli-bao/dist/bao/axe-cli-bao.bao"
+    },
+    {
+      "id": "bao-agent",
+      "packageName": "@baohaus/bao-agent",
+      "ociRepository": "baohaus/bao-agent",
+      "archivePath": "../bao-agent/dist/bao/bao-agent.bao"
+    },
+    {
+      "id": "bao-boss",
+      "packageName": "@baohaus/bao-boss",
+      "ociRepository": "baohaus/bao-boss",
+      "archivePath": "../bao-source/bao-boss/dist/bao/bao-boss.bao"
+    },
+    {
+      "id": "bao-cli",
+      "packageName": "@baohaus/bao-cli",
+      "ociRepository": "baohaus/bao-cli",
+      "archivePath": "../bao-source/bao-cli/dist/bao/bao-cli.bao"
+    },
+    {
+      "id": "bao-config",
+      "packageName": "@baohaus/bao-config",
+      "ociRepository": "baohaus/bao-config",
+      "archivePath": "../bao-source/bao-config/dist/bao/bao-config.bao"
+    },
+    {
+      "id": "bao-constants",
+      "packageName": "@baohaus/bao-constants",
+      "ociRepository": "baohaus/bao-constants",
+      "archivePath": "../bao-source/bao-constants/dist/bao/bao-constants.bao"
+    },
+    {
+      "id": "bao-contracts",
+      "packageName": "@baohaus/bao-contracts",
+      "ociRepository": "baohaus/bao-contracts",
+      "archivePath": "../bao-source/bao-contracts/dist/bao/bao-contracts.bao"
+    },
+    {
+      "id": "bao-core",
+      "packageName": "@baohaus/bao-core",
+      "ociRepository": "baohaus/bao-core",
+      "archivePath": "../bao-source/bao-core/dist/bao/bao-core.bao"
+    },
+    {
+      "id": "bao-desktop",
+      "packageName": "@baohaus/bao-desktop",
+      "ociRepository": "baohaus/bao-desktop",
+      "archivePath": "../bao-desktop/dist/bao/bao-desktop.bao"
+    },
+    {
+      "id": "bao-package-kit",
+      "packageName": "@baohaus/bao-package-kit",
+      "ociRepository": "baohaus/bao-package-kit",
+      "archivePath": "../bao/dist/bao/bao-package-kit.bao"
+    },
+    {
+      "id": "bao-registry",
+      "packageName": "@baohaus/bao-registry",
+      "ociRepository": "baohaus/bao-registry",
+      "archivePath": "../registry/dist/bao/bao-registry.bao"
+    },
+    {
+      "id": "bao-runtime",
+      "packageName": "@baohaus/bao-runtime",
+      "ociRepository": "baohaus/bao-runtime",
+      "archivePath": "../bao-runtime/dist/bao/bao-runtime.bao"
+    },
+    {
+      "id": "bao-schemas",
+      "packageName": "@baohaus/bao-schemas",
+      "ociRepository": "baohaus/bao-schemas",
+      "archivePath": "../bao-source/bao-schemas/dist/bao/bao-schemas.bao"
+    },
+    {
+      "id": "bao-sdk",
+      "packageName": "@baohaus/bao-sdk",
+      "ociRepository": "baohaus/bao-sdk",
+      "archivePath": "../bao-source/bao-sdk/dist/bao/bao-sdk.bao"
+    },
+    {
+      "id": "http-bao",
+      "packageName": "@baohaus/http-bao",
+      "ociRepository": "baohaus/http-bao",
+      "archivePath": "../bao-source/http-bao/dist/bao/http-bao.bao"
+    },
+    {
+      "id": "bao-shared",
+      "packageName": "@baohaus/bao-shared",
+      "ociRepository": "baohaus/bao-shared",
+      "archivePath": "../bao-source/bao-shared/dist/bao/bao-shared.bao"
+    },
+    {
+      "id": "bao-spec",
+      "packageName": "@baohaus/bao-spec",
+      "ociRepository": "baohaus/bao-spec",
+      "archivePath": "../bao-source/bao-spec/dist/bao/bao-spec.bao"
+    },
+    {
+      "id": "bao-types",
+      "packageName": "@baohaus/bao-types",
+      "ociRepository": "baohaus/bao-types",
+      "archivePath": "../bao-source/bao-types/dist/bao/bao-types.bao"
+    },
+    {
+      "id": "bao-utils",
+      "packageName": "@baohaus/bao-utils",
+      "ociRepository": "baohaus/bao-utils",
+      "archivePath": "../bao-source/bao-utils/dist/bao/bao-utils.bao"
+    },
+    {
+      "id": "bao-validators",
+      "packageName": "@baohaus/bao-validators",
+      "ociRepository": "baohaus/bao-validators",
+      "archivePath": "../bao-source/bao-validators/dist/bao/bao-validators.bao"
+    },
+    {
+      "id": "bao-wrapture",
+      "packageName": "@baohaus/bao-wrapture",
+      "ociRepository": "baohaus/bao-wrapture",
+      "archivePath": "../bao-source/bao-wrapture/dist/bao/bao-wrapture.bao"
+    },
+    {
+      "id": "baobox",
+      "packageName": "@baohaus/baobox",
+      "ociRepository": "baohaus/baobox",
+      "archivePath": "../bao-source/baobox/dist/bao/baobox.bao"
+    },
+    {
+      "id": "baodown-ai-nodes",
+      "packageName": "@baohaus/baodown-ai-nodes",
+      "ociRepository": "baohaus/baodown-ai-nodes",
+      "archivePath": "../bao-source/baodown-ai-nodes/dist/bao/baodown-ai-nodes.bao"
+    },
+    {
+      "id": "baodown-annotation-nodes",
+      "packageName": "@baohaus/baodown-annotation-nodes",
+      "ociRepository": "baohaus/baodown-annotation-nodes",
+      "archivePath": "../bao-source/baodown-annotation-nodes/dist/bao/baodown-annotation-nodes.bao"
+    },
+    {
+      "id": "baodown-medical-nodes",
+      "packageName": "@baohaus/baodown-medical-nodes",
+      "ociRepository": "baohaus/baodown-medical-nodes",
+      "archivePath": "../bao-source/baodown-medical-nodes/dist/bao/baodown-medical-nodes.bao"
+    },
+    {
+      "id": "baodown-pathology-nodes",
+      "packageName": "@baohaus/baodown-pathology-nodes",
+      "ociRepository": "baohaus/baodown-pathology-nodes",
+      "archivePath": "../bao-source/baodown-pathology-nodes/dist/bao/baodown-pathology-nodes.bao"
+    },
+    {
+      "id": "baodown-ui-nodes",
+      "packageName": "@baohaus/baodown-ui-nodes",
+      "ociRepository": "baohaus/baodown-ui-nodes",
+      "archivePath": "../bao-source/baodown-ui-nodes/dist/bao/baodown-ui-nodes.bao"
+    },
+    {
+      "id": "baodown-usd-nodes",
+      "packageName": "@baohaus/baodown-usd-nodes",
+      "ociRepository": "baohaus/baodown-usd-nodes",
+      "archivePath": "../bao-source/baodown-usd-nodes/dist/bao/baodown-usd-nodes.bao"
+    },
+    {
+      "id": "baofire-core",
+      "packageName": "@baohaus/baofire-core",
+      "ociRepository": "baohaus/baofire-core",
+      "archivePath": "../bao-source/baofire-core/dist/bao/baofire-core.bao"
+    },
+    {
+      "id": "baofire-fhir",
+      "packageName": "@baohaus/baofire-fhir",
+      "ociRepository": "baohaus/baofire-fhir",
+      "archivePath": "../bao-source/baofire-fhir/dist/bao/baofire-fhir.bao"
+    },
+    {
+      "id": "baozi-rbac",
+      "packageName": "@baohaus/baozi-rbac",
+      "ociRepository": "baohaus/baozi-rbac",
+      "archivePath": "../bao-source/baozi-rbac/dist/bao/baozi-rbac.bao"
+    },
+    {
+      "id": "bash-bao",
+      "packageName": "@baohaus/bash-bao",
+      "ociRepository": "baohaus/bash-bao",
+      "archivePath": "../bao-source/bash-bao/dist/bao/bash-bao.bao"
+    },
+    {
+      "id": "bearer-bao",
+      "packageName": "@baohaus/bearer-bao",
+      "ociRepository": "baohaus/bearer-bao",
+      "archivePath": "../bao-source/bearer-bao/dist/bao/bearer-bao.bao"
+    },
+    {
+      "id": "benchmark-bao",
+      "packageName": "@baohaus/benchmark-bao",
+      "ociRepository": "baohaus/benchmark-bao",
+      "archivePath": "../bao-source/benchmark-bao/dist/bao/benchmark-bao.bao"
+    },
+    {
+      "id": "bigbadbao",
+      "packageName": "@baohaus/bigbadbao",
+      "ociRepository": "baohaus/bigbadbao",
+      "archivePath": "../bao-source/bigbadbao/dist/bao/bigbadbao.bao"
+    },
+    {
+      "id": "blobao",
+      "packageName": "@baohaus/blobao",
+      "ociRepository": "baohaus/blobao",
+      "archivePath": "../bao-source/blobao/dist/bao/blobao.bao"
+    },
+    {
+      "id": "bonkbun",
+      "packageName": "@baohaus/bonkbun",
+      "ociRepository": "baohaus/bonkbun",
+      "archivePath": "../bao-source/bonkbun/dist/bao/bonkbun.bao"
+    },
+    {
+      "id": "bootstrap-bao",
+      "packageName": "@baohaus/bootstrap-bao",
+      "ociRepository": "baohaus/bootstrap-bao",
+      "archivePath": "../bao-source/bootstrap-bao/dist/bao/bootstrap-bao.bao"
+    },
+    {
+      "id": "buddhabao",
+      "packageName": "@baohaus/buddhabao",
+      "ociRepository": "baohaus/buddhabao",
+      "archivePath": "../bao-source/buddhabao/dist/bao/buddhabao.bao"
+    },
+    {
+      "id": "bunbuddy-shared",
+      "packageName": "@baohaus/bunbuddy-shared",
+      "ociRepository": "baohaus/bunbuddy-shared",
+      "archivePath": "../bao-source/bunbuddy-shared/dist/bao/bunbuddy-shared.bao"
+    },
+    {
+      "id": "candydumpling",
+      "packageName": "@baohaus/candydumpling",
+      "ociRepository": "baohaus/candydumpling",
+      "archivePath": "../bao-source/candydumpling/dist/bao/candydumpling.bao"
+    },
+    {
+      "id": "casl-bao",
+      "packageName": "@baohaus/casl-bao",
+      "ociRepository": "baohaus/casl-bao",
+      "archivePath": "../bao-source/casl-bao/dist/bao/casl-bao.bao"
+    },
+    {
+      "id": "char-siu-checkout",
+      "packageName": "@baohaus/char-siu-checkout",
+      "ociRepository": "baohaus/char-siu-checkout",
+      "archivePath": "../bao-source/char-siu-checkout/dist/bao/char-siu-checkout.bao"
+    },
+    {
+    },
+    {
+      "id": "circuit-breaker-bao",
+      "packageName": "@baohaus/circuit-breaker-bao",
+      "ociRepository": "baohaus/circuit-breaker-bao",
+      "archivePath": "../bao-source/circuit-breaker-bao/dist/bao/circuit-breaker-bao.bao"
+    },
+    {
+      "id": "cloud-azure-bao",
+      "packageName": "@baohaus/cloud-azure-bao",
+      "ociRepository": "baohaus/cloud-azure-bao",
+      "archivePath": "../bao-source/cloud-azure-bao/dist/bao/cloud-azure-bao.bao"
+    },
+    {
+      "id": "code-diff-bao",
+      "packageName": "@baohaus/code-diff-bao",
+      "ociRepository": "baohaus/code-diff-bao",
+      "archivePath": "../bao-source/code-diff-bao/dist/bao/code-diff-bao.bao"
+    },
+    {
+      "id": "command-bao",
+      "packageName": "@baohaus/command-bao",
+      "ociRepository": "baohaus/command-bao",
+      "archivePath": "../bao-source/command-bao/dist/bao/command-bao.bao"
+    },
+    {
+      "id": "commit-parse-bao",
+      "packageName": "@baohaus/commit-parse-bao",
+      "ociRepository": "baohaus/commit-parse-bao",
+      "archivePath": "../bao-source/commit-parse-bao/dist/bao/commit-parse-bao.bao"
+    },
+    {
+      "id": "compact-bao",
+      "packageName": "@baohaus/compact-bao",
+      "ociRepository": "baohaus/compact-bao",
+      "archivePath": "../bao-source/compact-bao/dist/bao/compact-bao.bao"
+    },
+    {
+      "id": "config-hot-reload-bao",
+      "packageName": "@baohaus/config-hot-reload-bao",
+      "ociRepository": "baohaus/config-hot-reload-bao",
+      "archivePath": "../bao-source/config-hot-reload-bao/dist/bao/config-hot-reload-bao.bao"
+    },
+    {
+      "id": "cors-bao",
+      "packageName": "@baohaus/cors-bao",
+      "ociRepository": "baohaus/cors-bao",
+      "archivePath": "../bao-source/cors-bao/dist/bao/cors-bao.bao"
+    },
+    {
+      "id": "coverage-report-bao",
+      "packageName": "@baohaus/coverage-report-bao",
+      "ociRepository": "baohaus/coverage-report-bao",
+      "archivePath": "../bao-source/coverage-report-bao/dist/bao/coverage-report-bao.bao"
+    },
+    {
+      "id": "cron-bao",
+      "packageName": "@baohaus/cron-bao",
+      "ociRepository": "baohaus/cron-bao",
+      "archivePath": "../bao-source/cron-bao/dist/bao/cron-bao.bao"
+    },
+    {
+      "id": "crypto-utils-bao",
+      "packageName": "@baohaus/crypto-utils-bao",
+      "ociRepository": "baohaus/crypto-utils-bao",
+      "archivePath": "../bao-source/crypto-utils-bao/dist/bao/crypto-utils-bao.bao"
+    },
+    {
+      "id": "csv-bao",
+      "packageName": "@baohaus/csv-bao",
+      "ociRepository": "baohaus/csv-bao",
+      "archivePath": "../bao-source/csv-bao/dist/bao/csv-bao.bao"
+    },
+    {
+      "id": "currency-bao",
+      "packageName": "@baohaus/currency-bao",
+      "ociRepository": "baohaus/currency-bao",
+      "archivePath": "../bao-source/currency-bao/dist/bao/currency-bao.bao"
+    },
+    {
+      "id": "daisy-bao",
+      "packageName": "@baohaus/daisy-bao",
+      "ociRepository": "baohaus/daisy-bao",
+      "archivePath": "../bao-source/daisy-bao/dist/bao/daisy-bao.bao"
+    },
+    {
+      "id": "data-migrations-bao",
+      "packageName": "@baohaus/data-migrations-bao",
+      "ociRepository": "baohaus/data-migrations-bao",
+      "archivePath": "../bao-source/data-migrations-bao/dist/bao/data-migrations-bao.bao"
+    },
+    {
+      "id": "data-pipeline-bao",
+      "packageName": "@baohaus/data-pipeline-bao",
+      "ociRepository": "baohaus/data-pipeline-bao",
+      "archivePath": "../bao-source/data-pipeline-bao/dist/bao/data-pipeline-bao.bao"
+    },
+    {
+      "id": "dayjs-bao",
+      "packageName": "@baohaus/dayjs-bao",
+      "ociRepository": "baohaus/dayjs-bao",
+      "archivePath": "../bao-source/dayjs-bao/dist/bao/dayjs-bao.bao"
+    },
+    {
+      "id": "debug-trace-bao",
+      "packageName": "@baohaus/debug-trace-bao",
+      "ociRepository": "baohaus/debug-trace-bao",
+      "archivePath": "../bao-source/debug-trace-bao/dist/bao/debug-trace-bao.bao"
+    },
+    {
+      "id": "bao-ai-gateway",
+      "packageName": "@baohaus/bao-ai-gateway",
+      "ociRepository": "baohaus/bao-ai-gateway",
+      "archivePath": "../bao-ai-gateway/dist/bao/bao-ai-gateway.bao"
+    },
+    {
+      "id": "dependency-graph-bao",
+      "packageName": "@baohaus/dependency-graph-bao",
+      "ociRepository": "baohaus/dependency-graph-bao",
+      "archivePath": "../bao-source/dependency-graph-bao/dist/bao/dependency-graph-bao.bao"
+    },
+    {
+      "id": "dicom-bao",
+      "packageName": "@baohaus/dicom-bao",
+      "ociRepository": "baohaus/dicom-bao",
+      "archivePath": "../bao-source/dicom-bao/dist/bao/dicom-bao.bao"
+    },
+    {
+      "id": "dimsum-audit",
+      "packageName": "@baohaus/dimsum-audit",
+      "ociRepository": "baohaus/dimsum-audit",
+      "archivePath": "../bao-source/dimsum-audit/dist/bao/dimsum-audit.bao"
+    },
+    {
+      "id": "distributed-lock-bao",
+      "packageName": "@baohaus/distributed-lock-bao",
+      "ociRepository": "baohaus/distributed-lock-bao",
+      "archivePath": "../bao-source/distributed-lock-bao/dist/bao/distributed-lock-bao.bao"
+    },
+    {
+      "id": "docgen-bao",
+      "packageName": "@baohaus/docgen-bao",
+      "ociRepository": "baohaus/docgen-bao",
+      "archivePath": "../bao-source/docgen-bao/dist/bao/docgen-bao.bao"
+    },
+    {
+      "id": "docker-bao",
+      "packageName": "@baohaus/docker-bao",
+      "ociRepository": "baohaus/docker-bao",
+      "archivePath": "../bao-source/docker-bao/dist/bao/docker-bao.bao"
+    },
+    {
+      "id": "drone-schemas",
+      "packageName": "@baohaus/drone-schemas",
+      "ociRepository": "baohaus/drone-schemas",
+      "archivePath": "../bao-source/drone-schemas/dist/bao/drone-schemas.bao"
+    },
+    {
+      "id": "eden-bao",
+      "packageName": "@baohaus/eden-bao",
+      "ociRepository": "baohaus/eden-bao",
+      "archivePath": "../bao-source/eden-bao/dist/bao/eden-bao.bao"
+    },
+    {
+      "id": "elasticsearch-bao",
+      "packageName": "@baohaus/elasticsearch-bao",
+      "ociRepository": "baohaus/elasticsearch-bao",
+      "archivePath": "../bao-source/elasticsearch-bao/dist/bao/elasticsearch-bao.bao"
+    },
+    {
+      "id": "email-bao",
+      "packageName": "@baohaus/email-bao",
+      "ociRepository": "baohaus/email-bao",
+      "archivePath": "../bao-source/email-bao/dist/bao/email-bao.bao"
+    },
+    {
+      "id": "embedding-bao",
+      "packageName": "@baohaus/embedding-bao",
+      "ociRepository": "baohaus/embedding-bao",
+      "archivePath": "../bao-source/embedding-bao/dist/bao/embedding-bao.bao"
+    },
+    {
+      "id": "eslint-bao",
+      "packageName": "@baohaus/eslint-bao",
+      "ociRepository": "baohaus/eslint-bao",
+      "archivePath": "../bao-source/eslint-bao/dist/bao/eslint-bao.bao"
+    },
+    {
+      "id": "event-bus-bao",
+      "packageName": "@baohaus/event-bus-bao",
+      "ociRepository": "baohaus/event-bus-bao",
+      "archivePath": "../bao-source/event-bus-bao/dist/bao/event-bus-bao.bao"
+    },
+    {
+      "id": "event-sourcing-bao",
+      "packageName": "@baohaus/event-sourcing-bao",
+      "ociRepository": "baohaus/event-sourcing-bao",
+      "archivePath": "../bao-source/event-sourcing-bao/dist/bao/event-sourcing-bao.bao"
+    },
+    {
+      "id": "exec-mochi",
+      "packageName": "@baohaus/exec-mochi",
+      "ociRepository": "baohaus/exec-mochi",
+      "archivePath": "../bao-source/exec-mochi/dist/bao/exec-mochi.bao"
+    },
+    {
+      "id": "feature-flags-bao",
+      "packageName": "@baohaus/feature-flags-bao",
+      "ociRepository": "baohaus/feature-flags-bao",
+      "archivePath": "../bao-source/feature-flags-bao/dist/bao/feature-flags-bao.bao"
+    },
+    {
+      "id": "fhir-bao",
+      "packageName": "@baohaus/fhir-bao",
+      "ociRepository": "baohaus/fhir-bao",
+      "archivePath": "../bao-source/fhir-bao/dist/bao/fhir-bao.bao"
+    },
+    {
+      "id": "fhir-client-bao",
+      "packageName": "@baohaus/fhir-client-bao",
+      "ociRepository": "baohaus/fhir-client-bao",
+      "archivePath": "../bao-source/fhir-client-bao/dist/bao/fhir-client-bao.bao"
+    },
+    {
+      "id": "file-gyoza",
+      "packageName": "@baohaus/file-gyoza",
+      "ociRepository": "baohaus/file-gyoza",
+      "archivePath": "../bao-source/file-gyoza/dist/bao/file-gyoza.bao"
+    },
+    {
+      "id": "filetype-bao",
+      "packageName": "@baohaus/filetype-bao",
+      "ociRepository": "baohaus/filetype-bao",
+      "archivePath": "../bao-source/filetype-bao/dist/bao/filetype-bao.bao"
+    },
+    {
+      "id": "five-spice-gemini",
+      "packageName": "@baohaus/five-spice-gemini",
+      "ociRepository": "baohaus/five-spice-gemini",
+      "archivePath": "../bao-source/five-spice-gemini/dist/bao/five-spice-gemini.bao"
+    },
+    {
+      "id": "five-spice-huggingface",
+      "packageName": "@baohaus/five-spice-huggingface",
+      "ociRepository": "baohaus/five-spice-huggingface",
+      "archivePath": "../bao-source/five-spice-huggingface/dist/bao/five-spice-huggingface.bao"
+    },
+    {
+      "id": "five-spice-openai",
+      "packageName": "@baohaus/five-spice-openai",
+      "ociRepository": "baohaus/five-spice-openai",
+      "archivePath": "../bao-source/five-spice-openai/dist/bao/five-spice-openai.bao"
+    },
+    {
+      "id": "flatbuf-bao",
+      "packageName": "@baohaus/flatbuf-bao",
+      "ociRepository": "baohaus/flatbuf-bao",
+      "archivePath": "../bao-source/flatbuf-bao/dist/bao/flatbuf-bao.bao"
+    },
+    {
+      "id": "flow-dumpling",
+      "packageName": "@baohaus/flow-dumpling",
+      "ociRepository": "baohaus/flow-dumpling",
+      "archivePath": "../bao-source/flow-dumpling/dist/bao/flow-dumpling.bao"
+    },
+    {
+      "id": "folded-forms",
+      "packageName": "@baohaus/folded-forms",
+      "ociRepository": "baohaus/folded-forms",
+      "archivePath": "../bao-source/folded-forms/dist/bao/folded-forms.bao"
+    },
+    {
+      "id": "font-bao",
+      "packageName": "@baohaus/font-bao",
+      "ociRepository": "baohaus/font-bao",
+      "archivePath": "../bao-source/font-bao/dist/bao/font-bao.bao"
+    },
+    {
+      "id": "forge",
+      "packageName": "@baohaus/forge",
+      "ociRepository": "baohaus/forge",
+      "archivePath": "../forge/dist/bao/forge.bao"
+    },
+    {
+      "id": "forge-core",
+      "packageName": "@baohaus/forge-core",
+      "ociRepository": "baohaus/forge-core",
+      "archivePath": "../bao-source/forge-core/dist/bao/forge-core.bao"
+    },
+    {
+      "id": "forge-runtime",
+      "packageName": "@baohaus/forge-runtime",
+      "ociRepository": "baohaus/forge-runtime",
+      "archivePath": "../bao-source/forge-runtime/dist/bao/forge-runtime.bao"
+    },
+    {
+      "id": "forge-server",
+      "packageName": "@baohaus/forge-server",
+      "ociRepository": "baohaus/forge-server",
+      "archivePath": "../bao-source/forge-server/dist/bao/forge-server.bao"
+    },
+    {
+      "id": "forge-ssh",
+      "packageName": "@baohaus/forge-ssh",
+      "ociRepository": "baohaus/forge-ssh",
+      "archivePath": "../bao-source/forge-ssh/dist/bao/forge-ssh.bao"
+    },
+    {
+      "id": "forge-worker",
+      "packageName": "@baohaus/forge-worker",
+      "ociRepository": "baohaus/forge-worker",
+      "archivePath": "../bao-source/forge-worker/dist/bao/forge-worker.bao"
+    },
+    {
+      "id": "fortune-flags",
+      "packageName": "@baohaus/fortune-flags",
+      "ociRepository": "baohaus/fortune-flags",
+      "archivePath": "../bao-source/fortune-flags/dist/bao/fortune-flags.bao"
+    },
+    {
+      "id": "bao-edge",
+      "packageName": "@baohaus/bao-edge",
+      "ociRepository": "baohaus/bao-edge",
+      "archivePath": "../bao-source/bao-edge/dist/bao/bao-edge.bao"
+    },
+    {
+      "id": "gcp-bao",
+      "packageName": "@baohaus/gcp-bao",
+      "ociRepository": "baohaus/gcp-bao",
+      "archivePath": "../bao-source/gcp-bao/dist/bao/gcp-bao.bao"
+    },
+    {
+      "id": "geo-bao",
+      "packageName": "@baohaus/geo-bao",
+      "ociRepository": "baohaus/geo-bao",
+      "archivePath": "../bao-source/geo-bao/dist/bao/geo-bao.bao"
+    },
+    {
+      "id": "grabbun",
+      "packageName": "@baohaus/grabbun",
+      "ociRepository": "baohaus/grabbun",
+      "archivePath": "../bao-source/grabbun/dist/bao/grabbun.bao"
+    },
+    {
+      "id": "grid-gyoza",
+      "packageName": "@baohaus/grid-gyoza",
+      "ociRepository": "baohaus/grid-gyoza",
+      "archivePath": "../bao-source/grid-gyoza/dist/bao/grid-gyoza.bao"
+    },
+    {
+      "id": "grpc-bao",
+      "packageName": "@baohaus/grpc-bao",
+      "ociRepository": "baohaus/grpc-bao",
+      "archivePath": "../bao-source/grpc-bao/dist/bao/grpc-bao.bao"
+    },
+    {
+      "id": "guardrails-bao",
+      "packageName": "@baohaus/guardrails-bao",
+      "ociRepository": "baohaus/guardrails-bao",
+      "archivePath": "../bao-source/guardrails-bao/dist/bao/guardrails-bao.bao"
+    },
+    {
+      "id": "gym-bao",
+      "packageName": "@baohaus/gym-bao",
+      "ociRepository": "baohaus/gym-bao",
+      "archivePath": "../bao-source/gym-bao/dist/bao/gym-bao.bao"
+    },
+    {
+      "id": "happydumpling",
+      "packageName": "@baohaus/happydumpling",
+      "ociRepository": "baohaus/happydumpling",
+      "archivePath": "../bao-source/happydumpling/dist/bao/happydumpling.bao"
+    },
+    {
+      "id": "har-gow-config",
+      "packageName": "@baohaus/har-gow-config",
+      "ociRepository": "baohaus/har-gow-config",
+      "archivePath": "../bao-source/har-gow-config/dist/bao/har-gow-config.bao"
+    },
+    {
+      "id": "harbao-health",
+      "packageName": "@baohaus/harbao-health",
+      "ociRepository": "baohaus/harbao-health",
+      "archivePath": "../bao-source/harbao-health/dist/bao/harbao-health.bao"
+    },
+    {
+      "id": "hf-hub-bao",
+      "packageName": "@baohaus/hf-hub-bao",
+      "ociRepository": "baohaus/hf-hub-bao",
+      "archivePath": "../bao-source/hf-hub-bao/dist/bao/hf-hub-bao.bao"
+    },
+    {
+      "id": "hf-infer-bao",
+      "packageName": "@baohaus/hf-infer-bao",
+      "ociRepository": "baohaus/hf-infer-bao",
+      "archivePath": "../bao-source/hf-infer-bao/dist/bao/hf-infer-bao.bao"
+    },
+    {
+      "id": "hf-transform-bao",
+      "packageName": "@baohaus/hf-transform-bao",
+      "ociRepository": "baohaus/hf-transform-bao",
+      "archivePath": "../bao-source/hf-transform-bao/dist/bao/hf-transform-bao.bao"
+    },
+    {
+      "id": "hookao",
+      "packageName": "@baohaus/hookao",
+      "ociRepository": "baohaus/hookao",
+      "archivePath": "../bao-source/hookao/dist/bao/hookao.bao"
+    },
+    {
+      "id": "hot-broth-policy",
+      "packageName": "@baohaus/hot-broth-policy",
+      "ociRepository": "baohaus/hot-broth-policy",
+      "archivePath": "../bao-source/hot-broth-policy/dist/bao/hot-broth-policy.bao"
+    },
+    {
+      "id": "html-eslint-bao",
+      "packageName": "@baohaus/html-eslint-bao",
+      "ociRepository": "baohaus/html-eslint-bao",
+      "archivePath": "../bao-source/html-eslint-bao/dist/bao/html-eslint-bao.bao"
+    },
+    {
+      "id": "html-mantou",
+      "packageName": "@baohaus/html-mantou",
+      "ociRepository": "baohaus/html-mantou",
+      "archivePath": "../bao-source/html-mantou/dist/bao/html-mantou.bao"
+    },
+    {
+      "id": "htmx-core",
+      "packageName": "@baohaus/htmx-core",
+      "ociRepository": "baohaus/htmx-core",
+      "archivePath": "../bao-source/htmx-core/dist/bao/htmx-core.bao"
+    },
+    {
+      "id": "htmx-ext-bao",
+      "packageName": "@baohaus/htmx-ext-bao",
+      "ociRepository": "baohaus/htmx-ext-bao",
+      "archivePath": "../bao-source/htmx-ext-bao/dist/bao/htmx-ext-bao.bao"
+    },
+    {
+      "id": "htmx-mantou",
+      "packageName": "@baohaus/htmx-mantou",
+      "ociRepository": "baohaus/htmx-mantou",
+      "archivePath": "../bao-source/htmx-mantou/dist/bao/htmx-mantou.bao"
+    },
+    {
+      "id": "i18n-formatters-bao",
+      "packageName": "@baohaus/i18n-formatters-bao",
+      "ociRepository": "baohaus/i18n-formatters-bao",
+      "archivePath": "../bao-source/i18n-formatters-bao/dist/bao/i18n-formatters-bao.bao"
+    },
+    {
+      "id": "image-bao",
+      "packageName": "@baohaus/image-bao",
+      "ociRepository": "baohaus/image-bao",
+      "archivePath": "../bao-source/image-bao/dist/bao/image-bao.bao"
+    },
+    {
+      "id": "imaging-tile-core",
+      "packageName": "@baohaus/imaging-tile-core",
+      "ociRepository": "baohaus/imaging-tile-core",
+      "archivePath": "../bao-source/imaging-tile-core/dist/bao/imaging-tile-core.bao"
+    },
+    {
+      "id": "imatou-image",
+      "packageName": "@baohaus/imatou-image",
+      "ociRepository": "baohaus/imatou-image",
+      "archivePath": "../bao-source/imatou-image/dist/bao/imatou-image.bao"
+    },
+    {
+      "id": "jose-bao",
+      "packageName": "@baohaus/jose-bao",
+      "ociRepository": "baohaus/jose-bao",
+      "archivePath": "../bao-source/jose-bao/dist/bao/jose-bao.bao"
+    },
+    {
+      "id": "jsdom-bao",
+      "packageName": "@baohaus/jsdom-bao",
+      "ociRepository": "baohaus/jsdom-bao",
+      "archivePath": "../bao-source/jsdom-bao/dist/bao/jsdom-bao.bao"
+    },
+    {
+      "id": "json-gyoza",
+      "packageName": "@baohaus/json-gyoza",
+      "ociRepository": "baohaus/json-gyoza",
+      "archivePath": "../bao-source/json-gyoza/dist/bao/json-gyoza.bao"
+    },
+    {
+      "id": "jsonpath-bao",
+      "packageName": "@baohaus/jsonpath-bao",
+      "ociRepository": "baohaus/jsonpath-bao",
+      "archivePath": "../bao-source/jsonpath-bao/dist/bao/jsonpath-bao.bao"
+    },
+    {
+      "id": "jsx-bao",
+      "packageName": "@baohaus/jsx-bao",
+      "ociRepository": "baohaus/jsx-bao",
+      "archivePath": "../bao-source/jsx-bao/dist/bao/jsx-bao.bao"
+    },
+    {
+      "id": "kubernetes-bao",
+      "packageName": "@baohaus/kubernetes-bao",
+      "ociRepository": "baohaus/kubernetes-bao",
+      "archivePath": "../bao-source/kubernetes-bao/dist/bao/kubernetes-bao.bao"
+    },
+    {
+      "id": "libsql-bao",
+      "packageName": "@baohaus/libsql-bao",
+      "ociRepository": "baohaus/libsql-bao",
+      "archivePath": "../bao-source/libsql-bao/dist/bao/libsql-bao.bao"
+    },
+    {
+      "id": "load-balancer-bao",
+      "packageName": "@baohaus/load-balancer-bao",
+      "ociRepository": "baohaus/load-balancer-bao",
+      "archivePath": "../bao-source/load-balancer-bao/dist/bao/load-balancer-bao.bao"
+    },
+    {
+      "id": "lore-dumpling",
+      "packageName": "@baohaus/lore-dumpling",
+      "ociRepository": "baohaus/lore-dumpling",
+      "archivePath": "../bao-source/lore-dumpling/dist/bao/lore-dumpling.bao"
+    },
+    {
+      "id": "lore-mantou",
+      "packageName": "@baohaus/lore-mantou",
+      "ociRepository": "baohaus/lore-mantou",
+      "archivePath": "../bao-source/lore-mantou/dist/bao/lore-mantou.bao"
+    },
+    {
+      "id": "lore-motion",
+      "packageName": "@baohaus/lore-motion",
+      "ociRepository": "baohaus/lore-motion",
+      "archivePath": "../bao-source/lore-motion/dist/bao/lore-motion.bao"
+    },
+    {
+      "id": "lotus-leaf-capabilities",
+      "packageName": "@baohaus/lotus-leaf-capabilities",
+      "ociRepository": "baohaus/lotus-leaf-capabilities",
+      "archivePath": "../bao-source/lotus-leaf-capabilities/dist/bao/lotus-leaf-capabilities.bao"
+    },
+    {
+      "id": "mail-mantou",
+      "packageName": "@baohaus/mail-mantou",
+      "ociRepository": "baohaus/mail-mantou",
+      "archivePath": "../bao-source/mail-mantou/dist/bao/mail-mantou.bao"
+    },
+    {
+      "id": "markdown-bao",
+      "packageName": "@baohaus/markdown-bao",
+      "ociRepository": "baohaus/markdown-bao",
+      "archivePath": "../bao-source/markdown-bao/dist/bao/markdown-bao.bao"
+    },
+    {
+      "id": "matrix-bao",
+      "packageName": "@baohaus/matrix-bao",
+      "ociRepository": "baohaus/matrix-bao",
+      "archivePath": "../bao-source/matrix-bao/dist/bao/matrix-bao.bao"
+    },
+    {
+      "id": "mcp-mantou",
+      "packageName": "@baohaus/mcp-mantou",
+      "ociRepository": "baohaus/mcp-mantou",
+      "archivePath": "../bao-source/mcp-mantou/dist/bao/mcp-mantou.bao"
+    },
+    {
+      "id": "mdns-bao",
+      "packageName": "@baohaus/mdns-bao",
+      "ociRepository": "baohaus/mdns-bao",
+      "archivePath": "../bao-source/mdns-bao/dist/bao/mdns-bao.bao"
+    },
+    {
+      "id": "medical-ai-review",
+      "packageName": "@baohaus/medical-ai-review",
+      "ociRepository": "baohaus/medical-ai-review",
+      "archivePath": "../bao-source/medical-ai-review/dist/bao/medical-ai-review.bao"
+    },
+    {
+      "id": "medical-audit",
+      "packageName": "@baohaus/medical-audit",
+      "ociRepository": "baohaus/medical-audit",
+      "archivePath": "../bao-source/medical-audit/dist/bao/medical-audit.bao"
+    },
+    {
+      "id": "medical-core",
+      "packageName": "@baohaus/medical-core",
+      "ociRepository": "baohaus/medical-core",
+      "archivePath": "../bao-source/medical-core/dist/bao/medical-core.bao"
+    },
+    {
+      "id": "medical-deidentification",
+      "packageName": "@baohaus/medical-deidentification",
+      "ociRepository": "baohaus/medical-deidentification",
+      "archivePath": "../bao-source/medical-deidentification/dist/bao/medical-deidentification.bao"
+    },
+    {
+      "id": "medical-dicomweb",
+      "packageName": "@baohaus/medical-dicomweb",
+      "ociRepository": "baohaus/medical-dicomweb",
+      "archivePath": "../bao-source/medical-dicomweb/dist/bao/medical-dicomweb.bao"
+    },
+    {
+      "id": "medical-fhir-reporting",
+      "packageName": "@baohaus/medical-fhir-reporting",
+      "ociRepository": "baohaus/medical-fhir-reporting",
+      "archivePath": "../bao-source/medical-fhir-reporting/dist/bao/medical-fhir-reporting.bao"
+    },
+    {
+      "id": "medical-imaging",
+      "packageName": "@baohaus/medical-imaging",
+      "ociRepository": "baohaus/medical-imaging",
+      "archivePath": "../bao-source/medical-imaging/dist/bao/medical-imaging.bao"
+    },
+    {
+      "id": "message-queue-bao",
+      "packageName": "@baohaus/message-queue-bao",
+      "ociRepository": "baohaus/message-queue-bao",
+      "archivePath": "../bao-source/message-queue-bao/dist/bao/message-queue-bao.bao"
+    },
+    {
+      "id": "meter-mochi",
+      "packageName": "@baohaus/meter-mochi",
+      "ociRepository": "baohaus/meter-mochi",
+      "archivePath": "../bao-source/meter-mochi/dist/bao/meter-mochi.bao"
+    },
+    {
+      "id": "mirror-mantou",
+      "packageName": "@baohaus/mirror-mantou",
+      "ociRepository": "baohaus/mirror-mantou",
+      "archivePath": "../bao-source/mirror-mantou/dist/bao/mirror-mantou.bao"
+    },
+    {
+      "id": "mock-server-bao",
+      "packageName": "@baohaus/mock-server-bao",
+      "ociRepository": "baohaus/mock-server-bao",
+      "archivePath": "../bao-source/mock-server-bao/dist/bao/mock-server-bao.bao"
+    },
+    {
+      "id": "model-eval-bao",
+      "packageName": "@baohaus/model-eval-bao",
+      "ociRepository": "baohaus/model-eval-bao",
+      "archivePath": "../bao-source/model-eval-bao/dist/bao/model-eval-bao.bao"
+    },
+    {
+      "id": "morph-bao",
+      "packageName": "@baohaus/morph-bao",
+      "ociRepository": "baohaus/morph-bao",
+      "archivePath": "../bao-source/morph-bao/dist/bao/morph-bao.bao"
+    },
+    {
+      "id": "nahbao",
+      "packageName": "@baohaus/nahbao",
+      "ociRepository": "baohaus/nahbao",
+      "archivePath": "../bao-source/nahbao/dist/bao/nahbao.bao"
+    },
+    {
+      "id": "oauth-xlb",
+      "packageName": "@baohaus/oauth-xlb",
+      "ociRepository": "baohaus/oauth-xlb",
+      "archivePath": "../bao-source/oauth-xlb/dist/bao/oauth-xlb.bao"
+    },
+    {
+      "id": "onnx-node-bao",
+      "packageName": "@baohaus/onnx-node-bao",
+      "ociRepository": "baohaus/onnx-node-bao",
+      "archivePath": "../bao-source/onnx-node-bao/dist/bao/onnx-node-bao.bao"
+    },
+    {
+      "id": "onnx-web-bao",
+      "packageName": "@baohaus/onnx-web-bao",
+      "ociRepository": "baohaus/onnx-web-bao",
+      "archivePath": "../bao-source/onnx-web-bao/dist/bao/onnx-web-bao.bao"
+    },
+    {
+      "id": "onvif-bao",
+      "packageName": "@baohaus/onvif-bao",
+      "ociRepository": "baohaus/onvif-bao",
+      "archivePath": "../bao-source/onvif-bao/dist/bao/onvif-bao.bao"
+    },
+    {
+      "id": "openapi-mantou",
+      "packageName": "@baohaus/openapi-mantou",
+      "ociRepository": "baohaus/openapi-mantou",
+      "archivePath": "../bao-source/openapi-mantou/dist/bao/openapi-mantou.bao"
+    },
+    {
+      "id": "openfeature-bao",
+      "packageName": "@baohaus/openfeature-bao",
+      "ociRepository": "baohaus/openfeature-bao",
+      "archivePath": "../bao-source/openfeature-bao/dist/bao/openfeature-bao.bao"
+    },
+    {
+      "id": "openid-bao",
+      "packageName": "@baohaus/openid-bao",
+      "ociRepository": "baohaus/openid-bao",
+      "archivePath": "../bao-source/openid-bao/dist/bao/openid-bao.bao"
+    },
+    {
+      "id": "otel-api-bao",
+      "packageName": "@baohaus/otel-api-bao",
+      "ociRepository": "baohaus/otel-api-bao",
+      "archivePath": "../bao-source/otel-api-bao/dist/bao/otel-api-bao.bao"
+    },
+    {
+      "id": "otel-bao",
+      "packageName": "@baohaus/otel-bao",
+      "ociRepository": "baohaus/otel-bao",
+      "archivePath": "../bao-source/otel-bao/dist/bao/otel-bao.bao"
+    },
+    {
+      "id": "otel-exporter-bao",
+      "packageName": "@baohaus/otel-exporter-bao",
+      "ociRepository": "baohaus/otel-exporter-bao",
+      "archivePath": "../bao-source/otel-exporter-bao/dist/bao/otel-exporter-bao.bao"
+    },
+    {
+      "id": "otel-instrument-bao",
+      "packageName": "@baohaus/otel-instrument-bao",
+      "ociRepository": "baohaus/otel-instrument-bao",
+      "archivePath": "../bao-source/otel-instrument-bao/dist/bao/otel-instrument-bao.bao"
+    },
+    {
+      "id": "otel-sdk-bao",
+      "packageName": "@baohaus/otel-sdk-bao",
+      "ociRepository": "baohaus/otel-sdk-bao",
+      "archivePath": "../bao-source/otel-sdk-bao/dist/bao/otel-sdk-bao.bao"
+    },
+    {
+      "id": "parity-pao",
+      "packageName": "@baohaus/parity-pao",
+      "ociRepository": "baohaus/parity-pao",
+      "archivePath": "../bao-source/parity-pao/dist/bao/parity-pao.bao"
+    },
+    {
+      "id": "pathology-ai-runtime",
+      "packageName": "@baohaus/pathology-ai-runtime",
+      "ociRepository": "baohaus/pathology-ai-runtime",
+      "archivePath": "../bao-source/pathology-ai-runtime/dist/bao/pathology-ai-runtime.bao"
+    },
+    {
+      "id": "pathology-annotations",
+      "packageName": "@baohaus/pathology-annotations",
+      "ociRepository": "baohaus/pathology-annotations",
+      "archivePath": "../bao-source/pathology-annotations/dist/bao/pathology-annotations.bao"
+    },
+    {
+      "id": "pathology-consensus",
+      "packageName": "@baohaus/pathology-consensus",
+      "ociRepository": "baohaus/pathology-consensus",
+      "archivePath": "../bao-source/pathology-consensus/dist/bao/pathology-consensus.bao"
+    },
+    {
+      "id": "pathology-core",
+      "packageName": "@baohaus/pathology-core",
+      "ociRepository": "baohaus/pathology-core",
+      "archivePath": "../bao-source/pathology-core/dist/bao/pathology-core.bao"
+    },
+    {
+      "id": "pathology-dataset-curator",
+      "packageName": "@baohaus/pathology-dataset-curator",
+      "ociRepository": "baohaus/pathology-dataset-curator",
+      "archivePath": "../bao-source/pathology-dataset-curator/dist/bao/pathology-dataset-curator.bao"
+    },
+    {
+      "id": "pathology-reporting",
+      "packageName": "@baohaus/pathology-reporting",
+      "ociRepository": "baohaus/pathology-reporting",
+      "archivePath": "../bao-source/pathology-reporting/dist/bao/pathology-reporting.bao"
+    },
+    {
+      "id": "pathology-slide-viewer",
+      "packageName": "@baohaus/pathology-slide-viewer",
+      "ociRepository": "baohaus/pathology-slide-viewer",
+      "archivePath": "../bao-source/pathology-slide-viewer/dist/bao/pathology-slide-viewer.bao"
+    },
+    {
+      "id": "pathology-spatial-context",
+      "packageName": "@baohaus/pathology-spatial-context",
+      "ociRepository": "baohaus/pathology-spatial-context",
+      "archivePath": "../bao-source/pathology-spatial-context/dist/bao/pathology-spatial-context.bao"
+    },
+    {
+      "id": "pathology-usd-annotations",
+      "packageName": "@baohaus/pathology-usd-annotations",
+      "ociRepository": "baohaus/pathology-usd-annotations",
+      "archivePath": "../bao-source/pathology-usd-annotations/dist/bao/pathology-usd-annotations.bao"
+    },
+    {
+      "id": "pdf-baozi",
+      "packageName": "@baohaus/pdf-baozi",
+      "ociRepository": "baohaus/pdf-baozi",
+      "archivePath": "../bao-source/pdf-baozi/dist/bao/pdf-baozi.bao"
+    },
+    {
+      "id": "pdf-engine-bao",
+      "packageName": "@baohaus/pdf-engine-bao",
+      "ociRepository": "baohaus/pdf-engine-bao",
+      "archivePath": "../bao-source/pdf-engine-bao/dist/bao/pdf-engine-bao.bao"
+    },
+    {
+      "id": "perception-schemas",
+      "packageName": "@baohaus/perception-schemas",
+      "ociRepository": "baohaus/perception-schemas",
+      "archivePath": "../bao-source/perception-schemas/dist/bao/perception-schemas.bao"
+    },
+    {
+      "id": "permit-potsticker",
+      "packageName": "@baohaus/permit-potsticker",
+      "ociRepository": "baohaus/permit-potsticker",
+      "archivePath": "../bao-source/permit-potsticker/dist/bao/permit-potsticker.bao"
+    },
+    {
+      "id": "pg-bao",
+      "packageName": "@baohaus/pg-bao",
+      "ociRepository": "baohaus/pg-bao",
+      "archivePath": "../bao-source/pg-bao/dist/bao/pg-bao.bao"
+    },
+    {
+      "id": "piratebao",
+      "packageName": "@baohaus/piratebao",
+      "ociRepository": "baohaus/piratebao",
+      "archivePath": "../bao-source/piratebao/dist/bao/piratebao.bao"
+    },
+    {
+      "id": "pitch-potsticker",
+      "packageName": "@baohaus/pitch-potsticker",
+      "ociRepository": "baohaus/pitch-potsticker",
+      "archivePath": "../bao-source/pitch-potsticker/dist/bao/pitch-potsticker.bao"
+    },
+    {
+      "id": "pointcloud-artifact-core",
+      "packageName": "@baohaus/pointcloud-artifact-core",
+      "ociRepository": "baohaus/pointcloud-artifact-core",
+      "archivePath": "../bao-source/pointcloud-artifact-core/dist/bao/pointcloud-artifact-core.bao"
+    },
+    {
+      "id": "policy-as-code-bao",
+      "packageName": "@baohaus/policy-as-code-bao",
+      "ociRepository": "baohaus/policy-as-code-bao",
+      "archivePath": "../bao-source/policy-as-code-bao/dist/bao/policy-as-code-bao.bao"
+    },
+    {
+      "id": "prisma-cli-bao",
+      "packageName": "@baohaus/prisma-cli-bao",
+      "ociRepository": "baohaus/prisma-cli-bao",
+      "archivePath": "../bao-source/prisma-cli-bao/dist/bao/prisma-cli-bao.bao"
+    },
+    {
+      "id": "prisma-client-bao",
+      "packageName": "@baohaus/prisma-client-bao",
+      "ociRepository": "baohaus/prisma-client-bao",
+      "archivePath": "../bao-source/prisma-client-bao/dist/bao/prisma-client-bao.bao"
+    },
+    {
+      "id": "prisma-libsql",
+      "packageName": "@baohaus/prisma-libsql",
+      "ociRepository": "baohaus/prisma-libsql",
+      "archivePath": "../bao-source/prisma-libsql/dist/bao/prisma-libsql.bao"
+    },
+    {
+      "id": "prisma-otel-bao",
+      "packageName": "@baohaus/prisma-otel-bao",
+      "ociRepository": "baohaus/prisma-otel-bao",
+      "archivePath": "../bao-source/prisma-otel-bao/dist/bao/prisma-otel-bao.bao"
+    },
+    {
+      "id": "prisma-pao",
+      "packageName": "@baohaus/prisma-pao",
+      "ociRepository": "baohaus/prisma-pao",
+      "archivePath": "../bao-source/prisma-pao/dist/bao/prisma-pao.bao"
+    },
+    {
+      "id": "prisma-pg-bao",
+      "packageName": "@baohaus/prisma-pg-bao",
+      "ociRepository": "baohaus/prisma-pg-bao",
+      "archivePath": "../bao-source/prisma-pg-bao/dist/bao/prisma-pg-bao.bao"
+    },
+    {
+      "id": "prom-metrics-bao",
+      "packageName": "@baohaus/prom-metrics-bao",
+      "ociRepository": "baohaus/prom-metrics-bao",
+      "archivePath": "../bao-source/prom-metrics-bao/dist/bao/prom-metrics-bao.bao"
+    },
+    {
+      "id": "prompt-templates-bao",
+      "packageName": "@baohaus/prompt-templates-bao",
+      "ociRepository": "baohaus/prompt-templates-bao",
+      "archivePath": "../bao-source/prompt-templates-bao/dist/bao/prompt-templates-bao.bao"
+    },
+    {
+      "id": "prompt-wonton",
+      "packageName": "@baohaus/prompt-wonton",
+      "ociRepository": "baohaus/prompt-wonton",
+      "archivePath": "../bao-source/prompt-wonton/dist/bao/prompt-wonton.bao"
+    },
+    {
+      "id": "proofbun",
+      "packageName": "@baohaus/proofbun",
+      "ociRepository": "baohaus/proofbun",
+      "archivePath": "../bao-source/proofbun/dist/bao/proofbun.bao"
+    },
+    {
+      "id": "property-test-bao",
+      "packageName": "@baohaus/property-test-bao",
+      "ociRepository": "baohaus/property-test-bao",
+      "archivePath": "../bao-source/property-test-bao/dist/bao/property-test-bao.bao"
+    },
+    {
+      "id": "query-builder-bao",
+      "packageName": "@baohaus/query-builder-bao",
+      "ociRepository": "baohaus/query-builder-bao",
+      "archivePath": "../bao-source/query-builder-bao/dist/bao/query-builder-bao.bao"
+    },
+    {
+      "id": "queue-bao",
+      "packageName": "@baohaus/queue-bao",
+      "ociRepository": "baohaus/queue-bao",
+      "archivePath": "../bao-source/queue-bao/dist/bao/queue-bao.bao"
+    },
+    {
+      "id": "rage-roll",
+      "packageName": "@baohaus/rage-roll",
+      "ociRepository": "baohaus/rage-roll",
+      "archivePath": "../bao-source/rage-roll/dist/bao/rage-roll.bao"
+    },
+    {
+      "id": "ramen-rag",
+      "packageName": "@baohaus/ramen-rag",
+      "ociRepository": "baohaus/ramen-rag",
+      "archivePath": "../bao-source/ramen-rag/dist/bao/ramen-rag.bao"
+    },
+    {
+      "id": "rate-limiter-bao",
+      "packageName": "@baohaus/rate-limiter-bao",
+      "ociRepository": "baohaus/rate-limiter-bao",
+      "archivePath": "../bao-source/rate-limiter-bao/dist/bao/rate-limiter-bao.bao"
+    },
+    {
+      "id": "redis-bao",
+      "packageName": "@baohaus/redis-bao",
+      "ociRepository": "baohaus/redis-bao",
+      "archivePath": "../bao-source/redis-bao/dist/bao/redis-bao.bao"
+    },
+    {
+      "id": "release-automation-bao",
+      "packageName": "@baohaus/release-automation-bao",
+      "ociRepository": "baohaus/release-automation-bao",
+      "archivePath": "../bao-source/release-automation-bao/dist/bao/release-automation-bao.bao"
+    },
+    {
+      "id": "remote-bao",
+      "packageName": "@baohaus/remote-bao",
+      "ociRepository": "baohaus/remote-bao",
+      "archivePath": "../bao-source/remote-bao/dist/bao/remote-bao.bao"
+    },
+    {
+      "id": "resend-bao",
+      "packageName": "@baohaus/resend-bao",
+      "ociRepository": "baohaus/resend-bao",
+      "archivePath": "../bao-source/resend-bao/dist/bao/resend-bao.bao"
+    },
+    {
+      "id": "rice-noodle-persistence",
+      "packageName": "@baohaus/rice-noodle-persistence",
+      "ociRepository": "baohaus/rice-noodle-persistence",
+      "archivePath": "../bao-source/rice-noodle-persistence/dist/bao/rice-noodle-persistence.bao"
+    },
+    {
+      "id": "robotics-schemas",
+      "packageName": "@baohaus/robotics-schemas",
+      "ociRepository": "baohaus/robotics-schemas",
+      "archivePath": "../bao-source/robotics-schemas/dist/bao/robotics-schemas.bao"
+    },
+    {
+      "id": "ros-bao",
+      "packageName": "@baohaus/ros-bao",
+      "ociRepository": "baohaus/ros-bao",
+      "archivePath": "../bao-source/ros-bao/dist/bao/ros-bao.bao"
+    },
+    {
+      "id": "route-dumpling",
+      "packageName": "@baohaus/route-dumpling",
+      "ociRepository": "baohaus/route-dumpling",
+      "archivePath": "../bao-source/route-dumpling/dist/bao/route-dumpling.bao"
+    },
+    {
+      "id": "sanitize-bao",
+      "packageName": "@baohaus/sanitize-bao",
+      "ociRepository": "baohaus/sanitize-bao",
+      "archivePath": "../bao-source/sanitize-bao/dist/bao/sanitize-bao.bao"
+    },
+    {
+      "id": "scallion-logger",
+      "packageName": "@baohaus/scallion-logger",
+      "ociRepository": "baohaus/scallion-logger",
+      "archivePath": "../bao-source/scallion-logger/dist/bao/scallion-logger.bao"
+    },
+    {
+      "id": "scene-asset-core",
+      "packageName": "@baohaus/scene-asset-core",
+      "ociRepository": "baohaus/scene-asset-core",
+      "archivePath": "../bao-source/scene-asset-core/dist/bao/scene-asset-core.bao"
+    },
+    {
+      "id": "schema-shumai",
+      "packageName": "@baohaus/schema-shumai",
+      "ociRepository": "baohaus/schema-shumai",
+      "archivePath": "../bao-source/schema-shumai/dist/bao/schema-shumai.bao"
+    },
+    {
+      "id": "secret-rotation-bao",
+      "packageName": "@baohaus/secret-rotation-bao",
+      "ociRepository": "baohaus/secret-rotation-bao",
+      "archivePath": "../bao-source/secret-rotation-bao/dist/bao/secret-rotation-bao.bao"
+    },
+    {
+      "id": "semver-bao",
+      "packageName": "@baohaus/semver-bao",
+      "ociRepository": "baohaus/semver-bao",
+      "archivePath": "../bao-source/semver-bao/dist/bao/semver-bao.bao"
+    },
+    {
+      "id": "sentinel-shumai",
+      "packageName": "@baohaus/sentinel-shumai",
+      "ociRepository": "baohaus/sentinel-shumai",
+      "archivePath": "../bao-source/sentinel-shumai/dist/bao/sentinel-shumai.bao"
+    },
+    {
+      "id": "sentry-bao",
+      "packageName": "@baohaus/sentry-bao",
+      "ociRepository": "baohaus/sentry-bao",
+      "archivePath": "../bao-source/sentry-bao/dist/bao/sentry-bao.bao"
+    },
+    {
+      "id": "service-discovery-bao",
+      "packageName": "@baohaus/service-discovery-bao",
+      "ociRepository": "baohaus/service-discovery-bao",
+      "archivePath": "../bao-source/service-discovery-bao/dist/bao/service-discovery-bao.bao"
+    },
+    {
+      "id": "sesame-crunch-analytics",
+      "packageName": "@baohaus/sesame-crunch-analytics",
+      "ociRepository": "baohaus/sesame-crunch-analytics",
+      "archivePath": "../bao-source/sesame-crunch-analytics/dist/bao/sesame-crunch-analytics.bao"
+    },
+    {
+      "id": "session-dumpling",
+      "packageName": "@baohaus/session-dumpling",
+      "ociRepository": "baohaus/session-dumpling",
+      "archivePath": "../bao-source/session-dumpling/dist/bao/session-dumpling.bao"
+    },
+    {
+      "id": "shaobing-secrets",
+      "packageName": "@baohaus/shaobing-secrets",
+      "ociRepository": "baohaus/shaobing-secrets",
+      "archivePath": "../bao-source/shaobing-secrets/dist/bao/shaobing-secrets.bao"
+    },
+    {
+      "id": "shumai-audio",
+      "packageName": "@baohaus/shumai-audio",
+      "ociRepository": "baohaus/shumai-audio",
+      "archivePath": "../bao-source/shumai-audio/dist/bao/shumai-audio.bao"
+    },
+    {
+      "id": "shumai-http",
+      "packageName": "@baohaus/shumai-http",
+      "ociRepository": "baohaus/shumai-http",
+      "archivePath": "../bao-source/shumai-http/dist/bao/shumai-http.bao"
+    },
+    {
+      "id": "shumai-transform",
+      "packageName": "@baohaus/shumai-transform",
+      "ociRepository": "baohaus/shumai-transform",
+      "archivePath": "../bao-source/shumai-transform/dist/bao/shumai-transform.bao"
+    },
+    {
+      "id": "shumai-trigger",
+      "packageName": "@baohaus/shumai-trigger",
+      "ociRepository": "baohaus/shumai-trigger",
+      "archivePath": "../bao-source/shumai-trigger/dist/bao/shumai-trigger.bao"
+    },
+    {
+      "id": "sign-bao",
+      "packageName": "@baohaus/sign-bao",
+      "ociRepository": "baohaus/sign-bao",
+      "archivePath": "../bao-source/sign-bao/dist/bao/sign-bao.bao"
+    },
+    {
+      "id": "slash-siu",
+      "packageName": "@baohaus/slash-siu",
+      "ociRepository": "baohaus/slash-siu",
+      "archivePath": "../bao-source/slash-siu/dist/bao/slash-siu.bao"
+    },
+    {
+      "id": "soy-view-kit",
+      "packageName": "@baohaus/soy-view-kit",
+      "ociRepository": "baohaus/soy-view-kit",
+      "archivePath": "../bao-source/soy-view-kit/dist/bao/soy-view-kit.bao"
+    },
+    {
+      "id": "splat-artifact-core",
+      "packageName": "@baohaus/splat-artifact-core",
+      "ociRepository": "baohaus/splat-artifact-core",
+      "archivePath": "../bao-source/splat-artifact-core/dist/bao/splat-artifact-core.bao"
+    },
+    {
+      "id": "sse-bao",
+      "packageName": "@baohaus/sse-bao",
+      "ociRepository": "baohaus/sse-bao",
+      "archivePath": "../bao-source/sse-bao/dist/bao/sse-bao.bao"
+    },
+    {
+      "id": "static-bao",
+      "packageName": "@baohaus/static-bao",
+      "ociRepository": "baohaus/static-bao",
+      "archivePath": "../bao-source/static-bao/dist/bao/static-bao.bao"
+    },
+    {
+      "id": "stream-momo",
+      "packageName": "@baohaus/stream-momo",
+      "ociRepository": "baohaus/stream-momo",
+      "archivePath": "../bao-source/stream-momo/dist/bao/stream-momo.bao"
+    },
+    {
+      "id": "style-shumai",
+      "packageName": "@baohaus/style-shumai",
+      "ociRepository": "baohaus/style-shumai",
+      "archivePath": "../bao-source/style-shumai/dist/bao/style-shumai.bao"
+    },
+    {
+      "id": "stylelint-bao",
+      "packageName": "@baohaus/stylelint-bao",
+      "ociRepository": "baohaus/stylelint-bao",
+      "archivePath": "../bao-source/stylelint-bao/dist/bao/stylelint-bao.bao"
+    },
+    {
+      "id": "swipebun",
+      "packageName": "@baohaus/swipebun",
+      "ociRepository": "baohaus/swipebun",
+      "archivePath": "../bao-source/swipebun/dist/bao/swipebun.bao"
+    },
+    {
+      "id": "sysinfo-bao",
+      "packageName": "@baohaus/sysinfo-bao",
+      "ociRepository": "baohaus/sysinfo-bao",
+      "archivePath": "../bao-source/sysinfo-bao/dist/bao/sysinfo-bao.bao"
+    },
+    {
+      "id": "tailwind-bao",
+      "packageName": "@baohaus/tailwind-bao",
+      "ociRepository": "baohaus/tailwind-bao",
+      "archivePath": "../bao-source/tailwind-bao/dist/bao/tailwind-bao.bao"
+    },
+    {
+      "id": "tailwind-cli-bao",
+      "packageName": "@baohaus/tailwind-cli-bao",
+      "ociRepository": "baohaus/tailwind-cli-bao",
+      "archivePath": "../bao-source/tailwind-cli-bao/dist/bao/tailwind-cli-bao.bao"
+    },
+    {
+      "id": "tangyuan-i18n",
+      "packageName": "@baohaus/tangyuan-i18n",
+      "ociRepository": "baohaus/tangyuan-i18n",
+      "archivePath": "../bao-source/tangyuan-i18n/dist/bao/tangyuan-i18n.bao"
+    },
+    {
+      "id": "tar-bao",
+      "packageName": "@baohaus/tar-bao",
+      "ociRepository": "baohaus/tar-bao",
+      "archivePath": "../bao-source/tar-bao/dist/bao/tar-bao.bao"
+    },
+    {
+      "id": "taro-cache",
+      "packageName": "@baohaus/taro-cache",
+      "ociRepository": "baohaus/taro-cache",
+      "archivePath": "../bao-source/taro-cache/dist/bao/taro-cache.bao"
+    },
+    {
+      "id": "tauri-shell-core",
+      "packageName": "@baohaus/tauri-shell-core",
+      "ociRepository": "baohaus/tauri-shell-core",
+      "archivePath": "../bao-source/tauri-shell-core/dist/bao/tauri-shell-core.bao"
+    },
+    {
+      "id": "tdz-tangyuan",
+      "packageName": "@baohaus/tdz-tangyuan",
+      "ociRepository": "baohaus/tdz-tangyuan",
+      "archivePath": "../bao-source/tdz-tangyuan/dist/bao/tdz-tangyuan.bao"
+    },
+    {
+      "id": "tea-house-asr",
+      "packageName": "@baohaus/tea-house-asr",
+      "ociRepository": "baohaus/tea-house-asr",
+      "archivePath": "../bao-source/tea-house-asr/dist/bao/tea-house-asr.bao"
+    },
+    {
+      "id": "terraform-bao",
+      "packageName": "@baohaus/terraform-bao",
+      "ociRepository": "baohaus/terraform-bao",
+      "archivePath": "../bao-source/terraform-bao/dist/bao/terraform-bao.bao"
+    },
+    {
+      "id": "test-fixture-bao",
+      "packageName": "@baohaus/test-fixture-bao",
+      "ociRepository": "baohaus/test-fixture-bao",
+      "archivePath": "../bao-source/test-fixture-bao/dist/bao/test-fixture-bao.bao"
+    },
+    {
+      "id": "text-classifier-bao",
+      "packageName": "@baohaus/text-classifier-bao",
+      "ociRepository": "baohaus/text-classifier-bao",
+      "archivePath": "../bao-source/text-classifier-bao/dist/bao/text-classifier-bao.bao"
+    },
+    {
+      "id": "three-bao",
+      "packageName": "@baohaus/three-bao",
+      "ociRepository": "baohaus/three-bao",
+      "archivePath": "../bao-source/three-bao/dist/bao/three-bao.bao"
+    },
+    {
+      "id": "throttle-bao",
+      "packageName": "@baohaus/throttle-bao",
+      "ociRepository": "baohaus/throttle-bao",
+      "archivePath": "../bao-source/throttle-bao/dist/bao/throttle-bao.bao"
+    },
+    {
+      "id": "timing-bao",
+      "packageName": "@baohaus/timing-bao",
+      "ociRepository": "baohaus/timing-bao",
+      "archivePath": "../bao-source/timing-bao/dist/bao/timing-bao.bao"
+    },
+    {
+      "id": "tls-bao",
+      "packageName": "@baohaus/tls-bao",
+      "ociRepository": "baohaus/tls-bao",
+      "archivePath": "../bao-source/tls-bao/dist/bao/tls-bao.bao"
+    },
+    {
+      "id": "tool-boxiao",
+      "packageName": "@baohaus/tool-boxiao",
+      "ociRepository": "baohaus/tool-boxiao",
+      "archivePath": "../bao-source/tool-boxiao/dist/bao/tool-boxiao.bao"
+    },
+    {
+      "id": "transcript-xiao",
+      "packageName": "@baohaus/transcript-xiao",
+      "ociRepository": "baohaus/transcript-xiao",
+      "archivePath": "../bao-source/transcript-xiao/dist/bao/transcript-xiao.bao"
+    },
+    {
+      "id": "ts-eslint-bao",
+      "packageName": "@baohaus/ts-eslint-bao",
+      "ociRepository": "baohaus/ts-eslint-bao",
+      "archivePath": "../bao-source/ts-eslint-bao/dist/bao/ts-eslint-bao.bao"
+    },
+    {
+      "id": "turnip-cake-jobs",
+      "packageName": "@baohaus/turnip-cake-jobs",
+      "ociRepository": "baohaus/turnip-cake-jobs",
+      "archivePath": "../bao-source/turnip-cake-jobs/dist/bao/turnip-cake-jobs.bao"
+    },
+    {
+      "id": "typebox-bao",
+      "packageName": "@baohaus/typebox-bao",
+      "ociRepository": "baohaus/typebox-bao",
+      "archivePath": "../bao-source/typebox-bao/dist/bao/typebox-bao.bao"
+    },
+    {
+      "id": "ui-canvas-locking",
+      "packageName": "@baohaus/ui-canvas-locking",
+      "ociRepository": "baohaus/ui-canvas-locking",
+      "archivePath": "../bao-source/ui-canvas-locking/dist/bao/ui-canvas-locking.bao"
+    },
+    {
+      "id": "ui-language-core",
+      "packageName": "@baohaus/ui-language-core",
+      "ociRepository": "baohaus/ui-language-core",
+      "archivePath": "../bao-source/ui-language-core/dist/bao/ui-language-core.bao"
+    },
+    {
+      "id": "ui-shell-core",
+      "packageName": "@baohaus/ui-shell-core",
+      "ociRepository": "baohaus/ui-shell-core",
+      "archivePath": "../bao-source/ui-shell-core/dist/bao/ui-shell-core.bao"
+    },
+    {
+      "id": "ui-ssr-partials",
+      "packageName": "@baohaus/ui-ssr-partials",
+      "ociRepository": "baohaus/ui-ssr-partials",
+      "archivePath": "../bao-source/ui-ssr-partials/dist/bao/ui-ssr-partials.bao"
+    },
+    {
+      "id": "usd-annotation-interop",
+      "packageName": "@baohaus/usd-annotation-interop",
+      "ociRepository": "baohaus/usd-annotation-interop",
+      "archivePath": "../bao-source/usd-annotation-interop/dist/bao/usd-annotation-interop.bao"
+    },
+    {
+      "id": "usd-annotation-roundtrip",
+      "packageName": "@baohaus/usd-annotation-roundtrip",
+      "ociRepository": "baohaus/usd-annotation-roundtrip",
+      "archivePath": "../bao-source/usd-annotation-roundtrip/dist/bao/usd-annotation-roundtrip.bao"
+    },
+    {
+      "id": "usd-asset-core",
+      "packageName": "@baohaus/usd-asset-core",
+      "ociRepository": "baohaus/usd-asset-core",
+      "archivePath": "../bao-source/usd-asset-core/dist/bao/usd-asset-core.bao"
+    },
+    {
+      "id": "usd-scene-core",
+      "packageName": "@baohaus/usd-scene-core",
+      "ociRepository": "baohaus/usd-scene-core",
+      "archivePath": "../bao-source/usd-scene-core/dist/bao/usd-scene-core.bao"
+    },
+    {
+      "id": "uuid-bao",
+      "packageName": "@baohaus/uuid-bao",
+      "ociRepository": "baohaus/uuid-bao",
+      "archivePath": "../bao-source/uuid-bao/dist/bao/uuid-bao.bao"
+    },
+    {
+      "id": "vector-bao",
+      "packageName": "@baohaus/vector-bao",
+      "ociRepository": "baohaus/vector-bao",
+      "archivePath": "../bao-source/vector-bao/dist/bao/vector-bao.bao"
+    },
+    {
+      "id": "viewer-bao",
+      "packageName": "@baohaus/viewer-bao",
+      "ociRepository": "baohaus/viewer-bao",
+      "archivePath": "../bao-source/viewer-bao/dist/bao/viewer-bao.bao"
+    },
+    {
+      "id": "vulnerability-scanner-bao",
+      "packageName": "@baohaus/vulnerability-scanner-bao",
+      "ociRepository": "baohaus/vulnerability-scanner-bao",
+      "archivePath": "../bao-source/vulnerability-scanner-bao/dist/bao/vulnerability-scanner-bao.bao"
+    },
+    {
+      "id": "ward-wonton",
+      "packageName": "@baohaus/ward-wonton",
+      "ociRepository": "baohaus/ward-wonton",
+      "archivePath": "../bao-source/ward-wonton/dist/bao/ward-wonton.bao"
+    },
+    {
+      "id": "webhook-bao",
+      "packageName": "@baohaus/webhook-bao",
+      "ociRepository": "baohaus/webhook-bao",
+      "archivePath": "../bao-source/webhook-bao/dist/bao/webhook-bao.bao"
+    },
+    {
+      "id": "websocket-bao",
+      "packageName": "@baohaus/websocket-bao",
+      "ociRepository": "baohaus/websocket-bao",
+      "archivePath": "../bao-source/websocket-bao/dist/bao/websocket-bao.bao"
+    },
+    {
+      "id": "wonton",
+      "packageName": "@baohaus/wonton",
+      "ociRepository": "baohaus/wonton",
+      "archivePath": "../bao-source/wonton/dist/bao/wonton.bao"
+    },
+    {
+      "id": "wonton-contracts",
+      "packageName": "@baohaus/wonton-contracts",
+      "ociRepository": "baohaus/wonton-contracts",
+      "archivePath": "../bao-source/wonton-contracts/dist/bao/wonton-contracts.bao"
+    },
+    {
+      "id": "xiao-long-engine",
+      "packageName": "@baohaus/xiao-long-engine",
+      "ociRepository": "baohaus/xiao-long-engine",
+      "archivePath": "../bao-source/xiao-long-engine/dist/bao/xiao-long-engine.bao"
+    },
+    {
+      "id": "xlb-upload",
+      "packageName": "@baohaus/xlb-upload",
+      "ociRepository": "baohaus/xlb-upload",
+      "archivePath": "../bao-source/xlb-upload/dist/bao/xlb-upload.bao"
+    },
+    {
+      "id": "xml-bao",
+      "packageName": "@baohaus/xml-bao",
+      "ociRepository": "baohaus/xml-bao",
+      "archivePath": "../bao-source/xml-bao/dist/bao/xml-bao.bao"
+    },
+    {
+      "id": "yaml-bao",
+      "packageName": "@baohaus/yaml-bao",
+      "ociRepository": "baohaus/yaml-bao",
+      "archivePath": "../bao-source/yaml-bao/dist/bao/yaml-bao.bao"
+    },
+    {
+      "id": "ai-providers-bao",
+      "packageName": "@baohaus/ai-providers-bao",
+      "ociRepository": "baohaus/ai-providers-bao",
+      "archivePath": "../bao-source/ai-providers-bao/dist/bao/ai-providers-bao.bao"
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "governance.generate",
+      "kind": "governance",
+      "route": "bun run governance:generate",
+      "auth": "public"
+    },
+    {
+      "id": "governance.check",
+      "kind": "governance",
+      "route": "bun run governance:check",
+      "auth": "public"
+    },
+    {
+      "id": "app.home",
+      "kind": "html",
+      "route": "/",
+      "auth": "public"
+    },
+    {
+      "id": "auth.signin.page",
+      "kind": "html",
+      "route": "/sign-in",
+      "auth": "public"
+    },
+    {
+      "id": "auth.register.page",
+      "kind": "html",
+      "route": "/register",
+      "auth": "public"
+    },
+    {
+      "id": "auth.signout.action",
+      "kind": "html",
+      "route": "/sign-out",
+      "auth": "authenticated"
+    },
+    {
+      "id": "auth.forgot-password.page",
+      "kind": "html",
+      "route": "/forgot-password",
+      "auth": "public"
+    },
+    {
+      "id": "auth.reset-password.page",
+      "kind": "html",
+      "route": "/reset-password",
+      "auth": "public"
+    },
+    {
+      "id": "auth.forgot-password.action",
+      "kind": "api",
+      "route": "/forget-password",
+      "auth": "public"
+    },
+    {
+      "id": "auth.handler",
+      "kind": "api",
+      "route": "/api/auth/*",
+      "auth": "public"
+    },
+    {
+      "id": "account.page",
+      "kind": "html",
+      "route": "/account",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.profile.page",
+      "kind": "html",
+      "route": "/account/profile",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.password.page",
+      "kind": "html",
+      "route": "/account/password",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.keys.page",
+      "kind": "html",
+      "route": "/account/keys",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.fragment",
+      "kind": "html",
+      "route": "/fragments/account",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.keys.fragment",
+      "kind": "html",
+      "route": "/fragments/account/keys",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.keys.delete",
+      "kind": "html",
+      "route": "/account/keys/:keyType/:id/delete",
+      "auth": "authenticated"
+    },
+    {
+      "id": "api.account.me",
+      "kind": "api",
+      "route": "/api/v1/account",
+      "auth": "authenticated"
+    },
+    {
+      "id": "api.account.profile",
+      "kind": "api",
+      "route": "/api/v1/account/profile",
+      "auth": "authenticated"
+    },
+    {
+      "id": "api.account.password",
+      "kind": "api",
+      "route": "/api/v1/account/password",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.tokens.page",
+      "kind": "html",
+      "route": "/account/tokens",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.tokens.fragment",
+      "kind": "html",
+      "route": "/fragments/account/tokens",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.tokens.revoke",
+      "kind": "html",
+      "route": "/account/tokens/:id/revoke",
+      "auth": "authenticated"
+    },
+    {
+      "id": "api.account.registry-tokens",
+      "kind": "api",
+      "route": "/api/v1/account/registry-tokens",
+      "auth": "authenticated"
+    },
+    {
+      "id": "api.account.registry-token",
+      "kind": "api",
+      "route": "/api/v1/account/registry-tokens/:id",
+      "auth": "authenticated"
+    },
+    {
+      "id": "health.liveness",
+      "kind": "api",
+      "route": "/health/liveness",
+      "auth": "public"
+    },
+    {
+      "id": "health.readiness",
+      "kind": "api",
+      "route": "/health/readiness",
+      "auth": "public"
+    },
+    {
+      "id": "health.dashboard",
+      "kind": "html",
+      "route": "/health",
+      "auth": "public"
+    },
+    {
+      "id": "marketplace.catalog",
+      "kind": "html",
+      "route": "/packages",
+      "auth": "public"
+    },
+    {
+      "id": "marketplace.package",
+      "kind": "html",
+      "route": "/packages/:namespace/:name",
+      "auth": "public"
+    },
+    {
+      "id": "marketplace.release",
+      "kind": "html",
+      "route": "/packages/:namespace/:name/v/:version",
+      "auth": "public"
+    },
+    {
+      "id": "marketplace.catalog.fragment",
+      "kind": "html",
+      "route": "/fragments/packages",
+      "auth": "public"
+    },
+    {
+      "id": "marketplace.package.fragment",
+      "kind": "html",
+      "route": "/fragments/packages/:namespace/:name",
+      "auth": "public"
+    },
+    {
+      "id": "marketplace.release.fragment",
+      "kind": "html",
+      "route": "/fragments/packages/:namespace/:name/releases/:version",
+      "auth": "public"
+    },
+    {
+      "id": "publisher.console",
+      "kind": "html",
+      "route": "/publish",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.console.fragment",
+      "kind": "html",
+      "route": "/fragments/publish",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.package",
+      "kind": "html",
+      "route": "/publish/packages/:namespace/:name",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.package.fragment",
+      "kind": "html",
+      "route": "/fragments/publish/:namespace/:name",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.namespace.create",
+      "kind": "html",
+      "route": "/publish/namespaces/new",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.namespace.create.fragment",
+      "kind": "html",
+      "route": "/fragments/publish/namespaces/new",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.package.create",
+      "kind": "html",
+      "route": "/publish/namespaces/:namespace/packages/new",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.package.create.fragment",
+      "kind": "html",
+      "route": "/fragments/publish/namespaces/:namespace/packages/new",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.package.settings",
+      "kind": "html",
+      "route": "/publish/packages/:namespace/:name/settings",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.package.settings.fragment",
+      "kind": "html",
+      "route": "/fragments/publish/:namespace/:name/settings",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.release.create",
+      "kind": "html",
+      "route": "/publish/packages/:namespace/:name/releases",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.release.yank",
+      "kind": "html",
+      "route": "/publish/packages/:namespace/:name/releases/:version/yank",
+      "auth": "authenticated"
+    },
+    {
+      "id": "publisher.release.provenance",
+      "kind": "html",
+      "route": "/publish/packages/:namespace/:name/releases/:version/provenance",
+      "auth": "authenticated"
+    },
+    {
+      "id": "admin.registry",
+      "kind": "html",
+      "route": "/admin/registry",
+      "auth": "admin"
+    },
+    {
+      "id": "admin.registry.fragment",
+      "kind": "html",
+      "route": "/fragments/admin/registry",
+      "auth": "admin"
+    },
+    {
+      "id": "admin.registry.moderation.fragment",
+      "kind": "html",
+      "route": "/fragments/admin/registry/packages",
+      "auth": "admin"
+    },
+    {
+      "id": "admin.package.moderate",
+      "kind": "html",
+      "route": "/admin/registry/packages/:namespace/:name/moderate",
+      "auth": "admin"
+    },
+    {
+      "id": "admin.package.retention",
+      "kind": "html",
+      "route": "/admin/packages/:namespace/:name/retention",
+      "auth": "admin"
+    },
+    {
+      "id": "admin.package.retention.apply",
+      "kind": "html",
+      "route": "/admin/packages/:namespace/:name/retention/apply",
+      "auth": "admin"
+    },
+    {
+      "id": "docs.bao",
+      "kind": "html",
+      "route": "/docs/bao",
+      "auth": "public"
+    },
+    {
+      "id": "email.send",
+      "kind": "api",
+      "route": "/api/v1/email/send",
+      "auth": "admin"
+    },
+    {
+      "id": "install.resolve",
+      "kind": "api",
+      "route": "/api/v1/bao/install",
+      "auth": "public"
+    },
+    {
+      "id": "install.status",
+      "kind": "api",
+      "route": "/api/v1/bao/install/:id/status",
+      "auth": "public"
+    },
+    {
+      "id": "install.mount",
+      "kind": "api",
+      "route": "/api/v1/bao/install/:id/mount",
+      "auth": "public"
+    },
+    {
+      "id": "install.validate",
+      "kind": "api",
+      "route": "/api/v1/bao/validate",
+      "auth": "public"
+    },
+    {
+      "id": "registry.search",
+      "kind": "api",
+      "route": "/api/v1/registry/search",
+      "auth": "public"
+    },
+    {
+      "id": "registry.packages",
+      "kind": "api",
+      "route": "/api/v1/registry/packages",
+      "auth": "public"
+    },
+    {
+      "id": "registry.package",
+      "kind": "api",
+      "route": "/api/v1/registry/packages/:namespace/:name",
+      "auth": "public"
+    },
+    {
+      "id": "registry.release",
+      "kind": "api",
+      "route": "/api/v1/registry/packages/:namespace/:name/releases/:version",
+      "auth": "public"
+    },
+    {
+      "id": "registry.release.publish",
+      "kind": "api",
+      "route": "/api/v1/registry/packages/:namespace/:name/releases",
+      "auth": "authenticated"
+    },
+    {
+      "id": "registry.release.status",
+      "kind": "api",
+      "route": "/api/v1/registry/packages/:namespace/:name/releases/:version/status",
+      "auth": "public"
+    },
+    {
+      "id": "registry.release.provenance",
+      "kind": "api",
+      "route": "/api/v1/registry/packages/:namespace/:name/releases/:version/provenance",
+      "auth": "authenticated"
+    },
+    {
+      "id": "registry.namespace",
+      "kind": "api",
+      "route": "/api/v1/registry/namespaces/:slug",
+      "auth": "public"
+    },
+    {
+      "id": "registry.namespaces.create",
+      "kind": "api",
+      "route": "/api/v1/registry/namespaces",
+      "auth": "authenticated"
+    },
+    {
+      "id": "registry.packages.create",
+      "kind": "api",
+      "route": "/api/v1/registry/packages",
+      "auth": "authenticated"
+    },
+    {
+      "id": "registry.package.update",
+      "kind": "api",
+      "route": "/api/v1/registry/packages/:namespace/:name",
+      "auth": "authenticated"
+    },
+    {
+      "id": "registry.stats",
+      "kind": "api",
+      "route": "/api/v1/registry/stats",
+      "auth": "public"
+    },
+    {
+      "id": "registry.featured",
+      "kind": "api",
+      "route": "/api/v1/registry/featured",
+      "auth": "public"
+    },
+    {
+      "id": "account.whoami",
+      "kind": "api",
+      "route": "/api/v1/account/whoami",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.ssh-keys",
+      "kind": "api",
+      "route": "/api/v1/account/ssh-keys",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.ssh-key",
+      "kind": "api",
+      "route": "/api/v1/account/ssh-keys/:id",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.gpg-keys",
+      "kind": "api",
+      "route": "/api/v1/account/gpg-keys",
+      "auth": "authenticated"
+    },
+    {
+      "id": "account.gpg-key",
+      "kind": "api",
+      "route": "/api/v1/account/gpg-keys/:id",
+      "auth": "authenticated"
+    },
+    {
+      "id": "catalog.packages",
+      "kind": "api",
+      "route": "/api/catalog/packages",
+      "auth": "public"
+    },
+    {
+      "id": "audit-log.list",
+      "kind": "api",
+      "route": "/api/v1/audit-log",
+      "auth": "admin"
+    },
+    {
+      "id": "audit-log.merkle-root",
+      "kind": "api",
+      "route": "/api/v1/audit-log/merkle-root",
+      "auth": "admin"
+    },
+    {
+      "id": "audit-log.inclusion-proof",
+      "kind": "api",
+      "route": "/api/v1/audit-log/:sequence/proof",
+      "auth": "admin"
+    },
+    {
+      "id": "blob-uploads.presigned",
+      "kind": "api",
+      "route": "/api/v1/admin/blob-uploads/presigned",
+      "auth": "admin"
+    },
+    {
+      "id": "lfs.objects.batch",
+      "kind": "api",
+      "route": "/:namespace/:name.git/info/lfs/objects/batch",
+      "auth": "authenticated"
+    },
+    {
+      "id": "lfs.objects.verify",
+      "kind": "api",
+      "route": "/:namespace/:name.git/info/lfs/verify",
+      "auth": "authenticated"
+    },
+    {
+      "id": "retention.package",
+      "kind": "api",
+      "route": "/api/v1/packages/:namespace/:name/retention",
+      "auth": "admin"
+    },
+    {
+      "id": "oci.base",
+      "kind": "oci",
+      "route": "/v2/",
+      "auth": "public"
+    },
+    {
+      "id": "oci.catalog",
+      "kind": "oci",
+      "route": "/v2/_catalog",
+      "auth": "public"
+    },
+    {
+      "id": "oci.tags",
+      "kind": "oci",
+      "route": "/v2/:namespace/:name/tags/list",
+      "auth": "public"
+    },
+    {
+      "id": "oci.manifest",
+      "kind": "oci",
+      "route": "/v2/:namespace/:name/manifests/:reference",
+      "auth": "public"
+    },
+    {
+      "id": "oci.manifest.write",
+      "kind": "oci",
+      "route": "/v2/:namespace/:name/manifests/:reference",
+      "auth": "authenticated"
+    },
+    {
+      "id": "oci.manifest.delete",
+      "kind": "oci",
+      "route": "/v2/:namespace/:name/manifests/:reference",
+      "auth": "authenticated"
+    },
+    {
+      "id": "oci.referrers",
+      "kind": "oci",
+      "route": "/v2/:namespace/:name/referrers/:digest",
+      "auth": "public"
+    },
+    {
+      "id": "oci.blob",
+      "kind": "oci",
+      "route": "/v2/:namespace/:name/blobs/:digest",
+      "auth": "public"
+    },
+    {
+      "id": "oci.upload.start",
+      "kind": "oci",
+      "route": "/v2/:namespace/:name/blobs/uploads/",
+      "auth": "authenticated"
+    },
+    {
+      "id": "oci.upload.session",
+      "kind": "oci",
+      "route": "/v2/:namespace/:name/blobs/uploads/:uploadId",
+      "auth": "authenticated"
+    },
+    {
+      "id": "namespace.profile",
+      "kind": "html",
+      "route": "/namespaces/:slug",
+      "auth": "public"
+    },
+    {
+      "id": "namespace.profile.fragment",
+      "kind": "html",
+      "route": "/fragments/namespaces/:slug",
+      "auth": "public"
+    }
+  ],
+  "generatedAt": "2026-05-05T18:26:20.121Z",
+  "version": "1.0.0"
+}

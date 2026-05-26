@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bao Edge brand palette — single source for XML/drawable resources. Align with Color.kt, brand-overrides.css, control-plane brand.ts -->
+<resources>
+    <color name="bao_edge_gold">#D4B978</color>
+    <color name="bao_edge_gold_deep">#C4A55E</color>
+    <color name="bao_edge_gold_light">#E8D9A8</color>
+    <color name="bao_edge_charcoal">#111111</color>
+    <color name="bao_edge_black">#080808</color>
+    <color name="bao_edge_cream">#F2EDE5</color>
+    <color name="bao_edge_ivory">#FAF7F2</color>
+    <color name="bao_edge_ruby">#D4364E</color>
+    <color name="bao_edge_ruby_deep">#7A1D2E</color>
+    <color name="bao_edge_titanium">#B5AFA7</color>
+    <color name="bao_edge_graphite">#1C1C1C</color>
+    <!-- Semantic (brand-tokens.json semantic) -->
+    <color name="bao_edge_success_light">#5A7F3A</color>
+    <color name="bao_edge_success_dark">#A8D17B</color>
+    <color name="bao_edge_info_light">#4A6FA5</color>
+    <color name="bao_edge_info_dark">#93B8E8</color>
+</resources>

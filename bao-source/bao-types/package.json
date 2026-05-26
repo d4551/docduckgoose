@@ -1,0 +1,570 @@
+{
+  "name": "@baohaus/bao-types",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "bunx --bun tsc --project tsconfig.build.json",
+    "typecheck": "bunx --bun tsc --noEmit --project tsconfig.json",
+    "test": "bun test",
+    "lint": "bunx --bun biome check --error-on-warnings .",
+    "bao:build": "bun run ./scripts/bao-build.ts",
+    "bao:validate": "bun run ./scripts/bao-validate.ts",
+    "verify": "bun run typecheck && bun run lint && bun run build && bun run test && bun run bao:build && bun run bao:validate"
+  },
+  "exports": {
+    "./ai-autonomy": {
+      "bun": "./dist/ai-autonomy.js",
+      "import": "./dist/ai-autonomy.js",
+      "types": "./dist/ai-autonomy.d.ts",
+      "default": "./dist/ai-autonomy.js"
+    },
+    "./ai-error-taxonomy": {
+      "bun": "./dist/ai-error-taxonomy.js",
+      "import": "./dist/ai-error-taxonomy.js",
+      "types": "./dist/ai-error-taxonomy.d.ts",
+      "default": "./dist/ai-error-taxonomy.js"
+    },
+    "./ai-gateway": {
+      "bun": "./dist/ai-gateway.js",
+      "import": "./dist/ai-gateway.js",
+      "types": "./dist/ai-gateway.d.ts",
+      "default": "./dist/ai-gateway.js"
+    },
+    "./ai-provider-health": {
+      "bun": "./dist/ai-provider-health.js",
+      "import": "./dist/ai-provider-health.js",
+      "types": "./dist/ai-provider-health.d.ts",
+      "default": "./dist/ai-provider-health.js"
+    },
+    "./ai-providers": {
+      "bun": "./dist/ai-providers.js",
+      "import": "./dist/ai-providers.js",
+      "types": "./dist/ai-providers.d.ts",
+      "default": "./dist/ai-providers.js"
+    },
+    "./ai-service-alignment": {
+      "bun": "./dist/ai-service-alignment.js",
+      "import": "./dist/ai-service-alignment.js",
+      "types": "./dist/ai-service-alignment.d.ts",
+      "default": "./dist/ai-service-alignment.js"
+    },
+    "./annotation-alignment": {
+      "bun": "./dist/annotation-alignment.js",
+      "import": "./dist/annotation-alignment.js",
+      "types": "./dist/annotation-alignment.d.ts",
+      "default": "./dist/annotation-alignment.js"
+    },
+    "./annotations": {
+      "bun": "./dist/annotations.js",
+      "import": "./dist/annotations.js",
+      "types": "./dist/annotations.d.ts",
+      "default": "./dist/annotations.js"
+    },
+    "./api": {
+      "bun": "./dist/api.js",
+      "import": "./dist/api.js",
+      "types": "./dist/api.d.ts",
+      "default": "./dist/api.js"
+    },
+    "./bao-install-validation": {
+      "bun": "./dist/bao-install-validation.js",
+      "import": "./dist/bao-install-validation.js",
+      "types": "./dist/bao-install-validation.d.ts",
+      "default": "./dist/bao-install-validation.js"
+    },
+    "./baodown": {
+      "bun": "./dist/baodown.js",
+      "import": "./dist/baodown.js",
+      "types": "./dist/baodown.d.ts",
+      "default": "./dist/baodown.js"
+    },
+    "./bluetooth-capabilities": {
+      "bun": "./dist/bluetooth-capabilities.js",
+      "import": "./dist/bluetooth-capabilities.js",
+      "types": "./dist/bluetooth-capabilities.d.ts",
+      "default": "./dist/bluetooth-capabilities.js"
+    },
+    "./bunbuddy-capabilities": {
+      "bun": "./dist/bunbuddy-capabilities.js",
+      "import": "./dist/bunbuddy-capabilities.js",
+      "types": "./dist/bunbuddy-capabilities.d.ts",
+      "default": "./dist/bunbuddy-capabilities.js"
+    },
+    "./bunbuddy-contracts": {
+      "bun": "./dist/bunbuddy-contracts.js",
+      "import": "./dist/bunbuddy-contracts.js",
+      "types": "./dist/bunbuddy-contracts.d.ts",
+      "default": "./dist/bunbuddy-contracts.js"
+    },
+    "./capability-impact": {
+      "bun": "./dist/capability-impact.js",
+      "import": "./dist/capability-impact.js",
+      "types": "./dist/capability-impact.d.ts",
+      "default": "./dist/capability-impact.js"
+    },
+    "./capability-ownership": {
+      "bun": "./dist/capability-ownership.js",
+      "import": "./dist/capability-ownership.js",
+      "types": "./dist/capability-ownership.d.ts",
+      "default": "./dist/capability-ownership.js"
+    },
+    "./capability-registry": {
+      "bun": "./dist/capability-registry.js",
+      "import": "./dist/capability-registry.js",
+      "types": "./dist/capability-registry.d.ts",
+      "default": "./dist/capability-registry.js"
+    },
+    "./cases": {
+      "bun": "./dist/cases.js",
+      "import": "./dist/cases.js",
+      "types": "./dist/cases.d.ts",
+      "default": "./dist/cases.js"
+    },
+    "./chat": {
+      "bun": "./dist/chat.js",
+      "import": "./dist/chat.js",
+      "types": "./dist/chat.d.ts",
+      "default": "./dist/chat.js"
+    },
+    "./commerce": {
+      "bun": "./dist/commerce.js",
+      "import": "./dist/commerce.js",
+      "types": "./dist/commerce.d.ts",
+      "default": "./dist/commerce.js"
+    },
+    "./common": {
+      "bun": "./dist/common.js",
+      "import": "./dist/common.js",
+      "types": "./dist/common.d.ts",
+      "default": "./dist/common.js"
+    },
+    "./correlation": {
+      "bun": "./dist/correlation.js",
+      "import": "./dist/correlation.js",
+      "types": "./dist/correlation.d.ts",
+      "default": "./dist/correlation.js"
+    },
+    "./deep-partial": {
+      "bun": "./dist/deep-partial.js",
+      "import": "./dist/deep-partial.js",
+      "types": "./dist/deep-partial.d.ts",
+      "default": "./dist/deep-partial.js"
+    },
+    "./device-lifecycle": {
+      "bun": "./dist/device-lifecycle.js",
+      "import": "./dist/device-lifecycle.js",
+      "types": "./dist/device-lifecycle.d.ts",
+      "default": "./dist/device-lifecycle.js"
+    },
+    "./devices-status": {
+      "bun": "./dist/devices-status.js",
+      "import": "./dist/devices-status.js",
+      "types": "./dist/devices-status.d.ts",
+      "default": "./dist/devices-status.js"
+    },
+    "./drone-history": {
+      "bun": "./dist/drone-history.js",
+      "import": "./dist/drone-history.js",
+      "types": "./dist/drone-history.d.ts",
+      "default": "./dist/drone-history.js"
+    },
+    "./drone-ops": {
+      "bun": "./dist/drone-ops.js",
+      "import": "./dist/drone-ops.js",
+      "types": "./dist/drone-ops.d.ts",
+      "default": "./dist/drone-ops.js"
+    },
+    "./drone-realtime": {
+      "bun": "./dist/drone-realtime.js",
+      "import": "./dist/drone-realtime.js",
+      "types": "./dist/drone-realtime.d.ts",
+      "default": "./dist/drone-realtime.js"
+    },
+    "./drone-realtime-status": {
+      "bun": "./dist/drone-realtime-status.js",
+      "import": "./dist/drone-realtime-status.js",
+      "types": "./dist/drone-realtime-status.d.ts",
+      "default": "./dist/drone-realtime-status.js"
+    },
+    "./drone-summary": {
+      "bun": "./dist/drone-summary.js",
+      "import": "./dist/drone-summary.js",
+      "types": "./dist/drone-summary.d.ts",
+      "default": "./dist/drone-summary.js"
+    },
+    "./feature-flags": {
+      "bun": "./dist/feature-flags.js",
+      "import": "./dist/feature-flags.js",
+      "types": "./dist/feature-flags.d.ts",
+      "default": "./dist/feature-flags.js"
+    },
+    "./feature-health": {
+      "bun": "./dist/feature-health.js",
+      "import": "./dist/feature-health.js",
+      "types": "./dist/feature-health.d.ts",
+      "default": "./dist/feature-health.js"
+    },
+    "./fhir": {
+      "bun": "./dist/fhir.js",
+      "import": "./dist/fhir.js",
+      "types": "./dist/fhir.d.ts",
+      "default": "./dist/fhir.js"
+    },
+    "./hardware-integration": {
+      "bun": "./dist/hardware-integration.js",
+      "import": "./dist/hardware-integration.js",
+      "types": "./dist/hardware-integration.d.ts",
+      "default": "./dist/hardware-integration.js"
+    },
+    "./hardware-policy": {
+      "bun": "./dist/hardware-policy.js",
+      "import": "./dist/hardware-policy.js",
+      "types": "./dist/hardware-policy.d.ts",
+      "default": "./dist/hardware-policy.js"
+    },
+    "./hardware-summary": {
+      "bun": "./dist/hardware-summary.js",
+      "import": "./dist/hardware-summary.js",
+      "types": "./dist/hardware-summary.d.ts",
+      "default": "./dist/hardware-summary.js"
+    },
+    "./health": {
+      "bun": "./dist/health.js",
+      "import": "./dist/health.js",
+      "types": "./dist/health.d.ts",
+      "default": "./dist/health.js"
+    },
+    "./help-center": {
+      "bun": "./dist/help-center.js",
+      "import": "./dist/help-center.js",
+      "types": "./dist/help-center.d.ts",
+      "default": "./dist/help-center.js"
+    },
+    "./huggingface": {
+      "bun": "./dist/huggingface.js",
+      "import": "./dist/huggingface.js",
+      "types": "./dist/huggingface.d.ts",
+      "default": "./dist/huggingface.js"
+    },
+    "./imager-pipeline": {
+      "bun": "./dist/imager-pipeline.js",
+      "import": "./dist/imager-pipeline.js",
+      "types": "./dist/imager-pipeline.d.ts",
+      "default": "./dist/imager-pipeline.js"
+    },
+    "./integration-context": {
+      "bun": "./dist/integration-context.js",
+      "import": "./dist/integration-context.js",
+      "types": "./dist/integration-context.d.ts",
+      "default": "./dist/integration-context.js"
+    },
+    "./library-registry": {
+      "bun": "./dist/library-registry.js",
+      "import": "./dist/library-registry.js",
+      "types": "./dist/library-registry.d.ts",
+      "default": "./dist/library-registry.js"
+    },
+    "./mcp": {
+      "bun": "./dist/mcp.js",
+      "import": "./dist/mcp.js",
+      "types": "./dist/mcp.d.ts",
+      "default": "./dist/mcp.js"
+    },
+    "./models": {
+      "bun": "./dist/models.js",
+      "import": "./dist/models.js",
+      "types": "./dist/models.d.ts",
+      "default": "./dist/models.js"
+    },
+    "./mylittledumpling": {
+      "bun": "./dist/mylittledumpling.js",
+      "import": "./dist/mylittledumpling.js",
+      "types": "./dist/mylittledumpling.d.ts",
+      "default": "./dist/mylittledumpling.js"
+    },
+    "./notifications": {
+      "bun": "./dist/notifications.js",
+      "import": "./dist/notifications.js",
+      "types": "./dist/notifications.d.ts",
+      "default": "./dist/notifications.js"
+    },
+    "./onnx": {
+      "bun": "./dist/onnx.js",
+      "import": "./dist/onnx.js",
+      "types": "./dist/onnx.d.ts",
+      "default": "./dist/onnx.js"
+    },
+    "./onnx-integration": {
+      "bun": "./dist/onnx-integration.js",
+      "import": "./dist/onnx-integration.js",
+      "types": "./dist/onnx-integration.d.ts",
+      "default": "./dist/onnx-integration.js"
+    },
+    "./orchestration": {
+      "bun": "./dist/orchestration.js",
+      "import": "./dist/orchestration.js",
+      "types": "./dist/orchestration.d.ts",
+      "default": "./dist/orchestration.js"
+    },
+    "./package-descriptor": {
+      "bun": "./dist/package-descriptor.js",
+      "import": "./dist/package-descriptor.js",
+      "types": "./dist/package-descriptor.d.ts",
+      "default": "./dist/package-descriptor.js"
+    },
+    "./pipeline-integration": {
+      "bun": "./dist/pipeline-integration.js",
+      "import": "./dist/pipeline-integration.js",
+      "types": "./dist/pipeline-integration.d.ts",
+      "default": "./dist/pipeline-integration.js"
+    },
+    "./prisma.types": {
+      "bun": "./dist/prisma.types.js",
+      "import": "./dist/prisma.types.js",
+      "types": "./dist/prisma.types.d.ts",
+      "default": "./dist/prisma.types.js"
+    },
+    "./queries": {
+      "bun": "./dist/queries.js",
+      "import": "./dist/queries.js",
+      "types": "./dist/queries.d.ts",
+      "default": "./dist/queries.js"
+    },
+    "./rag": {
+      "bun": "./dist/rag.js",
+      "import": "./dist/rag.js",
+      "types": "./dist/rag.d.ts",
+      "default": "./dist/rag.js"
+    },
+    "./ramalama": {
+      "bun": "./dist/ramalama.js",
+      "import": "./dist/ramalama.js",
+      "types": "./dist/ramalama.d.ts",
+      "default": "./dist/ramalama.js"
+    },
+    "./responses": {
+      "bun": "./dist/responses.js",
+      "import": "./dist/responses.js",
+      "types": "./dist/responses.d.ts",
+      "default": "./dist/responses.js"
+    },
+    "./robotics-localization": {
+      "bun": "./dist/robotics-localization.js",
+      "import": "./dist/robotics-localization.js",
+      "types": "./dist/robotics-localization.d.ts",
+      "default": "./dist/robotics-localization.js"
+    },
+    "./robotics-mission": {
+      "bun": "./dist/robotics-mission.js",
+      "import": "./dist/robotics-mission.js",
+      "types": "./dist/robotics-mission.d.ts",
+      "default": "./dist/robotics-mission.js"
+    },
+    "./robotics-motion": {
+      "bun": "./dist/robotics-motion.js",
+      "import": "./dist/robotics-motion.js",
+      "types": "./dist/robotics-motion.d.ts",
+      "default": "./dist/robotics-motion.js"
+    },
+    "./robotics-policy": {
+      "bun": "./dist/robotics-policy.js",
+      "import": "./dist/robotics-policy.js",
+      "types": "./dist/robotics-policy.d.ts",
+      "default": "./dist/robotics-policy.js"
+    },
+    "./robotics-summary": {
+      "bun": "./dist/robotics-summary.js",
+      "import": "./dist/robotics-summary.js",
+      "types": "./dist/robotics-summary.d.ts",
+      "default": "./dist/robotics-summary.js"
+    },
+    "./robotics-telemetry": {
+      "bun": "./dist/robotics-telemetry.js",
+      "import": "./dist/robotics-telemetry.js",
+      "types": "./dist/robotics-telemetry.d.ts",
+      "default": "./dist/robotics-telemetry.js"
+    },
+    "./rpa": {
+      "bun": "./dist/rpa.js",
+      "import": "./dist/rpa.js",
+      "types": "./dist/rpa.d.ts",
+      "default": "./dist/rpa.js"
+    },
+    "./rpa-integration": {
+      "bun": "./dist/rpa-integration.js",
+      "import": "./dist/rpa-integration.js",
+      "types": "./dist/rpa-integration.d.ts",
+      "default": "./dist/rpa-integration.js"
+    },
+    "./rpa-training-cohesion": {
+      "bun": "./dist/rpa-training-cohesion.js",
+      "import": "./dist/rpa-training-cohesion.js",
+      "types": "./dist/rpa-training-cohesion.d.ts",
+      "default": "./dist/rpa-training-cohesion.js"
+    },
+    "./scanner": {
+      "bun": "./dist/scanner.js",
+      "import": "./dist/scanner.js",
+      "types": "./dist/scanner.d.ts",
+      "default": "./dist/scanner.js"
+    },
+    "./three": {
+      "bun": "./dist/three.js",
+      "import": "./dist/three.js",
+      "types": "./dist/three.d.ts",
+      "default": "./dist/three.js"
+    },
+    "./three-capabilities": {
+      "bun": "./dist/three-capabilities.js",
+      "import": "./dist/three-capabilities.js",
+      "types": "./dist/three-capabilities.d.ts",
+      "default": "./dist/three-capabilities.js"
+    },
+    "./three-integration": {
+      "bun": "./dist/three-integration.js",
+      "import": "./dist/three-integration.js",
+      "types": "./dist/three-integration.d.ts",
+      "default": "./dist/three-integration.js"
+    },
+    "./training": {
+      "bun": "./dist/training.js",
+      "import": "./dist/training.js",
+      "types": "./dist/training.d.ts",
+      "default": "./dist/training.js"
+    },
+    "./training-integration": {
+      "bun": "./dist/training-integration.js",
+      "import": "./dist/training-integration.js",
+      "types": "./dist/training-integration.d.ts",
+      "default": "./dist/training-integration.js"
+    },
+    "./training-readiness": {
+      "bun": "./dist/training-readiness.js",
+      "import": "./dist/training-readiness.js",
+      "types": "./dist/training-readiness.d.ts",
+      "default": "./dist/training-readiness.js"
+    },
+    "./ui-state-machine": {
+      "bun": "./dist/ui-state-machine.js",
+      "import": "./dist/ui-state-machine.js",
+      "types": "./dist/ui-state-machine.d.ts",
+      "default": "./dist/ui-state-machine.js"
+    },
+    "./usd": {
+      "bun": "./dist/usd.js",
+      "import": "./dist/usd.js",
+      "types": "./dist/usd.d.ts",
+      "default": "./dist/usd.js"
+    },
+    "./usd-annotations": {
+      "bun": "./dist/usd-annotations.js",
+      "import": "./dist/usd-annotations.js",
+      "types": "./dist/usd-annotations.d.ts",
+      "default": "./dist/usd-annotations.js"
+    },
+    "./spatial-geospatial-tile-integration": {
+      "bun": "./dist/spatial-geospatial-tile-integration.js",
+      "import": "./dist/spatial-geospatial-tile-integration.js",
+      "types": "./dist/spatial-geospatial-tile-integration.d.ts",
+      "default": "./dist/spatial-geospatial-tile-integration.js"
+    },
+    "./usd-integration": {
+      "bun": "./dist/usd-integration.js",
+      "import": "./dist/usd-integration.js",
+      "types": "./dist/usd-integration.d.ts",
+      "default": "./dist/usd-integration.js"
+    },
+    "./user-robotics-ops": {
+      "bun": "./dist/user-robotics-ops.js",
+      "import": "./dist/user-robotics-ops.js",
+      "types": "./dist/user-robotics-ops.d.ts",
+      "default": "./dist/user-robotics-ops.js"
+    },
+    "./users": {
+      "bun": "./dist/users.js",
+      "import": "./dist/users.js",
+      "types": "./dist/users.d.ts",
+      "default": "./dist/users.js"
+    },
+    "./validation": {
+      "bun": "./dist/validation.js",
+      "import": "./dist/validation.js",
+      "types": "./dist/validation.d.ts",
+      "default": "./dist/validation.js"
+    },
+    "./ws-types-ai": {
+      "bun": "./dist/ws-types-ai.js",
+      "import": "./dist/ws-types-ai.js",
+      "types": "./dist/ws-types-ai.d.ts",
+      "default": "./dist/ws-types-ai.js"
+    },
+    "./ws-types-devices": {
+      "bun": "./dist/ws-types-devices.js",
+      "import": "./dist/ws-types-devices.js",
+      "types": "./dist/ws-types-devices.d.ts",
+      "default": "./dist/ws-types-devices.js"
+    },
+    "./ws-types-system": {
+      "bun": "./dist/ws-types-system.js",
+      "import": "./dist/ws-types-system.js",
+      "types": "./dist/ws-types-system.d.ts",
+      "default": "./dist/ws-types-system.js"
+    },
+    "./xr": {
+      "bun": "./dist/xr.js",
+      "import": "./dist/xr.js",
+      "types": "./dist/xr.d.ts",
+      "default": "./dist/xr.js"
+    },
+    "./xr-capabilities": {
+      "bun": "./dist/xr-capabilities.js",
+      "import": "./dist/xr-capabilities.js",
+      "types": "./dist/xr-capabilities.d.ts",
+      "default": "./dist/xr-capabilities.js"
+    },
+    "./xr-composition": {
+      "bun": "./dist/xr-composition.js",
+      "import": "./dist/xr-composition.js",
+      "types": "./dist/xr-composition.d.ts",
+      "default": "./dist/xr-composition.js"
+    },
+    "./xr-hardware": {
+      "bun": "./dist/xr-hardware.js",
+      "import": "./dist/xr-hardware.js",
+      "types": "./dist/xr-hardware.d.ts",
+      "default": "./dist/xr-hardware.js"
+    },
+    "./xr-review": {
+      "bun": "./dist/xr-review.js",
+      "import": "./dist/xr-review.js",
+      "types": "./dist/xr-review.d.ts",
+      "default": "./dist/xr-review.js"
+    },
+    "./xr-session": {
+      "bun": "./dist/xr-session.js",
+      "import": "./dist/xr-session.js",
+      "types": "./dist/xr-session.d.ts",
+      "default": "./dist/xr-session.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "license": "MIT",
+  "description": "Shared TypeScript type definitions for .bao packages",
+  "dependencies": {
+    "@baohaus/bao-config": "0.1.0",
+    "@baohaus/bao-constants": "0.1.0",
+    "@baohaus/bao-schemas": "0.1.0",
+    "@baohaus/baobox": "0.1.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "bun@1.3.13"
+}

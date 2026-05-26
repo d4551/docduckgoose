@@ -1,0 +1,12 @@
+{
+  "name": "Goose Word",
+  "short_name": "GooseWord",
+  "description": "Local-first markdown word processor with browser-native speech",
+  "start_url": "/docs",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f7fb",
+  "theme_color": "#29524a",
+  "orientation": "portrait-primary",
+  "icons": []
+}
